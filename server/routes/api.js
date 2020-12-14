@@ -129,25 +129,25 @@ router.get('/panier', (req, res) => {
 })
 
 /*
- * Cette route doit ajouter un article au panier, puis retourner le panier modifié à l'utilisateur
- * Le body doit contenir l'id de l'article, ainsi que la quantité voulue
+ * Cette route doit ajouter un menu au panier, puis retourner le panier modifié à l'utilisateur
+ * Le body doit contenir l'id de l'menu, ainsi que la quantité voulue
  */
 
 router.post('/panier', (req, res) => {
   const menuId = parseInt(req.body.id)
-  const articleQte = parseInt(req.body.quantity)
+  const menuQte = parseInt(req.body.quantity)
 
-  if (articleQte <= 0) {
+  if (menuQte <= 0) {
     res.status(400).json({ message: "bad request" })
   }
 
-  const article = menus.find(a => a.id === menuId)
-  if (!article) {
-    res.status(501).json({ message: 'Article non existant' })
+  const menu = menus.find(a => a.id === menuId)
+  if (!menu) {
+    res.status(501).json({ message: 'menu non existant' })
   } else {
     const newMenu = {
       id: menuId,
-      quantity: articleQte
+      quantity: menuQte
     }
     req.session.panier.menus.push(newMenu)
     res.json(newMenu)
@@ -169,27 +169,27 @@ router.post('/panier/pay', (req, res) => {
 })
 
 /*
- * Cette route doit permettre de changer la quantité d'un article dans le panier
+ * Cette route doit permettre de changer la quantité d'un menu dans le panier
  * Le body doit contenir la quantité voulue
  */
 router.put('/panier/:menuId', (req, res) => {
   const menuId = parseInt(req.params.menuId)
-  const articleQte = parseInt(req.body.quantity)
+  const menuQte = parseInt(req.body.quantity)
 
   const index = req.session.panier.menus.findIndex(a => a.id === menuId)
 
   if (isNaN(menuId)) {
     res.status(400).json({ message: 'Requête incorrecte' })
   } else if (index === -1) {
-    res.status(501).json({ message: "L'article n'est pas dans le panier" })
+    res.status(501).json({ message: "L'menu n'est pas dans le panier" })
   } else {
-    req.session.panier.menus.quantity = articleQte
+    req.session.panier.menus.quantity = menuQte
     res.send()
   }
 })
 
 /*
- * Cette route doit supprimer un article dans le panier
+ * Cette route doit supprimer un menu dans le panier
  */
  router.delete('/panier/:menuId', (req, res) => {
    const menuId = parseInt(req.params.menuId)
@@ -198,7 +198,7 @@ router.put('/panier/:menuId', (req, res) => {
    if (isNaN(menuId)) {
      res.status(400).json({ message: 'Requête incorrecte' })
    } else if (index === -1) {
-     res.status(501).json({ message: "L'article n'est pas dans le panier" })
+     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
    } else {
      req.session.panier.menus.splice(index, 1)
      res.json(req.session.panier)
@@ -213,9 +213,9 @@ router.get('/menus', (req, res) => {
 })
 
 /**
- * Cette route crée un article.
+ * Cette route crée un menu.
  * WARNING: dans un vrai site, elle devrait être authentifiée et valider que l'utilisateur est bien autorisé
- * NOTE: lorsqu'on redémarre le serveur, l'article ajouté disparait
+ * NOTE: lorsqu'on redémarre le serveur, l'menu ajouté disparait
  *   Si on voulait persister l'information, on utiliserait une BDD (mysql, etc.)
  */
 router.post('/menu', (req, res) => {
@@ -244,16 +244,16 @@ router.post('/menu', (req, res) => {
     spicy: spicy
   }
   menus.push(menu)
-  // on envoie l'article ajouté à l'utilisateur
+  // on envoie l'menu ajouté à l'utilisateur
   res.json(menu)
 })
 
 /**
- * Cette fonction fait en sorte de valider que l'article demandé par l'utilisateur
+ * Cette fonction fait en sorte de valider que l'menu demandé par l'utilisateur
  * est valide. Elle est appliquée aux routes:
- * - GET /article/:menuId
- * - PUT /article/:menuId
- * - DELETE /article/:menuId
+ * - GET /menu/:menuId
+ * - PUT /menu/:menuId
+ * - DELETE /menu/:menuId
  * Comme ces trois routes ont un comportement similaire, on regroupe leurs fonctionnalités communes dans un middleware
  */
 function parseMenu (req, res, next) {
@@ -269,27 +269,27 @@ function parseMenu (req, res, next) {
 
   const menu = menus.find(a => a.id === req.menuId)
   if (!menu) {
-    res.status(404).json({ message: 'article ' + menuId + ' does not exist' })
+    res.status(404).json({ message: 'menu ' + menuId + ' does not exist' })
     return
   }
-  // on affecte req.article pour l'exploiter dans toutes les routes qui en ont besoin
+  // on affecte req.menu pour l'exploiter dans toutes les routes qui en ont besoin
   req.menu = menu
   next()
 }
 
 router.route('/menu/:menuId')
   /**
-   * Cette route envoie un article particulier
+   * Cette route envoie un menu particulier
    */
   .get(parseMenu, (req, res) => {
-    // req.article existe grâce au middleware parseArticle
+    // req.menu existe grâce au middleware parsemenu
     res.json(req.menu)
   })
 
   /**
-   * Cette route modifie un article.
+   * Cette route modifie un menu.
    * WARNING: dans un vrai site, elle devrait être authentifiée et valider que l'utilisateur est bien autorisé
-   * NOTE: lorsqu'on redémarre le serveur, la modification de l'article disparait
+   * NOTE: lorsqu'on redémarre le serveur, la modification de l'menu disparait
    *   Si on voulait persister l'information, on utiliserait une BDD (mysql, etc.)
    */
   .put(parseMenu, (req, res) => {
@@ -299,17 +299,17 @@ router.route('/menu/:menuId')
     const price = parseInt(req.body.price)
     const spicy = req.body.spicy
 
-    req.article.name = name
-    req.article.description = description
-    req.article.image = image
-    req.article.price = price
+    req.menu.name = name
+    req.menu.description = description
+    req.menu.image = image
+    req.menu.price = price
     req.body.spicy = spicy
     res.send()
   })
 
   .delete(parseMenu, (req, res) => {
     const index = menus.findIndex(a => a.id === req.menuId)
-    menus.splice(index, 1) // remove the article from the array
+    menus.splice(index, 1) // remove the menu from the array
     res.send()
   })
 
