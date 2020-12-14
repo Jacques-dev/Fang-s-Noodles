@@ -1,1 +1,7 @@
-Fang-s-Noodles
+# Install
+
+`npm install`
+
+# Run
+
+`npm start`

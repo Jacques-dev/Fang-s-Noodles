@@ -1,0 +1,41 @@
+<!doctype>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mon magasin en ligne 100% bons plans</title>
+    <!-- Load Vue followed by Vue Router -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Font family -->
+
+    <!-- Our css -->
+    <link rel="stylesheet" href="/css/main.css">
+
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Le goût de l'Est</h1>
+        <!-- <h2 v-if="user.userId" style="color: green">Connecté</h2> -->
+        <!-- <h2 v-else style="color: red">Non connecté</h2> -->
+        <nav>
+          <router-link class="router-link" to='/'>Accueil</router-link>
+          <router-link class="router-link" to='/propos'>A propos</router-link>
+          <router-link class="router-link" to='/menus'>Menus</router-link>
+          <router-link class="router-link" to='/commander'>Commander</router-link>
+          <router-link class="router-link" to='/contact'>Contact</router-link>
+          <router-link class="router-link" to='/reserver'>Réserver</router-link>
+        </nav>
+      </header>
+      <main>
+        <router-view
+
+        ></router-view>
+      </main>
+    </div>
+
+    <script src="/vue-application.js"></script>
+  </body>
+</html>
