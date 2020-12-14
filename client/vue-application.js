@@ -1,13 +1,17 @@
 const Accueil = window.httpVueLoader('./components/Accueil.vue')
-const Panier = window.httpVueLoader('./components/Panier.vue')
-const Register = window.httpVueLoader('./components/Register.vue')
-const Login = window.httpVueLoader('./components/Login.vue')
+const Propos = window.httpVueLoader('./components/Propos.vue')
+const Menus = window.httpVueLoader('./components/Menus.vue')
+const Commander = window.httpVueLoader('./components/Commander.vue')
+const Contact = window.httpVueLoader('./components/Contact.vue')
+const Reserver = window.httpVueLoader('./components/Reserver.vue')
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/panier', component: Panier },
-  { path: '/register', component: Register },
-  { path: '/login', component: Login },
+  { path: '/', component: Accueil },
+  { path: '/propos', component: Propos },
+  { path: '/menus', component: Menus },
+  { path: '/commander', component: Commander },
+  { path: '/contact', component: Contact },
+  { path: '/reserver', component: Reserver },
 ]
 
 const router = new VueRouter({
@@ -18,23 +22,21 @@ var app = new Vue({
   router,
   el: '#app',
   data: {
-    articles: [],
-    panier: {
-      createdAt: null,
-      updatedAt: null,
-      articles: []
-    },
+    menus: [],
     user: {
-      userId: null
+      id: null,
+      email: null,
+      nom: null,
+      telephone: null
     }
   },
   async mounted () {
-    const res = await axios.get('/api/articles')
-    this.articles = res.data
+    const res = await axios.get('/api/menus')
+    this.menus = res.data
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
     const res3 = await axios.get('/api/me')
-    this.user.userId = res3.data
+    this.user.id = res3.data
   },
   methods: {
     async register (user) {
@@ -43,7 +45,7 @@ var app = new Vue({
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
       const res3 = await axios.get('/api/me')
-      this.user.userId = res3.data
+      this.user.id = res3.data
     },
     async pay () {
       try {
@@ -57,38 +59,38 @@ var app = new Vue({
         router.push('/login')
       }
     },
-    async addToPanier (articleId) {
-      if (this.panier.articles.find(a => a.id === articleId) === undefined){
-        const res = await axios.post('/api/panier','id='+ articleId + '&quantity=1')
-        this.panier.articles.push(res.data)
+    async addToPanier (menuId) {
+      if (this.panier.menus.find(a => a.id === menuId) === undefined){
+        const res = await axios.post('/api/panier','id='+ menuId + '&quantity=1')
+        this.panier.menus.push(res.data)
       }
     },
-    async removeFromPanier (articleId) {
-      await axios.delete('/api/panier/' + articleId)
-      const index = this.panier.articles.findIndex(a => a.id === articleId)
-      this.panier.articles.splice(index, 1)
+    async removeFromPanier (menuId) {
+      await axios.delete('/api/panier/' + menuId)
+      const index = this.panier.menus.findIndex(a => a.id === menuId)
+      this.panier.menus.splice(index, 1)
     },
-    async updateArticleFromPanier (newArticle) {
-      await axios.put('/api/panier/' + newArticle.id, newArticle)
-      const article = this.panier.articles.find(a => a.id === newArticle.id)
-      article.quantity = newArticle.quantity
+    async updateMenuFromPanier (newMenu) {
+      await axios.put('/api/panier/' + newMenu.id, newMenu)
+      const article = this.panier.menus.find(a => a.id === newMenu.id)
+      article.quantity = newMenu.quantity
     },
     async addArticle (article) {
       const res = await axios.post('/api/article', article)
-      this.articles.push(res.data)
+      this.menus.push(res.data)
     },
-    async updateArticle (newArticle) {
-      await axios.put('/api/article/' + newArticle.id, newArticle)
-      const article = this.articles.find(a => a.id === newArticle.id)
-      article.name = newArticle.name
-      article.description = newArticle.description
-      article.image = newArticle.image
-      article.price = newArticle.price
+    async updateMenu (newMenu) {
+      await axios.put('/api/article/' + newMenu.id, newMenu)
+      const article = this.menus.find(a => a.id === newMenu.id)
+      article.name = newMenu.name
+      article.description = newMenu.description
+      article.image = newMenu.image
+      article.price = newMenu.price
     },
-    async deleteArticle (articleId) {
-      await axios.delete('/api/article/' + articleId)
-      const index = this.articles.findIndex(a => a.id === articleId)
-      this.articles.splice(index, 1)
+    async deleteMenu (menuId) {
+      await axios.delete('/api/article/' + menuId)
+      const index = this.menus.findIndex(a => a.id === menuId)
+      this.menus.splice(index, 1)
     }
   }
 })

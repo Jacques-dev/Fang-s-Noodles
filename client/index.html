@@ -2,6 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mon magasin en ligne 100% bons plans</title>
     <!-- Load Vue followed by Vue Router -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -10,8 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Font family -->
 
-    <!-- Our css -->
     <link rel="stylesheet" href="/css/main.css">
+
+    <!-- BootStrap 4 css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
   </head>
   <body>
@@ -32,10 +39,54 @@
       </header>
       <main>
         <router-view
-
+          :menus="menus"
+          :panier="panier"
+          :login="login"
+          @add-menu="addMenu"
+          @delete-menu="deleteArticle"
+          @update-menu="updateArticle"
+          @add-to-panier="addToPanier"
+          @remove-from-panier="removeFromPanier"
+          @update-menu-from-panier="updateArticleFromPanier"
+          @register="register"
+          @login="login"
+          @pay="pay"
         ></router-view>
       </main>
-      <footer>  <p>Ceci est le footer</p> </footer>
+      <footer>
+          <article class="article_footer">
+            <p class="titre_article_footer">Adresse</p>
+            <p class= "texte_article_footer">
+              Villejuif (94800)
+              18 Avenue Louis Cherel</p>
+          </article>
+
+          <article class="article_footer">
+            <p class="titre_article_footer"> Heures d'ouverture</p>
+            <p class= "texte_article_footer">
+              Lundi - Vendredi : 11h - 22h
+              Samedi - Dimanche : 11h - 23h
+            </p>
+          </article>
+
+          <article class="article_footer">
+            <p class="titre_article_footer"> Nous contacter</p>
+            <p class= "texte_article_footer">
+              Tel. 01-12-34-56-78
+Jacques.tellier@efrei.net
+              Merouane.souadji@efrei.net
+            </p>
+          </article>
+
+          <article class="article_footer">
+            <p class="titre_article_footer"> Nous suivre</p>
+            <i></i>
+            <i></i>
+            <i></i>
+          </article>
+
+
+       </footer>
     </div>
 
     <script src="/vue-application.js"></script>
