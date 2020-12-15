@@ -34,7 +34,7 @@
 
       </section>
 
-      <section class="row">
+      <section id="section1" class="row container-fluid">
 
         <article class="col-sm-4">
           <h3>Our Story Begins In The East</h3>
@@ -57,7 +57,7 @@
 
       </section>
 
-      <section class="row">
+      <section id="section3" class="row container-fluid">
 
         <article class="col-sm-4">
           <h3>Faites une réservation</h3>
