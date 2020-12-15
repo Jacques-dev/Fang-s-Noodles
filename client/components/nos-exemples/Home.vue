@@ -61,10 +61,10 @@ module.exports = {
   },
   methods: {
     existeDansPanier (articleId) {
-      let bool = false;
+      let bool = false
       for (const art of this.panier.articles) {
         if (art.id == articleId){
-        bool = true;
+        bool = true
         }
       }
       return bool
