@@ -5,6 +5,7 @@ body{ margin: 0;}
 
 footer{
   display: flex;
+  /* flex-direction: row; */
   background-color: #7D1917;
   color:#fff;
   padding: 40px 0 40px 0;
@@ -40,7 +41,7 @@ nav{
 
 .router-link{
   display: flex;
-  margin: 2%;
+  margin: 0.4% 1% 0.4% 1%;
   text-decoration: none;
   color: #fff;
 }
@@ -52,11 +53,11 @@ nav{
 #nav_droite{
   display:flex;
   justify-content: center;
-  flex:1;
+  /* flex:1; */
 }
 
 #nav_gauche{
   display: flex;
   justify-content: center;
-  flex:2;
+  /* flex:2; */
 }
