@@ -149,7 +149,6 @@ module.exports = {
   },
   methods: {
     isSpicy(boolean) {
-      // alert(boolean)
       return boolean
     },
     existeDansPanier (menuId) {

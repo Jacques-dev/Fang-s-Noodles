@@ -1,5 +1,6 @@
 <template>
-  <div class="container" style="margin-top:30px">
+
+  <div class="container">
     <div class="row">
       <div class="col-sm-2">
         <h3>Hi, Guest</h3>
@@ -14,27 +15,102 @@
           </li>
         </ul>
       </div>
+
       <div class="col-sm-7">
-        <div class="tabcontent" v-if="checkMenu('soups')">
-          <h3>London</h3>
-          <p>London is the capital city of England.</p>
+        <h2>Menu</h2>
+
+        <div class="tabcontent container" v-if="checkMenu('soups')">
+
+          <h3>Soups</h3>
+          <div class="row">
+
+            <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6">
+              <div class="menu">
+                <img v-bind:src="'../images/soups/' + menu.image " class="image">
+                <div class="middle">
+                  <button type="button" name="button" class="ajouterMenu">Ajouter au panier</button>
+                </div>
+              </div>
+
+              {{ menu.name }} - {{ menu.price }}€
+              <div v-if="isSpicy(menu.spicy)" style="color: red">
+                Spicy
+              </div>
+
+            </article>
+          </div>
         </div>
 
-        <div class="tabcontent" v-if="checkMenu('dumplings')">
-          <h3>Paris</h3>
-          <p>Paris is the capital of France.</p>
+        <div class="tabcontent container" v-if="checkMenu('dumplings')">
+          <h3>Dumplings</h3>
+          <div class="row">
+
+            <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6">
+              <div class="menu">
+                <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
+                <div class="middle">
+                  <button type="button" name="button" class="ajouterMenu">Ajouter au panier</button>
+                </div>
+              </div>
+
+              {{ menu.name }} - {{ menu.price }}€
+              <div v-if="isSpicy(menu.spicy)" style="color: red">
+                Spicy
+              </div>
+
+            </article>
+          </div>
         </div>
 
-        <div class="tabcontent" v-if="checkMenu('noodles')">
-          <h3>Tokyo</h3>
-          <p>Tokyo is the capital of Japan.</p>
+        <div class="tabcontent container" v-if="checkMenu('noodles')">
+          <h3>Noodles</h3>
+          <div class="row">
+
+            <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6">
+              <div class="menu">
+                <img v-bind:src="'../images/noodles/' + menu.image " class="image">
+                <div class="middle">
+                  <button type="button" name="button" class="ajouterMenu">Ajouter au panier</button>
+                </div>
+              </div>
+
+              {{ menu.name }} - {{ menu.price }}€
+              <div v-if="isSpicy(menu.spicy)" style="color: red">
+                Spicy
+              </div>
+
+            </article>
+          </div>
         </div>
+
       </div>
       <div class="col-sm-3">
-        <h2>About Me</h2>
-        <h5>Photo of me:</h5>
-        <div class="fakeimg">Fake Image</div>
-        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+
+        <div class="row">
+          <div class="col-sm-6">
+            My Order
+          </div>
+          <div class="col-sm-6">
+            (0 selections)
+          </div>
+        </div>
+
+        <div class="panier">
+           -- affichage du panier --
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            Total
+          </div>
+          <div class="col-sm-6">
+            €
+          </div>
+        </div>
+
+        <p>Arrivé prévu : 20 minutes</p>
+
+        <button type="button" name="button">Commander</button>
+
       </div>
     </div>
   </div>
@@ -42,48 +118,38 @@
 </template>
 
 <script>
-module.exports = {
-  components: {
-    Panier
-  },
-  props: {
-    menus: { type: Array, default: [] },
-    panier: { type: Object }
-  },
-  data () {
-    return {
-
+  module.exports = {
+    components: {
+      Panier
     },
-    typeMenu = "soups"
-  },
-  methods: {
-    checkMenu(type) {
-      let bool = false
-      if(this.typeMenu == type) {
-        bool = true
+    props: {
+      menus: { type: Array, default: [] },
+      panier: { type: Object }
+    },
+    data () {
+      return {
+        typeMenu: "soups"
       }
-      return bool
     },
-    changeTypeMenu(newType) {
-      this.typeMenu = newType
+    methods: {
+      isSpicy(boolean) {
+        return boolean
+      },
+      checkMenu(type) {
+        let bool = false
+        if(this.typeMenu == type) {
+          bool = true
+        }
+        return bool
+      },
+      changeTypeMenu(newType) {
+        this.typeMenu = newType
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-  #commander {
-    background-image: url("/images/backgrounds/commander.webp");
-    position: absolute;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
 
   .dropdown-menu {
     float: left;
@@ -91,7 +157,6 @@ module.exports = {
     height: 300px;
   }
 
-  /* Style the buttons inside the tab */
   .dropdown-menu button {
     display: block;
     background-color: inherit;
@@ -106,24 +171,58 @@ module.exports = {
     font-size: 17px;
   }
 
-  /* Change background color of buttons on hover */
   .dropdown-menu button:hover {
     background-color: #ddd;
   }
 
-  /* Create an active/current "tab button" class */
   .dropdown-menu button.active {
     background-color: #ccc;
   }
 
-  /* Style the tab content */
-  .tabcontent {
-    float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
-    width: 70%;
-    border-left: none;
-    height: 300px;
+  /* ------------------------------- */
+
+  .tabcontent .col-sm-6 {
+    margin: 15px auto;
+  }
+
+  .menu {
+    position: relative;
+    width: 50%;
+  }
+
+  .image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .menu:hover .image {
+    opacity: 0.3;
+  }
+
+  .menu:hover .middle {
+    opacity: 1;
+  }
+
+  .ajouterMenu {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
   }
 
 </style>

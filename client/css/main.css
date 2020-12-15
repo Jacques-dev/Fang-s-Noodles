@@ -1,11 +1,15 @@
 #section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
 #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
 #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
-body{ margin: 0;}
+body {
+  margin: 0;
+  height: 100%;
+  position: relative;
+}
 
-footer{
-  display: flex;
-  /* flex-direction: row; */
+footer {
+  display: flex !important;
+  flex-direction: row !important;
   background-color: #7D1917;
   color:#fff;
   padding: 40px 0 40px 0;
@@ -17,7 +21,7 @@ footer{
   font-size: 1.1em;
 }
 .texte_article_footer{
-    font-size: 0.8em;
+  font-size: 0.8em;
 }
 .article_footer{
   display: flex;
