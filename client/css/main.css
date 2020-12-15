@@ -47,59 +47,59 @@ footer .row {
 }
 /* Stylez et fixez le bouton sur la page */
 .open-button {
-background-color: #891B17;
-color: white;
-border: none;
-cursor: pointer;
+  background-color: #891B17;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 /* Positionnez la forme Popup */
 .login-popup, .register-popup{
-position: relative;
-text-align: center;
-width: 100%;
+  position: relative;
+  text-align: center;
+  width: 100%;
 }
 /* Masquez la forme Popup */
 .form-popup {
-display: none;
-position: fixed;
-left: 35%;
-top:5%;
-z-index: 9;
+  display: none;
+  position: fixed;
+  left: 35%;
+  top:5%;
+  z-index: 9;
 }
 /* Styles pour le conteneur de la forme */
 .form-container {
-max-width: 500px;
-padding: 20px;
-background-color: #fff;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fff;
 }
 /* Largeur complète pour les champs de saisie */
 .form-container input[type=text], .form-container input[type=password] {
-width: 100%;
-padding: 10px;
-margin: 5px 0 22px 0;
-border: none;
-background: #eee;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #eee;
 }
 
 /* Stylez le bouton de connexion */
 .form-container .btn {
-background-color: #8ebf42;
-color: #fff;
-padding: 12px 20px;
-border: none;
-cursor: pointer;
-width: 100%;
-margin-bottom:10px;
-opacity: 0.8;
+  background-color: #8ebf42;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
 }
 /* Stylez le bouton pour annuler */
 .form-container .cancel {
-background-color: #A52420;
+  background-color: #A52420;
 }
 /* Planez les effets pour les boutons */
 .form-container .btn:hover, .open-button:hover {
-opacity: 1;
-color:#fff;
+  opacity: 1;
+  color:#fff;
 }
 
 .topnav .nav-link.active {
