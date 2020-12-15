@@ -8,9 +8,16 @@ body {
   position: relative;
 }
 
+
 /* footer {
   display: flex;
   flex-direction: row;
+=======
+footer {
+
+  display: flex !important;
+  flex-direction: row !important;
+>>>>>>> Stashed changes
   background-color: #7D1917;
   color:#fff;
   padding: 40px 0 40px 0;
@@ -48,3 +55,76 @@ nav {
   color: #FCF3D7;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /* #psw, #email{
+        box-sizing: border-box;
+      } */
+      /* Stylez et fixez le bouton sur la page */
+      .open-button {
+      background-color: #891B17;
+      color: white;
+      border: none;
+      cursor: pointer;
+      }
+      /* Positionnez la forme Popup */
+      .login-popup, .register-popup{
+      position: relative;
+      text-align: center;
+      width: 100%;
+      }
+      /* Masquez la forme Popup */
+      .form-popup {
+      display: none;
+      position: fixed;
+      left: 35%;
+      top:5%;
+      z-index: 9;
+      }
+      /* Styles pour le conteneur de la forme */
+      .form-container {
+      max-width: 500px;
+      padding: 20px;
+      background-color: #fff;
+      }
+      /* Largeur complète pour les champs de saisie */
+      .form-container input[type=text], .form-container input[type=password] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #eee;
+      }
+
+      /* Stylez le bouton de connexion */
+      .form-container .btn {
+      background-color: #8ebf42;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom:10px;
+      opacity: 0.8;
+      }
+      /* Stylez le bouton pour annuler */
+      .form-container .cancel {
+      background-color: #A52420;
+      }
+      /* Planez les effets pour les boutons */
+      .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
+      color:#fff;
+      }

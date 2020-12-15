@@ -222,10 +222,6 @@ body{
   margin-bottom: 12%;
 }
 
-
-
-
-
 #ligne_2{
   /* width: 100%; */
   /* display: flex; */

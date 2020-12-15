@@ -60,15 +60,64 @@
               </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <router-link class="nav-link" to='/login'>
-                  <span class="glyphicon glyphicon-user"></span>
-                  Se connecter
-                </router-link>
+              <li class="nav-item open-btn">
+                <button class="nav-link open-button" onclick="openForm_login() ">Se connecter</button>
               </li>
+              <li class ="nav-item open-btn">
+                <button class="nav-link open-button" onclick="openForm_register()">S'inscrire</button>
+               </li>
             </ul>
+
           </div>
         </nav>
+
+        <div class="login-popup">
+          <div class="form-popup" id="popupForm_login">
+            <form action="/action_page.php" class="form-container">
+              <h2>Veuillez vous connecter</h2>
+              <label for="email">
+              <p class="titre_formulaire">E-mail</p>
+              </label>
+              <input type="text" id="email" placeholder="Votre Email" name="email" required>
+              <label for="psw">
+              <p class="titre_formulaire">Mot de passe</p>
+              </label>
+              <input type="password" id="psw" placeholder="Votre mot de passe" name="psw" required>
+              <button type="submit" class="btn">Connexion</button>
+              <button type="button" class="btn cancel" onclick="closeForm_login()">Fermer</button>
+            </form>
+          </div>
+        </div>
+        <div class="register-popup">
+          <div class="form-popup" id="popupForm_register">
+            <form action="/action_page.php" class="form-container">
+              <h2>Inscription</h2>
+              <label for="nom">
+              <p class="titre_formulaire">Nom</p>
+              </label>
+              <input type="text" id="nom" placeholder="Entrez votre nom" name="nom" required>
+              <label for="prenom">
+              <p class="titre_formulaire">Prenom</p>
+              </label>
+              <input type="text" id="prenom" placeholder="Entrez votre Prenom" name="prenom" required>
+              <label for="telephone">
+              <p class="titre_formulaire">Telephone</p>
+              </label>
+              <input type="text" id="telephone" placeholder="Entrez votre numéro de Telephone" name="telephone" required>
+              <label for="email">
+              <p class="titre_formulaire">E-mail</p>
+              </label>
+              <input type="text" id="email" placeholder="Entrez votre Email" name="email" required>
+              <label for="psw">
+              <p class="titre_formulaire">Mot de passe</p>
+              </label>
+              <input type="text" id="psw" placeholder="Entrez votre mot de passe" name="psw" required>
+              <button type="submit" class="btn">Je m'inscris</button>
+              <button type="button" class="btn cancel" onclick="closeForm_register()">Fermer</button>
+            </form>
+          </div>
+        </div>
+
 
       <main>
         <router-view
@@ -125,6 +174,24 @@
      </footer>
 
     <script src="/vue-application.js"></script>
+
+    <script>
+      function openForm_login() {
+        document.getElementById("popupForm_login").style.display="block";
+        document.getElementById("popupForm_register").style.display="none";
+      }
+      function openForm_register() {
+        document.getElementById("popupForm_register").style.display="block";
+        document.getElementById("popupForm_login").style.display="none";
+      }
+
+      function closeForm_login() {
+        document.getElementById("popupForm_login").style.display="none";
+      }
+      function closeForm_register() {
+        document.getElementById("popupForm_register").style.display="none";
+      }
+    </script>
 
   </body>
 </html>
