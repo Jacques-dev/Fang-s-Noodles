@@ -1,4 +1,4 @@
-<template id="commander">
+<template>
 
   <div class="container">
     <div class="row">
@@ -151,13 +151,13 @@
 
 <style scoped>
 
-  #commander .dropdown-menu {
+  .dropdown-menu {
     float: left;
     width: 30%;
     height: 300px;
   }
 
-  #commander .dropdown-menu button {
+  .dropdown-menu button {
     display: block;
     background-color: inherit;
     color: black;
@@ -171,26 +171,26 @@
     font-size: 17px;
   }
 
-  #commander .dropdown-menu button:hover {
+  .dropdown-menu button:hover {
     background-color: #ddd;
   }
 
-  #commander .dropdown-menu button.active {
+  .dropdown-menu button.active {
     background-color: #ccc;
   }
 
   /* ------------------------------- */
 
-  #commander .tabcontent .col-sm-6 {
+  .tabcontent .col-sm-6 {
     margin: 15px auto;
   }
 
-  #commander .menu {
+  .menu {
     position: relative;
     width: 50%;
   }
 
-  #commander .image {
+  .image {
     opacity: 1;
     display: block;
     width: 100%;
@@ -199,7 +199,7 @@
     backface-visibility: hidden;
   }
 
-  #commander .middle {
+  .middle {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
@@ -210,15 +210,15 @@
     text-align: center;
   }
 
-  #commander .menu:hover .image {
+  .menu:hover .image {
     opacity: 0.3;
   }
 
-  #commander .menu:hover .middle {
+  .menu:hover .middle {
     opacity: 1;
   }
 
-  #commander .ajouterMenu {
+  .ajouterMenu {
     background-color: #4CAF50;
     color: white;
     font-size: 16px;

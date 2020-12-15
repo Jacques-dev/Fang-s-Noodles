@@ -129,203 +129,196 @@
 </script>
 
 <style scoped>
-/* @import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700); */
-/* @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic); */
+  /* @import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700); */
+  /* @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic); */
 
-/* Override UGG site */
-/* #main {width: 100%; } */
-/* .content-asset p {margin:0 auto;}
-.breadcrumb {display:none;} */
+  /* Override UGG site */
+  /* #main {width: 100%; } */
+  /* .content-asset p {margin:0 auto;}
+  .breadcrumb {display:none;} */
 
-body{
-  margin: 0;
-}
-
-#test{
-  background-image: url(accueil_2.webp);
-  width: 100%;
-  height: 100px;
-  background-size:contain;
-  background-repeat: no-repeat;
-}
-#text_un{
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-}
-.titre_un_deux{
-  font-weight: bold;
-  letter-spacing: 2px;
-  color:#fff;
-}
-
-.soups_noodles_dumplings {
-  width: 13%;
-  height: 250px;
-  background-color: #A52420;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 2.5% 1% 3% 1%;
-  padding: 1.5%;
-  opacity: 1;
-}
-.text_soups_noodles_dumplings{
-  text-align: center;
-  color: #fff;
-}
-
-#ligne_1{
-  width:100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-image: url("../images/backgrounds/accueil_1.webp");
-  background-attachment:fixed;
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-position: top center;
-}
-#emplacement_btn_menus{
-  background-color: rgba(240,221,196,0.91);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 30px;
-}
-#btn_menus{
-  width: 10%;
-  background-color: #A52420;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-
-#ligne_fixe_bas{
-  display: flex;
-  background-attachment: fixed;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(240,221,196,0.91);
-}
-
-#titre_un_un{
-  display: flex;
-  color: #fff;
-  font-weight: bold;
-  font-size: 2.2em;
-}
-#text_un{
-  margin-top: 4%;
-  margin-bottom: 12%;
-}
-
-#ligne_2{
-  /* width: 100%; */
-  /* display: flex; */
-
-  /* justify-content:center; */
-  /* align-items: center; */
-
-  /* padding-top: 17%; */
-  /* padding-bottom: 17%; */
-  /* position: relative; */
-  height: 803px;
-  background-image: url("../images/backgrounds/accueil_2.webp");
-  background-attachment: fixed;
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-#texte_deux{
-  display: flex;
-  margin-top: 9%;
-  margin-bottom: 5%;
-  flex-direction: column;
-  width: 20%;
-}
-
-#titre_deux_un{
-  font-weight: bold;
-  font-size: 2.2em;
-  /* width: 100%; */
-  display: flex;
-  color: #fff;
-}
-#texte_deux_un{
-  display:flex;
-
-  color:#fff;
-}
-
-#ligne_3{
-  width: 100%;
-  /* width: 1374px; */
-  height: 650px;
-  /* padding-top: 400px;
-  padding-bottom: 200px; */
-  display: flex;
-  background-image: url("../images/backgrounds/accueil_3.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  body{
+    margin: 0;
   }
 
-#texte_trois{
-  display:flex;
-}
-#texte_trois_un{
-  display: flex;
-  color:#fff;
-  font-weight: bold;
-  width:30%;
-  font-size: 2.2em;
-}
+  #text_un{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+  }
+  .titre_un_deux{
+    font-weight: bold;
+    letter-spacing: 2px;
+    color:#fff;
+  }
 
-#ligne_4{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 60px;
-  background-color: #FCF3D7;
-}
+  .soups_noodles_dumplings {
+    width: 13%;
+    height: 250px;
+    background-color: #A52420;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5% 1% 3% 1%;
+    padding: 1.5%;
+    opacity: 1;
+  }
+  .text_soups_noodles_dumplings{
+    text-align: center;
+    color: #fff;
+  }
 
-#titre_quatre{
-  font-weight: bold;
-  font-size: 1.9em;
-}
-#heure_select, #personnes_select{
-  padding: 6px;
-  color: #A52420;
-  border: solid #A52420 2px;
-  text-decoration: none;
-  background-color: #FCF3D7;
-}
-[type="date"] {
-  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
-}
-[type="date"]::-webkit-inner-spin-button {
-  display: none;
-}
-[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-}
-#select_date{
-  padding: 5px;
-  color: #A52420;
-  border: solid #A52420 2px;
-  text-decoration: none;
-  background-color: #FCF3D7;
-}
-#reserver{
-  border: solid #A52420 2px;
-  text-decoration: none;
-  padding: 5px 15px 5px 15px;
+  #ligne_1{
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/backgrounds/accueil_1.webp");
+    background-attachment:fixed;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+  #emplacement_btn_menus{
+    background-color: rgba(240,221,196,0.91);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  #btn_menus{
+    width: 10%;
+    background-color: #A52420;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
 
-}
+  #ligne_fixe_bas{
+    display: flex;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240,221,196,0.91);
+  }
+
+  #titre_un_un{
+    display: flex;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2.2em;
+  }
+  #text_un{
+    margin-top: 4%;
+    margin-bottom: 12%;
+  }
+
+  #ligne_2{
+    /* width: 100%; */
+    /* display: flex; */
+
+    /* justify-content:center; */
+    /* align-items: center; */
+
+    /* padding-top: 17%; */
+    /* padding-bottom: 17%; */
+    /* position: relative; */
+    height: 803px;
+    background-image: url("../images/backgrounds/accueil_2.webp");
+    background-attachment: fixed;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  #texte_deux{
+    display: flex;
+    margin-top: 9%;
+    margin-bottom: 5%;
+    flex-direction: column;
+    width: 20%;
+  }
+
+  #titre_deux_un{
+    font-weight: bold;
+    font-size: 2.2em;
+    /* width: 100%; */
+    display: flex;
+    color: #fff;
+  }
+  #texte_deux_un{
+    display:flex;
+
+    color:#fff;
+  }
+
+  #ligne_3{
+    width: 100%;
+    /* width: 1374px; */
+    height: 650px;
+    /* padding-top: 400px;
+    padding-bottom: 200px; */
+    display: flex;
+    background-image: url("../images/backgrounds/accueil_3.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    }
+
+  #texte_trois{
+    display:flex;
+  }
+  #texte_trois_un{
+    display: flex;
+    color:#fff;
+    font-weight: bold;
+    width:30%;
+    font-size: 2.2em;
+  }
+
+  #ligne_4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background-color: #FCF3D7;
+  }
+
+  #titre_quatre{
+    font-weight: bold;
+    font-size: 1.9em;
+  }
+  #heure_select, #personnes_select{
+    padding: 6px;
+    color: #A52420;
+    border: solid #A52420 2px;
+    text-decoration: none;
+    background-color: #FCF3D7;
+  }
+  [type="date"] {
+    background:#fff url('https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png')  97% 50% no-repeat ;
+  }
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  #select_date{
+    padding: 5px;
+    color: #A52420;
+    border: solid #A52420 2px;
+    text-decoration: none;
+    background-color: #FCF3D7;
+  }
+  #reserver{
+    border: solid #A52420 2px;
+    text-decoration: none;
+    padding: 5px 15px 5px 15px;
+
+  }
 
 </style>
