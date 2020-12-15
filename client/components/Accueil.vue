@@ -2,23 +2,23 @@
 
 
   <section>
-      <section class="row ligne" id ="ligne_1">
+      <section class="ligne" id ="ligne_1">
             <article id="text_un">
               <p id ="titre_un_un">Taste of the East</p>
             </article>
 
             <section id ="ligne_fixe_bas">
-                <article class="col-sm-4 soups_noodles_dumplings">
+                <article class="soups_noodles_dumplings">
                   <p class="titre_un_deux">SOUPES</p>
                   <p class="text_soups_noodles_dumplings">Cliquez sur l'icone pour découvrire nos différentes soupes</p>
                 </article>
 
-                <article class="col-sm-4 soups_noodles_dumplings">
+                <article class="soups_noodles_dumplings">
                   <p class="titre_un_deux">NOODLES</p>
                   <p class="text_soups_noodles_dumplings">Cliquez sur l'icone pour découvrire nos différentes nouilles</p>
                 </article>
 
-                <article class="col-sm-4 soups_noodles_dumplings">
+                <article class="soups_noodles_dumplings">
                   <p class="titre_un_deux">DUMPLINGS</p>
                   <p class="text_soups_noodles_dumplings">Cliquez sur l'icone pour découvrire nos différentes dumplings</p>
                 </article>
@@ -30,7 +30,7 @@
       </section>
 
 
-      <section class="row ligne parallax-two" id ="ligne_2">
+      <section class="ligne parallax-two" id ="ligne_2">
           <article id="texte_deux">
             <p id="titre_deux_un">Our Story Begins In The East<p>
             <p id="texte_deux_un">I'm a paragraph. Click here to add your own text and edit me.
@@ -45,13 +45,13 @@
       </section>
 
 
-      <section class="row ligne" id ="ligne_3">
+      <section class="ligne" id ="ligne_3">
         <article class="texte_trois">
           <p id ="texte_trois_un">"When you drink the water, remember the spring"<p>
         </article>
       </section>
 
-      <section class="row ligne" id ="ligne_4">
+      <section class="ligne" id ="ligne_4">
             <p id ="titre_quatre">Faites une réservation</p>
             <article class="btn_ligne_4">
               <input type ="date"name="date" id="select_date">
