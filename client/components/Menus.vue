@@ -13,8 +13,7 @@
 
         <article v-for="menu in menus[0]" :key="menu.id">
             <div class="menu-img">
-              <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
-              </div>
+              <img v-bind:src="'../images/soups/' + menu.image ">
             </div>
             <div class="menu-content" v-if="editingMenu.id !== menu.id">
               <div class="menu-title">
@@ -27,6 +26,9 @@
                 </div>
               </div>
               <p>{{ menu.description }}</p>
+              <div v-if="isSpicy(menu.spicy)">
+                Spicy
+              </div>
             </div>
             <div v-else>
               <div>
@@ -47,8 +49,7 @@
 
         <article v-for="menu in menus[1]" :key="menu.id">
           <div class="menu-img">
-            <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
-            </div>
+            <img v-bind:src="'../images/dumplings/' + menu.image ">
           </div>
           <div class="menu-content" v-if="editingMenu.id !== menu.id">
             <div class="menu-title">
@@ -61,6 +62,9 @@
               </div>
             </div>
             <p>{{ menu.description }}</p>
+            <div v-if="isSpicy(menu.spicy)">
+              Spicy
+            </div>
           </div>
           <div v-else>
             <div>
@@ -81,8 +85,7 @@
 
         <article v-for="menu in menus[2]" :key="menu.id">
           <div class="menu-img">
-            <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
-            </div>
+            <img v-bind:src="'../images/noodles/' + menu.image ">
           </div>
           <div class="menu-content" v-if="editingMenu.id !== menu.id">
             <div class="menu-title">
@@ -95,6 +98,9 @@
               </div>
             </div>
             <p>{{ menu.description }}</p>
+            <div v-if="isSpicy(menu.spicy)">
+              Spicy
+            </div>
           </div>
           <div v-else>
             <div>
@@ -142,6 +148,10 @@ module.exports = {
     }
   },
   methods: {
+    isSpicy(boolean) {
+      // alert(boolean)
+      return boolean
+    },
     existeDansPanier (menuId) {
       let bool = false
       for (const m of this.panier.menus) {
@@ -190,5 +200,8 @@ module.exports = {
 </script>
 
 <style scoped>
-
+  .menu-img img {
+    width: 100px;
+    height: 100px;
+  }
 </style>
