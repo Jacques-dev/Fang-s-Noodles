@@ -40,7 +40,7 @@
         <router-link class="nav-link" to='/#footer'>Contact</router-link>
         <router-link class="nav-link" to='/#ligne_4'>Réserver</router-link>
         <div class="topnav-right">
-          <button class="login"><i class="fa fa-search"></i>Se connecter</button>
+          <button onclick="openForm_login()"><i class="fa fa-search"></i>Se connecter</button>
         </div>
       </div>
 
@@ -49,15 +49,16 @@
             <form action="/action_page.php" class="form-container">
               <h2>Veuillez vous connecter</h2>
               <label for="email">
-              <p class="titre_formulaire">E-mail</p>
+                <p class="titre_formulaire">E-mail</p>
               </label>
               <input type="text" id="email" placeholder="Votre Email" name="email" required>
               <label for="psw">
-              <p class="titre_formulaire">Mot de passe</p>
+                <p class="titre_formulaire">Mot de passe</p>
               </label>
               <input type="password" id="psw" placeholder="Votre mot de passe" name="psw" required>
               <button type="submit" class="btn">Connexion</button>
               <button type="button" class="btn cancel" onclick="closeForm_login()">Fermer</button>
+              <button type="button" class="btn other" onclick="openForm_register()">Pas encore de compte ?</button>
             </form>
           </div>
         </div>

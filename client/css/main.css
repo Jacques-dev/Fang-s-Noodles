@@ -58,6 +58,11 @@ footer .row {
   text-align: center;
   width: 100%;
 }
+
+.login-popup .other {
+  background-color: blue !important;
+}
+
 /* Masquez la forme Popup */
 .form-popup {
   display: none;
