@@ -11,41 +11,41 @@
           Soups
         </div>
 
-        <article v-for="menu in menus.soups" :key="menu.id">
-          <div class="menu-img">
-            <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
-            </div>
-          </div>
-          <div class="menu-content" v-if="editingMenu.id !== menu.id">
-            <div class="menu-title">
-              <h2>{{ menu.name }} - {{ menu.price }}€</h2>
-              <div>
-                <button @click="deleteMenu(menu.id)">Supprimer</button>
-                <button @click="editMenu(article)">Modifier</button>
-                <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-                <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
+        <article v-for="menu in menus[0]" :key="menu.id">
+            <div class="menu-img">
+              <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
               </div>
             </div>
-            <p>{{ menu.description }}</p>
-          </div>
-          <div v-else>
-            <div>
-              <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-              <div>
-                <button @click="sendEditMenu()">Valider</button>
-                <button @click="abortEditMenu()">Annuler</button>
+            <div class="menu-content" v-if="editingMenu.id !== menu.id">
+              <div class="menu-title">
+                <h2>{{ menu.name }} - {{ menu.price }}€</h2>
+                <div>
+                  <button @click="deleteMenu(menu.id)">Supprimer</button>
+                  <button @click="editMenu(article)">Modifier</button>
+                  <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
+                  <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
+                </div>
               </div>
+              <p>{{ menu.description }}</p>
             </div>
-            <p><textarea v-model="editingMenu.description"></textarea></p>
-            <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-          </div>
+            <div v-else>
+              <div>
+                <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
+                <div>
+                  <button @click="sendEditMenu()">Valider</button>
+                  <button @click="abortEditMenu()">Annuler</button>
+                </div>
+              </div>
+              <p><textarea v-model="editingMenu.description"></textarea></p>
+              <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+            </div>
         </article>
 
-        <!-- <div class="">
+        <div class="">
           Dumplings
         </div>
 
-        <article v-for="menu in menus.dumplings" :key="menu.id">
+        <article v-for="menu in menus[1]" :key="menu.id">
           <div class="menu-img">
             <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
             </div>
@@ -79,7 +79,7 @@
           Noodles
         </div>
 
-        <article v-for="menu in menus.noodles" :key="menu.id">
+        <article v-for="menu in menus[2]" :key="menu.id">
           <div class="menu-img">
             <div :style="{ backgroundImage: 'url(' + menu.image + ')' }">
             </div>
@@ -107,7 +107,9 @@
             <p><textarea v-model="editingMenu.description"></textarea></p>
             <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
           </div>
-        </article> -->
+        </article>
+
+        <add-menu :show="showForm" @add-menu="addMenu"></add-menu>
 
       </article>
     </section>
@@ -116,10 +118,11 @@
 </template>
 
 <script>
+const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
 module.exports = {
   components: {
-    // AddMenu,
-    // Panier
+    AddMenu,
+    Panier
   },
   props: {
     menus: { type: Array, default: [] },
@@ -134,7 +137,8 @@ module.exports = {
         image: '',
         price: 0,
         spicy: false
-      }
+      },
+      showForm: false
     }
   },
   methods: {

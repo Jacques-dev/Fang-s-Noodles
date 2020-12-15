@@ -2,6 +2,7 @@ const Accueil = window.httpVueLoader('./components/Accueil.vue')
 const Propos = window.httpVueLoader('./components/Propos.vue')
 const Menus = window.httpVueLoader('./components/Menus.vue')
 const Commander = window.httpVueLoader('./components/Commander.vue')
+const Panier = window.httpVueLoader('./components/Panier.vue')
 const Contact = window.httpVueLoader('./components/Contact.vue')
 const Reserver = window.httpVueLoader('./components/Reserver.vue')
 
@@ -10,6 +11,7 @@ const routes = [
   { path: '/propos', component: Propos },
   { path: '/menus', component: Menus },
   { path: '/commander', component: Commander },
+  { path: '/panier', component: Panier },
   { path: '/contact', component: Contact },
   { path: '/reserver', component: Reserver },
 ]
