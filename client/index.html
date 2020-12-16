@@ -38,59 +38,14 @@
         <router-link class="nav-link" to='/commander'>Commander</router-link>
         <router-link class="nav-link" to='/#ligne_2'>A propos</router-link>
         <router-link class="nav-link" to='/#footer'>Contact</router-link>
-        <router-link class="nav-link" to='/#ligne_4'>Réserver</router-link>
+        <!-- <router-link class="nav-link" to='/#ligne_4'>Réserver</router-link> -->
+
         <div class="topnav-right">
-          <button onclick="openForm_login()"><i class="fa fa-search"></i>Se connecter</button>
+          <router-link class="nav-link" to='/#ligne_4'>Réserver</router-link>
+          <router-link class="nav-link" to='/connexion'>Connexion</router-link>
+          <!-- <button onclick="openForm_login()"><i class="fa fa-search"></i>Se connecter</button> -->
         </div>
       </div>
-
-        <div class="login-popup">
-          <div class="form-popup" id="popupForm_login">
-            <form action="/action_page.php" class="form-container">
-              <h2>Veuillez vous connecter</h2>
-              <label for="email">
-                <p class="titre_formulaire">E-mail</p>
-              </label>
-              <input type="text" id="email" placeholder="Votre Email" name="email" required>
-              <label for="psw">
-                <p class="titre_formulaire">Mot de passe</p>
-              </label>
-              <input type="password" id="psw" placeholder="Votre mot de passe" name="psw" required>
-              <button type="submit" class="btn">Connexion</button>
-              <button type="button" class="btn cancel" onclick="closeForm_login()">Fermer</button>
-              <button type="button" class="btn other" onclick="openForm_register()">Pas encore de compte ?</button>
-            </form>
-          </div>
-        </div>
-        <div class="register-popup">
-          <div class="form-popup" id="popupForm_register">
-            <form action="/action_page.php" class="form-container">
-              <h2>Inscription</h2>
-              <label for="nom">
-              <p class="titre_formulaire">Nom</p>
-              </label>
-              <input type="text" id="nom" placeholder="Entrez votre nom" name="nom" required>
-              <label for="prenom">
-              <p class="titre_formulaire">Prenom</p>
-              </label>
-              <input type="text" id="prenom" placeholder="Entrez votre Prenom" name="prenom" required>
-              <label for="telephone">
-              <p class="titre_formulaire">Telephone</p>
-              </label>
-              <input type="text" id="telephone" placeholder="Entrez votre numéro de Telephone" name="telephone" required>
-              <label for="email">
-              <p class="titre_formulaire">E-mail</p>
-              </label>
-              <input type="text" id="email" placeholder="Entrez votre Email" name="email" required>
-              <label for="psw">
-              <p class="titre_formulaire">Mot de passe</p>
-              </label>
-              <input type="text" id="psw" placeholder="Entrez votre mot de passe" name="psw" required>
-              <button type="submit" class="btn">Je m'inscris</button>
-              <button type="button" class="btn cancel" onclick="closeForm_register()">Fermer</button>
-            </form>
-          </div>
-        </div>
 
 
       <main>
@@ -157,21 +112,8 @@
     <script src="/vue-application.js"></script>
 
     <script>
-      function openForm_login() {
-        document.getElementById("popupForm_login").style.display="block";
-        document.getElementById("popupForm_register").style.display="none";
-      }
-      function openForm_register() {
-        document.getElementById("popupForm_register").style.display="block";
-        document.getElementById("popupForm_login").style.display="none";
-      }
 
-      function closeForm_login() {
-        document.getElementById("popupForm_login").style.display="none";
-      }
-      function closeForm_register() {
-        document.getElementById("popupForm_register").style.display="none";
-      }
+
     </script>
 
   </body>

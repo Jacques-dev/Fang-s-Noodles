@@ -2,12 +2,14 @@ const Accueil = window.httpVueLoader('./components/Accueil.vue')
 const Menus = window.httpVueLoader('./components/Menus.vue')
 const Commander = window.httpVueLoader('./components/Commander.vue')
 const Panier = window.httpVueLoader('./components/Panier.vue')
+const Connexion = window.httpVueLoader('./components/Connexion.vue')
 
 const routes = [
   { path: '/', component: Accueil },
   { path: '/menus', component: Menus },
   { path: '/commander', component: Commander },
-  { path: '/panier', component: Panier }
+  { path: '/panier', component: Panier },
+  { path: '/connexion', component: Connexion}
 ]
 
 const router = new VueRouter({
@@ -29,6 +31,8 @@ var app = new Vue({
     user: {
       id: null,
       email: null,
+      password:null,
+      prenom: null,
       nom: null,
       telephone: null
     }
@@ -42,8 +46,9 @@ var app = new Vue({
     this.user.id = res3.data
   },
   methods: {
+
     async register (user) {
-      await axios.post('/api/register/','email=' + user.email + '&password=' + user.password)
+      await axios.post('/api/register/','email=' + user.email + '&password=' + user.password + '&nom=' + user.nom + '&prenom' + user.prenom + '&telephone' + user.telephone)
     },
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
