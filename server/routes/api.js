@@ -108,7 +108,6 @@ router.post('/adminlogin', async (req, res) => {
     const hashedPassword = result.rows[0].password
 
     if (await bcrypt.compare(password, hashedPassword)) {
-      console.log("AH")
       if (req.session.adminId) {
         res.status(401).json({ message: "admin already logged" })
       } else {

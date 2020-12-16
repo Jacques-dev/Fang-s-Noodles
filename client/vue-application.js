@@ -48,6 +48,8 @@ var app = new Vue({
     this.panier = res2.data
     const res3 = await axios.get('/api/me')
     this.user.id = res3.data
+    const res4 = await axios.get('/api/meadmin')
+    this.admin.id = res4.data
   },
   methods: {
 

@@ -2,6 +2,11 @@
 
   <section class="container">
     <section class="row">
+
+      <admin-pass class="col-sm-12" :admin="admin.id">
+        {{admin.id}}
+      </admin-pass>
+
       <article class="col-sm-12">
         <h1>MENU</h1>
       </article>
@@ -124,79 +129,80 @@
 </template>
 
 <script>
-const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
-module.exports = {
-  components: {
-    AddMenu,
-    Panier
-  },
-  props: {
-    menus: { type: Array, default: [] },
-    panier: { type: Object },
-    user: {type: Object }
-  },
-  data () {
-    return {
-      editingMenu: {
-        id: -1,
-        name: '',
-        description: '',
-        image: '',
-        price: 0,
-        spicy: false
-      },
-      showForm: false
-    }
-  },
-  methods: {
-    isSpicy(boolean) {
-      return boolean
+  const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
+  module.exports = {
+    components: {
+      AddMenu,
+      Panier
     },
-    existeDansPanier (menuId) {
-      let bool = false
-      for (const m of this.panier.menus) {
-        if (m.id == menuId){
-        bool = true
-        }
+    props: {
+      menus: { type: Array, default: [] },
+      panier: { type: Object },
+      admin: { type: Object },
+      user: { type: Object }
+    },
+    data () {
+      return {
+        editingMenu: {
+          id: -1,
+          name: '',
+          description: '',
+          image: '',
+          price: 0,
+          spicy: false
+        },
+        showForm: false
       }
-      return bool
     },
-    addToPanier (menuId) {
-      this.$emit('add-to-panier', menuId)
-    },
-    removeFromPanier(menuId) {
-      this.$emit('remove-from-panier', menuId)
-    },
-    addMenu (menu) {
-      this.$emit('add-menu', menu)
-    },
-    deleteMenu (menuId) {
-      this.$emit('delete-menu', menuId)
-    },
-    editMenu (menu) {
-      this.editingMenu.id = menu.id
-      this.editingMenu.name = menu.name
-      this.editingMenu.description = menu.description
-      this.editingMenu.image = menu.image
-      this.editingMenu.price = menu.price
-      this.editingMenu.spicy = menu.spicy
-    },
-    sendEditMenu () {
-      this.$emit('update-menu', this.editingMenu)
-      this.abortEditmenu()
-    },
-    abortEditMenu () {
-      this.editingMenu = {
-        id: -1,
-        name: '',
-        description: '',
-        image: '',
-        price: 0,
-        spicy: false
+    methods: {
+      isSpicy(boolean) {
+        return boolean
+      },
+      existeDansPanier (menuId) {
+        let bool = false
+        for (const m of this.panier.menus) {
+          if (m.id == menuId){
+          bool = true
+          }
+        }
+        return bool
+      },
+      addToPanier (menuId) {
+        this.$emit('add-to-panier', menuId)
+      },
+      removeFromPanier(menuId) {
+        this.$emit('remove-from-panier', menuId)
+      },
+      addMenu (menu) {
+        this.$emit('add-menu', menu)
+      },
+      deleteMenu (menuId) {
+        this.$emit('delete-menu', menuId)
+      },
+      editMenu (menu) {
+        this.editingMenu.id = menu.id
+        this.editingMenu.name = menu.name
+        this.editingMenu.description = menu.description
+        this.editingMenu.image = menu.image
+        this.editingMenu.price = menu.price
+        this.editingMenu.spicy = menu.spicy
+      },
+      sendEditMenu () {
+        this.$emit('update-menu', this.editingMenu)
+        this.abortEditmenu()
+      },
+      abortEditMenu () {
+        this.editingMenu = {
+          id: -1,
+          name: '',
+          description: '',
+          image: '',
+          price: 0,
+          spicy: false
+        }
       }
     }
   }
-}
 </script>
 
 <style scoped>
