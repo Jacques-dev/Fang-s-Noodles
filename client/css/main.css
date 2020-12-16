@@ -13,12 +13,19 @@ footer {
 }
 
 footer svg {
-  width: 50%
+  width: 50%;
+  color: #fff;
+
 }
 
 footer .row {
   text-align: center;
 }
+
+
+
+
+
 
 .topnav {
   overflow: hidden;
@@ -39,7 +46,6 @@ footer .row {
   color: #FCF3D7;
   cursor: pointer;
 }
-
 
 
 .topnav .nav-link.active {

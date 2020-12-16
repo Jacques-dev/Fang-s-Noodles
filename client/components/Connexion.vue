@@ -113,6 +113,14 @@
     display: none;
   }
 
+  #bouton_connexion_register{
+    background-color: #F0DDC4;
+    height: 100%;
+  }
+  /* #psw, #email{ */
+    /* box-sizing: border-box; */
+  /* } */
+
   /* Stylez et fixez le bouton sur la page */
   .open-button {
     background-color: #891B17;
@@ -135,6 +143,11 @@
   .form-popup {
     display: flex;
     justify-content: center;
+    /* position: relative; */
+
+    padding-top:3%;
+    /* z-index: 9; */
+
   }
   /* Styles pour le conteneur de la forme */
   .form-container {

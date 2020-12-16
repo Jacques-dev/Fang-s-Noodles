@@ -151,6 +151,11 @@
 
 <style scoped>
 
+  .container{
+    height: 100%;
+    background-color:#F0DDC4;
+  }
+
   .dropdown-menu {
     float: left;
     width: 30%;

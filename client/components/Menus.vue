@@ -1,6 +1,7 @@
 <template>
 
   <section class="container">
+
     <section class="row">
 
       <admin-pass class="col-sm-12" :admin="admin.id">
@@ -26,6 +27,8 @@
                 <div>
                   <button @click="deleteMenu(menu.id)">Supprimer</button>
                   <button @click="editMenu(article)">Modifier</button>
+                  <!-- <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                  <button v-if="admin.id" @click="editMenu(article)">Modifier</button> -->
                   <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                   <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
                 </div>
@@ -62,6 +65,8 @@
               <div>
                 <button @click="deleteMenu(menu.id)">Supprimer</button>
                 <button @click="editMenu(article)">Modifier</button>
+                <!-- <button v-show="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                <button v-show="admin.id" @click="editMenu(article)">Modifier</button> -->
                 <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                 <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
               </div>
@@ -98,6 +103,8 @@
               <div>
                 <button @click="deleteMenu(menu.id)">Supprimer</button>
                 <button @click="editMenu(article)">Modifier</button>
+                <!-- <button v-show="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                <button v-show="admin.id" @click="editMenu(article)">Modifier</button> -->
                 <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                 <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
               </div>
@@ -129,11 +136,63 @@
 </template>
 
 <script>
+<<<<<<< Updated upstream
   const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
   module.exports = {
     components: {
       AddMenu,
       Panier
+=======
+const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
+module.exports = {
+  components: {
+    AddMenu,
+    Panier
+  },
+  props: {
+    menus: { type: Array, default: [] },
+    panier: { type: Object },
+    admin:{type: Object },
+    user: {type: Object }
+  },
+  data () {
+    return {
+      editingMenu: {
+        id: -1,
+        name: '',
+        description: '',
+        image: '',
+        price: 0,
+        spicy: false
+      },
+      showForm: false
+    }
+  },
+  methods: {
+    isSpicy(boolean) {
+      return boolean
+    },
+    existeDansPanier (menuId) {
+      let bool = false
+      for (const m of this.panier.menus) {
+        if (m.id == menuId){
+        bool = true
+        }
+      }
+      return bool
+    },
+    addToPanier (menuId) {
+      this.$emit('add-to-panier', menuId)
+    },
+    removeFromPanier(menuId) {
+      this.$emit('remove-from-panier', menuId)
+    },
+    addMenu (menu) {
+      this.$emit('add-menu', menu)
+    },
+    deleteMenu (menuId) {
+      this.$emit('delete-menu', menuId)
+>>>>>>> Stashed changes
     },
     props: {
       menus: { type: Array, default: [] },
@@ -209,5 +268,9 @@
   .menu-img img {
     width: 100px;
     height: 100px;
+  }
+  .container{
+    background-color: #F0DDC4;
+    width: 100%;
   }
 </style>
