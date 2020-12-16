@@ -136,69 +136,17 @@
 </template>
 
 <script>
-<<<<<<< Updated upstream
   const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
   module.exports = {
     components: {
       AddMenu,
       Panier
-=======
-const AddMenu = window.httpVueLoader('./components/AddMenu.vue');
-module.exports = {
-  components: {
-    AddMenu,
-    Panier
-  },
-  props: {
-    menus: { type: Array, default: [] },
-    panier: { type: Object },
-    admin:{type: Object },
-    user: {type: Object }
-  },
-  data () {
-    return {
-      editingMenu: {
-        id: -1,
-        name: '',
-        description: '',
-        image: '',
-        price: 0,
-        spicy: false
-      },
-      showForm: false
-    }
-  },
-  methods: {
-    isSpicy(boolean) {
-      return boolean
-    },
-    existeDansPanier (menuId) {
-      let bool = false
-      for (const m of this.panier.menus) {
-        if (m.id == menuId){
-        bool = true
-        }
-      }
-      return bool
-    },
-    addToPanier (menuId) {
-      this.$emit('add-to-panier', menuId)
-    },
-    removeFromPanier(menuId) {
-      this.$emit('remove-from-panier', menuId)
-    },
-    addMenu (menu) {
-      this.$emit('add-menu', menu)
-    },
-    deleteMenu (menuId) {
-      this.$emit('delete-menu', menuId)
->>>>>>> Stashed changes
     },
     props: {
       menus: { type: Array, default: [] },
       panier: { type: Object },
-      admin: { type: Object },
-      user: { type: Object }
+      admin:{type: Object },
+      user: {type: Object }
     },
     data () {
       return {
