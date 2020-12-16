@@ -29,7 +29,6 @@ var app = new Vue({
   data: {
     menus: [],
     user: {
-
       email: null,
       password:null,
       prenom: null,

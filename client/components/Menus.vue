@@ -132,7 +132,8 @@ module.exports = {
   },
   props: {
     menus: { type: Array, default: [] },
-    panier: { type: Object }
+    panier: { type: Object },
+    user: {type: Object }
   },
   data () {
     return {

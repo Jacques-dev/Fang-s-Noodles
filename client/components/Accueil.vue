@@ -26,7 +26,7 @@
           <img src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
         </div>
         <div class="col-sm-12 d-flex justify-content-center">
-          button
+          <router-link to='/menus'>Menus</router-link>
         </div>
       </div>
     </div>
