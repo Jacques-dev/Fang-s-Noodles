@@ -10,7 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Font family -->
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap" rel="stylesheet">
 
     <!-- icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,11 +19,17 @@
     <!-- Main css -->
     <link rel="stylesheet" href="/css/main.css">
 
-    <!-- BootStrap 4 css -->
+    <!-- BootStrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Parallax -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.localscroll-1.2.7-min.js"></script>
+    <script type="text/javascript" src="https://ianlunn.co.uk/plugins/jquery-parallax/scripts/jquery.scrollTo-1.4.2-min.js"></script>
 
   </head>
 
@@ -30,20 +37,19 @@
 
     <div id="app">
 
-      <!-- <h2 v-if="user.userId" style="color: green">Connecté</h2> -->
-      <!-- <h2 v-else style="color: red">Non connecté</h2> -->
+
       <div class="topnav">
         <router-link class="nav-link active" to='/'>Accueil</router-link>
         <router-link class="nav-link" to='/menus'>Menus</router-link>
         <router-link class="nav-link" to='/commander'>Commander</router-link>
-        <router-link class="nav-link" to='/#ligne_2'>A propos</router-link>
+        <router-link class="nav-link" to='/#second'>A propos</router-link>
         <router-link class="nav-link" to='/#footer'>Contact</router-link>
-        <!-- <router-link class="nav-link" to='/#ligne_4'>Réserver</router-link> -->
 
         <div class="topnav-right">
-          <router-link class="nav-link" to='/#ligne_4'>Réserver</router-link>
           <router-link class="nav-link" to='/connexion'>Connexion</router-link>
-          <!-- <button onclick="openForm_login()"><i class="fa fa-search"></i>Se connecter</button> -->
+          <router-link class="nav-link" to='/#four'>Réserver</router-link>
+          <h3 v-if="user.userId" style="color: green">Connecté</h3>
+          <h3 v-else style="color: red">Non connecté</h3>
         </div>
       </div>
 
@@ -114,6 +120,14 @@
     <script>
 
 
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#nav').localScroll(800);
+        $('#first').parallax("50%", 0.1);
+        $('#second').parallax("50%", 0.1);
+        $('#third').parallax("50%", 0.3);
+      })
     </script>
 
   </body>

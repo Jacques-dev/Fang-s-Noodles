@@ -1,11 +1,9 @@
-#section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
-#section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
-#section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+
 
 body {
   margin: 0;
   height: 100%;
-  position: relative;
+  font-family: 'Andika New Basic', sans-serif !important;
 }
 
 footer {
@@ -51,4 +49,9 @@ footer .row {
 
 .topnav-right {
   float: right;
+}
+
+.topnav-right h3 {
+  margin-right: 25px;
+  float: left;
 }
