@@ -55,7 +55,9 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
+  req.session.userId = null
   req.session.adminId = null
+
   const email = req.body.email
   const password = req.body.password
   const hash = await bcrypt.hash(password, 10)
@@ -73,19 +75,14 @@ router.post('/login', async (req, res) => {
 
     if (await bcrypt.compare(password, hashedPassword)) {
 
-      if (req.session.userId) {
-        res.status(401).json({ message: "user already logged" })
-      } else {
+      const sqlId = "SELECT id FROM users WHERE email=$1"
+      const result2 = await client.query({
+        text: sqlId,
+        values: [email]
+      })
 
-        const sqlId = "SELECT id FROM users WHERE email=$1"
-        const result2 = await client.query({
-          text: sqlId,
-          values: [email]
-        })
-
-        req.session.userId = result2.rows[0].id
-        res.send()
-      }
+      req.session.userId = result2.rows[0].id
+      res.send()
 
     } else {
       res.status(400).json({ message: "wrong password" })
@@ -96,7 +93,9 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/adminlogin', async (req, res) => {
+  req.session.userId = null
   req.session.adminId = null
+
   const id = req.body.id
   const password = req.body.password
 
@@ -110,19 +109,15 @@ router.post('/adminlogin', async (req, res) => {
     const hashedPassword = result.rows[0].password
 
     if (await bcrypt.compare(password, hashedPassword)) {
-      if (req.session.adminId) {
-        res.status(401).json({ message: "admin already logged" })
-      } else {
 
-        const sqlId = "SELECT id FROM admin WHERE id=$1"
-        const result2 = await client.query({
-          text: sqlId,
-          values: [id]
-        })
+      const sqlId = "SELECT id FROM admin WHERE id=$1"
+      const result2 = await client.query({
+        text: sqlId,
+        values: [id]
+      })
 
-        req.session.adminId = result2.rows[0].id
-        res.send()
-      }
+      req.session.adminId = result2.rows[0].id
+      res.send()
 
     } else {
       res.status(400).json({ message: "wrong password" })
@@ -133,10 +128,12 @@ router.post('/adminlogin', async (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  if (req.session.userId) {
-    res.json(req.session.userId)
-  } else if (req.session.adminId) {
-    res.json(req.session.adminId)
+  if (req.session.userId || req.session.adminId) {
+    const log = {
+      admin: req.session.adminId,
+      user: req.session.userId
+    }
+    res.json(log)
   } else {
     res.status(401).json({ message: "not logged" })
   }

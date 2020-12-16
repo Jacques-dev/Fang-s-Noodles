@@ -61,12 +61,14 @@ var app = new Vue({
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
       const res = await axios.get('/api/me')
-      this.user.id = res.data
+        this.admin.id = res.data.admin
+        this.user.id = res.data.user
     },
     async adminLogin (admin) {
       await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
       const res = await axios.get('/api/me')
-      this.admin.id = res.data
+      this.admin.id = res.data.admin
+      this.user.id = res.data.user
     },
 
     async pay () {
