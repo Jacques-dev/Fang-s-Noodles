@@ -10,9 +10,9 @@
     </ul>
 
     <div id="first" class="container-fluid parallax">
-      <div class="row h-100 justify-content-center align-items-center">
-        <div class="h-50">
-          Title
+      <div class="row h-75 justify-content-center align-items-center">
+        <div class="h-100" id="title">
+          Saveur d'Asie
         </div>
       </div>
       <div class="row h-50 align-items-center" id="typeMenu">
@@ -192,6 +192,10 @@
 
   #first #typeMenu {
     background-color: rgba(240,221,196,0.91);
+  }
+
+  #first #title {
+    font-size: 50px;
   }
   @media only screen and (max-device-width: 1366px) {
     #first #typeMenu {

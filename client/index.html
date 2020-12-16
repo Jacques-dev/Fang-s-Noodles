@@ -46,10 +46,10 @@
         <router-link class="nav-link" to='/#footer'>Contact</router-link>
 
         <div class="topnav-right">
+          <h3 class="nav-link" v-if="user.userId" style="color: green">Connecté</h3>
+          <h3 class="nav-link" v-else style="color: red">Non connecté</h3>
           <router-link class="nav-link" to='/connexion'>Connexion</router-link>
           <router-link class="nav-link" to='/#four'>Réserver</router-link>
-          <h3 v-if="user.userId" style="color: green">Connecté</h3>
-          <h3 v-else style="color: red">Non connecté</h3>
         </div>
       </div>
 
