@@ -47,9 +47,11 @@ var app = new Vue({
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
     const res3 = await axios.get('/api/me')
-    this.user.id = res3.data
-    const res4 = await axios.get('/api/meadmin')
-    this.admin.id = res4.data
+    if (isNaN(res3.data)) {
+      this.admin.id = res.data
+    } else {
+      this.user.id = res3.data
+    }
   },
   methods: {
 
@@ -63,7 +65,7 @@ var app = new Vue({
     },
     async adminLogin (admin) {
       await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
-      const res = await axios.get('/api/meadmin')
+      const res = await axios.get('/api/me')
       this.admin.id = res.data
     },
 

@@ -4,10 +4,6 @@
 
     <section class="row">
 
-      <admin-pass class="col-sm-12" :admin="admin.id">
-        {{admin.id}}
-      </admin-pass>
-
       <article class="col-sm-12">
         <h1>MENU</h1>
       </article>
@@ -25,10 +21,8 @@
               <div class="menu-title">
                 <h2>{{ menu.name }} - {{ menu.price }}€</h2>
                 <div>
-                  <button @click="deleteMenu(menu.id)">Supprimer</button>
-                  <button @click="editMenu(article)">Modifier</button>
-                  <!-- <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
-                  <button v-if="admin.id" @click="editMenu(article)">Modifier</button> -->
+                  <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                  <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
                   <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                   <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
                 </div>
@@ -63,10 +57,8 @@
             <div class="menu-title">
               <h2>{{ menu.name }} - {{ menu.price }}€</h2>
               <div>
-                <button @click="deleteMenu(menu.id)">Supprimer</button>
-                <button @click="editMenu(article)">Modifier</button>
-                <!-- <button v-show="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
-                <button v-show="admin.id" @click="editMenu(article)">Modifier</button> -->
+                <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
                 <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                 <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
               </div>
@@ -101,10 +93,8 @@
             <div class="menu-title">
               <h2>{{ menu.name }} - {{ menu.price }}€</h2>
               <div>
-                <button @click="deleteMenu(menu.id)">Supprimer</button>
-                <button @click="editMenu(article)">Modifier</button>
-                <!-- <button v-show="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
-                <button v-show="admin.id" @click="editMenu(article)">Modifier</button> -->
+                <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
                 <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                 <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
               </div>

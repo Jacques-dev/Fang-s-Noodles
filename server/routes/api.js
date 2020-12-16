@@ -55,6 +55,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
+  req.session.adminId = null
   const email = req.body.email
   const password = req.body.password
   const hash = await bcrypt.hash(password, 10)
@@ -95,6 +96,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/adminlogin', async (req, res) => {
+  req.session.adminId = null
   const id = req.body.id
   const password = req.body.password
 
@@ -133,13 +135,7 @@ router.post('/adminlogin', async (req, res) => {
 router.get('/me', (req, res) => {
   if (req.session.userId) {
     res.json(req.session.userId)
-  } else {
-    res.status(401).json({ message: "not logged" })
-  }
-})
-
-router.get('/meadmin', (req, res) => {
-  if (req.session.adminId) {
+  } else if (req.session.adminId) {
     res.json(req.session.adminId)
   } else {
     res.status(401).json({ message: "not logged" })
