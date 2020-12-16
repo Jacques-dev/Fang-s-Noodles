@@ -28,12 +28,16 @@ var app = new Vue({
   el: '#app',
   data: {
     menus: [],
+    panier: {
+      createdAt: null,
+      updatedAt: null,
+      menus: []
+    },
     user: {
-      email: null,
-      password:null,
-      prenom: null,
       nom: null,
-      telephone: null,
+      id: null
+    },
+    admin: {
       id: null
     }
   },
@@ -52,8 +56,13 @@ var app = new Vue({
     },
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
-      const res3 = await axios.get('/api/me')
-      this.user.id = res3.data
+      const res = await axios.get('/api/me')
+      this.user.id = res.data
+    },
+    async adminLogin (admin) {
+      await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
+      const res = await axios.get('/api/meadmin')
+      this.admin.id = res.data
     },
 
     async pay () {

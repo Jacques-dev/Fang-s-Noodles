@@ -94,14 +94,57 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.get('/me', (req, res) => {
+router.post('/adminlogin', async (req, res) => {
+  const id = req.body.id
+  const password = req.body.password
 
+  const sql = "SELECT password FROM admin WHERE id=$1"
+  const result = await client.query({
+    text: sql,
+    values: [id]
+  })
+
+  if (result.rowCount == 1) {
+    const hashedPassword = result.rows[0].password
+
+    if (await bcrypt.compare(password, hashedPassword)) {
+      console.log("AH")
+      if (req.session.adminId) {
+        res.status(401).json({ message: "admin already logged" })
+      } else {
+
+        const sqlId = "SELECT id FROM admin WHERE id=$1"
+        const result2 = await client.query({
+          text: sqlId,
+          values: [id]
+        })
+
+        req.session.adminId = result2.rows[0].id
+        res.send()
+      }
+
+    } else {
+      res.status(400).json({ message: "wrong password" })
+    }
+  } else {
+    res.status(400).json({ message: "no such user exist" })
+  }
+})
+
+router.get('/me', (req, res) => {
   if (req.session.userId) {
     res.json(req.session.userId)
   } else {
     res.status(401).json({ message: "not logged" })
   }
+})
 
+router.get('/meadmin', (req, res) => {
+  if (req.session.adminId) {
+    res.json(req.session.adminId)
+  } else {
+    res.status(401).json({ message: "not logged" })
+  }
 })
 
 /**

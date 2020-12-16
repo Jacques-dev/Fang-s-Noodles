@@ -33,7 +33,7 @@
               <p class="titre_formulaire">Mot de passe</p>
             </label>
             <input type="text" v-model="editRegister.password" placeholder="Entrez votre mot de passe" name="psw" required>
-            
+
             <label for="nom">
               <p class="titre_formulaire">Nom</p>
             </label>
@@ -97,18 +97,14 @@
         var email = document.getElementById("email").value;
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
           this.$emit('login', this.editLogin);
+        } else if (email.match(/(admin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {
+          this.$emit('admin-login', this.editLogin);
         }
       }
+      // admin-jacques-tellier-efrei_2023
     }
   }
 
-  //
-  // function closeForm_login() {
-  //   document.getElementById("popupForm_login").style.display="none";
-  // }
-  // function closeForm_register() {
-  //   document.getElementById("popupForm_register").style.display="none";
-  // }
 </script>
 
 <style>
@@ -117,9 +113,6 @@
     display: none;
   }
 
-  #psw, #email{
-    /* box-sizing: border-box; */
-  }
   /* Stylez et fixez le bouton sur la page */
   .open-button {
     background-color: #891B17;
@@ -140,13 +133,8 @@
 
   /* Masquez la forme Popup */
   .form-popup {
-    /* display: no  ne; */
     display: flex;
     justify-content: center;
-    /* position: relative; */
-
-    /* top:5%; */
-    /* z-index: 9; */
   }
   /* Styles pour le conteneur de la forme */
   .form-container {
@@ -175,10 +163,7 @@
     margin-bottom:10px;
     opacity: 0.8;
   }
-  /* Stylez le bouton pour annuler */
-  /* .form-container .cancel {
-    background-color: #A52420;
-  } */
+
   /* Planez les effets pour les boutons */
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
