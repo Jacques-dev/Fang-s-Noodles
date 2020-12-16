@@ -29,12 +29,13 @@ var app = new Vue({
   data: {
     menus: [],
     user: {
-      id: null,
+
       email: null,
       password:null,
       prenom: null,
       nom: null,
-      telephone: null
+      telephone: null,
+      id: null
     }
   },
   async mounted () {
@@ -48,13 +49,14 @@ var app = new Vue({
   methods: {
 
     async register (user) {
-      await axios.post('/api/register/','email=' + user.email + '&password=' + user.password + '&nom=' + user.nom + '&prenom' + user.prenom + '&telephone' + user.telephone)
+      await axios.post('/api/register/','&nom=' + user.nom + 'email=' + user.email + '&password=' + user.password +  '&prenom' + user.prenom + '&telephone' + user.telephone)
     },
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
       const res3 = await axios.get('/api/me')
       this.user.id = res3.data
     },
+
     async pay () {
       try {
         await axios.post('/api/panier/pay')

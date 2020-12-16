@@ -26,29 +26,32 @@ class Panier {
 router.post('/register', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
+  const prenom = req.body.prenom
+  const nom = req.body.nom
+  const telephone = req.body.telephone
 
   // console.log("email : " + email)
   // console.log("password : " + password)
 
   const sql = "SELECT * FROM users WHERE email=$1"
+
+
   const result = await client.query({
     text: sql,
     values: [email]
   })
-  // console.log('result', result.rowCount)
   if (result.rowCount == 1) {
     res.status(400).json({ message: "this user already exist" })
   } else {
     const hash = await bcrypt.hash(password, 10)
-    const insert = "INSERT INTO users (email, password) VALUES ($1, $2)"
+    const insert = "INSERT INTO users (nom ,prenom, telephone, email, password) VALUES ($1, $2, $3, $4, $5)"
 
     const result2 = await client.query({
       text: insert,
-      values: [email, hash]
+      values: [nom, prenom, telephone, email, hash]
     })
     res.send()
   }
-
 })
 
 router.post('/login', async (req, res) => {

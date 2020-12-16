@@ -64,7 +64,7 @@ module.exports = {
         registering:{
           email:'',
           password:'',
-          Nom:'',
+          nom:'',
           prenom:'',
           telephone:''
         },
@@ -92,10 +92,11 @@ module.exports = {
         this.$emit('register', this.registering);
       }
 
+
     },
     login(){
       var email = document.getElementById("email").value;
-      if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+      if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
         this.$emit('login', this.login);
       }
     }
