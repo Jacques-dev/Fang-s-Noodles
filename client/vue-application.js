@@ -47,11 +47,8 @@ var app = new Vue({
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
     const res3 = await axios.get('/api/me')
-    if (isNaN(res3.data)) {
-      this.admin.id = res.data
-    } else {
-      this.user.id = res3.data
-    }
+    this.admin.id = res3.data.admin
+    this.user.id = res3.data.user
   },
   methods: {
 
