@@ -48,7 +48,7 @@ var app = new Vue({
   methods: {
 
     async register (user) {
-      await axios.post('/api/register/','&nom=' + user.nom + 'email=' + user.email + '&password=' + user.password +  '&prenom' + user.prenom + '&telephone' + user.telephone)
+      await axios.post('/api/register/','nom=' + user.nom + '&email=' + user.email + '&password=' + user.password +  '&prenom=' + user.prenom + '&telephone=' + user.telephone)
     },
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
