@@ -28,7 +28,7 @@
           </div>
           <div class ="bouton-menus">
             <button v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
-            <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
+            <button v-if="admin.id" @click="editMenu(menu, 'soups')">Modifier</button>
             <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
             <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
           </div>
@@ -68,7 +68,7 @@
                   </div>
                   <div class ="bouton-menus">
                     <button v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
-                    <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
+                    <button v-if="admin.id" @click="editMenu(menu, 'dumplings')">Modifier</button>
                     <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
                     <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
                   </div>
@@ -110,7 +110,7 @@
             </div>
             <div class ="bouton-menus">
               <button v-if="admin.id" @click="deleteMenu(menu.id, 'noodles')">Supprimer</button>
-              <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
+              <button v-if="admin.id" @click="editMenu(menu, 'noodles')">Modifier</button>
               <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
               <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
             </div>
@@ -160,7 +160,8 @@
           description: '',
           image: '',
           price: 0,
-          spicy: false
+          spicy: false,
+          type: ''
         },
         showForm: false
       }
@@ -194,13 +195,14 @@
         }
         this.$emit('delete-menu', content)
       },
-      editMenu (menu) {
+      editMenu (menu, menuType) {
         this.editingMenu.id = menu.id
         this.editingMenu.name = menu.name
         this.editingMenu.description = menu.description
         this.editingMenu.image = menu.image
         this.editingMenu.price = menu.price
         this.editingMenu.spicy = menu.spicy
+        this.editingMenu.type = menuType
       },
       sendEditMenu () {
         this.$emit('update-menu', this.editingMenu)
@@ -213,7 +215,8 @@
           description: '',
           image: '',
           price: 0,
-          spicy: false
+          spicy: false,
+          type: ''
         }
       }
     }

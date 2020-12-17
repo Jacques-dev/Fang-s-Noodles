@@ -116,12 +116,21 @@ var app = new Vue({
 
     },
     async updateMenu (newMenu) {
-      await axios.put('/api/menu/' + newMenu.id, newMenu)
-      const article = this.menus.find(a => a.id === newMenu.id)
-      article.name = newMenu.name
-      article.description = newMenu.description
-      article.image = newMenu.image
-      article.price = newMenu.price
+      await axios.put('/api/menu/' + newMenu.type + '/' +  newMenu.id, newMenu)
+      if(newMenu.type == "soups") {
+        const menu = this.menus[0].find(a => a.id === newMenu.id)
+        this.menus[0].splice(index, 1)
+      } else if (newMenu.type  == "dumplings") {
+        const menu = this.menus[1].find(a => a.id === newMenu.id)
+        this.menus[1].splice(index, 1)
+      } else {
+        const menu = this.menus[2].find(a => a.id === newMenu.id)
+        this.menus[2].splice(index, 1)
+      }
+      menu.name = newMenu.name
+      menu.description = newMenu.description
+      menu.image = newMenu.image
+      menu.price = newMenu.price
     },
     async deleteMenu (content) {
       await axios.delete('/api/menu/' + content.type + '/' + content.id)
