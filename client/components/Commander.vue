@@ -106,9 +106,7 @@
             €
           </div>
         </div>
-
         <p>Arrivé prévu : 20 minutes</p>
-
         <button type="button" name="button">Commander</button>
 
       </div>
