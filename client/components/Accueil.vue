@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div id ="page_entiere">
 
     <ul id="nav">
       <li><a href="#first" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
@@ -158,6 +158,10 @@
 </script>
 
 <style scoped>
+#page_entiere{
+  font-family: "Times New Roman";
+  letter-spacing: 1px;
+}
   #four .row h2{
     color: #7D1917;
   }
@@ -178,11 +182,6 @@
     text-align:center;
     width: 40%;
     position: absolute;
-  }
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
   }
 
   #nav {
