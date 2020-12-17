@@ -287,7 +287,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid 3px black;
     height:120%;
   }
 
