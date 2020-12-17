@@ -3,13 +3,15 @@ const Menus = window.httpVueLoader('./components/Menus.vue')
 const Commander = window.httpVueLoader('./components/Commander.vue')
 const Panier = window.httpVueLoader('./components/Panier.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
+const Reserver = window.httpVueLoader('./components/Reservation.vue')
 
 const routes = [
   { path: '/', component: Accueil },
   { path: '/menus', component: Menus },
   { path: '/commander', component: Commander },
   { path: '/panier', component: Panier },
-  { path: '/connexion', component: Connexion}
+  { path: '/connexion', component: Connexion},
+  { path: '/reserver', component: Reserver}
 ]
 
 const router = new VueRouter({
@@ -39,7 +41,8 @@ var app = new Vue({
     },
     admin: {
       id: null
-    }
+    },
+    reservations: []
   },
   async mounted () {
     const res = await axios.get('/api/menus')
@@ -68,6 +71,11 @@ var app = new Vue({
       this.user.id = res.data.user
     },
 
+    async reserver (reservation) {
+      const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
+      this.reservations.push(res.data)
+    },
+
     async pay () {
       try {
         await axios.post('/api/panier/pay')
@@ -77,7 +85,7 @@ var app = new Vue({
         router.push('/')
       } catch (e) {
         alert("Vous n'êtes pas conncecté, veuillez le faire")
-        router.push('/login')
+        router.push('/connexion')
       }
     },
     async addToPanier (menuId) {
@@ -96,22 +104,37 @@ var app = new Vue({
       const article = this.panier.menus.find(a => a.id === newMenu.id)
       article.quantity = newMenu.quantity
     },
-    async addArticle (article) {
-      const res = await axios.post('/api/article', article)
-      this.menus.push(res.data)
+    async addMenu (menu) {
+      const res = await axios.post('/api/menu', menu)
+      if(res.data.type == "soups") {
+        this.menus[0].push(res.data)
+      } else if (res.data.type == "dumplings") {
+        this.menus[1].push(res.data)
+      } else {
+        this.menus[2].push(res.data)
+      }
+
     },
     async updateMenu (newMenu) {
-      await axios.put('/api/article/' + newMenu.id, newMenu)
+      await axios.put('/api/menu/' + newMenu.id, newMenu)
       const article = this.menus.find(a => a.id === newMenu.id)
       article.name = newMenu.name
       article.description = newMenu.description
       article.image = newMenu.image
       article.price = newMenu.price
     },
-    async deleteMenu (menuId) {
-      await axios.delete('/api/article/' + menuId)
-      const index = this.menus.findIndex(a => a.id === menuId)
-      this.menus.splice(index, 1)
+    async deleteMenu (content) {
+      await axios.delete('/api/menu/' + content.type + '/' + content.id)
+      if(content.type == "soups") {
+        const index = this.menus[0].findIndex(a => a.id === content.id)
+        this.menus[0].splice(index, 1)
+      } else if (content.type  == "dumplings") {
+        const index = this.menus[1].findIndex(a => a.id === content.id)
+        this.menus[1].splice(index, 1)
+      } else {
+        const index = this.menus[2].findIndex(a => a.id === content.id)
+        this.menus[2].splice(index, 1)
+      }
     }
   }
 })

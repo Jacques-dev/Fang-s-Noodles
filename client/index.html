@@ -42,6 +42,7 @@
         <router-link class="nav-link active" to='/'>Accueil</router-link>
         <router-link class="nav-link" to='/menus'>Menus</router-link>
         <router-link class="nav-link" to='/commander'>Commander</router-link>
+        <router-link class="nav-link" to='/reserver'>Réserver</router-link>
         <router-link class="nav-link" to='/#second'>A propos</router-link>
         <router-link class="nav-link" to='/#footer'>Contact</router-link>
 
@@ -50,7 +51,6 @@
           <h3 class="nav-link" v-else-if="admin.id" style="color: blue">Connecté</h3>
           <h3 class="nav-link" v-else style="color: red">Non connecté</h3>
           <router-link class="nav-link" to='/connexion'>Connexion</router-link>
-          <router-link class="nav-link" to='/#four'>Réserver</router-link>
         </div>
       </div>
 
@@ -61,6 +61,7 @@
           :panier="panier"
           :login="login"
           :admin="admin"
+          :reservation="reservation"
           @add-menu="addMenu"
           @delete-menu="deleteMenu"
           @update-menu="updateMenu"
@@ -71,6 +72,7 @@
           @login="login"
           @admin-login="adminLogin"
           @pay="pay"
+          @reserver="reserver"
         ></router-view>
       </main>
 
@@ -119,15 +121,6 @@
     </footer>
 
     <script src="/vue-application.js"></script>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#nav').localScroll(800);
-        $('#first').parallax("50%", 0.1);
-        $('#second').parallax("50%", 0.1);
-        $('#third').parallax("50%", 0.3);
-      })
-    </script>
 
   </body>
 </html>

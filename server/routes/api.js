@@ -139,6 +139,28 @@ router.get('/me', (req, res) => {
   }
 })
 
+router.post('/reservation', async (req, res) => {
+  const date = req.body.date
+  const heure = req.body.heure
+  const personnes = parseInt(req.body.personnes)
+
+  const insert = "INSERT INTO reservation (date ,heure, personnes) VALUES ($1, $2, $3)"
+
+  const result = await client.query({
+    text: insert,
+    values: [date, heure, personnes]
+  })
+  res.send()
+
+  const reserv = {
+    date: date,
+    heure: heure,
+    personnes: personnes
+  }
+
+  res.json(reserv)
+})
+
 /**
  * Dans ce fichier, vous trouverez des exemples de requêtes GET, POST, PUT et DELETE
  * Ces requêtes concernent l'ajout ou la suppression d'menus sur le site
@@ -229,19 +251,19 @@ router.put('/panier/:menuId', (req, res) => {
 /*
  * Cette route doit supprimer un menu dans le panier
  */
- router.delete('/panier/:menuId', (req, res) => {
-   const menuId = parseInt(req.params.menuId)
-   const index = req.session.panier.menus.findIndex(a => a.id === menuId)
-
-   if (isNaN(menuId)) {
-     res.status(400).json({ message: 'Requête incorrecte' })
-   } else if (index === -1) {
-     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
-   } else {
-     req.session.panier.menus.splice(index, 1)
-     res.json(req.session.panier)
-   }
- })
+ // router.deleteM('/panier/:menuId', (req, res) => {
+ //   const menuId = parseInt(req.params.menuId)
+ //   const index = req.session.panier.menus.findIndex(a => a.id === menuId)
+ //
+ //   if (isNaN(menuId)) {
+ //     res.status(400).json({ message: 'Requête incorrecte' })
+ //   } else if (index === -1) {
+ //     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
+ //   } else {
+ //     req.session.panier.menus.splice(index, 1)
+ //     res.json(req.session.panier)
+ //   }
+ // })
 
 /**
  * Cette route envoie l'intégralité des menus du site
@@ -261,17 +283,7 @@ router.post('/menu', (req, res) => {
   const description = req.body.description
   const image = req.body.image
   const price = parseInt(req.body.price)
-  const spicy = req.body.spicy
-
-  // vérification de la validité des données d'entrée
-  if (typeof name !== 'string' || name === '' ||
-      typeof description !== 'string' || description === '' ||
-      typeof image !== 'string' || image === '' ||
-      typeof spicy !== 'string' || spicy === '' ||
-      isNaN(price) || price <= 0) {
-    res.status(400).json({ message: 'bad request' })
-    return
-  }
+  const spicy = (req.body.spicy == 'true')
 
   const menu = {
     id: menus.length + 1,
@@ -295,7 +307,8 @@ router.post('/menu', (req, res) => {
  * Comme ces trois routes ont un comportement similaire, on regroupe leurs fonctionnalités communes dans un middleware
  */
 function parseMenu (req, res, next) {
-  const menuId = parseInt(req.params.menuId)
+  const menuId = parseInt(req.params.id)
+  const menuType = req.params.type
 
   // si menuId n'est pas un nombre (NaN = Not A Number), alors on s'arrête
   if (isNaN(menuId)) {
@@ -304,18 +317,31 @@ function parseMenu (req, res, next) {
   }
   // on affecte req.menuId pour l'exploiter dans toutes les routes qui en ont besoin
   req.menuId = menuId
+  req.menuType = menuType
 
-  const menu = menus.find(a => a.id === req.menuId)
-  if (!menu) {
+  if(req.menuType == "soups") {
+    const menu = menus[0].find(a => a.id === req.menuId)
+    req.menu = menu
+    req.type = menuType
+  } else if (req.menuType  == "dumplings") {
+    const menu = menus[1].find(a => a.id === req.menuId)
+    req.menu = menu
+    req.type = menuType
+  } else {
+    const menu = menus[2].find(a => a.id === req.menuId)
+    req.menu = menu
+    req.type = menuType
+  }
+
+  if (!req.menu) {
     res.status(404).json({ message: 'menu ' + menuId + ' does not exist' })
     return
   }
-  // on affecte req.menu pour l'exploiter dans toutes les routes qui en ont besoin
-  req.menu = menu
+
   next()
 }
 
-router.route('/menu/:menuId')
+router.route('/menu/:type/:id')
   /**
    * Cette route envoie un menu particulier
    */
@@ -346,8 +372,17 @@ router.route('/menu/:menuId')
   })
 
   .delete(parseMenu, (req, res) => {
-    const index = menus.findIndex(a => a.id === req.menuId)
-    menus.splice(index, 1) // remove the menu from the array
+    if(req.menuType == "soups") {
+      const index = menus[0].findIndex(a => a.id === req.menuId)
+      menus[0].splice(index, 1)
+    } else if (req.menuType  == "dumplings") {
+      const index = menus[1].findIndex(a => a.id === req.menuId)
+      menus[1].splice(index, 1)
+    } else {
+      const index = menus[2].findIndex(a => a.id === req.menuId)
+      menus[2].splice(index, 1)
+    }
+
     res.send()
   })
 

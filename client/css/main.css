@@ -3,8 +3,7 @@
 body {
   margin: 0;
   height: 100%;
-  /* font-family: 'Andika New Basic', sans-serif !important; */
-  font-family: "Times New Roman";
+  font-family: 'Andika New Basic', sans-serif !important;
 }
 
 footer {
@@ -16,7 +15,6 @@ footer {
 footer svg {
   width: 50%;
   color: #fff;
-
 }
 
 footer .row {

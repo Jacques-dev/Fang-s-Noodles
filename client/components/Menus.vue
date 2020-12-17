@@ -9,28 +9,68 @@
       </article>
       <article class="col-sm-12">
 
-        <div class="titre_plats">
-          Soups
+      <div class="titre_plats">
+        Soups
+      </div>
+
+      <article class ="famille_de_plats" v-for="menu in menus[0]" :key="menu.id">
+
+        <div class="menu-img">
+          <img v-bind:src="'../images/soups/' + menu.image ">
+        </div>
+        <div class="menu-content" v-if="editingMenu.id !== menu.id">
+          <div class="menu-title">
+            <p>{{ menu.name }} - {{ menu.price }}€</p>
+          </div>
+          <p class="menu-description">{{ menu.description }}</p>
+          <div class ="spicy" v-if="isSpicy(menu.spicy)">
+            Spicy
+          </div>
+          <div class ="bouton-menus">
+            <button v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
+            <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
+            <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
+            <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
+          </div>
         </div>
 
-        <article class ="famille_de_plats" v-for="menu in menus[0]" :key="menu.id">
-
-            <div class="menu-img">
-                  <img v-bind:src="'../images/soups/' + menu.image ">
+        <div v-else>
+          <div>
+            <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
+            <div>
+              <button @click="sendEditMenu()">Valider</button>
+              <button @click="abortEditMenu()">Annuler</button>
             </div>
+          </div>
+          <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+          <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+        </div>
+
+      </article>
+
+      <div class="titre_plats">
+        Dumplings
+      </div>
+
+      <article class="famille_de_plats" v-for="menu in menus[1]" :key="menu.id">
+            <div class="menu-img">
+              <img v-bind:src="'../images/dumplings/' + menu.image ">
+            </div>
+
             <div class="menu-content" v-if="editingMenu.id !== menu.id">
                   <div class="menu-title">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
+
                   </div>
                   <p class="menu-description">{{ menu.description }}</p>
-                  <div class ="spicy" v-if="isSpicy(menu.spicy)">
+                  <div class="spicy" v-if="isSpicy(menu.spicy)">
                     Spicy
                   </div>
                   <div class ="bouton-menus">
-                    <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
+                    <button v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
                     <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
-                    <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-                    <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
+                    <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
+                    <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
                   </div>
             </div>
 
@@ -42,49 +82,9 @@
                   <button @click="abortEditMenu()">Annuler</button>
                 </div>
               </div>
-              <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+              <p><textarea v-model="editingMenu.description"></textarea></p>
               <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
             </div>
-
-        </article>
-
-        <div class="titre_plats">
-          Dumplings
-        </div>
-
-        <article class ="famille_de_plats" v-for="menu in menus[1]" :key="menu.id">
-              <div class="menu-img">
-                <img v-bind:src="'../images/dumplings/' + menu.image ">
-              </div>
-
-              <div class="menu-content" v-if="editingMenu.id !== menu.id">
-                    <div class="menu-title">
-                      <p>{{ menu.name }} - {{ menu.price }}€</p>
-
-                    </div>
-                    <p class="menu-description">{{ menu.description }}</p>
-                    <div class="spicy" v-if="isSpicy(menu.spicy)">
-                      Spicy
-                    </div>
-                    <div class ="bouton-menus">
-                      <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
-                      <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
-                      <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-                      <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
-                    </div>
-              </div>
-
-              <div v-else>
-                <div>
-                  <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-                  <div>
-                    <button @click="sendEditMenu()">Valider</button>
-                    <button @click="abortEditMenu()">Annuler</button>
-                  </div>
-                </div>
-                <p><textarea v-model="editingMenu.description"></textarea></p>
-                <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-              </div>
 
         </article>
 
@@ -95,42 +95,43 @@
 
         <article class ="famille_de_plats" v-for="menu in menus[2]" :key="menu.id">
 
-              <div class="menu-img">
-                <img v-bind:src="'../images/noodles/' + menu.image ">
-              </div>
+          <div class="menu-img">
+            <img v-bind:src="'../images/noodles/' + menu.image ">
+          </div>
 
-              <div class="menu-content" v-if="editingMenu.id !== menu.id">
-                    <div class="menu-title">
-                      <p>{{ menu.name }} - {{ menu.price }}€</p>
+          <div class="menu-content" v-if="editingMenu.id !== menu.id">
+            <div class="menu-title">
+              <p>{{ menu.name }} - {{ menu.price }}€</p>
 
-                    </div>
-                    <p class="menu-description">{{ menu.description }}</p>
-                    <div class="spicy" v-if="isSpicy(menu.spicy)">
-                      Spicy
-                    </div>
-                    <div class ="bouton-menus">
-                      <button v-if="admin.id" @click="deleteMenu(menu.id)">Supprimer</button>
-                      <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
-                      <button v-if="existeDansPanier(menu.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-                      <button v-else @click="addToPanier(menu.id)">Ajouter au panier</button>
-                    </div>
-              </div>
+            </div>
+            <p class="menu-description">{{ menu.description }}</p>
+            <div class="spicy" v-if="isSpicy(menu.spicy)">
+              Spicy
+            </div>
+            <div class ="bouton-menus">
+              <button v-if="admin.id" @click="deleteMenu(menu.id, 'noodles')">Supprimer</button>
+              <button v-if="admin.id" @click="editMenu(article)">Modifier</button>
+              <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
+              <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
+            </div>
+          </div>
 
-              <div v-else>
-                <div>
-                  <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-                  <div>
-                    <button @click="sendEditMenu()">Valider</button>
-                    <button @click="abortEditMenu()">Annuler</button>
-                  </div>
-                </div>
-                <p><textarea v-model="editingMenu.description"></textarea></p>
-                <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+          <div v-else>
+            <div>
+              <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
+              <div>
+                <button @click="sendEditMenu()">Valider</button>
+                <button @click="abortEditMenu()">Annuler</button>
               </div>
+            </div>
+            <p><textarea v-model="editingMenu.description"></textarea></p>
+            <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+          </div>
 
         </article>
 
         <add-menu :show="showForm" @add-menu="addMenu"></add-menu>
+        <button v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
 
       </article>
     </section>
@@ -186,8 +187,12 @@
       addMenu (menu) {
         this.$emit('add-menu', menu)
       },
-      deleteMenu (menuId) {
-        this.$emit('delete-menu', menuId)
+      deleteMenu (menuId, menuType) {
+        let content = {
+          id: menuId,
+          type: menuType
+        }
+        this.$emit('delete-menu', content)
       },
       editMenu (menu) {
         this.editingMenu.id = menu.id
@@ -223,7 +228,6 @@
   .container{
     background-color: #F0DDC4;
     width: 100%;
-    font-family: "Times New Roman";
   }
   .spicy{
     display: flex;
