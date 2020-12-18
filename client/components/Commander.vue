@@ -265,6 +265,7 @@
 
   #menus-deroulant{
     display: flex;
+    
     /* border: red solid 2px; */
   }
 

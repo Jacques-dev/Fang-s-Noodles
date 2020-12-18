@@ -144,10 +144,8 @@
     display: flex;
     justify-content: center;
     /* position: relative; */
-
     padding-top:3%;
     /* z-index: 9; */
-
   }
   /* Styles pour le conteneur de la forme */
   .form-container {

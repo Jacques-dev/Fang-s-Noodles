@@ -1,4 +1,6 @@
 const menus = [
+
+
   soups = [
     {
       id: 1,
@@ -100,6 +102,124 @@ const menus = [
       price: 18,
       spicy: false
     }
+  ],
+  sashimi =[
+    {
+      id: 1,
+      name: 'Shellfish Sashimi',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 2,
+      name: 'Katsuo Tataki',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 3,
+      name: 'Fish selections',
+      description: 'description',
+      image: '',
+      price: 11,
+      spicy: true
+    },
+    {
+      id: 4,
+      name: 'Aji',
+      description: 'description',
+      image: '',
+      price: 25,
+      spicy: true
+    },
+    {
+      id: 5,
+      name: 'Hirame',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 6,
+      name: 'Albacore Tataki',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    }
+  ],
+
+  nigiri =[
+    {
+      id: 1,
+      name: 'Maguro',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 2,
+      name: 'Hamachi',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 3,
+      name: 'Saba',
+      description: 'description',
+      image: '',
+      price: 11,
+      spicy: true
+    },
+    {
+      id: 4,
+      name: 'Hirame',
+      description: 'description',
+      image: '',
+      price: 25,
+      spicy: true
+    },
+    {
+      id: 5,
+      name: 'Sunazuri',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 6,
+      name: 'Sake',
+      description: 'description',
+      image: '',
+      price: 9,
+      spicy: false
+    },
+    {
+      id: 7,
+      name: 'Hotate',
+      description: 'description',
+      image: '',
+      price: 11,
+      spicy: true
+    },
+    {
+      id: 8,
+      name: 'Ebi',
+      description: 'description',
+      image: 'won_ton_noodle.jpg',
+      price: 25,
+      spicy: true
+    }
+
   ]
 ]
 
