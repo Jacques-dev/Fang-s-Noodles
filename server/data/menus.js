@@ -72,9 +72,9 @@ const menus = [
   noodles = [
     {
       id: 1,
-      name: 'Lamen sauté au porc haché',
+      name: 'Ramen sauté au porc haché',
       description: 'description',
-      image: '',
+      image: 'ramen_porc_hache.jpg',
       price: 9,
       spicy: true
     },
@@ -82,23 +82,23 @@ const menus = [
       id: 2,
       name: 'Vermicelles de riz sautées au boeuf',
       description: 'description',
-      image: '',
+      image: 'vermicelles_riz_boeuf.jpeg',
       price: 9,
       spicy: true
     },
     {
       id: 3,
-      name: 'Lamen sauté au poulet',
+      name: 'Ramen sauté au poulet',
       description: 'description',
-      image: '',
+      image: 'ramen_poulet.jpg',
       price: 13,
       spicy: false
     },
     {
       id: 4,
-      name: 'Lamen sauté aux légumes',
+      name: 'Ramen sauté aux légumes',
       description: 'description',
-      image: '',
+      image: 'ramen_legumes.jpg',
       price: 18,
       spicy: false
     }
@@ -116,28 +116,20 @@ const menus = [
       id: 2,
       name: 'Katsuo Tataki',
       description: 'description',
-      image: '',
+      image: 'katsuo_tataki.jpg',
       price: 9,
       spicy: false
     },
     {
       id: 3,
-      name: 'Fish selections',
-      description: 'description',
-      image: '',
-      price: 11,
-      spicy: true
-    },
-    {
-      id: 4,
       name: 'Aji',
       description: 'description',
-      image: '',
+      image: 'sashimi_aji',
       price: 25,
       spicy: true
     },
     {
-      id: 5,
+      id: 4,
       name: 'Hirame',
       description: 'description',
       image: '',
@@ -145,7 +137,7 @@ const menus = [
       spicy: false
     },
     {
-      id: 6,
+      id: 5,
       name: 'Albacore Tataki',
       description: 'description',
       image: '',

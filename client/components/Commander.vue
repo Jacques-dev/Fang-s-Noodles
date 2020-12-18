@@ -255,6 +255,7 @@
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-image: url("../images/backgrounds/plats_styles2.jpeg");
 }
   .colonne{

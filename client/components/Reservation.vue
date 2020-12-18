@@ -166,7 +166,8 @@
     /* height: 100%; */
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../images/backgrounds/maison_traditionnelle.jpeg");
+    background-attachment: fixed;
+    background-image: url("../images/backgrounds/tables.jpeg");
 
   }
 

@@ -45,8 +45,9 @@ footer .row {
 
 
 .topnav .nav-link.active {
-  background-color: rgba(240,221,196,1);
-  color: black;
+  /* background-color: rgba(240,221,196,1); */
+  /* color: black; */
+  /* padding-bottom: 20px; */
 }
 
 .topnav-right {
@@ -56,4 +57,19 @@ footer .row {
 .topnav-right h3 {
   margin-right: 25px;
   float: left;
+}
+
+.lien {
+  transition: 0.3s ease;
+  /* background-color: #891B17;
+  color: #09371F;
+  text-decoration: none; */
+  /* border-top: 4px solid #FBFBF3;
+  border-bottom: 4px solid #FBFBF3; */
+}
+.lien:hover {
+  border-top: 3px solid #077b8a;
+  border-bottom: 3px solid #077b8a;
+  /* margin-top: 5px; */
+  margin: 3px 0 3px 0;
 }

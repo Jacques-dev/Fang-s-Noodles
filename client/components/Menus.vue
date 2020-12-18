@@ -307,7 +307,8 @@
   /* width: 150%; */
   height: auto;
   background-size: contain;
-  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  background-repeat: repeat;
   background-image: url("../images/backgrounds/epices.jpg");
 }
 .titre_plats .current{
@@ -326,6 +327,7 @@
     /* background-color: #F0DDC4; */
       /* background-color:rgba(137,27,23,0.5); */
       background-color:rgba(30,61,89,0.7);
+      /* background-color: rgba(7,123,138,0.7); */
     width: 100%;
   }
   .spicy{
@@ -380,6 +382,12 @@
     margin-top: 1%;
     margin-bottom: 1%;
     /* border: 2px solid red; */
+  }
+  .menu-img{
+    width: 40%;
+    /* height: 100%;
+    background-size: auto; */
+    /* background-image: ; */
   }
   .menu-title, .spicy, .menu-description, .bouton-menus {
     /* border:3px solid green; */

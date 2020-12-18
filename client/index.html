@@ -38,19 +38,19 @@
     <div id="app">
 
       <div class="topnav">
-        <router-link class="nav-link active" to='/'>Accueil</router-link>
-        <router-link class="nav-link" to='/menus'>Menus</router-link>
-        <router-link class="nav-link" to='/commander'>Commander</router-link>
-        <router-link class="nav-link" to='/reserver'>Réserver</router-link>
-        <router-link class="nav-link" to='/#second'>A propos</router-link>
-        <router-link class="nav-link" to='/#footer'>Contact</router-link>
+        <router-link class="nav-link lien active" to='/'>Accueil</router-link>
+        <router-link class="nav-link lien" to='/menus'>Menus</router-link>
+        <router-link class="nav-link lien" to='/commander'>Commander</router-link>
+        <router-link class="nav-link lien" to='/reserver'>Réserver</router-link>
+        <router-link class="nav-link lien" to='/#second'>A propos</router-link>
+        <router-link class="nav-link lien" to='/#footer'>Contact</router-link>
 
         <div class="topnav-right">
-          <h3 class="nav-link" v-if="user.id" style="color: green">Connecté</h3>
-          <h3 class="nav-link" v-else-if="admin.id" style="color: blue">Connecté</h3>
-          <h3 class="nav-link" v-else style="color: red">Non connecté</h3>
-          <router-link class="nav-link" v-if="(user.id) || (admin.id)" to='/deconnexion'>Déconnexion</router-link>
-          <router-link class="nav-link" v-else to='/connexion'>Connexion</router-link>
+          <!-- <h3 class="nav-link" v-if="user.id" style="color: green">Connecté</h3> -->
+          <h3 class="nav-link" v-if="admin.id" style="color: blue">Admin</h3>
+          <!-- <h3 class="nav-link" v-else style="color: red">Non connecté</h3> -->
+          <router-link class="nav-link lien" v-if="(user.id) || (admin.id)" to='/deconnexion'>Déconnexion</router-link>
+          <router-link class="nav-link lien" v-else to='/connexion'>Connexion</router-link>
         </div>
       </div>
 
