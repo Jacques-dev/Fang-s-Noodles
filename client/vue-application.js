@@ -1,7 +1,6 @@
 const Accueil = window.httpVueLoader('./components/Accueil.vue')
 const Menus = window.httpVueLoader('./components/Menus.vue')
 const Commander = window.httpVueLoader('./components/Commander.vue')
-const Panier = window.httpVueLoader('./components/Panier.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
 const Reserver = window.httpVueLoader('./components/Reservation.vue')
@@ -10,7 +9,6 @@ const routes = [
   { path: '/', component: Accueil },
   { path: '/menus', component: Menus },
   { path: '/commander', component: Commander },
-  { path: '/panier', component: Panier },
   { path: '/connexion', component: Connexion},
   { path: '/deconnexion', component: Deconnexion},
   { path: '/reserver', component: Reserver}
@@ -121,15 +119,15 @@ var app = new Vue({
     },
     async removeFromPanier (menu) {
       if (menu.type == "soups") {
-        await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+        await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.soups.findIndex(a => a.id === menu.id)
-        this.panier.soups.menus.splice(index, 1)
+        this.panier.soups.splice(index, 1)
       } else if (menu.type == "dumplings") {
-        await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+        await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.dumplings.findIndex(a => a.id === menu.id)
         this.panier.dumplings.splice(index, 1)
       } else {
-        await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+        await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.noodles.findIndex(a => a.id === menu.id)
         this.panier.noodles.splice(index, 1)
       }
@@ -148,7 +146,19 @@ var app = new Vue({
       } else {
         this.menus[2].push(res.data)
       }
-
+    },
+    async deleteMenu (content) {
+      await axios.delete('/api/menu/' + content.type + '/' + content.id)
+      if(content.type == "soups") {
+        const index = this.menus[0].findIndex(a => a.id === content.id)
+        this.menus[0].splice(index, 1)
+      } else if (content.type  == "dumplings") {
+        const index = this.menus[1].findIndex(a => a.id === content.id)
+        this.menus[1].splice(index, 1)
+      } else {
+        const index = this.menus[2].findIndex(a => a.id === content.id)
+        this.menus[2].splice(index, 1)
+      }
     },
     async updateMenu (newMenu) {
       await axios.put('/api/menu/' + newMenu.type + '/' +  newMenu.id, newMenu)
@@ -170,19 +180,6 @@ var app = new Vue({
         menu.description = newMenu.description
         menu.image = newMenu.image
         menu.price = newMenu.price
-      }
-    },
-    async deleteMenu (content) {
-      await axios.delete('/api/menu/' + content.type + '/' + content.id)
-      if(content.type == "soups") {
-        const index = this.menus[0].findIndex(a => a.id === content.id)
-        this.menus[0].splice(index, 1)
-      } else if (content.type  == "dumplings") {
-        const index = this.menus[1].findIndex(a => a.id === content.id)
-        this.menus[1].splice(index, 1)
-      } else {
-        const index = this.menus[2].findIndex(a => a.id === content.id)
-        this.menus[2].splice(index, 1)
       }
     }
   }

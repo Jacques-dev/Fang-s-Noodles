@@ -2,6 +2,7 @@
 
   <section class="container-fluid">
     <section class="row">
+
       <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12 plat">
         {{ menu.id }}
         <div class="image-plat">
@@ -16,44 +17,41 @@
         </div>
 
       </article>
+
+      <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
+        <div class="image-plat">
+          <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+          <div class="affichage_bouton_ajout_panier">
+            <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
+          </div>
+        </div>
+
+        <div class="description-plat">
+          {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
+        </div>
+
+      </article>
+
+      <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
+        <div class="image-plat">
+          <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+          <div class="affichage_bouton_ajout_panier">
+            <button @click="removeFromPanier(menu.id, 'noodles')">Retirer du panier</button>
+          </div>
+        </div>
+
+        <div class="description-plat">
+          {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
+        </div>
+
+      </article>
     </section>
-
-    <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
-      <div class="image-plat">
-        <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
-        <div class="affichage_bouton_ajout_panier">
-          <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
-        </div>
-      </div>
-
-      <div class="description-plat">
-        {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
-      </div>
-
-    </article>
-
-    <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
-      <div class="image-plat">
-        <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
-        <div class="affichage_bouton_ajout_panier">
-          <button @click="removeFromPanier(menu.id, 'noodles')">Retirer du panier</button>
-        </div>
-      </div>
-
-      <div class="description-plat">
-        {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
-      </div>
-
-    </article>
   </section>
 
 </template>
 
 <script>
   module.exports = {
-    components: {
-
-    },
     props: {
       menus: { type: Array, default: [] },
       panier: { type: Object }
@@ -64,7 +62,13 @@
       }
     },
     methods: {
-
+      removeFromPanier(menuId, menuType) {
+        let content = {
+          id: menuId,
+          type: menuType
+        }
+        this.$emit('remove-from-panier', content)
+      }
     }
   }
 </script>

@@ -43,7 +43,7 @@
 <script>
 module.exports = {
   props: {
-    show: Boolean
+
   },
   data () {
     return {

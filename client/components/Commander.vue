@@ -105,7 +105,53 @@
 
         <article class="row">
           <div class="col-sm-12">
-            <add-to-panier @add-to-panier="addToPanier"></add-to-panier>
+            <!-- <panier @remove-from-panier="removeFromPanier"></panier> -->
+            <section class="container-fluid">
+              <section class="row">
+
+                <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12 plat">
+                  <div class="image-plat">
+                    <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                    <div class="affichage_bouton_ajout_panier">
+                      <button @click="removeFromPanier(menu.id, 'soups')">Retirer du panier</button>
+                    </div>
+                  </div>
+
+                  <div class="description-plat">
+                    {{ menus[0][menu.id-1].name }} - {{ menus[0][menu.id-1].price }}€
+                  </div>
+
+                </article>
+
+                <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
+                  <div class="image-plat">
+                    <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                    <div class="affichage_bouton_ajout_panier">
+                      <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
+                    </div>
+                  </div>
+
+                  <div class="description-plat">
+                    {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
+                  </div>
+
+                </article>
+
+                <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
+                  <div class="image-plat">
+                    <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                    <div class="affichage_bouton_ajout_panier">
+                      <button @click="removeFromPanier(menu.id, 'noodles')">Retirer du panier</button>
+                    </div>
+                  </div>
+
+                  <div class="description-plat">
+                    {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
+                  </div>
+
+                </article>
+              </section>
+            </section>
           </div>
         </article>
         <article class="row">
@@ -126,10 +172,10 @@
 </template>
 
 <script>
-  const Panier = window.httpVueLoader('./components/Panier.vue');
+  // const Panier = window.httpVueLoader('./components/Panier.vue');
   module.exports = {
     components: {
-      Panier
+      // Panier,
     },
     props: {
       menus: { type: Array, default: [] },
@@ -162,6 +208,13 @@
         }
         this.$emit('add-to-panier', content)
       },
+      removeFromPanier(menuId, menuType) {
+        let content = {
+          id: menuId,
+          type: menuType
+        }
+        this.$emit('remove-from-panier', content)
+      },
       existeDansPanier (menuId, menuType) {
         let bool = false
         if (menuType == "soups") {
@@ -184,13 +237,6 @@
           }
         }
         return bool
-      },
-      removeFromPanier(menuId, menuType) {
-        let content = {
-          id: menuId,
-          type: menuType
-        }
-        this.$emit('remove-from-panier', content)
       }
     }
   }

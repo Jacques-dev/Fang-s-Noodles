@@ -227,7 +227,7 @@ router.post('/panier', (req, res) => {
   } else {
     var menu = menus[2].find(a => a.id === menuId)
   }
-  // console.log(menu)
+
   if (!menu) {
     res.status(501).json({ message: 'menu non existant' })
   } else {
@@ -246,7 +246,6 @@ router.post('/panier', (req, res) => {
       req.session.panier.noodles.push(newMenu)
       res.json(newMenu)
     }
-
   }
 })
 
@@ -257,7 +256,7 @@ router.post('/panier', (req, res) => {
    const menuId = parseInt(req.params.id)
    const menuType = req.params.type
 
-   const index = null
+   var index = null
 
    if (menuType == "soups") {
      index = req.session.panier.soups.findIndex(a => a.id === menuId)
@@ -272,6 +271,7 @@ router.post('/panier', (req, res) => {
    } else if (index === -1) {
      res.status(501).json({ message: "L'menu n'est pas dans le panier" })
    } else {
+
      if (menuType == "soups") {
        req.session.panier.soups.splice(index, 1)
      } else if (menuType == "dumplings") {
