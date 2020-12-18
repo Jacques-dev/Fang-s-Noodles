@@ -31,7 +31,7 @@
                             <div class="image-plat">
                               <img v-bind:src="'../images/soups/' + menu.image " class="image">
                               <div class="affichage_bouton_ajout_panier">
-                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups')" v-if="user.id">Ajouter au panier</button>
+                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
                               </div>
                             </div>
                             <div class="description-plat">
@@ -53,7 +53,7 @@
                             <div class="image-plat">
                               <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
                               <div class="affichage_bouton_ajout_panier">
-                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings')" v-if="user.id">Ajouter au panier</button>
+                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings', menu.price)" v-if="user.id">Ajouter au panier</button>
                               </div>
                             </div>
 
@@ -76,7 +76,7 @@
                             <div class="image-plat">
                               <img v-bind:src="'../images/noodles/' + menu.image " class="image">
                               <div class="affichage_bouton_ajout_panier">
-                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles')" v-if="user.id">Ajouter au panier</button>
+                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles', menu.price)" v-if="user.id">Ajouter au panier</button>
                               </div>
                             </div>
 
@@ -92,44 +92,72 @@
                       </article>
           </section>
 
-          <section class="col-sm-3 colonne">
+      <form @submit.prevent="pay()" class="col-sm-3 colonne">
 
-                        <article class="row">
-                          <div class="col-sm-6">
-                            My Order
-                          </div>
-                          <div class="col-sm-6">
-                            (0 selections)
-                          </div>
-                        </article>
+        <article class="row">
+          <div class="col-sm-6">
+            My Order
+          </div>
+          <div class="col-sm-6">
+            (0 selections)
+          </div>
+        </article>
 
-                        <article class="row">
-                          <div class="col-sm-12">
-                            <!-- <panier @remove-from-panier="removeFromPanier"></panier> -->
-                            <section class="container-fluid">
-                              <section class="row">
+        <article class="row">
+          <div class="col-sm-12">
 
-                                <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12 plat">
-                                  <div class="image-plat">
-                                    <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
-                                    <div class="affichage_bouton_ajout_panier">
-                                      <button @click="removeFromPanier(menu.id, 'soups')">Retirer du panier</button>
-                                    </div>
-                                  </div>
+            <section class="container-fluid">
+              <section class="row">
 
-                                  <div class="description-plat">
-                                    {{ menus[0][menu.id-1].name }} - {{ menus[0][menu.id-1].price }}€
-                                  </div>
+                <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12">
 
-                                </article>
+                  <section class="container-fluid">
+                    <section class="row">
+                      <article class="col-sm-12" align="center">
+                        <div class="image-plat">
+                          <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                        </div>
+                      </article>
+                      <article class="col-sm-12">
+                        <section class="row">
 
-                                <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
-                                  <div class="image-plat">
-                                    <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
-                                    <div class="affichage_bouton_ajout_panier">
-                                      <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
-                                    </div>
-                                  </div>
+                          <article class="col-sm-6">
+                            <!-- <form @submit.prevent="edit(menu.id)"> -->
+                              <select @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity">
+                                <option value="" disabled selected>{{menu.quantity}}</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
+                              <!-- <button type="submit">save</button> -->
+                            <!-- </form> -->
+                          </article>
+
+                          <article class="col-sm-6">
+                            <button @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
+                          </article>
+
+                        </section>
+                      </article>
+                    </section>
+                  </section>
+
+                </article>
+
+                <!-- <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
+                  <div class="image-plat">
+                    <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                    <div class="affichage_bouton_ajout_panier">
+                      <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
+                    </div>
+                  </div>
 
                                   <div class="description-plat">
                                     {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
@@ -149,23 +177,22 @@
                                     {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
                                   </div>
 
-                                </article>
-                              </section>
-                            </section>
-                          </div>
-                        </article>
-                        <article class="row">
-                          <div class="col-sm-6">
-                            Total
-                          </div>
-                          <div class="col-sm-6">
-                            €
-                          </div>
-                        </article>
-                        <p>Arrivé prévu : 20 minutes</p>
-                        <button type="button" name="button">Commander</button>
-           </section>
-       <!-- </section> -->
+                </article> -->
+              </section>
+            </section>
+          </div>
+        </article>
+        <article class="row">
+          <div class="col-sm-6">
+            Total
+          </div>
+          <div class="col-sm-6">
+            €
+          </div>
+        </article>
+        <p>Arrivé prévu : 20 minutes</p>
+        <button type="submit">Commander</button>
+      </form>
     </section>
 
   </section>
@@ -173,10 +200,8 @@
 </template>
 
 <script>
-  // const Panier = window.httpVueLoader('./components/Panier.vue');
   module.exports = {
     components: {
-      // Panier,
     },
     props: {
       menus: { type: Array, default: [] },
@@ -185,10 +210,35 @@
     },
     data () {
       return {
+        editMenu: {
+          id: '',
+          quantity: '',
+          prix: '',
+          type: ''
+        },
         typeMenu: "soups"
       }
     },
     methods: {
+      edit(id, type, prix) {
+        this.editMenu.id = id
+        this.editMenu.type = type
+        this.editMenu.prix = prix
+        let content = {
+          id: this.editMenu.id,
+          quantity: this.editMenu.quantity,
+          prix: this.editMenu.prix,
+          type: this.editMenu.type
+        }
+        this.$emit('update-menu-from-panier', content)
+      },
+      pay() {
+        let content = {
+          id: this.editMenu.id,
+          quantity: this.editMenu.quantity
+        }
+        this.$emit('pay', content)
+      },
       isSpicy(boolean) {
         return boolean
       },
@@ -202,49 +252,27 @@
       changeTypeMenu(newType) {
         this.typeMenu = newType
       },
-      addToPanier (menuId, menuType) {
+      addToPanier (menuId, menuType, menuPrix) {
         let content = {
           id: menuId,
-          type: menuType
+          type: menuType,
+          prix: menuPrix
         }
         this.$emit('add-to-panier', content)
       },
-      removeFromPanier(menuId, menuType) {
+      removeFromPanier(menuId, menuType, menuPrix) {
         let content = {
           id: menuId,
-          type: menuType
+          type: menuType,
+          prix: menuPrix
         }
         this.$emit('remove-from-panier', content)
-      },
-      existeDansPanier (menuId, menuType) {
-        let bool = false
-        if (menuType == "soups") {
-          for (const m of this.panier.soups.menus) {
-            if (m.id == menuId){
-              bool = true
-            }
-          }
-        } else if (menuType == "dumplings") {
-          for (const m of this.panier.dumplings.menus) {
-            if (m.id == menuId){
-              bool = true
-            }
-          }
-        } else {
-          for (const m of this.panier.noodles.menus) {
-            if (m.id == menuId){
-              bool = true
-            }
-          }
-        }
-        return bool
       }
     }
   }
 </script>
 
 <style scoped>
-
 #background{
   color:#fff;
   /* color:rgb(137,27,23); */
@@ -381,5 +409,4 @@
     font-size: 16px;
     padding: 16px 32px;
   }
-
 </style>

@@ -18,6 +18,8 @@ class Panier {
   constructor () {
     this.createdAt = new Date()
     this.updatedAt = new Date()
+    this.nb_menus = 0
+    this.prix = 0
     this.soups = []
     this.dumplings = []
     this.noodles = []
@@ -236,6 +238,8 @@ router.post('/panier', (req, res) => {
       quantity: menuQte
     }
 
+    req.session.panier.nb_menus += newMenu.quantity
+
     if (menuType == "soups") {
       req.session.panier.soups.push(newMenu)
       res.json(newMenu)
@@ -288,9 +292,12 @@ router.post('/panier', (req, res) => {
  * Cette route doit permettre de changer la quantité d'un menu dans le panier
  * Le body doit contenir la quantité voulue
  */
-router.put('/panier/:menuId', (req, res) => {
-  const menuId = parseInt(req.params.menuId)
-  const menuQte = parseInt(req.body.quantity)
+router.put('/panier/:type/:id/:quantity', (req, res) => {
+  const menuId = parseInt(req.params.id)
+  const menuQte = parseInt(req.params.quantity)
+  const menuType = req.params.type
+
+  var index = null
 
   if (menuType == "soups") {
     index = req.session.panier.soups.findIndex(a => a.id === menuId)
@@ -305,7 +312,13 @@ router.put('/panier/:menuId', (req, res) => {
   } else if (index === -1) {
     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
   } else {
-    req.session.panier.menus.quantity = menuQte
+    if (menuType == "soups") {
+      req.session.panier.soups.quantity = menuQte
+    } else if (menuType == "dumplings") {
+      req.session.panier.dumplings.quantity = menuQte
+    } else {
+      req.session.panier.noodles.quantity = menuQte
+    }
     res.send()
   }
 })

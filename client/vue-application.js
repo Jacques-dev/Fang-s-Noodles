@@ -33,6 +33,8 @@ var app = new Vue({
     panier: {
       createdAt: null,
       updatedAt: null,
+      nb_menus: null,
+      prix: null,
       soups: [],
       dumplings: [],
       noodles: []
@@ -88,32 +90,38 @@ var app = new Vue({
     },
 
     async pay () {
-      try {
-        await axios.post('/api/panier/pay')
-        const res2 = await axios.get('/api/panier')
-        this.panier = res2.data
-        alert("Merci d'être venu sur notre site !")
-        router.push('/')
-      } catch (e) {
-        alert("Vous n'êtes pas conncecté, veuillez le faire")
-        router.push('/connexion')
-      }
+      // try {
+      //   await axios.post('/api/panier/pay')
+      //   const res2 = await axios.get('/api/panier')
+      //   this.panier = res2.data
+      //   alert("Merci d'être venu sur notre site !")
+      //   router.push('/')
+      // } catch (e) {
+      //   alert("Vous n'êtes pas conncecté, veuillez le faire")
+      //   router.push('/connexion')
+      // }
     },
     async addToPanier (menu) {
       if (menu.type == "soups") {
         if (this.panier.soups.find(a => a.id === menu.id) === undefined){
           const res1 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1')
-          this.panier.soups.push(res1.data)
+          this.panier.soups.push(res1.data.menu)
+          this.panier.nb_menus += res1.data.nb
+          this.panier.prix += res1.data.prix
         }
       } else if (menu.type == "dumplings") {
         if (this.panier.dumplings.find(a => a.id === menu.id) === undefined){
           const res2 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1')
-          this.panier.dumplings.push(res2.data)
+          this.panier.dumplings.push(res2.data.menu)
+          this.panier.nb_menus += res1.data.nb
+          this.panier.prix += res1.data.prix
         }
       } else {
         if (this.panier.noodles.find(a => a.id === menu.id) === undefined){
           const res3 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1')
-          this.panier.noodles.push(res3.data)
+          this.panier.noodles.push(res3.data.menu)
+          this.panier.nb_menus += res1.data.nb
+          this.panier.prix += res1.data.prix
         }
       }
     },
@@ -133,9 +141,19 @@ var app = new Vue({
       }
     },
     async updateMenuFromPanier (newMenu) {
-      await axios.put('/api/panier/' + newMenu.id, newMenu)
-      const article = this.panier.find(a => a.id === newMenu.id)
-      article.quantity = newMenu.quantity
+      if (newMenu.type == "soups") {
+        await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
+        const menu = this.panier.soups.find(a => a.id === newMenu.id)
+        menu.quantity = newMenu.quantity
+      } else if (newMenu.type == "dumplings") {
+        await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
+        const menu = this.panier.dumplings.find(a => a.id === newMenu.id)
+        menu.quantity = newMenu.quantity
+      } else {
+        await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
+        const menu = this.panier.noodles.find(a => a.id === newMenu.id)
+        menu.quantity = newMenu.quantity
+      }
     },
     async addMenu (menu) {
       const res = await axios.post('/api/menu', menu)
