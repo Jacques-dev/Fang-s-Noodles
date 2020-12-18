@@ -127,13 +127,29 @@ router.post('/adminlogin', async (req, res) => {
   }
 })
 
+router.post('/logout', async (req, res) => {
+  req.session.userId = null
+  req.session.adminId = null
+  const log = {
+    admin: req.session.adminId,
+    user: req.session.userId
+  }
+  res.json(log)
+})
+
 router.get('/me', (req, res) => {
-  if (req.session.userId || req.session.adminId) {
+  if (req.session.userId) {
     const log = {
       admin: req.session.adminId,
       user: req.session.userId
     }
-    res.json(log)
+    res.status(200).json(log)
+  } else if (req.session.adminId) {
+    const log = {
+      admin: req.session.adminId,
+      user: req.session.userId
+    }
+    res.status(201).json(log)
   } else {
     res.status(401).json({ message: "not logged" })
   }
@@ -196,12 +212,22 @@ router.get('/panier', (req, res) => {
 router.post('/panier', (req, res) => {
   const menuId = parseInt(req.body.id)
   const menuQte = parseInt(req.body.quantity)
+  const menuType = parseInt(req.body.type)
 
   if (menuQte <= 0) {
     res.status(400).json({ message: "bad request" })
   }
 
-  const menu = menus.find(a => a.id === menuId)
+  const menu = {}
+
+  if (menuType == "soups") {
+    menu = menus[0].find(a => a.id === menuId)
+  } else if (menuType == "dumplings") {
+    menu = menus[1].find(a => a.id === menuId)
+  } else {
+    menu = menus[2].find(a => a.id === menuId)
+  }
+
   if (!menu) {
     res.status(501).json({ message: 'menu non existant' })
   } else {
@@ -209,24 +235,53 @@ router.post('/panier', (req, res) => {
       id: menuId,
       quantity: menuQte
     }
-    req.session.panier.menus.push(newMenu)
-    res.json(newMenu)
+    if (menuType == "soups") {
+      req.session.panier.soups.menus.push(newMenu)
+      res.json(newMenu)
+    } else if (menuType == "dumplings") {
+      req.session.panier.dumplings.menus.push(newMenu)
+      res.json(newMenu)
+    } else {
+      req.session.panier.noodles.menus.push(newMenu)
+      res.json(newMenu)
+    }
+
   }
 })
 
 /*
- * Cette route doit permettre de confirmer un panier, en recevant le nom et prénom de l'utilisateur
- * Le panier est ensuite supprimé grâce à req.session.destroy()
+ * Cette route doit supprimer un menu dans le panier
  */
-router.post('/panier/pay', (req, res) => {
+ router.delete('/panier/:type/:id', (req, res) => {
+   const menuId = parseInt(req.params.id)
+   const menuType = req.params.type
 
-  if (req.session.userId) {
-    req.session.destroy()
-    res.status(200).json({ message: "logged" })
-  } else {
-    res.status(401).json({ message: "not logged" })
-  }
-})
+   const index = null
+
+   if (menuType == "soups") {
+     index = req.session.panier.soups.menu.findIndex(a => a.id === menuId)
+   } else if (menuType == "dumplings") {
+     index = req.session.panier.dumplings.menu.findIndex(a => a.id === menuId)
+   } else {
+     index = req.session.panier.noodles.menu.findIndex(a => a.id === menuId)
+   }
+
+   if (isNaN(menuId)) {
+     res.status(400).json({ message: 'Requête incorrecte' })
+   } else if (index === -1) {
+     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
+   } else {
+     if (menuType == "soups") {
+       req.session.panier.soups.menus.splice(index, 1)
+     } else if (menuType == "dumplings") {
+       req.session.panier.dumplings.menus.splice(index, 1)
+     } else {
+       req.session.panier.noodles.menus.splice(index, 1)
+     }
+     res.json(req.session.panier)
+   }
+
+ })
 
 /*
  * Cette route doit permettre de changer la quantité d'un menu dans le panier
@@ -249,21 +304,18 @@ router.put('/panier/:menuId', (req, res) => {
 })
 
 /*
- * Cette route doit supprimer un menu dans le panier
+ * Cette route doit permettre de confirmer un panier, en recevant le nom et prénom de l'utilisateur
+ * Le panier est ensuite supprimé grâce à req.session.destroy()
  */
- // router.deleteM('/panier/:menuId', (req, res) => {
- //   const menuId = parseInt(req.params.menuId)
- //   const index = req.session.panier.menus.findIndex(a => a.id === menuId)
- //
- //   if (isNaN(menuId)) {
- //     res.status(400).json({ message: 'Requête incorrecte' })
- //   } else if (index === -1) {
- //     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
- //   } else {
- //     req.session.panier.menus.splice(index, 1)
- //     res.json(req.session.panier)
- //   }
- // })
+router.post('/panier/pay', (req, res) => {
+
+  if (req.session.userId) {
+    req.session.destroy()
+    res.status(200).json({ message: "logged" })
+  } else {
+    res.status(401).json({ message: "not logged" })
+  }
+})
 
 /**
  * Cette route envoie l'intégralité des menus du site

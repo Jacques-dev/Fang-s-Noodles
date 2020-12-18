@@ -30,7 +30,7 @@
                   <div class="image-plat">
                     <img v-bind:src="'../images/soups/' + menu.image " class="image">
                     <div class="affichage_bouton_ajout_panier">
-                      <button type="button" name="button" class="ajouterMenu">Ajouter au panier</button>
+                      <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups')" v-if="user.id">Ajouter au panier</button>
                     </div>
                   </div>
                   <div class="description-plat">
@@ -52,7 +52,7 @@
                   <div class="image-plat">
                     <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
                     <div class="affichage_bouton_ajout_panier">
-                      <button type="button" name="button" class="ajouterMenu">Ajouter au panier</button>
+                      <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings')" v-if="user.id">Ajouter au panier</button>
                     </div>
                   </div>
 
@@ -75,7 +75,7 @@
                   <div class="image-plat">
                     <img v-bind:src="'../images/noodles/' + menu.image " class="image">
                     <div class="affichage_bouton_ajout_panier">
-                      <button type="button" name="button" class="ajouterMenu">Ajouter au panier</button>
+                      <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles')" v-if="user.id">Ajouter au panier</button>
                     </div>
                   </div>
 
@@ -105,7 +105,7 @@
         </article>
 
         <article class="panier">
-           -- affichage du panier --
+           <add-menu @add-menu="addMenu"></add-menu>
         </article>
         <article class="row">
           <div class="col-sm-6">
@@ -125,13 +125,15 @@
 </template>
 
 <script>
+  const Panier = window.httpVueLoader('./components/Panier.vue');
   module.exports = {
     components: {
       Panier
     },
     props: {
       menus: { type: Array, default: [] },
-      panier: { type: Object }
+      panier: { type: Object },
+      user: {type: Object }
     },
     data () {
       return {
@@ -151,6 +153,36 @@
       },
       changeTypeMenu(newType) {
         this.typeMenu = newType
+      },
+      addToPanier (menuId, menuType) {
+        let content = {
+          id: menuId,
+          type: menuType
+        }
+        this.$emit('add-to-panier', content)
+      },
+      existeDansPanier (menuId, menuType) {
+        let bool = false
+        if (menuType == "soups") {
+          for (const m of this.panier.soups.menus) {
+            if (m.id == menuId){
+              bool = true
+            }
+          }
+        } else if (menuType == "dumplings") {
+          for (const m of this.panier.dumplings.menus) {
+            if (m.id == menuId){
+              bool = true
+            }
+          }
+        } else {
+          for (const m of this.panier.noodles.menus) {
+            if (m.id == menuId){
+              bool = true
+            }
+          }
+        }
+        return bool
       }
     }
   }

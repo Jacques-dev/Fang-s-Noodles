@@ -29,8 +29,6 @@
           <div class ="bouton-menus">
             <button v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
             <button v-if="admin.id" @click="editMenu(menu, 'soups')">Modifier</button>
-            <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-            <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
           </div>
         </div>
 
@@ -69,8 +67,6 @@
                   <div class ="bouton-menus">
                     <button v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
                     <button v-if="admin.id" @click="editMenu(menu, 'dumplings')">Modifier</button>
-                    <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-                    <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
                   </div>
             </div>
 
@@ -111,8 +107,6 @@
             <div class ="bouton-menus">
               <button v-if="admin.id" @click="deleteMenu(menu.id, 'noodles')">Supprimer</button>
               <button v-if="admin.id" @click="editMenu(menu, 'noodles')">Modifier</button>
-              <button v-if="existeDansPanier(menu.id)" v-if="(!admin.id)" @click="removeFromPanier(menu.id)">Retirer du panier</button>
-              <button v-else @click="addToPanier(menu.id)" v-if="(!admin.id)">Ajouter au panier</button>
             </div>
           </div>
 
@@ -144,11 +138,9 @@
   module.exports = {
     components: {
       AddMenu,
-      Panier
     },
     props: {
       menus: { type: Array, default: [] },
-      panier: { type: Object },
       admin:{type: Object },
       user: {type: Object }
     },
@@ -169,21 +161,6 @@
     methods: {
       isSpicy(boolean) {
         return boolean
-      },
-      existeDansPanier (menuId) {
-        let bool = false
-        for (const m of this.panier.menus) {
-          if (m.id == menuId){
-          bool = true
-          }
-        }
-        return bool
-      },
-      addToPanier (menuId) {
-        this.$emit('add-to-panier', menuId)
-      },
-      removeFromPanier(menuId) {
-        this.$emit('remove-from-panier', menuId)
       },
       addMenu (menu) {
         this.$emit('add-menu', menu)
@@ -206,7 +183,7 @@
       },
       sendEditMenu () {
         this.$emit('update-menu', this.editingMenu)
-        this.abortEditmenu()
+        this.abortEditMenu()
       },
       abortEditMenu () {
         this.editingMenu = {

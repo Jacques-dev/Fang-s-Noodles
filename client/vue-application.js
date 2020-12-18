@@ -3,6 +3,7 @@ const Menus = window.httpVueLoader('./components/Menus.vue')
 const Commander = window.httpVueLoader('./components/Commander.vue')
 const Panier = window.httpVueLoader('./components/Panier.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
+const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
 const Reserver = window.httpVueLoader('./components/Reservation.vue')
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
   { path: '/commander', component: Commander },
   { path: '/panier', component: Panier },
   { path: '/connexion', component: Connexion},
+  { path: '/deconnexion', component: Deconnexion},
   { path: '/reserver', component: Reserver}
 ]
 
@@ -33,7 +35,15 @@ var app = new Vue({
     panier: {
       createdAt: null,
       updatedAt: null,
-      menus: []
+      soups: {
+        menus: []
+      },
+      dumplings: {
+        menus: []
+      },
+      noodles: {
+        menus: []
+      }
     },
     user: {
       nom: null,
@@ -57,18 +67,27 @@ var app = new Vue({
 
     async register (user) {
       await axios.post('/api/register/','nom=' + user.nom + '&email=' + user.email + '&password=' + user.password +  '&prenom=' + user.prenom + '&telephone=' + user.telephone)
+      router.push('/connexion')
     },
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
       const res = await axios.get('/api/me')
-        this.admin.id = res.data.admin
-        this.user.id = res.data.user
+      this.admin.id = res.data.admin
+      this.user.id = res.data.user
+      router.push('/')
     },
     async adminLogin (admin) {
       await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
       const res = await axios.get('/api/me')
       this.admin.id = res.data.admin
       this.user.id = res.data.user
+      router.push('/')
+    },
+    async logout () {
+      const res = await axios.post('/api/logout/')
+      this.admin.id = res.data.admin
+      this.user.id = res.data.user
+      router.push('/')
     },
 
     async reserver (reservation) {
@@ -88,17 +107,43 @@ var app = new Vue({
         router.push('/connexion')
       }
     },
-    async addToPanier (menuId) {
-      if (this.panier.menus.find(a => a.id === menuId) === undefined){
-        const res = await axios.post('/api/panier','id='+ menuId + '&quantity=1')
-        this.panier.menus.push(res.data)
-      }
-    },
-    async removeFromPanier (menuId) {
-      await axios.delete('/api/panier/' + menuId)
-      const index = this.panier.menus.findIndex(a => a.id === menuId)
-      this.panier.menus.splice(index, 1)
-    },
+    // async addToPanier (menu) {
+    //   const menuId = menu.id
+    //   const menuType = menu.type
+    //   if (menuType == "soups") {
+    //     alert(this.panier.soups.menus.find(a => a.id === menuId))
+    //     if (this.panier.soups.menus.find(a => a.id === menuId) === undefined){
+    //       alert("JE SUIS LA")
+    //       const res1 = await axios.post('/api/panier','id='+ menuId + '&type=' + menuType + '&quantity=1')
+    //       this.panier.soups.menus.push(res1.data)
+    //     }
+    //   } else if (menuType == "dumplings") {
+    //     if (this.panier.dumplings.menus.find(a => a.id === menuId) === undefined){
+    //       const res2 = await axios.post('/api/panier','id='+ menuId + '&type=' + menuType + '&quantity=1')
+    //       this.panier.dumplings.menus.push(res2.data)
+    //     }
+    //   } else {
+    //     if (this.panier.noodles.menus.find(a => a.id === menuId) === undefined){
+    //       const res3 = await axios.post('/api/panier','id='+ menuId + '&type=' + menuType + '&quantity=1')
+    //       this.panier.noodles.menus.push(res3.data)
+    //     }
+    //   }
+    // },
+    // async removeFromPanier (menu) {
+    //   if (menuType == "soups") {
+    //     await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+    //     const index = this.panier.soups.menus.findIndex(a => a.id === menu.id)
+    //     this.panier.soups.menus.splice(index, 1)
+    //   } else if (menuType == "dumplings") {
+    //     await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+    //     const index = this.panier.dumplings.menus.findIndex(a => a.id === menu.id)
+    //     this.panier.dumplings.menus.splice(index, 1)
+    //   } else {
+    //     await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+    //     const index = this.panier.noodles.menus.findIndex(a => a.id === menu.id)
+    //     this.panier.noodles.menus.splice(index, 1)
+    //   }
+    // },
     async updateMenuFromPanier (newMenu) {
       await axios.put('/api/panier/' + newMenu.id, newMenu)
       const article = this.panier.menus.find(a => a.id === newMenu.id)
@@ -119,18 +164,23 @@ var app = new Vue({
       await axios.put('/api/menu/' + newMenu.type + '/' +  newMenu.id, newMenu)
       if(newMenu.type == "soups") {
         const menu = this.menus[0].find(a => a.id === newMenu.id)
-        this.menus[0].splice(index, 1)
+        menu.name = newMenu.name
+        menu.description = newMenu.description
+        menu.image = newMenu.image
+        menu.price = newMenu.price
       } else if (newMenu.type  == "dumplings") {
         const menu = this.menus[1].find(a => a.id === newMenu.id)
-        this.menus[1].splice(index, 1)
+        menu.name = newMenu.name
+        menu.description = newMenu.description
+        menu.image = newMenu.image
+        menu.price = newMenu.price
       } else {
         const menu = this.menus[2].find(a => a.id === newMenu.id)
-        this.menus[2].splice(index, 1)
+        menu.name = newMenu.name
+        menu.description = newMenu.description
+        menu.image = newMenu.image
+        menu.price = newMenu.price
       }
-      menu.name = newMenu.name
-      menu.description = newMenu.description
-      menu.image = newMenu.image
-      menu.price = newMenu.price
     },
     async deleteMenu (content) {
       await axios.delete('/api/menu/' + content.type + '/' + content.id)

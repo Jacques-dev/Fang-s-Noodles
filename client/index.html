@@ -50,7 +50,8 @@
           <h3 class="nav-link" v-if="user.id" style="color: green">Connecté</h3>
           <h3 class="nav-link" v-else-if="admin.id" style="color: blue">Connecté</h3>
           <h3 class="nav-link" v-else style="color: red">Non connecté</h3>
-          <router-link class="nav-link" to='/connexion'>Connexion</router-link>
+          <router-link class="nav-link" v-if="(user.id) || (admin.id)" to='/deconnexion'>Déconnexion</router-link>
+          <router-link class="nav-link" v-else to='/connexion'>Connexion</router-link>
         </div>
       </div>
 
@@ -60,6 +61,7 @@
           :menus="menus"
           :panier="panier"
           :login="login"
+          :user="user"
           :admin="admin"
           :reservation="reservation"
           @add-menu="addMenu"
@@ -71,6 +73,7 @@
           @register="register"
           @login="login"
           @admin-login="adminLogin"
+          @logout="logout"
           @pay="pay"
           @reserver="reserver"
         ></router-view>
