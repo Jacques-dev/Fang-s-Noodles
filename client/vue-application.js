@@ -35,15 +35,9 @@ var app = new Vue({
     panier: {
       createdAt: null,
       updatedAt: null,
-      soups: {
-        menus: []
-      },
-      dumplings: {
-        menus: []
-      },
-      noodles: {
-        menus: []
-      }
+      soups: [],
+      dumplings: [],
+      noodles: []
     },
     user: {
       nom: null,
@@ -107,46 +101,42 @@ var app = new Vue({
         router.push('/connexion')
       }
     },
-    // async addToPanier (menu) {
-    //   const menuId = menu.id
-    //   const menuType = menu.type
-    //   if (menuType == "soups") {
-    //     alert(this.panier.soups.menus.find(a => a.id === menuId))
-    //     if (this.panier.soups.menus.find(a => a.id === menuId) === undefined){
-    //       alert("JE SUIS LA")
-    //       const res1 = await axios.post('/api/panier','id='+ menuId + '&type=' + menuType + '&quantity=1')
-    //       this.panier.soups.menus.push(res1.data)
-    //     }
-    //   } else if (menuType == "dumplings") {
-    //     if (this.panier.dumplings.menus.find(a => a.id === menuId) === undefined){
-    //       const res2 = await axios.post('/api/panier','id='+ menuId + '&type=' + menuType + '&quantity=1')
-    //       this.panier.dumplings.menus.push(res2.data)
-    //     }
-    //   } else {
-    //     if (this.panier.noodles.menus.find(a => a.id === menuId) === undefined){
-    //       const res3 = await axios.post('/api/panier','id='+ menuId + '&type=' + menuType + '&quantity=1')
-    //       this.panier.noodles.menus.push(res3.data)
-    //     }
-    //   }
-    // },
-    // async removeFromPanier (menu) {
-    //   if (menuType == "soups") {
-    //     await axios.delete('/api/panier' + menu.type + '/' + menu.id)
-    //     const index = this.panier.soups.menus.findIndex(a => a.id === menu.id)
-    //     this.panier.soups.menus.splice(index, 1)
-    //   } else if (menuType == "dumplings") {
-    //     await axios.delete('/api/panier' + menu.type + '/' + menu.id)
-    //     const index = this.panier.dumplings.menus.findIndex(a => a.id === menu.id)
-    //     this.panier.dumplings.menus.splice(index, 1)
-    //   } else {
-    //     await axios.delete('/api/panier' + menu.type + '/' + menu.id)
-    //     const index = this.panier.noodles.menus.findIndex(a => a.id === menu.id)
-    //     this.panier.noodles.menus.splice(index, 1)
-    //   }
-    // },
+    async addToPanier (menu) {
+      if (menu.type == "soups") {
+        if (this.panier.soups.find(a => a.id === menu.id) === undefined){
+          const res1 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1')
+          this.panier.soups.push(res1.data)
+        }
+      } else if (menu.type == "dumplings") {
+        if (this.panier.dumplings.find(a => a.id === menu.id) === undefined){
+          const res2 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1')
+          this.panier.dumplings.push(res2.data)
+        }
+      } else {
+        if (this.panier.noodles.find(a => a.id === menu.id) === undefined){
+          const res3 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1')
+          this.panier.noodles.push(res3.data)
+        }
+      }
+    },
+    async removeFromPanier (menu) {
+      if (menu.type == "soups") {
+        await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+        const index = this.panier.soups.findIndex(a => a.id === menu.id)
+        this.panier.soups.menus.splice(index, 1)
+      } else if (menu.type == "dumplings") {
+        await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+        const index = this.panier.dumplings.findIndex(a => a.id === menu.id)
+        this.panier.dumplings.splice(index, 1)
+      } else {
+        await axios.delete('/api/panier' + menu.type + '/' + menu.id)
+        const index = this.panier.noodles.findIndex(a => a.id === menu.id)
+        this.panier.noodles.splice(index, 1)
+      }
+    },
     async updateMenuFromPanier (newMenu) {
       await axios.put('/api/panier/' + newMenu.id, newMenu)
-      const article = this.panier.menus.find(a => a.id === newMenu.id)
+      const article = this.panier.find(a => a.id === newMenu.id)
       article.quantity = newMenu.quantity
     },
     async addMenu (menu) {

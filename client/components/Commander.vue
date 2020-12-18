@@ -92,7 +92,6 @@
 
       </section>
 
-
       <section class="col-sm-3 colonne">
 
         <article class="row">
@@ -104,8 +103,10 @@
           </div>
         </article>
 
-        <article class="panier">
-           <add-menu @add-menu="addMenu"></add-menu>
+        <article class="row">
+          <div class="col-sm-12">
+            <add-to-panier @add-to-panier="addToPanier"></add-to-panier>
+          </div>
         </article>
         <article class="row">
           <div class="col-sm-6">
@@ -183,6 +184,13 @@
           }
         }
         return bool
+      },
+      removeFromPanier(menuId, menuType) {
+        let content = {
+          id: menuId,
+          type: menuType
+        }
+        this.$emit('remove-from-panier', content)
       }
     }
   }

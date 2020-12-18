@@ -18,7 +18,9 @@ class Panier {
   constructor () {
     this.createdAt = new Date()
     this.updatedAt = new Date()
-    this.menus = []
+    this.soups = []
+    this.dumplings = []
+    this.noodles = []
   }
 }
 
@@ -212,22 +214,20 @@ router.get('/panier', (req, res) => {
 router.post('/panier', (req, res) => {
   const menuId = parseInt(req.body.id)
   const menuQte = parseInt(req.body.quantity)
-  const menuType = parseInt(req.body.type)
+  const menuType = req.body.type
 
   if (menuQte <= 0) {
     res.status(400).json({ message: "bad request" })
   }
 
-  const menu = {}
-
   if (menuType == "soups") {
-    menu = menus[0].find(a => a.id === menuId)
+    var menu = menus[0].find(a => a.id === menuId)
   } else if (menuType == "dumplings") {
-    menu = menus[1].find(a => a.id === menuId)
+    var menu = menus[1].find(a => a.id === menuId)
   } else {
-    menu = menus[2].find(a => a.id === menuId)
+    var menu = menus[2].find(a => a.id === menuId)
   }
-
+  // console.log(menu)
   if (!menu) {
     res.status(501).json({ message: 'menu non existant' })
   } else {
@@ -235,14 +235,15 @@ router.post('/panier', (req, res) => {
       id: menuId,
       quantity: menuQte
     }
+
     if (menuType == "soups") {
-      req.session.panier.soups.menus.push(newMenu)
+      req.session.panier.soups.push(newMenu)
       res.json(newMenu)
     } else if (menuType == "dumplings") {
-      req.session.panier.dumplings.menus.push(newMenu)
+      req.session.panier.dumplings.push(newMenu)
       res.json(newMenu)
     } else {
-      req.session.panier.noodles.menus.push(newMenu)
+      req.session.panier.noodles.push(newMenu)
       res.json(newMenu)
     }
 
@@ -259,11 +260,11 @@ router.post('/panier', (req, res) => {
    const index = null
 
    if (menuType == "soups") {
-     index = req.session.panier.soups.menu.findIndex(a => a.id === menuId)
+     index = req.session.panier.soups.findIndex(a => a.id === menuId)
    } else if (menuType == "dumplings") {
-     index = req.session.panier.dumplings.menu.findIndex(a => a.id === menuId)
+     index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
    } else {
-     index = req.session.panier.noodles.menu.findIndex(a => a.id === menuId)
+     index = req.session.panier.noodles.findIndex(a => a.id === menuId)
    }
 
    if (isNaN(menuId)) {
@@ -272,11 +273,11 @@ router.post('/panier', (req, res) => {
      res.status(501).json({ message: "L'menu n'est pas dans le panier" })
    } else {
      if (menuType == "soups") {
-       req.session.panier.soups.menus.splice(index, 1)
+       req.session.panier.soups.splice(index, 1)
      } else if (menuType == "dumplings") {
-       req.session.panier.dumplings.menus.splice(index, 1)
+       req.session.panier.dumplings.splice(index, 1)
      } else {
-       req.session.panier.noodles.menus.splice(index, 1)
+       req.session.panier.noodles.splice(index, 1)
      }
      res.json(req.session.panier)
    }
@@ -291,7 +292,13 @@ router.put('/panier/:menuId', (req, res) => {
   const menuId = parseInt(req.params.menuId)
   const menuQte = parseInt(req.body.quantity)
 
-  const index = req.session.panier.menus.findIndex(a => a.id === menuId)
+  if (menuType == "soups") {
+    index = req.session.panier.soups.findIndex(a => a.id === menuId)
+  } else if (menuType == "dumplings") {
+    index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
+  } else {
+    index = req.session.panier.noodles.findIndex(a => a.id === menuId)
+  }
 
   if (isNaN(menuId)) {
     res.status(400).json({ message: 'Requête incorrecte' })
