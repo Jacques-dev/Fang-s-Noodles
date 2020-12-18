@@ -95,15 +95,6 @@
       <form @submit.prevent="pay()" class="col-sm-3 colonne">
 
         <article class="row">
-          <div class="col-sm-6">
-            My Order
-          </div>
-          <div class="col-sm-6">
-            (0 selections)
-          </div>
-        </article>
-
-        <article class="row">
           <div class="col-sm-12">
 
             <section class="container-fluid">
@@ -184,10 +175,18 @@
         </article>
         <article class="row">
           <div class="col-sm-6">
+            Nombre de menus
+          </div>
+          <div class="col-sm-6">
+            {{ panier.nb_menus }}
+          </div>
+        </article>
+        <article class="row">
+          <div class="col-sm-6">
             Total
           </div>
           <div class="col-sm-6">
-            €
+            {{ panier.prix }}€
           </div>
         </article>
         <p>Arrivé prévu : 20 minutes</p>
@@ -206,7 +205,7 @@
     props: {
       menus: { type: Array, default: [] },
       panier: { type: Object },
-      user: {type: Object }
+      user: { type: Object }
     },
     data () {
       return {
