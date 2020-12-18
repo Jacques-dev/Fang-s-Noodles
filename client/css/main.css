@@ -7,9 +7,10 @@ body {
 }
 
 footer {
+  position: relative;
   background-color: #7D1917;
   color:#fff;
-  padding: 40px 0 40px 0;
+  padding: 20px 0 10px 0;
 }
 
 footer svg {

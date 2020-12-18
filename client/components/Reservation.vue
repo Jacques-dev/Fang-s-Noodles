@@ -1,14 +1,14 @@
 <template>
 
-  <div class="container-fluid">
+  <div class="container-fluid" id ="background">
 
-    <div class="row d-flex justify-content-center align-items-center">
-      <h2>Faites une réservation<h2>
+    <div id="ligne_un"class="row ligne d-flex justify-content-center align-items-center">
+      <p>Faites une réservation<p>
     </div>
 
-    <div class="row">
+    <div id="ligne_deux" class="row ligne">
 
-      <form class="col-sm-6" @submit.prevent="reserver">
+      <form class="col-sm-8" @submit.prevent="reserver">
 
         <div class="container-fluid">
         <div class="row d-flex flex-wrap justify-content-center align-items-center">
@@ -83,7 +83,8 @@
           </div>
         </div>
       </form>
-      <div class="col-sm-6" align="center">
+
+      <div class="col-sm-4">
         <div class="container-fluid">
           <div v-for="reserv in reservations" :key="reserv.date">
             <div class="row">
@@ -100,10 +101,10 @@
           </div>
         </div>
       </div>
-    </div>
+
   </div>
 
-
+  </div>
 
 </template>
 
@@ -113,8 +114,8 @@
 
     },
     props: {
-      admin: {type: Object },
-      reservations: { type: Array}
+      admin: {type: Object},
+      reservations: {type: Array}
     },
     data () {
       return {
@@ -134,8 +135,43 @@
 </script>
 
 <style scoped>
+
+  /* #background{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+  } */
+
+  .ligne{
+    padding: 3%;
+  }
+  #ligne_un{
+    font-size: 2.8em;
+    color:#891B17;
+  }
+
+  #ligne_deux{
+    height:auto;
+    /* background-color: blue; */
+    background-color:rgba(30,61,89,0.7);
+    margin-left: 5%;
+    margin-right: 5%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  #background{
+    width: 100%;
+    /* height: 100%; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../images/backgrounds/maison_traditionnelle.jpeg");
+
+  }
+
   .container-fluid {
-    background-color: #F0DDC4;
+    /* background-color: #F0DDC4; */
     height: 100%;
   }
 

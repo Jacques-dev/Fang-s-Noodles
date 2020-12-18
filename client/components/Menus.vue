@@ -1,6 +1,7 @@
 <template>
+<section id ="background">
 
-  <section class="container">
+  <section class="container" >
 
     <section class="row">
 
@@ -226,7 +227,7 @@
       </article>
     </section>
   </section>
-
+</section>
 </template>
 
 <script>
@@ -297,8 +298,21 @@
 </script>
 
 <style scoped>
+
+#background{
+  color:#fff;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* width: 150%; */
+  height: auto;
+  background-size: contain;
+  /* background-repeat: no-repeat; */
+  background-image: url("../images/backgrounds/epices.jpg");
+}
 .titre_plats .current{
-  color:red;
+  color:#FFA213;
+  text-decoration: underline;
 }
   p{
 
@@ -308,8 +322,10 @@
     height: 100px;
   }
   .container{
-    position: relative;
-    background-color: #F0DDC4;
+    /* position: relative; */
+    /* background-color: #F0DDC4; */
+      /* background-color:rgba(137,27,23,0.5); */
+      background-color:rgba(30,61,89,0.7);
     width: 100%;
   }
   .spicy{
@@ -334,15 +350,14 @@
     /* margin-left: 2%;
     margin-right: 2%; */
     width: 100%;
-    display: flex;
-    justify-content: center;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    color:#a52421;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+
   }
   .titre_plats a{
     margin-left: 2%;
     margin-right: 2%;
+    color:#fff;
   }
   .titre_plats p{
     margin-left: 2%;
@@ -351,8 +366,8 @@
   }
 
   .famille_de_plats{
-    border-top: 2px dotted black;
-    border-bottom: 2px dotted black;
+    /* border-top: 2px solid #fff; */
+    border-bottom: 2px solid #fff;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -368,9 +383,13 @@
   }
   .menu-title, .spicy, .menu-description, .bouton-menus {
     /* border:3px solid green; */
-
     padding:1%;
   }
+  .menu-description{
+    background-color: #f5f0e1;
+    color: rgb(137,27,23);
+  }
+
   .menu-title{
     font-size: 1.5em;
   }

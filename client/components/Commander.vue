@@ -1,170 +1,171 @@
 <template>
 
-  <section class="container">
-      <h2>Menu</h2>
+  <section class="container-fluid" id ="background">
 
     <section id = "colonnes" class="row">
-      <section class="col-sm-2 colonne">
-        <h3 id ="utilisateur">Hi, Guest</h3>
-        <ul id ="menus-deroulant"class="nav nav-pills">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
-            <div class="dropdown-menu">
-              <button class="dropdown-item" @click="changeTypeMenu('soups')">Soups</a>
-              <button class="dropdown-item" @click="changeTypeMenu('dumplings')">Dumplings</a>
-              <button class="dropdown-item" @click="changeTypeMenu('noodles')">Noodles</a>
-            </div>
-          </li>
-        </ul>
-      </section>
+      <!-- <section> -->
+          <section class="col-sm-2 colonne">
 
+                    <!-- <h3 id ="utilisateur">Hi, Guest</h3> -->
+                    <ul id ="menus-deroulant"class="nav nav-pills">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
+                        <div class="dropdown-menu">
+                          <button class="dropdown-item" @click="changeTypeMenu('soups')">Soups</a>
+                          <button class="dropdown-item" @click="changeTypeMenu('dumplings')">Dumplings</a>
+                          <button class="dropdown-item" @click="changeTypeMenu('noodles')">Noodles</a>
+                        </div>
+                      </li>
+                    </ul>
 
-      <section class="col-sm-7 colonne">
+          </section>
 
-            <article class="tabcontent container" v-if="checkMenu('soups')">
+          <section class="col-sm-7 colonne">
 
-              <h3>Soups</h3>
-              <div class="row">
+                      <article class="tabcontent container" v-if="checkMenu('soups')">
 
-                <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/soups/' + menu.image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups')" v-if="user.id">Ajouter au panier</button>
-                    </div>
-                  </div>
-                  <div class="description-plat">
-                    {{ menu.name }} - {{ menu.price }}€
-                  </div>
+                        <h3>Soups</h3>
+                        <div class="row">
 
-                  <div v-if="isSpicy(menu.spicy)" style="color: red">
-                    Spicy
-                  </div>
-                </article>
-              </div>
-            </article>
+                          <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
+                            <div class="image-plat">
+                              <img v-bind:src="'../images/soups/' + menu.image " class="image">
+                              <div class="affichage_bouton_ajout_panier">
+                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups')" v-if="user.id">Ajouter au panier</button>
+                              </div>
+                            </div>
+                            <div class="description-plat">
+                              {{ menu.name }} - {{ menu.price }}€
+                            </div>
 
-            <article class="tabcontent container" v-if="checkMenu('dumplings')">
-              <h3>Dumplings</h3>
-              <div class="row">
+                            <div v-if="isSpicy(menu.spicy)" >
+                              Spicy
+                            </div>
+                          </article>
+                        </div>
+                      </article>
 
-                <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings')" v-if="user.id">Ajouter au panier</button>
-                    </div>
-                  </div>
+                      <article class="tabcontent container" v-if="checkMenu('dumplings')">
+                        <h3>Dumplings</h3>
+                        <div class="row">
 
-                  <div class="description-plat">
-                    {{ menu.name }} - {{ menu.price }}€
-                  </div>
-                  <div v-if="isSpicy(menu.spicy)" style="color: red">
-                    Spicy
-                  </div>
+                          <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6 plat">
+                            <div class="image-plat">
+                              <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
+                              <div class="affichage_bouton_ajout_panier">
+                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings')" v-if="user.id">Ajouter au panier</button>
+                              </div>
+                            </div>
 
-                </article>
-              </div>
-            </article>
+                            <div class="description-plat">
+                              {{ menu.name }} - {{ menu.price }}€
+                            </div>
+                            <div v-if="isSpicy(menu.spicy)" style="color: red">
+                              Spicy
+                            </div>
 
-            <article class="tabcontent container" v-if="checkMenu('noodles')">
-              <h3>Noodles</h3>
-              <div class="row">
+                          </article>
+                        </div>
+                      </article>
 
-                <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/noodles/' + menu.image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles')" v-if="user.id">Ajouter au panier</button>
-                    </div>
-                  </div>
+                      <article class="tabcontent container" v-if="checkMenu('noodles')">
+                        <h3>Noodles</h3>
+                        <div class="row">
 
-                  <div class="description-plat">
-                    {{ menu.name }} - {{ menu.price }}€
-                  </div>
-                  <div v-if="isSpicy(menu.spicy)" style="color: red">
-                    Spicy
-                  </div>
+                          <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6 plat">
+                            <div class="image-plat">
+                              <img v-bind:src="'../images/noodles/' + menu.image " class="image">
+                              <div class="affichage_bouton_ajout_panier">
+                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles')" v-if="user.id">Ajouter au panier</button>
+                              </div>
+                            </div>
 
-                </article>
-              </div>
-            </article>
+                            <div class="description-plat">
+                              {{ menu.name }} - {{ menu.price }}€
+                            </div>
+                            <div v-if="isSpicy(menu.spicy)">
+                              Spicy
+                            </div>
 
-      </section>
+                          </article>
+                        </div>
+                      </article>
+          </section>
 
-      <section class="col-sm-3 colonne">
+          <section class="col-sm-3 colonne">
 
-        <article class="row">
-          <div class="col-sm-6">
-            My Order
-          </div>
-          <div class="col-sm-6">
-            (0 selections)
-          </div>
-        </article>
+                        <article class="row">
+                          <div class="col-sm-6">
+                            My Order
+                          </div>
+                          <div class="col-sm-6">
+                            (0 selections)
+                          </div>
+                        </article>
 
-        <article class="row">
-          <div class="col-sm-12">
-            <!-- <panier @remove-from-panier="removeFromPanier"></panier> -->
-            <section class="container-fluid">
-              <section class="row">
+                        <article class="row">
+                          <div class="col-sm-12">
+                            <!-- <panier @remove-from-panier="removeFromPanier"></panier> -->
+                            <section class="container-fluid">
+                              <section class="row">
 
-                <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button @click="removeFromPanier(menu.id, 'soups')">Retirer du panier</button>
-                    </div>
-                  </div>
+                                <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12 plat">
+                                  <div class="image-plat">
+                                    <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                                    <div class="affichage_bouton_ajout_panier">
+                                      <button @click="removeFromPanier(menu.id, 'soups')">Retirer du panier</button>
+                                    </div>
+                                  </div>
 
-                  <div class="description-plat">
-                    {{ menus[0][menu.id-1].name }} - {{ menus[0][menu.id-1].price }}€
-                  </div>
+                                  <div class="description-plat">
+                                    {{ menus[0][menu.id-1].name }} - {{ menus[0][menu.id-1].price }}€
+                                  </div>
 
-                </article>
+                                </article>
 
-                <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
-                    </div>
-                  </div>
+                                <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
+                                  <div class="image-plat">
+                                    <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                                    <div class="affichage_bouton_ajout_panier">
+                                      <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
+                                    </div>
+                                  </div>
 
-                  <div class="description-plat">
-                    {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
-                  </div>
+                                  <div class="description-plat">
+                                    {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
+                                  </div>
 
-                </article>
+                                </article>
 
-                <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button @click="removeFromPanier(menu.id, 'noodles')">Retirer du panier</button>
-                    </div>
-                  </div>
+                                <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
+                                  <div class="image-plat">
+                                    <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                                    <div class="affichage_bouton_ajout_panier">
+                                      <button @click="removeFromPanier(menu.id, 'noodles')">Retirer du panier</button>
+                                    </div>
+                                  </div>
 
-                  <div class="description-plat">
-                    {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
-                  </div>
+                                  <div class="description-plat">
+                                    {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
+                                  </div>
 
-                </article>
-              </section>
-            </section>
-          </div>
-        </article>
-        <article class="row">
-          <div class="col-sm-6">
-            Total
-          </div>
-          <div class="col-sm-6">
-            €
-          </div>
-        </article>
-        <p>Arrivé prévu : 20 minutes</p>
-        <button type="button" name="button">Commander</button>
-      </section>
+                                </article>
+                              </section>
+                            </section>
+                          </div>
+                        </article>
+                        <article class="row">
+                          <div class="col-sm-6">
+                            Total
+                          </div>
+                          <div class="col-sm-6">
+                            €
+                          </div>
+                        </article>
+                        <p>Arrivé prévu : 20 minutes</p>
+                        <button type="button" name="button">Commander</button>
+           </section>
+       <!-- </section> -->
     </section>
 
   </section>
@@ -243,18 +244,44 @@
 </script>
 
 <style scoped>
+
+#background{
+  color:#fff;
+  /* color:rgb(137,27,23); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../images/backgrounds/plats_styles2.jpeg");
+}
   .colonne{
+      /* background-color:rgba(240,221,196,0.9); */
+      /* margin-top: 3%; */
+      /* justify-content: center; */
+      /* display: flex; */
+      /* background-color:rgba(137,27,23,0.8); */
+      background-color:rgba(30,61,89,0.66);
+      /* background-color:rgba(169,192,166,0.8); */
+
+      /* margin: 2px; */
       /* border: red solid 2px; */
   }
   .colonne .row{
+      /* background-color:#F0DDC4; */
       /* border: black solid 2px; */
   }
-  #colonnes{
-    /* border: yellow solid 2px; */
+  .row .colonne{
+
   }
-  .container{
+  /* #colonnes{
+    border: yellow solid 2px;
+  } */
+  .container-fluid{
     height: 100%;
-    background-color:#F0DDC4;
+    /* background-color:#F0DDC4; */
   }
 
   /* .dropdown-menu {
@@ -264,8 +291,7 @@
   } */
 
   #menus-deroulant{
-    display: flex;
-    
+    /* display: flex; */
     /* border: red solid 2px; */
   }
 
@@ -311,6 +337,10 @@
 
   .plat{
     /* border: 2px grey solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .description-plat{
     /* border: 2px black solid; */
