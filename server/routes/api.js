@@ -97,6 +97,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/adminlogin', async (req, res) => {
+
   req.session.userId = null
   req.session.adminId = null
 
@@ -239,11 +240,11 @@ router.post('/panier', (req, res) => {
     const newMenu = {
       id: menuId,
       quantity: menuQte,
-      prix: menu.price
+      prix: menuPrix
     }
 
-    req.session.panier.nb_menus += newMenu.quantity
-    req.session.panier.prix += newMenu.prix
+    req.session.panier.nb_menus = req.session.panier.nb_menus + newMenu.quantity
+    req.session.panier.prix = req.session.panier.prix + newMenu.prix
 
     if (menuType == "soups") {
       req.session.panier.soups.push(newMenu)
