@@ -194,18 +194,18 @@ router.post('/reservation', async (req, res) => {
 
 router.post('/sendemail', async (req, res) => {
   var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: '',
     auth: {
-      user: 'tangotel.tellier@gmail.com',
-      pass: 'GbgCCr66s'
+      user: '',
+      pass: ''
     }
   });
 
   var mailOptions = {
-    from: 'youremail@gmail.com',
-    to: 'myfriend@yahoo.com',
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
+    from: '',
+    to: req.session.userEmail,
+    subject: "Votre réservation sur Fang's Noodles",
+    text: 'M./Mme. + ' + req.session.userName
   };
 
   transporter.sendMail(mailOptions, function(error, info){
@@ -215,13 +215,7 @@ router.post('/sendemail', async (req, res) => {
       console.log('Email sent: ' + info.response);
     }
   });
-  var nom = req.session.userName;
-  var email = req.session.userEmail;
-  var subject = "object";
-  var messsage = "message";
-  //implement your spam protection or checks.
 
-  sendEmail ( nom, email, subject, messsage );
 })
 
 /**
