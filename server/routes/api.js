@@ -219,7 +219,7 @@ router.get('/panier', (req, res) => {
 router.post('/panier', (req, res) => {
   const menuId = parseInt(req.body.id)
   const menuQte = parseInt(req.body.quantity)
-  const menuPrix = parseInt(req.body.quantity)
+  const menuPrix = parseInt(req.body.prix)
   const menuType = req.body.type
 
   if (menuQte <= 0) {
@@ -248,14 +248,12 @@ router.post('/panier', (req, res) => {
 
     if (menuType == "soups") {
       req.session.panier.soups.push(newMenu)
-      res.json(newMenu)
     } else if (menuType == "dumplings") {
       req.session.panier.dumplings.push(newMenu)
-      res.json(newMenu)
     } else {
       req.session.panier.noodles.push(newMenu)
-      res.json(newMenu)
     }
+    res.json(newMenu)
   }
 })
 
