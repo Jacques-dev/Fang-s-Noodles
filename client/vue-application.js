@@ -33,8 +33,8 @@ var app = new Vue({
     panier: {
       createdAt: null,
       updatedAt: null,
-      nb_menus: null,
-      prix: null,
+      nb_menus: 0,
+      prix: 0,
       soups: [],
       dumplings: [],
       noodles: []
@@ -106,21 +106,21 @@ var app = new Vue({
       if (menu.type == "soups") {
         if (this.panier.soups.find(a => a.id === menu.id) === undefined){
           const res1 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
-          this.panier.soups.push(res1.data.menu)
+          this.panier.soups.push(res1.data)
           this.panier.nb_menus = this.panier.nb_menus + 1
           this.panier.prix = this.panier.prix + res1.data.prix
         }
       } else if (menu.type == "dumplings") {
         if (this.panier.dumplings.find(a => a.id === menu.id) === undefined){
           const res2 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
-          this.panier.dumplings.push(res2.data.menu)
+          this.panier.dumplings.push(res2.data)
           this.panier.nb_menus = this.panier.nb_menus + 1
           this.panier.prix = this.panier.prix + res2.data.prix
         }
       } else {
         if (this.panier.noodles.find(a => a.id === menu.id) === undefined){
           const res3 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
-          this.panier.noodles.push(res3.data.menu)
+          this.panier.noodles.push(res3.data)
           this.panier.nb_menus = this.panier.nb_menus + 1
           this.panier.prix = this.panier.prix + res3.data.prix
         }

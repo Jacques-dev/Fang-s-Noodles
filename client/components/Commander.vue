@@ -142,33 +142,87 @@
 
                 </article>
 
-                <!-- <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
-                  <div class="image-plat">
-                    <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
-                    <div class="affichage_bouton_ajout_panier">
-                      <button @click="removeFromPanier(menu.id, 'dumplings')">Retirer du panier</button>
-                    </div>
-                  </div>
+                <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
+                  <section class="container-fluid">
+                    <section class="row">
+                      <article class="col-sm-12" align="center">
+                        <div class="image-plat">
+                          <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                        </div>
+                      </article>
+                      <article class="col-sm-12">
+                        <section class="row">
 
-                                  <div class="description-plat">
-                                    {{ menus[1][menu.id-1].name }} - {{ menus[1][menu.id-1].price }}€
-                                  </div>
+                          <article class="col-sm-6">
+                            <!-- <form @submit.prevent="edit(menu.id)"> -->
+                              <select @change="edit(menu.id, 'dumplings', menu.price)" v-model="editMenu.quantity">
+                                <option value="" disabled selected>{{menu.quantity}}</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
+                              <!-- <button type="submit">save</button> -->
+                            <!-- </form> -->
+                          </article>
 
-                                </article>
+                          <article class="col-sm-6">
+                            <button @click="removeFromPanier(menu.id, 'dumplings', menu.price)">Supprimer</button>
+                          </article>
 
-                                <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
-                                  <div class="image-plat">
-                                    <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
-                                    <div class="affichage_bouton_ajout_panier">
-                                      <button @click="removeFromPanier(menu.id, 'noodles')">Retirer du panier</button>
-                                    </div>
-                                  </div>
+                        </section>
+                      </article>
+                    </section>
+                  </section>
 
-                                  <div class="description-plat">
-                                    {{ menus[2][menu.id-1].name }} - {{ menus[2][menu.id-1].price }}€
-                                  </div>
+                </article>
 
-                </article> -->
+                <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
+                  <section class="container-fluid">
+                    <section class="row">
+                      <article class="col-sm-12" align="center">
+                        <div class="image-plat">
+                          <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                        </div>
+                      </article>
+                      <article class="col-sm-12">
+                        <section class="row">
+
+                          <article class="col-sm-6">
+                            <!-- <form @submit.prevent="edit(menu.id)"> -->
+                              <select @change="edit(menu.id, 'noodles', menu.price)" v-model="editMenu.quantity">
+                                <option value="" disabled selected>{{menu.quantity}}</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
+                              <!-- <button type="submit">save</button> -->
+                            <!-- </form> -->
+                          </article>
+
+                          <article class="col-sm-6">
+                            <button @click="removeFromPanier(menu.id, 'noodles', menu.price)">Supprimer</button>
+                          </article>
+
+                        </section>
+                      </article>
+                    </section>
+                  </section>
+
+                </article>
               </section>
             </section>
           </div>
