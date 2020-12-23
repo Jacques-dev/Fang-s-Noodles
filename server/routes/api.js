@@ -5,6 +5,8 @@ const menus = require('../data/menus.js')
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
 
+const nodemailer = require('nodemailer');
+
 const client = new Client({
  user: 'postgres',
  host: 'localhost',
@@ -79,14 +81,23 @@ router.post('/login', async (req, res) => {
 
     if (await bcrypt.compare(password, hashedPassword)) {
 
-      const sqlId = "SELECT id FROM users WHERE email=$1"
+      const sqlId = "SELECT id, nom, email FROM users WHERE email=$1"
       const result2 = await client.query({
         text: sqlId,
         values: [email]
       })
 
+      req.session.userName = result2.rows[0].nom
+      req.session.userEmail = result2.rows[0].email
+
+
       req.session.userId = result2.rows[0].id
-      res.send()
+      req.session.reservationId = 0
+      const log = {
+        nom: req.session.userName,
+        email: req.session.userEmail
+      }
+      res.json(log)
 
     } else {
       res.status(400).json({ message: "wrong password" })
@@ -135,10 +146,14 @@ router.post('/adminlogin', async (req, res) => {
 router.post('/logout', async (req, res) => {
   req.session.userId = null
   req.session.adminId = null
+  req.session.userName = null
+  req.session.userEmail = null
   req.session.panier = new Panier()
   const log = {
     admin: req.session.adminId,
     user: req.session.userId,
+    nom: req.session.userName,
+    email: req.session.userEmail,
     panier: req.session.panier
   }
   res.json(log)
@@ -167,21 +182,46 @@ router.post('/reservation', async (req, res) => {
   const heure = req.body.heure
   const personnes = parseInt(req.body.personnes)
 
-  const insert = "INSERT INTO reservation (date ,heure, personnes) VALUES ($1, $2, $3)"
-
-  const result = await client.query({
-    text: insert,
-    values: [date, heure, personnes]
-  })
-  res.send()
-
   const reserv = {
+    id: req.session.reservationId + 1,
     date: date,
     heure: heure,
     personnes: personnes
   }
 
-  res.json(reserv)
+  res.status(200).json(reserv)
+})
+
+router.post('/sendemail', async (req, res) => {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'tangotel.tellier@gmail.com',
+      pass: 'GbgCCr66s'
+    }
+  });
+
+  var mailOptions = {
+    from: 'youremail@gmail.com',
+    to: 'myfriend@yahoo.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+  var nom = req.session.userName;
+  var email = req.session.userEmail;
+  var subject = "object";
+  var messsage = "message";
+  //implement your spam protection or checks.
+
+  sendEmail ( nom, email, subject, messsage );
 })
 
 /**

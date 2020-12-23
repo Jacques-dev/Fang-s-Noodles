@@ -79,7 +79,7 @@
             </select>
           </div>
           <div class="col-sm-3" align="center">
-            <button type="submit" id="reserver" >Reservez</button>
+            <button v-if="user.id" type="submit" id="reserver" >Reservez</button>
           </div>
         </div>
       </form>
@@ -87,6 +87,7 @@
       <div class="col-sm-4">
         <div class="container-fluid">
           <div v-for="reserv in reservations" :key="reserv.date">
+            VOS RÉSERVATIONS
             <div class="row">
               <div class="col-sm-12">
                 {{ reserv.date }}
@@ -115,6 +116,7 @@
     },
     props: {
       admin: {type: Object},
+      user: {type: Object},
       reservations: {type: Array}
     },
     data () {
@@ -128,7 +130,14 @@
     },
     methods: {
       reserver () {
-        this.$emit('reserver', this.editingReservation)
+        var date = this.editingReservation.date
+        var heure = this.editingReservation.heure
+        var personnes = this.editingReservation.personnes
+        if (date && heure && personnes) {
+          this.$emit('reserver', this.editingReservation)
+        } else {
+          alert("Veuillez remplir les champs de votre réservation")
+        }
       }
     }
   }

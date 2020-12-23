@@ -7,7 +7,7 @@
           <section class="col-sm-2 colonne">
 
                     <!-- <h3 id ="utilisateur">Hi, Guest</h3> -->
-                    <ul id ="menus-deroulant"class="nav nav-pills">
+                    <ul id ="menus-deroulant" class="nav nav-pills">
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
                         <div class="dropdown-menu">

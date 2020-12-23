@@ -41,6 +41,7 @@ var app = new Vue({
     },
     user: {
       nom: null,
+      email: null,
       id: null
     },
     admin: {
@@ -64,10 +65,12 @@ var app = new Vue({
       router.push('/connexion')
     },
     async login (user) {
-      await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
-      const res = await axios.get('/api/me')
-      this.admin.id = res.data.admin
-      this.user.id = res.data.user
+      const res1 = await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
+      user.nom = res1.data.nom
+      user.email = res1.data.email
+      const res2 = await axios.get('/api/me')
+      this.admin.id = res2.data.admin
+      this.user.id = res2.data.user
       router.push('/')
     },
     async adminLogin (admin) {
@@ -80,21 +83,25 @@ var app = new Vue({
     async logout () {
       const res = await axios.post('/api/logout/')
       this.admin.id = res.data.admin
+      this.user.nom = res.data.nom
+      this.user.email = res.data.email
       this.user.id = res.data.user
       this.panier = res.data.panier
+      this.reservations = []
       router.push('/')
     },
 
     async reserver (reservation) {
       const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
       this.reservations.push(res.data)
+      await axios.post('api/sendemail/')
     },
 
     async commander () {
       try {
         const res = await axios.post('/api/panier/commander')
         this.panier = res.data
-        alert("Votre commande a été prise en compte et est en cours de préparation")
+        alert("Votre commande a été prise en compte M./Mme. " + user.nom)
         router.push('/')
       } catch (e) {
         alert("Veuillez vous connecter pour passer une commande")
