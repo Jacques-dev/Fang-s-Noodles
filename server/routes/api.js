@@ -331,11 +331,14 @@ router.put('/panier/:type/:id/:quantity', (req, res) => {
  * Cette route doit permettre de confirmer un panier, en recevant le nom et prénom de l'utilisateur
  * Le panier est ensuite supprimé grâce à req.session.destroy()
  */
-router.post('/panier/pay', (req, res) => {
+router.post('/panier/commander', (req, res) => {
 
   if (req.session.userId) {
-    req.session.destroy()
-    res.status(200).json({ message: "logged" })
+    req.session.panier = new Panier()
+    const log = {
+      panier: req.session.panier
+    }
+    res.status(200).json(log)
   } else {
     res.status(401).json({ message: "not logged" })
   }

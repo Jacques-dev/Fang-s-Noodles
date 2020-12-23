@@ -90,17 +90,16 @@ var app = new Vue({
       this.reservations.push(res.data)
     },
 
-    async pay () {
-      // try {
-      //   await axios.post('/api/panier/pay')
-      //   const res2 = await axios.get('/api/panier')
-      //   this.panier = res2.data
-      //   alert("Merci d'être venu sur notre site !")
-      //   router.push('/')
-      // } catch (e) {
-      //   alert("Vous n'êtes pas conncecté, veuillez le faire")
-      //   router.push('/connexion')
-      // }
+    async commander () {
+      try {
+        const res = await axios.post('/api/panier/commander')
+        this.panier = res.data
+        alert("Votre commande a été prise en compte et est en cours de préparation")
+        router.push('/')
+      } catch (e) {
+        alert("Veuillez vous connecter pour passer une commande")
+        router.push('/connexion')
+      }
     },
     async addToPanier (menu) {
       if (menu.type == "soups") {

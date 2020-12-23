@@ -244,7 +244,7 @@
           </div>
         </article>
         <p>Arrivé prévu : 20 minutes</p>
-        <button type="submit">Commander</button>
+        <button @click="commander()">Commander</button>
       </form>
     </section>
 
@@ -285,12 +285,12 @@
         }
         this.$emit('update-menu-from-panier', content)
       },
-      pay() {
+      commander() {
         let content = {
           id: this.editMenu.id,
           quantity: this.editMenu.quantity
         }
-        this.$emit('pay', content)
+        this.$emit('commander', content)
       },
       isSpicy(boolean) {
         return boolean
