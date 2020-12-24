@@ -234,7 +234,6 @@
             {{ panier.prix }}€
           </div>
         </article>
-        <p>Arrivé prévu : 20 minutes</p>
         <button @click="commander()">Commander</button>
       </form>
     </section>

@@ -72,6 +72,14 @@
       </div>
     </div>
 
+    <div id="four" class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.946890416068!2d2.3502664630233707!3d48.85922312539578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDUxJzM2LjciTiAywrAyMScxMC45IkU!5e0!3m2!1sfr!2sfr!4v1608824490499!5m2!1sfr!2sfr"></iframe>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </template>
@@ -180,8 +188,14 @@
   #first, #second, #third .row{
     border: solid 1px black;
   }
-/* .col-sm-4, .col-sm-3, .col-sm-5{
-    border: solid 2px red;
-  } */
+
+  #four {
+    padding: 0;
+  }
+  #map {
+    width: 100%;
+    height: 300px;
+    border: solid 1px black;
+  }
 
 </style>
