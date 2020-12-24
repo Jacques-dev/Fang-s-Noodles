@@ -297,10 +297,10 @@ router.post('/panier', (req, res) => {
  router.delete('/panier/:type/:id', (req, res) => {
    const menuId = parseInt(req.params.id)
    const menuType = req.params.type
-   console.log(menuId)
+
    var index = null
    var menu = null
-   console.log(req.session.panier.soups)
+
    if (menuType == "soups") {
      index = req.session.panier.soups.findIndex(a => a.id === menuId)
      menu = req.session.panier.soups.find(a => a.id === menuId)
@@ -328,7 +328,6 @@ router.post('/panier', (req, res) => {
      req.session.panier.nb_menus = req.session.panier.nb_menus - menu.quantity
      req.session.panier.prix = req.session.panier.prix - (menu.quantity * menu.prix)
      res.json(menu)
-     console.log(req.session.panier.soups)
    }
 
  })

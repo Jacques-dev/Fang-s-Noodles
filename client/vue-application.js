@@ -135,19 +135,19 @@ var app = new Vue({
     async removeFromPanier (menu) {
       if (menu.type == "soups") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
-        const index = this.panier.soups.findIndex(a => a.id === this.panier.soups.id)
+        const index = this.panier.soups.findIndex(a => a.id === menu.id)
         this.panier.soups.splice(index, 1)
         this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
         this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else if (menu.type == "dumplings") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
-        const index = this.panier.dumplings.findIndex(a => a.id === this.panier.dumplings.id)
+        const index = this.panier.dumplings.findIndex(a => a.id === menu.id)
         this.panier.dumplings.splice(index, 1)
         this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
         this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
-        const index = this.panier.noodles.findIndex(a => a.id === this.panier.noodles.id)
+        const index = this.panier.noodles.findIndex(a => a.id === menu.id)
         this.panier.noodles.splice(index, 1)
         this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
         this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)

@@ -3,94 +3,90 @@
   <section class="container-fluid" id ="background">
 
     <section id = "colonnes" class="row">
-      <!-- <section> -->
-          <section class="col-sm-2 colonne">
+      <section class="col-sm-2 colonne">
+        <ul id ="menus-deroulant" class="nav nav-pills">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
+            <div class="dropdown-menu">
+              <button class="dropdown-item" @click="changeTypeMenu('soups')">Soups</a>
+              <button class="dropdown-item" @click="changeTypeMenu('dumplings')">Dumplings</a>
+              <button class="dropdown-item" @click="changeTypeMenu('noodles')">Noodles</a>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-                    <!-- <h3 id ="utilisateur">Hi, Guest</h3> -->
-                    <ul id ="menus-deroulant" class="nav nav-pills">
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
-                        <div class="dropdown-menu">
-                          <button class="dropdown-item" @click="changeTypeMenu('soups')">Soups</a>
-                          <button class="dropdown-item" @click="changeTypeMenu('dumplings')">Dumplings</a>
-                          <button class="dropdown-item" @click="changeTypeMenu('noodles')">Noodles</a>
-                        </div>
-                      </li>
-                    </ul>
+      <section class="col-sm-7 colonne">
 
-          </section>
+        <article class="tabcontent container" v-if="checkMenu('soups')">
 
-          <section class="col-sm-7 colonne">
+          <h3>Soups</h3>
+          <div class="row">
 
-                      <article class="tabcontent container" v-if="checkMenu('soups')">
+            <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
+              <div class="image-plat">
+                <img v-bind:src="'../images/soups/' + menu.image " class="image">
+                <div class="affichage_bouton_ajout_panier">
+                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
+                </div>
+              </div>
+              <div class="description-plat">
+                {{ menu.name }} - {{ menu.price }}€
+              </div>
 
-                        <h3>Soups</h3>
-                        <div class="row">
+              <div v-if="isSpicy(menu.spicy)" >
+                Spicy
+              </div>
+            </article>
+          </div>
+        </article>
 
-                          <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
-                            <div class="image-plat">
-                              <img v-bind:src="'../images/soups/' + menu.image " class="image">
-                              <div class="affichage_bouton_ajout_panier">
-                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
-                              </div>
-                            </div>
-                            <div class="description-plat">
-                              {{ menu.name }} - {{ menu.price }}€
-                            </div>
+        <article class="tabcontent container" v-if="checkMenu('dumplings')">
+          <h3>Dumplings</h3>
+          <div class="row">
 
-                            <div v-if="isSpicy(menu.spicy)" >
-                              Spicy
-                            </div>
-                          </article>
-                        </div>
-                      </article>
+            <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6 plat">
+              <div class="image-plat">
+                <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
+                <div class="affichage_bouton_ajout_panier">
+                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings', menu.price)" v-if="user.id">Ajouter au panier</button>
+                </div>
+              </div>
 
-                      <article class="tabcontent container" v-if="checkMenu('dumplings')">
-                        <h3>Dumplings</h3>
-                        <div class="row">
+              <div class="description-plat">
+                {{ menu.name }} - {{ menu.price }}€
+              </div>
+              <div v-if="isSpicy(menu.spicy)" style="color: red">
+                Spicy
+              </div>
 
-                          <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6 plat">
-                            <div class="image-plat">
-                              <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
-                              <div class="affichage_bouton_ajout_panier">
-                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings', menu.price)" v-if="user.id">Ajouter au panier</button>
-                              </div>
-                            </div>
+            </article>
+          </div>
+        </article>
 
-                            <div class="description-plat">
-                              {{ menu.name }} - {{ menu.price }}€
-                            </div>
-                            <div v-if="isSpicy(menu.spicy)" style="color: red">
-                              Spicy
-                            </div>
+        <article class="tabcontent container" v-if="checkMenu('noodles')">
+          <h3>Noodles</h3>
+          <div class="row">
 
-                          </article>
-                        </div>
-                      </article>
+            <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6 plat">
+              <div class="image-plat">
+                <img v-bind:src="'../images/noodles/' + menu.image " class="image">
+                <div class="affichage_bouton_ajout_panier">
+                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles', menu.price)" v-if="user.id">Ajouter au panier</button>
+                </div>
+              </div>
 
-                      <article class="tabcontent container" v-if="checkMenu('noodles')">
-                        <h3>Noodles</h3>
-                        <div class="row">
+              <div class="description-plat">
+                {{ menu.name }} - {{ menu.price }}€
+              </div>
+              <div v-if="isSpicy(menu.spicy)">
+                Spicy
+              </div>
 
-                          <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6 plat">
-                            <div class="image-plat">
-                              <img v-bind:src="'../images/noodles/' + menu.image " class="image">
-                              <div class="affichage_bouton_ajout_panier">
-                                <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles', menu.price)" v-if="user.id">Ajouter au panier</button>
-                              </div>
-                            </div>
-
-                            <div class="description-plat">
-                              {{ menu.name }} - {{ menu.price }}€
-                            </div>
-                            <div v-if="isSpicy(menu.spicy)">
-                              Spicy
-                            </div>
-
-                          </article>
-                        </div>
-                      </article>
-          </section>
+            </article>
+          </div>
+        </article>
+      </section>
 
       <form @submit.prevent="pay()" class="col-sm-3 colonne">
 
@@ -154,22 +150,20 @@
                         <section class="row">
 
                           <article class="col-sm-6">
-                            <!-- <form @submit.prevent="edit(menu.id)"> -->
-                              <select @change="edit(menu.id, 'dumplings', menu.price)" v-model="editMenu.quantity">
-                                <option value="" disabled selected>{{menu.quantity}}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                              </select>
-                              <!-- <button type="submit">save</button> -->
-                            <!-- </form> -->
+
+                            <select @change="edit(menu.id, 'dumplings', menu.price)" v-model="editMenu.quantity">
+                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
                           </article>
 
                           <article class="col-sm-6">
@@ -195,22 +189,19 @@
                         <section class="row">
 
                           <article class="col-sm-6">
-                            <!-- <form @submit.prevent="edit(menu.id)"> -->
-                              <select @change="edit(menu.id, 'noodles', menu.price)" v-model="editMenu.quantity">
-                                <option value="" disabled selected>{{menu.quantity}}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                              </select>
-                              <!-- <button type="submit">save</button> -->
-                            <!-- </form> -->
+                            <select @change="edit(menu.id, 'noodles', menu.price)" v-model="editMenu.quantity">
+                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
                           </article>
 
                           <article class="col-sm-6">
