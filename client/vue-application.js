@@ -4,6 +4,7 @@ const Commander = window.httpVueLoader('./components/Commander.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
 const Reserver = window.httpVueLoader('./components/Reservation.vue')
+const MesInfos = window.httpVueLoader('./components/MesInfos.vue')
 
 const routes = [
   { path: '/', component: Accueil },
@@ -11,6 +12,7 @@ const routes = [
   { path: '/commander', component: Commander },
   { path: '/connexion', component: Connexion},
   { path: '/deconnexion', component: Deconnexion},
+  { path: '/mesinfos', component: MesInfos},
   { path: '/reserver', component: Reserver}
 ]
 
