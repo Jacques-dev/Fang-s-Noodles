@@ -134,17 +134,23 @@ var app = new Vue({
     },
     async removeFromPanier (menu) {
       if (menu.type == "soups") {
-        await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
-        const index = this.panier.soups.findIndex(a => a.id === menu.id)
+        const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
+        const index = this.panier.soups.findIndex(a => a.id === this.panier.soups.id)
         this.panier.soups.splice(index, 1)
+        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
+        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else if (menu.type == "dumplings") {
-        await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
-        const index = this.panier.dumplings.findIndex(a => a.id === menu.id)
+        const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
+        const index = this.panier.dumplings.findIndex(a => a.id === this.panier.dumplings.id)
         this.panier.dumplings.splice(index, 1)
+        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
+        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else {
-        await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
-        const index = this.panier.noodles.findIndex(a => a.id === menu.id)
+        const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
+        const index = this.panier.noodles.findIndex(a => a.id === this.panier.noodles.id)
         this.panier.noodles.splice(index, 1)
+        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
+        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       }
     },
     async updateMenuFromPanier (newMenu) {
@@ -161,6 +167,20 @@ var app = new Vue({
         const menu = this.panier.noodles.find(a => a.id === newMenu.id)
         menu.quantity = newMenu.quantity
       }
+
+      var prix = 0
+      var nb = 0
+      const menus = [this.panier.soups, this.panier.dumplings, this.panier.noodles]
+
+      for (let i = 0; i != menus.length; i++) {
+        for (let j = 0; j != menus[i].length; j++) {
+          alert(menus[i][j].quantity)
+          prix += menus[i][j].prix * menus[i][j].quantity
+          nb += parseInt(menus[i][j].quantity)
+        }
+      }
+      this.panier.prix = prix
+      this.panier.nb_menus = nb
     },
     async addMenu (menu) {
       const res = await axios.post('/api/menu', menu)

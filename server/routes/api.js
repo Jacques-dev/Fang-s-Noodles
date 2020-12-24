@@ -299,13 +299,17 @@ router.post('/panier', (req, res) => {
    const menuType = req.params.type
 
    var index = null
+   var menu = null
 
    if (menuType == "soups") {
      index = req.session.panier.soups.findIndex(a => a.id === menuId)
+     menu = req.session.panier.soups.find(a => a.id === menuId)
    } else if (menuType == "dumplings") {
      index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
+     menu = req.session.panier.dumplings.find(a => a.id === menuId)
    } else {
      index = req.session.panier.noodles.findIndex(a => a.id === menuId)
+     menu = req.session.panier.noodles.find(a => a.id === menuId)
    }
 
    if (isNaN(menuId)) {
@@ -321,7 +325,11 @@ router.post('/panier', (req, res) => {
      } else {
        req.session.panier.noodles.splice(index, 1)
      }
-     res.json(req.session.panier)
+
+     req.session.panier.nb_menus = req.session.panier.nb_menus - menu.quantity
+     req.session.panier.prix = req.session.panier.prix - (menu.quantity * menu.prix)
+     console.log(menu)
+     res.json(menu)
    }
 
  })
