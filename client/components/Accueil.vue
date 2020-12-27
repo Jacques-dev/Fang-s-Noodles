@@ -12,7 +12,7 @@
     <section id="first" class="container-fluid parallax">
       <section class="row h-75 justify-content-center align-items-center">
         <article class="h-100" id="title">
-          Saveur d'Asie
+          <p>Saveur d'Asie</p>
         </article>
       </section>
       <section class="row h-50 align-items-center" id="typeMenu">
@@ -57,7 +57,6 @@
       </div>
     </div>
 
-
     <div id="third" class="container-fluid">
       <div class="row h-100 justify-content-center align-items-center">
         <div class="col-sm-1">
@@ -85,7 +84,6 @@
 </template>
 
 <script>
-
 
 </script>
 

@@ -86,7 +86,6 @@
         document.getElementById("popupForm_login").style.display="none";
       },
 
-
       register () {
         var email = document.getElementById("email_register").value;
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {

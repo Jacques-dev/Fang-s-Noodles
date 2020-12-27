@@ -1,233 +1,355 @@
 <template>
-<section id ="background">
+  <section id ="background">
 
-  <section class="container" >
+    <section class="container">
 
-    <section class="row">
+        <article class="row d-flex justify-content-center">
+          <p id="titre_page">Decouvrez nos variétés de plats<p>
+        </article>
 
-      <article class="col-sm-12">
-        <p id="titre_page">Decouvrez nos variétés de plats<p>
-      </article>
-      <article class="col-sm-12">
+        <article class="row">
 
-      <div class="titre_plats">
-        <p class ="current" id="soups">Soups</p>
-        <a href="#dumplings">Dumplings</a>
-        <a href="#noodles">Noodles</a>
-        <a href="#sashimi">Sashimi</a>
-        <a href="#nigiri">Nigiri</a>
-      </div>
+          <article class="col-sm-12">
 
-      <article class ="famille_de_plats" v-for="menu in menus[0]" :key="menu.id">
+              <div class="titre_plats row">
+                <p class ="current" id="soups">Soups</p>
+                <a href="#dumplings">Dumplings</a>
+                <a href="#noodles">Noodles</a>
+                <a href="#sashimi">Sashimi</a>
+                <a href="#nigiri">Nigiri</a>
+              </div>
 
-        <div class="menu-img">
-          <img v-bind:src="'../images/soups/' + menu.image ">
-        </div>
-        <div class="menu-content" v-if="editingMenu.id !== menu.id">
-          <div class="menu-title">
-            <p>{{ menu.name }} - {{ menu.price }}€</p>
-          </div>
-          <p class="menu-description">{{ menu.description }}</p>
-          <div class ="spicy" v-if="isSpicy(menu.spicy)">
-            Spicy
-          </div>
-          <div class ="bouton-menus">
-            <button v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
-            <button v-if="admin.id" @click="editMenu(menu, 'soups')">Modifier</button>
-          </div>
-        </div>
+              <article class ="famille_de_plats row" v-for="menu in menus[0]" :key="menu.id">
 
-        <div v-else>
-          <div>
-            <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-            <div>
-              <button @click="sendEditMenu()">Valider</button>
-              <button @click="abortEditMenu()">Annuler</button>
-            </div>
-          </div>
-          <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
-          <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-        </div>
+                <div class="row">
+                  <div class="menu-img col-sm-3">
+                    <img v-bind:src="'../images/soups/' + menu.image ">
+                  </div>
+                  <div class=" col-sm-9 menu-description">
+                    <p>{{ menu.description }}</p>
+                  </div>
+                </div>
 
-      </article>
-
-      <div class="titre_plats">
-        <a href="#soups">Soups</a>
-        <p class ="current" id="dumplings">Dumplings</p>
-        <a href="#noodles">Noodles</a>
-        <a href="#sashimi">Sashimi</a>
-        <a href="#nigiri">Nigiri</a>
-      </div>
-
-      <article class="famille_de_plats" v-for="menu in menus[1]" :key="menu.id">
-            <div class="menu-img">
-              <img v-bind:src="'../images/dumplings/' + menu.image ">
-            </div>
-
-            <div class="menu-content" v-if="editingMenu.id !== menu.id">
-                  <div class="menu-title">
+                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                  <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
-
                   </div>
-                  <p class="menu-description">{{ menu.description }}</p>
-                  <div class="spicy" v-if="isSpicy(menu.spicy)">
-                    Spicy
+                  <div class =" row" v-if="isSpicy(menu.spicy)">
+                    <p class ="spicy">Spicy</p>
                   </div>
-                  <div class ="bouton-menus">
-                    <button v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
-                    <button v-if="admin.id" @click="editMenu(menu, 'dumplings')">Modifier</button>
+                  <div class ="bouton-menus row">
+                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
+                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'soups')">Modifier</button>
                   </div>
-            </div>
-
-            <div v-else>
-              <div>
-                <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-                <div>
-                  <button @click="sendEditMenu()">Valider</button>
-                  <button @click="abortEditMenu()">Annuler</button>
                 </div>
-              </div>
-              <p><textarea v-model="editingMenu.description"></textarea></p>
-              <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-            </div>
 
-        </article>
+                <div class= "container" v-else>
 
-
-        <div class="titre_plats">
-          <a href="#soups">Soups</a>
-          <a href="#dumplings">Dumplings</a>
-          <p class ="current" id="noodles">Noodles</p>
-          <a href="#sashimi">Sashimi</a>
-          <a href="#nigiri">Nigiri</a>
-        </div>
-
-        <article class ="famille_de_plats" v-for="menu in menus[2]" :key="menu.id">
-
-          <div class="menu-img">
-            <img v-bind:src="'../images/noodles/' + menu.image ">
-          </div>
-
-          <div class="menu-content" v-if="editingMenu.id !== menu.id">
-            <div class="menu-title">
-              <p>{{ menu.name }} - {{ menu.price }}€</p>
-
-            </div>
-            <p class="menu-description">{{ menu.description }}</p>
-            <div class="spicy" v-if="isSpicy(menu.spicy)">
-              Spicy
-            </div>
-            <div class ="bouton-menus">
-              <button v-if="admin.id" @click="deleteMenu(menu.id, 'noodles')">Supprimer</button>
-              <button v-if="admin.id" @click="editMenu(menu, 'noodles')">Modifier</button>
-            </div>
-          </div>
-
-          <div v-else>
-            <div>
-              <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-              <div>
-                <button @click="sendEditMenu()">Valider</button>
-                <button @click="abortEditMenu()">Annuler</button>
-              </div>
-            </div>
-            <p><textarea v-model="editingMenu.description"></textarea></p>
-            <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-          </div>
-
-        </article>
-
-        <div class="titre_plats">
-          <a href="#soups">Soups</a>
-          <a href="#dumplings">Dumplings</a>
-          <a href="#noodles">Noodles</a>
-          <p class ="current" id="sashimi">Sashimi</p>
-          <a href="#nigiri">Nigiri</a>
-        </div>
-
-        <article class="famille_de_plats" v-for="menu in menus[3]" :key="menu.id">
-              <div class="menu-img">
-                <img v-bind:src="'../images/sashimi/' + menu.image ">
-              </div>
-
-              <div class="menu-content" v-if="editingMenu.id !== menu.id">
-                    <div class="menu-title">
-                      <p>{{ menu.name }} - {{ menu.price }}€</p>
-
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" v-model="editingMenu.name">
                     </div>
-                    <p class="menu-description">{{ menu.description }}</p>
-                    <div class="spicy" v-if="isSpicy(menu.spicy)">
-                      Spicy
+                    <div class="col-sm-6">
+                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
                     </div>
-                    <div class ="bouton-menus">
-                      <button v-if="admin.id" @click="deleteMenu(menu.id, 'sashimi')">Supprimer</button>
-                      <button v-if="admin.id" @click="editMenu(menu, 'sashimi')">Modifier</button>
-                    </div>
-              </div>
-
-              <div v-else>
-                <div>
-                  <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-                  <div>
-                    <button @click="sendEditMenu()">Valider</button>
-                    <button @click="abortEditMenu()">Annuler</button>
                   </div>
-                </div>
-                <p><textarea v-model="editingMenu.description"></textarea></p>
-                <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-              </div>
 
-          </article>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                    </div>
+                  </div>
 
-          <div class="titre_plats">
-            <a href="#soups">Soups</a>
-            <a href="#dumplings">Dumplings</a>
-            <a href="#noodles">Noodles</a>
-            <a href="#sashimi">Sashimi</a>
-            <p class ="current" id="nigiri">Nigiri</p>
-          </div>
-
-          <article class="famille_de_plats" v-for="menu in menus[4]" :key="menu.id">
-                <div class="menu-img">
-                  <img v-bind:src="'../images/nigiri/' + menu.image ">
-                </div>
-
-                <div class="menu-content" v-if="editingMenu.id !== menu.id">
-                      <div class="menu-title">
-                        <p>{{ menu.name }} - {{ menu.price }}€</p>
-
-                      </div>
-                      <p class="menu-description">{{ menu.description }}</p>
-                      <div class="spicy" v-if="isSpicy(menu.spicy)">
-                        Spicy
-                      </div>
-                      <div class ="bouton-menus">
-                        <button v-if="admin.id" @click="deleteMenu(menu.id, 'nigiri')">Supprimer</button>
-                        <button v-if="admin.id" @click="editMenu(menu, 'nigiri')">Modifier</button>
-                      </div>
-                </div>
-
-                <div v-else>
-                  <div>
-                    <h2><input type="text" v-model="editingMenu.name"> - <input type="number" v-model="editingMenu.price"></h2>
-                    <div>
+                  <div class="row">
+                    <div class="col-sm-6">
                       <button @click="sendEditMenu()">Valider</button>
+                    </div>
+                    <div class="col-sm-6">
                       <button @click="abortEditMenu()">Annuler</button>
                     </div>
                   </div>
-                  <p><textarea v-model="editingMenu.description"></textarea></p>
-                  <input type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+
                 </div>
 
-            </article>
+              </article>
 
-        <add-menu :show="showForm" @add-menu="addMenu"></add-menu>
-        <button v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
 
-      </article>
+
+              <div class="titre_plats row">
+                <a href="#soups">Soups</a>
+                <p class ="current" id="dumplings">Dumplings</p>
+                <a href="#noodles">Noodles</a>
+                <a href="#sashimi">Sashimi</a>
+                <a href="#nigiri">Nigiri</a>
+              </div>
+
+              <article class ="famille_de_plats row" v-for="menu in menus[1]" :key="menu.id">
+
+                <div class="row">
+                  <div class="menu-img col-sm-3">
+                    <img v-bind:src="'../images/dumplings/' + menu.image ">
+                  </div>
+                  <div class=" col-sm-9 menu-description">
+                    <p>{{ menu.description }}</p>
+                  </div>
+                </div>
+
+                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                  <div class="menu-title row">
+                    <p>{{ menu.name }} - {{ menu.price }}€</p>
+                  </div>
+                  <div class =" row" v-if="isSpicy(menu.spicy)">
+                    <p class ="spicy">Spicy</p>
+                  </div>
+                  <div class ="bouton-menus row">
+                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
+                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'dumplings')">Modifier</button>
+                  </div>
+                </div>
+                <div class ="container" v-else>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" v-model="editingMenu.name">
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <button @click="sendEditMenu()">Valider</button>
+                    </div>
+                    <div class="col-sm-6">
+                      <button @click="abortEditMenu()">Annuler</button>
+                    </div>
+                  </div>
+                </div>
+
+              </article>
+
+
+
+              <div class="titre_plats row">
+                <a href="#soups">Soups</a>
+                <a href="#dumplings">Dumplings</a>
+                <p class ="current" id="noodles">Noodles</p>
+                <a href="#sashimi">Sashimi</a>
+                <a href="#nigiri">Nigiri</a>
+              </div>
+
+              <article class ="famille_de_plats row" v-for="menu in menus[2]" :key="menu.id">
+
+                <div class="row">
+                  <div class="menu-img col-sm-3">
+                    <img v-bind:src="'../images/noodles/' + menu.image ">
+                  </div>
+                  <div class=" col-sm-9 menu-description">
+                    <p>{{ menu.description }}</p>
+                  </div>
+                </div>
+
+                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                  <div class="menu-title row">
+                    <p>{{ menu.name }} - {{ menu.price }}€</p>
+                  </div>
+                  <div class =" row" v-if="isSpicy(menu.spicy)">
+                    <p class ="spicy">Spicy</p>
+                  </div>
+                  <div class ="bouton-menus row">
+                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'noodles')">Supprimer</button>
+                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'noodles')">Modifier</button>
+                  </div>
+                </div>
+
+                <div class= "container" v-else>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" v-model="editingMenu.name">
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <button @click="sendEditMenu()">Valider</button>
+                    </div>
+                    <div class="col-sm-6">
+                      <button @click="abortEditMenu()">Annuler</button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </article>
+
+
+
+              <div class="titre_plats row">
+                <a href="#soups">Soups</a>
+                <a href="#dumplings">Dumplings</a>
+                <a href="#noodles">Noodles</a>
+                <p class ="current" id="sashimi">Sashimi</p>
+                <a href="#nigiri">Nigiri</a>
+              </div>
+
+              <article class ="famille_de_plats row" v-for="menu in menus[3]" :key="menu.id">
+                <div class="row">
+                  <div class="menu-img col-sm-3">
+                    <img v-bind:src="'../images/sashimi/' + menu.image ">
+                  </div>
+                  <div class=" col-sm-9 menu-description">
+                    <p>{{ menu.description }}</p>
+                  </div>
+                </div>
+
+                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                  <div class="menu-title row">
+                    <p>{{ menu.name }} - {{ menu.price }}€</p>
+                  </div>
+                  <div class =" row" v-if="isSpicy(menu.spicy)">
+                    <p class ="spicy">Spicy</p>
+                  </div>
+                  <div class ="bouton-menus row">
+                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'sashimi')">Supprimer</button>
+                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'sashimi')">Modifier</button>
+                  </div>
+                </div>
+
+                <div class= "container" v-else>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" v-model="editingMenu.name">
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <button @click="sendEditMenu()">Valider</button>
+                    </div>
+                    <div class="col-sm-6">
+                      <button @click="abortEditMenu()">Annuler</button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </article>
+
+
+
+              <div class="titre_plats row">
+                <a href="#soups">Soups</a>
+                <a href="#dumplings">Dumplings</a>
+                <a href="#noodles">Noodles</a>
+                <a href="#sashimi">Sashimi</a>
+                <p class ="current" id="nigiri">Nigiri</p>
+              </div>
+
+              <article class ="famille_de_plats row" v-for="menu in menus[4]" :key="menu.id">
+                <div class="row">
+                  <div class="menu-img col-sm-3">
+                    <img v-bind:src="'../images/nigiri/' + menu.image ">
+                  </div>
+                  <div class=" col-sm-9 menu-description">
+                    <p>{{ menu.description }}</p>
+                  </div>
+                </div>
+
+                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                  <div class="menu-title row">
+                    <p>{{ menu.name }} - {{ menu.price }}€</p>
+                  </div>
+                  <div class =" row" v-if="isSpicy(menu.spicy)">
+                    <p class ="spicy">Spicy</p>
+                  </div>
+                  <div class ="bouton-menus row">
+                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'nigiri')">Supprimer</button>
+                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'nigiri')">Modifier</button>
+                  </div>
+                </div>
+
+                <div class= "container" v-else>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <input type="text" v-model="editingMenu.name">
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <button @click="sendEditMenu()">Valider</button>
+                    </div>
+                    <div class="col-sm-6">
+                      <button @click="abortEditMenu()">Annuler</button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </article>
+
+
+              <add-menu :show="showForm" @add-menu="addMenu"></add-menu>
+              <button v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
+
+          <!-- </article> -->
+
+        </article>
+
     </section>
+
   </section>
-</section>
 </template>
 
 <script>
@@ -299,24 +421,23 @@
 
 <style scoped>
 
-#background{
+  #test{
+    display: flex;
+  }
+  p{
+    margin-bottom: 0;
+  }
+  #background{
   color:#fff;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* width: 150%; */
   height: auto;
   background-size: contain;
-  /* background-attachment: fixed; */
   background-repeat: repeat;
   background-image: url("../images/backgrounds/epices.jpg");
-}
-.titre_plats .current{
-  color:#FFA213;
-  text-decoration: underline;
-}
-  p{
-
+  }
+  .titre_plats .current{
+    color:#FFA213;
+    text-decoration: underline;
+    letter-spacing: 2px;
   }
   .menu-img img {
     width: 100px;
@@ -328,15 +449,17 @@
       /* background-color:rgba(137,27,23,0.5); */
       background-color:rgba(30,61,89,0.7);
       /* background-color: rgba(7,123,138,0.7); */
+      padding: 2%;
+      /* margin: 2%; */
     width: 100%;
   }
   .spicy{
     display: flex;
     justify-content: center;
-    width: 10%;
-    margin-left: 2%;
+    align-items: center;
+    width: 15%;
+    min-width: 100px;
     color: #fff;
-    padding: 2px 5px 2px 5px;
     background-color: #A52421;
   }
   .titre_plats{
@@ -347,11 +470,8 @@
     font-weight: bold;
     padding-top: 2%;
     padding-bottom: 2%;
-    /* margin-top: 3%;
-    margin-bottom: 3%; */
-    /* margin-left: 2%;
-    margin-right: 2%; */
-    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
 
@@ -361,6 +481,11 @@
     margin-right: 2%;
     color:#fff;
   }
+  a:hover{
+    letter-spacing: 2px;
+    padding-bottom: 14px;
+  }
+
   .titre_plats p{
     margin-left: 2%;
     margin-right: 2%;
@@ -373,29 +498,27 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    margin: 2% 5% 2% 5%;
+    margin: 5%;
   }
   .menu-img, .menu-content{
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     margin-top: 1%;
     margin-bottom: 1%;
     /* border: 2px solid red; */
   }
-  .menu-img{
-    width: 40%;
-    /* height: 100%;
-    background-size: auto; */
-    /* background-image: ; */
+  .bouton-menus button:hover{
+    font-weight: bold;
+    letter-spacing: 2px;
   }
   .menu-title, .spicy, .menu-description, .bouton-menus {
-    /* border:3px solid green; */
-    padding:1%;
+    padding:10px;
   }
   .menu-description{
     background-color: #f5f0e1;
     color: rgb(137,27,23);
+    margin-top: 10px;
   }
 
   .menu-title{
@@ -413,10 +536,10 @@
   #titre_page{
     font-size: 2.6em;
     display: flex;
+    text-align: center;
     justify-content: center;
     align-items: center;
-    /* height:120%; */
-    /* margin-bottom: 3%; */
+    padding: 3%;
   }
 
 </style>

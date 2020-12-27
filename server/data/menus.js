@@ -1,6 +1,4 @@
 const menus = [
-
-
   soups = [
     {
       id: 1,
@@ -103,7 +101,7 @@ const menus = [
       spicy: false
     }
   ],
-  sashimi =[
+  sashimi = [
     {
       id: 1,
       name: 'Shellfish Sashimi',
@@ -145,7 +143,6 @@ const menus = [
       spicy: false
     }
   ],
-
   nigiri =[
     {
       id: 1,
@@ -211,8 +208,8 @@ const menus = [
       price: 25,
       spicy: true
     }
-
   ]
 ]
+
 
 module.exports = menus

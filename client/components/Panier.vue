@@ -45,6 +45,35 @@
         </div>
 
       </article>
+
+      <article v-for="menu in panier.sashimi" :key="menu.id" class="col-sm-12 plat">
+        <div class="image-plat">
+          <img v-bind:src="'../images/sashimi/' + menus[3][menu.id-1].image " class="image">
+          <div class="affichage_bouton_ajout_panier">
+            <button @click="removeFromPanier(menu.id, 'sashimi')">Retirer du panier</button>
+          </div>
+        </div>
+
+        <div class="description-plat">
+          {{ menus[3][menu.id-1].name }} - {{ menus[3][menu.id-1].price }}€
+        </div>
+
+      </article>
+
+      <article v-for="menu in panier.nigiri" :key="menu.id" class="col-sm-12 plat">
+        <div class="image-plat">
+          <img v-bind:src="'../images/nigiri/' + menus[4][menu.id-1].image " class="image">
+          <div class="affichage_bouton_ajout_panier">
+            <button @click="removeFromPanier(menu.id, 'nigiri')">Retirer du panier</button>
+          </div>
+        </div>
+
+        <div class="description-plat">
+          {{ menus[4][menu.id-1].name }} - {{ menus[4][menu.id-1].price }}€
+        </div>
+
+      </article>
+
     </section>
   </section>
 

@@ -92,23 +92,22 @@ var app = new Vue({
       this.reservations = []
       router.push('/')
     },
-
     async reserver (reservation) {
       const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
       this.reservations.push(res.data)
       await axios.post('api/sendemail/')
     },
-
-    async commander () {
-      try {
-        const res = await axios.post('/api/panier/commander')
-        this.panier = res.data
-        alert("Votre commande a été prise en compte M./Mme. " + user.nom)
-        router.push('/')
-      } catch (e) {
-        alert("Veuillez vous connecter pour passer une commande")
-        router.push('/connexion')
-      }
+    async pay () {
+      // try {
+      //   await axios.post('/api/panier/pay')
+      //   const res2 = await axios.get('/api/panier')
+      //   this.panier = res2.data
+      //   alert("Merci d'être venu sur notre site !")
+      //   router.push('/')
+      // } catch (e) {
+      //   alert("Vous n'êtes pas conncecté, veuillez le faire")
+      //   router.push('/connexion')
+      // }
     },
     async addToPanier (menu) {
       if (menu.type == "soups") {

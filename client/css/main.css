@@ -22,11 +22,18 @@ footer .row {
   text-align: center;
 }
 
+.titre_article_footer{
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  letter-spacing: 1px;
+}
 
 .topnav {
   overflow: hidden;
   background-color: #891B17;
   color:#fff;
+  /* height: 65px; */
 }
 
 .topnav .nav-link {
@@ -38,17 +45,6 @@ footer .row {
   font-size: 17px;
 }
 
-.topnav .nav-link:hover {
-  color: #FCF3D7;
-  cursor: pointer;
-}
-
-
-.topnav .nav-link.active {
-  /* background-color: rgba(240,221,196,1); */
-  /* color: black; */
-  /* padding-bottom: 20px; */
-}
 
 .topnav-right {
   float: right;
@@ -59,17 +55,11 @@ footer .row {
   float: left;
 }
 
-.lien {
-  transition: 0.3s ease;
-  /* background-color: #891B17;
-  color: #09371F;
-  text-decoration: none; */
-  /* border-top: 4px solid #FBFBF3;
-  border-bottom: 4px solid #FBFBF3; */
-}
 .lien:hover {
-  border-top: 3px solid #077b8a;
-  border-bottom: 3px solid #077b8a;
-  /* margin-top: 5px; */
-  margin: 3px 0 3px 0;
+
+  background-color: #FCF3D7;
+  font-weight: bold;
+  font-style: italic;
+  color: #7D1917;
+
 }
