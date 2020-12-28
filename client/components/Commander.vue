@@ -155,7 +155,7 @@
 
                 <section class="container-fluid">
 
-                  <article v-for="menu in panier.soups" :key="menu.id" class="col-sm-12 plat">
+                  <article v-for="menu in panier.soups" class="col-sm-12 plat">
                     <section class="container-fluid">
 
                         <article class="row">
@@ -164,7 +164,7 @@
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
-                            <p>quantité : {{menu.quantity}}</p>
+                            <p>Quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -172,8 +172,8 @@
 
                             <article class="col-sm-6">
                               <!-- <form @submit.prevent="edit(menu.id)"> -->
-                                <select @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity">
-                                  <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
+                                <select @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity" class="mySelect">
+                                  <option value="" disabled selected>quantité</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
@@ -191,7 +191,6 @@
 
                             <article class="col-sm-6">
                                 <button  @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
-
                             </article>
 
                         </article>
@@ -210,7 +209,7 @@
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
-                            <p>quantité : {{menu.quantity}}</p>
+                            <p>Quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -219,7 +218,7 @@
                             <article class="col-sm-6">
 
                               <select @change="edit(menu.id, 'dumplings', menu.price)" v-model="editMenu.quantity">
-                                <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
+                                <option value="" disabled selected>quantité</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -254,7 +253,7 @@
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
-                            <p>quantité : {{menu.quantity}}</p>
+                            <p>Quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -262,7 +261,7 @@
 
                           <article class="col-sm-6">
                             <select @change="edit(menu.id, 'noodles', menu.price)" v-model="editMenu.quantity">
-                              <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
+                              <option value="" disabled selected>quantité</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -295,7 +294,7 @@
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
-                            <p>quantité : {{menu.quantity}}</p>
+                            <p>Quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -303,7 +302,7 @@
 
                           <article class="col-sm-6">
                             <select @change="edit(menu.id, 'sashimi', menu.price)" v-model="editMenu.quantity">
-                              <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
+                              <option value="" disabled selected>quantité</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -336,7 +335,7 @@
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
-                            <p>quantité : {{menu.quantity}}</p>
+                            <p>Quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -344,7 +343,7 @@
 
                           <article class="col-sm-6">
                             <select @change="edit(menu.id, 'nigiri', menu.price)" v-model="editMenu.quantity">
-                              <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
+                              <option value="" disabled selected>quantité</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -381,8 +380,6 @@
 
 <script>
   module.exports = {
-    components: {
-    },
     props: {
       menus: { type: Array, default: [] },
       panier: { type: Object },

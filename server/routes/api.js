@@ -177,11 +177,16 @@
         values: [req.session.userId]
       })
 
+      for (let i = 0; i < result.rows.length; i++) {
+        result.rows[i].date = new Date(result.rows[i].date).toString().slice(0,15)
+      }
+
       const log = {
         admin: req.session.adminId,
         user: req.session.userId,
         reservations: result.rows
       }
+
       res.status(200).json(log)
     } else if (req.session.adminId) {
       const log = {
