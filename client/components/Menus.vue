@@ -340,10 +340,8 @@
               </article>
 
 
-              <add-menu :show="showForm" @add-menu="addMenu"></add-menu>
+              <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
               <button v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
-
-          <!-- </article> -->
 
         </article>
 

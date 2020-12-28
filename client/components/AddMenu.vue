@@ -1,7 +1,7 @@
 <template>
   <div class="container">
 
-    <form v-show="show" @submit.prevent="addMenu">
+    <form @submit.prevent="addMenu">
       <div class="row">
         <div class="col-sm-12">
           <h2>Nouveau menu à ajouter</h2>
@@ -44,9 +44,6 @@
 
 <script>
   module.exports = {
-    props: {
-
-    },
     data () {
       return {
         newMenu: {

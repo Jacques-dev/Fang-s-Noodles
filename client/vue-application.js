@@ -225,7 +225,6 @@ var app = new Vue({
 
       for (let i = 0; i != menus.length; i++) {
         for (let j = 0; j != menus[i].length; j++) {
-          alert(menus[i][j].quantity)
           prix += menus[i][j].prix * menus[i][j].quantity
           nb += parseInt(menus[i][j].quantity)
         }
