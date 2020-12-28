@@ -7,19 +7,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <h2>Mes infos</h2>
         Nom : {{ user.nom }}<br>
         Prénom : {{ user.prenom }}<br>
         Email : {{ user.email }}<br>
         Téléphone : {{ user.telephone }}<br>
       </div>
-      <div class="col-sm-4">
-        <h2>Mes commandes</h2>
-      </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <h2>Mes réservations</h2>
-        <section v-for="reserv in reservations" :key="reserv.id">
+        <section v-for="reserv in user.reservations">
           Date : {{ reserv.date }}<br>
           Heure : {{ reserv.heure }}<br>
           Nombre de personnes : {{ reserv.personnes }}<br>
@@ -34,7 +31,6 @@
   module.exports = {
     props: {
       user: {type: Object },
-      reservations: { type: Array, default: [] },
     },
     data () {
       return {

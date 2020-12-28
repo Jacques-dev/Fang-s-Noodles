@@ -46,12 +46,12 @@ var app = new Vue({
       prenom: null,
       email: null,
       telephone: null,
-      id: null
+      id: null,
+      reservations: []
     },
     admin: {
       id: null
     },
-    reservations: []
   },
   async mounted () {
     const res = await axios.get('/api/menus')
@@ -61,7 +61,7 @@ var app = new Vue({
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
     this.user.id = res3.data.user
-
+    this.user.reservations = res3.data.reservations
   },
   methods: {
 
@@ -79,6 +79,8 @@ var app = new Vue({
       const res2 = await axios.get('/api/me')
       this.admin.id = res2.data.admin
       this.user.id = res2.data.user
+      this.user.reservations = res2.data.reservations
+
       router.push('/')
     },
     async adminLogin (admin) {
@@ -97,7 +99,7 @@ var app = new Vue({
       this.user.telephone = res.data.telephone
       this.user.id = res.data.user
       this.panier = res.data.panier
-      this.reservations = []
+      this.user.reservations = []
       router.push('/')
     },
     async reserver (reservation) {

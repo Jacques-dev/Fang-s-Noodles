@@ -168,17 +168,26 @@
     res.json(log)
   })
 
-  router.get('/me', (req, res) => {
+  router.get('/me', async (req, res) => {
     if (req.session.userId) {
+
+      const select = "SELECT * FROM reservation WHERE client=$1"
+      const result = await client.query({
+        text: select,
+        values: [req.session.userId]
+      })
+
       const log = {
         admin: req.session.adminId,
-        user: req.session.userId
+        user: req.session.userId,
+        reservations: result.rows
       }
       res.status(200).json(log)
     } else if (req.session.adminId) {
       const log = {
         admin: req.session.adminId,
-        user: req.session.userId
+        user: req.session.userId,
+        reservations: []
       }
       res.status(201).json(log)
     } else {
