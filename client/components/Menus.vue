@@ -76,8 +76,6 @@
 
               </article>
 
-
-
               <div class="titre_plats row">
                 <a href="#soups">Soups</a>
                 <p class ="current" id="dumplings">Dumplings</p>
@@ -139,8 +137,6 @@
                 </div>
 
               </article>
-
-
 
               <div class="titre_plats row">
                 <a href="#soups">Soups</a>
@@ -207,8 +203,6 @@
 
               </article>
 
-
-
               <div class="titre_plats row">
                 <a href="#soups">Soups</a>
                 <a href="#dumplings">Dumplings</a>
@@ -273,8 +267,6 @@
 
               </article>
 
-
-
               <div class="titre_plats row">
                 <a href="#soups">Soups</a>
                 <a href="#dumplings">Dumplings</a>
@@ -338,7 +330,6 @@
                 </div>
 
               </article>
-
 
               <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
               <button v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>

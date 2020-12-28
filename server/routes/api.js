@@ -281,7 +281,7 @@
    * Cette route doit ajouter un menu au panier, puis retourner le panier modifié à l'utilisateur
    * Le body doit contenir l'id de l'menu, ainsi que la quantité voulue
    */
- router.post('/panier', (req, res) => {
+   router.post('/panier', (req, res) => {
     const menuId = parseInt(req.body.id)
     const menuQte = parseInt(req.body.quantity)
     const menuPrix = parseInt(req.body.prix)
@@ -328,7 +328,7 @@
       }
       res.json(newMenu)
     }
-  })
+    })
 
   /*
    * Cette route doit supprimer un menu dans le panier

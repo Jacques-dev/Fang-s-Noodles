@@ -1,7 +1,20 @@
 <template>
 
-  <section class="container-fluid" id ="background">
+  <section class="container-fluid  d-flex flex-column" id ="background">
 
+    <section id="resume_commande" class="row">
+
+      <article class="col-sm-4">
+          <p>Nombre de menus : {{ panier.nb_menus }} </p>
+      </article>
+      <article class="col-sm-4">
+        <p>Total : {{ panier.prix }}€ </p>
+      </article>
+      <article class="col-sm-4">
+          <button @click="commander()">Commander</button>
+      </article>
+
+    </section>
     <section id = "colonne_principale" class="row">
 
       <section id ="colonne_gauche" class="col-sm-2 colonne">
@@ -138,7 +151,6 @@
       </section>
 
       <section id="colonne_droite" class="col-sm-3 colonne">
-        <!-- <form @submit.prevent="pay()"> -->
           <article class="row">
 
                 <section class="container-fluid">
@@ -147,8 +159,12 @@
                     <section class="container-fluid">
 
                         <article class="row">
-                          <div class="image-plat">
+                          <div class="image-plat col-sm-7">
                             <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                          </div>
+                          <div class="col-sm-5">
+                            <p>Prix : {{menu.prix}} </p>
+                            <p>quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -157,7 +173,7 @@
                             <article class="col-sm-6">
                               <!-- <form @submit.prevent="edit(menu.id)"> -->
                                 <select @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity">
-                                  <option value="" disabled selected>{{menu.quantity}}</option>
+                                  <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
@@ -174,7 +190,8 @@
                             </article>
 
                             <article class="col-sm-6">
-                              <button @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
+                                <button  @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
+
                             </article>
 
                         </article>
@@ -188,8 +205,12 @@
 
                       <!-- <section class="row"> -->
                         <article class="row">
-                          <div class="image-plat">
+                          <div class="image-plat col-sm-7">
                             <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                          </div>
+                          <div class="col-sm-5">
+                            <p>Prix : {{menu.prix}} </p>
+                            <p>quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -198,7 +219,7 @@
                             <article class="col-sm-6">
 
                               <select @change="edit(menu.id, 'dumplings', menu.price)" v-model="editMenu.quantity">
-                                <option value="" disabled selected>{{menu.quantity}}</option>
+                                <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -228,8 +249,12 @@
                     <section class="container-fluid">
 
                         <article class="row">
-                          <div class="image-plat">
+                          <div class="image-plat col-sm-7">
                             <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                          </div>
+                          <div class="col-sm-5">
+                            <p>Prix : {{menu.prix}} </p>
+                            <p>quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -237,7 +262,7 @@
 
                           <article class="col-sm-6">
                             <select @change="edit(menu.id, 'noodles', menu.price)" v-model="editMenu.quantity">
-                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -265,8 +290,12 @@
                     <section class="container-fluid">
 
                         <article class="row">
-                          <div class="image-plat">
+                          <div class="image-plat col-sm-7">
                             <img v-bind:src="'../images/sashimi/' + menus[3][menu.id-1].image " class="image">
+                          </div>
+                          <div class="col-sm-5">
+                            <p>Prix : {{menu.prix}} </p>
+                            <p>quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -274,7 +303,7 @@
 
                           <article class="col-sm-6">
                             <select @change="edit(menu.id, 'sashimi', menu.price)" v-model="editMenu.quantity">
-                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -302,8 +331,12 @@
                     <section class="container-fluid">
 
                         <article class="row">
-                          <div class="image-plat">
+                          <div class="image-plat col-sm-7">
                             <img v-bind:src="'../images/nigiri/' + menus[4][menu.id-1].image " class="image">
+                          </div>
+                          <div class="col-sm-5">
+                            <p>Prix : {{menu.prix}} </p>
+                            <p>quantité : {{menu.quantity}}</p>
                           </div>
                         </article>
 
@@ -311,7 +344,7 @@
 
                           <article class="col-sm-6">
                             <select @change="edit(menu.id, 'nigiri', menu.price)" v-model="editMenu.quantity">
-                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <!-- <option value="" disabled selected>{{menu.quantity}}</option> -->
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -335,30 +368,9 @@
 
                   </article>
 
-
                 </section>
 
           </article>
-          <article class="row">
-            <article class="col-sm-6">
-              <p>Nombre de menus</p>
-            </article>
-            <article class="col-sm-6">
-              <p> {{ panier.nb_menus }} </p>
-            </article>
-          </article>
-          <article class="row">
-            <article class="col-sm-6">
-              <p>Total</p>
-            </article>
-            <article class="col-sm-6">
-              <p>{{ panier.prix }}€</p>
-            </article>
-          </article>
-          <article class="row">
-            <button @click="commander()">Commander</button>
-          </article>
-        <!-- </form> -->
       </section>
 
     </section>
@@ -441,6 +453,14 @@
 </script>
 
 <style scoped>
+  #resume_commande{
+    padding: 20px;
+    background-color:rgba(30,61,89,0.79);
+    border: 3px double black;
+    box-shadow: 10px 10px 5px rgba(30,61,89,0.79);
+    width: 30%;
+  }
+
   #background{
     color:#fff;
     /* color:rgb(137,27,23); */
@@ -468,7 +488,7 @@
       background-color:rgba(137,27,23,0.79);
     }
     #colonne_principale{
-      max-width: 1450px;
+      width: 80%;
       /* position: relative; */
     }
 
