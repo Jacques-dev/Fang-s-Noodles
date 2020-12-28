@@ -1,5 +1,5 @@
 <template>
-  <section id ="background">
+  <section id="background">
 
     <section class="container">
 
@@ -12,7 +12,7 @@
           <article class="col-sm-12">
 
               <div class="titre_plats row">
-                <p class ="current" id="soups">Soups</p>
+                <p class="current" id="soups">Soups</p>
                 <a href="#dumplings">Dumplings</a>
                 <a href="#noodles">Noodles</a>
                 <a href="#sashimi">Sashimi</a>
@@ -34,16 +34,16 @@
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
-                  <div class =" row" v-if="isSpicy(menu.spicy)">
-                    <p class ="spicy">Spicy</p>
+                  <div class="row" v-if="isSpicy(menu.spicy)">
+                    <p class="spicy">Spicy</p>
                   </div>
-                  <div class ="bouton-menus row">
+                  <div class="bouton-menus row">
                     <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
                     <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'soups')">Modifier</button>
                   </div>
                 </div>
 
-                <div class= "container" v-else>
+                <div class="container" v-else>
 
                   <div class="row">
                     <div class="col-sm-6">
@@ -56,7 +56,7 @@
 
                   <div class="row">
                     <div class="col-sm-6">
-                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                      <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
                     </div>
                     <div class="col-sm-6">
                       <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
@@ -78,19 +78,19 @@
 
               <div class="titre_plats row">
                 <a href="#soups">Soups</a>
-                <p class ="current" id="dumplings">Dumplings</p>
+                <p class="current" id="dumplings">Dumplings</p>
                 <a href="#noodles">Noodles</a>
                 <a href="#sashimi">Sashimi</a>
                 <a href="#nigiri">Nigiri</a>
               </div>
 
-              <article class ="famille_de_plats row" v-for="menu in menus[1]" :key="menu.id">
+              <article class="famille_de_plats row" v-for="menu in menus[1]" :key="menu.id">
 
                 <div class="row">
                   <div class="menu-img col-sm-3">
                     <img v-bind:src="'../images/dumplings/' + menu.image ">
                   </div>
-                  <div class=" col-sm-9 menu-description">
+                  <div class="col-sm-9 menu-description">
                     <p>{{ menu.description }}</p>
                   </div>
                 </div>
@@ -99,15 +99,15 @@
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
-                  <div class =" row" v-if="isSpicy(menu.spicy)">
-                    <p class ="spicy">Spicy</p>
+                  <div class="row" v-if="isSpicy(menu.spicy)">
+                    <p class="spicy">Spicy</p>
                   </div>
-                  <div class ="bouton-menus row">
+                  <div class="bouton-menus row">
                     <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
                     <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'dumplings')">Modifier</button>
                   </div>
                 </div>
-                <div class ="container" v-else>
+                <div class="container" v-else>
                   <div class="row">
                     <div class="col-sm-6">
                       <input type="text" v-model="editingMenu.name">

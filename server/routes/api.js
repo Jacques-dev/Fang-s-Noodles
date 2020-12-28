@@ -460,6 +460,7 @@
     const image = req.body.image
     const price = parseInt(req.body.price)
     const spicy = (req.body.spicy == 'true')
+    const type = req.body.type
 
     const menu = {
       id: menus.length + 1,
@@ -467,7 +468,8 @@
       description: description,
       image: image,
       price: price,
-      spicy: spicy
+      spicy: spicy,
+      type: type
     }
     menus.push(menu)
     // on envoie l'menu ajouté à l'utilisateur

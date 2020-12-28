@@ -168,33 +168,36 @@ var app = new Vue({
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.soups.findIndex(a => a.id === menu.id)
         this.panier.soups.splice(index, 1)
-        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
-        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else if (menu.type == "dumplings") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.dumplings.findIndex(a => a.id === menu.id)
         this.panier.dumplings.splice(index, 1)
-        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
-        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else if (menu.type == "noodles") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.noodles.findIndex(a => a.id === menu.id)
         this.panier.noodles.splice(index, 1)
-        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
-        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else if (menu.type == "sashimi") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.sashimi.findIndex(a => a.id === menu.id)
         this.panier.sashimi.splice(index, 1)
-        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
-        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       } else if (menu.type == "nigiri") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.nigiri.findIndex(a => a.id === menu.id)
         this.panier.nigiri.splice(index, 1)
-        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
-        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       }
+
+      var prix = 0
+      var nb = 0
+      const menus = [this.panier.soups, this.panier.dumplings, this.panier.noodles, this.panier.sashimi, this.panier.nigiri]
+
+      for (let i = 0; i != menus.length; i++) {
+        for (let j = 0; j != menus[i].length; j++) {
+          prix += menus[i][j].prix * menus[i][j].quantity
+          nb += parseInt(menus[i][j].quantity)
+        }
+      }
+      this.panier.prix = prix
+      this.panier.nb_menus = nb
     },
     async updateMenuFromPanier (newMenu) {
       if (newMenu.type == "soups") {
@@ -245,6 +248,7 @@ var app = new Vue({
       } else if (res.data.type == "nigiri"){
         this.menus[4].push(res.data)
       }
+
     },
     async deleteMenu (content) {
       await axios.delete('/api/menu/' + content.type + '/' + content.id)
