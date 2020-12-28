@@ -43,7 +43,9 @@ var app = new Vue({
     },
     user: {
       nom: null,
+      prenom: null,
       email: null,
+      telephone: null,
       id: null
     },
     admin: {
@@ -70,6 +72,8 @@ var app = new Vue({
       const res1 = await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
       user.nom = res1.data.nom
       user.email = res1.data.email
+      user.prenom = res1.data.prenom
+      user.telephone = res1.data.telephone
       const res2 = await axios.get('/api/me')
       this.admin.id = res2.data.admin
       this.user.id = res2.data.user
@@ -87,27 +91,33 @@ var app = new Vue({
       this.admin.id = res.data.admin
       this.user.nom = res.data.nom
       this.user.email = res.data.email
+      this.user.prenom = res.data.prenom
+      this.user.telephone = res.data.telephone
       this.user.id = res.data.user
       this.panier = res.data.panier
       this.reservations = []
       router.push('/')
     },
     async reserver (reservation) {
-      const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
-      this.reservations.push(res.data)
-      await axios.post('api/sendemail/')
+      try {
+        const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
+        this.reservations.push(res.data)
+        await axios.post('api/sendemail/')
+      } catch (e) {
+        alert("Veuillez vous connecter pour passer une commande")
+        router.push('/connexion')
+      }
     },
-    async pay () {
-      // try {
-      //   await axios.post('/api/panier/pay')
-      //   const res2 = await axios.get('/api/panier')
-      //   this.panier = res2.data
-      //   alert("Merci d'être venu sur notre site !")
-      //   router.push('/')
-      // } catch (e) {
-      //   alert("Vous n'êtes pas conncecté, veuillez le faire")
-      //   router.push('/connexion')
-      // }
+    async commander () {
+      try {
+        const res = await axios.post('/api/panier/commander')
+        this.panier = res.data
+        alert("Votre commande a été prise en compte M./Mme. " + user.nom)
+        router.push('/')
+      } catch (e) {
+        alert("Veuillez vous connecter pour passer une commande")
+        router.push('/connexion')
+      }
     },
     async addToPanier (menu) {
       if (menu.type == "soups") {

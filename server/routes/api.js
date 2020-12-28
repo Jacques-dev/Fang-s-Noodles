@@ -82,7 +82,7 @@ client.connect()
 
       if (await bcrypt.compare(password, hashedPassword)) {
 
-        const sqlId = "SELECT id, nom, email FROM users WHERE email=$1"
+        const sqlId = "SELECT id, nom, prenom, email, telephone FROM users WHERE email=$1"
         const result2 = await client.query({
           text: sqlId,
           values: [email]
@@ -90,13 +90,17 @@ client.connect()
 
         req.session.userName = result2.rows[0].nom
         req.session.userEmail = result2.rows[0].email
+        req.session.userFirstName = result2.rows[0].prenom
+        req.session.userTelephone = result2.rows[0].telephone
 
 
         req.session.userId = result2.rows[0].id
         req.session.reservationId = 0
         const log = {
           nom: req.session.userName,
-          email: req.session.userEmail
+          email: req.session.userEmail,
+          prenom: req.session.userFirstName,
+          telephone: req.session.userTelephone
         }
         res.json(log)
 
@@ -149,12 +153,16 @@ client.connect()
     req.session.adminId = null
     req.session.userName = null
     req.session.userEmail = null
+    req.session.userFirstName = null
+    req.session.userTelephone = null
     req.session.panier = new Panier()
     const log = {
       admin: req.session.adminId,
       user: req.session.userId,
       nom: req.session.userName,
       email: req.session.userEmail,
+      prenom: req.session.userFirstName,
+      telephone: req.session.userTelephone,
       panier: req.session.panier
     }
     res.json(log)
@@ -179,34 +187,40 @@ client.connect()
   })
 
   router.post('/reservation', async (req, res) => {
-    const date = req.body.date
-    const heure = req.body.heure
-    const personnes = parseInt(req.body.personnes)
+    if (req.session.userId) {
 
-    const reserv = {
-      id: req.session.reservationId + 1,
-      date: date,
-      heure: heure,
-      personnes: personnes
+      const date = req.body.date
+      const heure = req.body.heure
+      const personnes = parseInt(req.body.personnes)
+
+      const reserv = {
+        id: req.session.reservationId + 1,
+        date: date,
+        heure: heure,
+        personnes: personnes
+      }
+
+      res.json(reserv)
+    } else {
+      res.status(401).json({ message: "not logged" })
     }
-
-    res.status(200).json(reserv)
   })
 
   router.post('/sendemail', async (req, res) => {
     var transporter = nodemailer.createTransport({
-      service: '',
-      auth: {
-        user: '',
-        pass: ''
-      }
+      port: 3000,
+      host: 'localhost',
+      tls: {
+        rejectUnauthorized: false
+      },
     });
 
     var mailOptions = {
-      from: '',
+      from: 'noreply@domain.com',
       to: req.session.userEmail,
       subject: "Votre réservation sur Fang's Noodles",
-      text: 'M./Mme. + ' + req.session.userName
+      text: 'M./Mme. + ' + req.session.userName,
+      html: "<p>Merci d'avoir réservé une table chez Fang's Noodles.</p>"
     };
 
     transporter.sendMail(mailOptions, function(error, info){

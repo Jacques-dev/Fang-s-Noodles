@@ -79,7 +79,7 @@
               </select>
             </div>
             <div class="col-sm-3" align="center">
-              <button class="col-sm-12" v-if="user.id" type="submit" id="reserver" >Reservez</button>
+              <button class="col-sm-12" type="submit" id="reserver" >Reservez</button>
             </div>
           </div>
 
