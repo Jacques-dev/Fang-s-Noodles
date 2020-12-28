@@ -11,6 +11,8 @@
             <option value="soups">Soup</option>
             <option value="dumplings">Dumpling</option>
             <option value="noodles">Noodle</option>
+            <option value="sashimi">Sashimi</option>
+            <option value="nigiri">Nigiri</option>
           </select>
         </div>
         <div class="col-sm-12">
@@ -41,28 +43,28 @@
 </template>
 
 <script>
-module.exports = {
-  props: {
+  module.exports = {
+    props: {
 
-  },
-  data () {
-    return {
-      newMenu: {
-        type: '',
-        name: '',
-        description: '',
-        image: '',
-        price: '',
-        spicy: null
+    },
+    data () {
+      return {
+        newMenu: {
+          type: '',
+          name: '',
+          description: '',
+          image: '',
+          price: '',
+          spicy: null
+        }
+      }
+    },
+    methods: {
+      addMenu () {
+        this.$emit('add-menu', this.newMenu)
       }
     }
-  },
-  methods: {
-    addMenu () {
-      this.$emit('add-menu', this.newMenu)
-    }
   }
-}
 </script>
 
 <style>

@@ -261,6 +261,80 @@
 
                   </article>
 
+                  <article v-for="menu in panier.sashimi" :key="menu.id" class="col-sm-12 plat">
+                    <section class="container-fluid">
+
+                        <article class="row">
+                          <div class="image-plat">
+                            <img v-bind:src="'../images/sashimi/' + menus[3][menu.id-1].image " class="image">
+                          </div>
+                        </article>
+
+                        <article class="row">
+
+                          <article class="col-sm-6">
+                            <select @change="edit(menu.id, 'sashimi', menu.price)" v-model="editMenu.quantity">
+                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                          </article>
+
+                          <article class="col-sm-6">
+                            <button @click="removeFromPanier(menu.id, 'sashimi', menu.price)">Supprimer</button>
+                          </article>
+
+                        </article>
+
+                    </section>
+
+                  </article>
+
+                  <article v-for="menu in panier.nigiri" :key="menu.id" class="col-sm-12 plat">
+                    <section class="container-fluid">
+
+                        <article class="row">
+                          <div class="image-plat">
+                            <img v-bind:src="'../images/nigiri/' + menus[4][menu.id-1].image " class="image">
+                          </div>
+                        </article>
+
+                        <article class="row">
+
+                          <article class="col-sm-6">
+                            <select @change="edit(menu.id, 'nigiri', menu.price)" v-model="editMenu.quantity">
+                              <option value="" disabled selected>{{menu.quantity}}</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                          </article>
+
+                          <article class="col-sm-6">
+                            <button @click="removeFromPanier(menu.id, 'nigiri', menu.price)">Supprimer</button>
+                          </article>
+
+                        </article>
+
+                    </section>
+
+                  </article>
+
 
                 </section>
 

@@ -140,10 +140,24 @@ var app = new Vue({
           this.panier.nb_menus = this.panier.nb_menus + 1
           this.panier.prix = this.panier.prix + res2.data.prix
         }
-      } else {
+      } else if (menu.type == "noodles") {
         if (this.panier.noodles.find(a => a.id === menu.id) === undefined){
           const res3 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
           this.panier.noodles.push(res3.data)
+          this.panier.nb_menus = this.panier.nb_menus + 1
+          this.panier.prix = this.panier.prix + res3.data.prix
+        }
+      } else if (menu.type == "sashimi") {
+        if (this.panier.sashimi.find(a => a.id === menu.id) === undefined){
+          const res2 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
+          this.panier.sashimi.push(res2.data)
+          this.panier.nb_menus = this.panier.nb_menus + 1
+          this.panier.prix = this.panier.prix + res2.data.prix
+        }
+      } else if (menu.type == "nigiri") {
+        if (this.panier.nigiri.find(a => a.id === menu.id) === undefined){
+          const res3 = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
+          this.panier.nigiri.push(res3.data)
           this.panier.nb_menus = this.panier.nb_menus + 1
           this.panier.prix = this.panier.prix + res3.data.prix
         }
@@ -162,10 +176,22 @@ var app = new Vue({
         this.panier.dumplings.splice(index, 1)
         this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
         this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
-      } else {
+      } else if (menu.type == "noodles") {
         const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
         const index = this.panier.noodles.findIndex(a => a.id === menu.id)
         this.panier.noodles.splice(index, 1)
+        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
+        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
+      } else if (menu.type == "sashimi") {
+        const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
+        const index = this.panier.sashimi.findIndex(a => a.id === menu.id)
+        this.panier.sashimi.splice(index, 1)
+        this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
+        this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
+      } else if (menu.type == "nigiri") {
+        const deletedMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
+        const index = this.panier.nigiri.findIndex(a => a.id === menu.id)
+        this.panier.nigiri.splice(index, 1)
         this.panier.nb_menus = this.panier.nb_menus - deletedMenu.data.quantity
         this.panier.prix = this.panier.prix - (deletedMenu.data.quantity * deletedMenu.data.prix)
       }
@@ -179,15 +205,23 @@ var app = new Vue({
         await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
         const menu = this.panier.dumplings.find(a => a.id === newMenu.id)
         menu.quantity = newMenu.quantity
-      } else {
+      } else if (newMenu.type == "noodles"){
         await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
         const menu = this.panier.noodles.find(a => a.id === newMenu.id)
+        menu.quantity = newMenu.quantity
+      } else if (newMenu.type == "sashimi") {
+        await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
+        const menu = this.panier.sashimi.find(a => a.id === newMenu.id)
+        menu.quantity = newMenu.quantity
+      } else if (newMenu.type == "nigiri"){
+        await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
+        const menu = this.panier.nigiri.find(a => a.id === newMenu.id)
         menu.quantity = newMenu.quantity
       }
 
       var prix = 0
       var nb = 0
-      const menus = [this.panier.soups, this.panier.dumplings, this.panier.noodles]
+      const menus = [this.panier.soups, this.panier.dumplings, this.panier.noodles, this.panier.sashimi, this.panier.nigiri]
 
       for (let i = 0; i != menus.length; i++) {
         for (let j = 0; j != menus[i].length; j++) {
@@ -201,12 +235,16 @@ var app = new Vue({
     },
     async addMenu (menu) {
       const res = await axios.post('/api/menu', menu)
-      if(res.data.type == "soups") {
+      if (res.data.type == "soups") {
         this.menus[0].push(res.data)
       } else if (res.data.type == "dumplings") {
         this.menus[1].push(res.data)
-      } else {
+      } else if (res.data.type == "noodles"){
         this.menus[2].push(res.data)
+      } else if (res.data.type == "sashimi") {
+        this.menus[3].push(res.data)
+      } else if (res.data.type == "nigiri"){
+        this.menus[4].push(res.data)
       }
     },
     async deleteMenu (content) {
@@ -217,8 +255,14 @@ var app = new Vue({
       } else if (content.type  == "dumplings") {
         const index = this.menus[1].findIndex(a => a.id === content.id)
         this.menus[1].splice(index, 1)
-      } else {
+      } else if (content.type  == "noodles") {
         const index = this.menus[2].findIndex(a => a.id === content.id)
+        this.menus[2].splice(index, 1)
+      } else if (content.type  == "sashimi") {
+        const index = this.menus[3].findIndex(a => a.id === content.id)
+        this.menus[1].splice(index, 1)
+      } else if (content.type  == "nigiri") {
+        const index = this.menus[4].findIndex(a => a.id === content.id)
         this.menus[2].splice(index, 1)
       }
     },
@@ -236,8 +280,20 @@ var app = new Vue({
         menu.description = newMenu.description
         menu.image = newMenu.image
         menu.price = newMenu.price
-      } else {
-        const menu = this.menus[2].find(a => a.id === newMenu.id)
+      } else if (newMenu.type  == "noodles") {
+        const menu = this.menus[3].find(a => a.id === newMenu.id)
+        menu.name = newMenu.name
+        menu.description = newMenu.description
+        menu.image = newMenu.image
+        menu.price = newMenu.price
+      } else if (newMenu.type  == "sashimi") {
+        const menu = this.menus[4].find(a => a.id === newMenu.id)
+        menu.name = newMenu.name
+        menu.description = newMenu.description
+        menu.image = newMenu.image
+        menu.price = newMenu.price
+      } else if (newMenu.type  == "nigiri") {
+        const menu = this.menus[5].find(a => a.id === newMenu.id)
         menu.name = newMenu.name
         menu.description = newMenu.description
         menu.image = newMenu.image
