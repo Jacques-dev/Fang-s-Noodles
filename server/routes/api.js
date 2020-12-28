@@ -30,6 +30,12 @@
   }
 
 
+  router.get('/setdatas', async (req, res) => {
+    req.session.typesString = ["soups", "dumplings", "noodles", "sashimi", "nigiri"]
+    req.session.typesVar = ["req.session.panier.soups", "req.session.panier.dumplings", "req.session.panier.noodles", "req.session.panier.sashimi", "req.session.panier.nigiri"]
+    res.send()
+  })
+
   router.post('/register', async (req, res) => {
     const email = req.body.email
     const password = req.body.password
@@ -207,7 +213,7 @@
       const date = req.body.date
       const heure = req.body.heure
       const personnes = req.body.personnes
-      
+
 
       const insert = "INSERT INTO reservation (date, heure, personnes, client) VALUES ($1, $2, $3, $4)"
 
@@ -290,7 +296,7 @@
    * Cette route doit ajouter un menu au panier, puis retourner le panier modifié à l'utilisateur
    * Le body doit contenir l'id de l'menu, ainsi que la quantité voulue
    */
-   router.post('/panier', (req, res) => {
+  router.post('/panier', (req, res) => {
     const menuId = parseInt(req.body.id)
     const menuQte = parseInt(req.body.quantity)
     const menuPrix = parseInt(req.body.prix)
@@ -300,17 +306,23 @@
       res.status(400).json({ message: "bad request" })
     }
 
-    if (menuType == "soups") {
-      var menu = menus[0].find(a => a.id === menuId)
-    } else if (menuType == "dumplings") {
-      var menu = menus[1].find(a => a.id === menuId)
-    } else if (menuType =="noodles") {
-      var menu = menus[2].find(a => a.id === menuId)
-    } else if (menuType =="sashimi") {
-      var menu = menus[3].find(a => a.id === menuId)
-    } else if (menuType =="nigiri") {
-      var menu = menus[4].find(a => a.id === menuId)
+    const size = parseInt(req.session.typesString.length)
+    for (let i = 0; i != size; i++) {
+      if (menuType == req.session.typesString[i]) {
+        var menu = menus[i].find(a => a.id === menuId)
+      }
     }
+    // if (menuType == "soups") {
+    //   var menu = menus[0].find(a => a.id === menuId)
+    // } else if (menuType == "dumplings") {
+    //   var menu = menus[1].find(a => a.id === menuId)
+    // } else if (menuType =="noodles") {
+    //   var menu = menus[2].find(a => a.id === menuId)
+    // } else if (menuType =="sashimi") {
+    //   var menu = menus[3].find(a => a.id === menuId)
+    // } else if (menuType =="nigiri") {
+    //   var menu = menus[4].find(a => a.id === menuId)
+    // }
 
     if (!menu) {
       res.status(501).json({ message: 'menu non existant' })
@@ -324,20 +336,26 @@
       req.session.panier.nb_menus = req.session.panier.nb_menus + newMenu.quantity
       req.session.panier.prix = req.session.panier.prix + newMenu.prix
 
-      if (menuType == "soups") {
-        req.session.panier.soups.push(newMenu)
-      } else if (menuType == "dumplings") {
-        req.session.panier.dumplings.push(newMenu)
-      } else if (menuType == "noodles") {
-        req.session.panier.noodles.push(newMenu)
-      } else if (menuType == "sashimi") {
-        req.session.panier.sashimi.push(newMenu)
-      } else if (menuType == "nigiri") {
-        req.session.panier.nigiri.push(newMenu)
+      const size = parseInt(req.session.typesString.length)
+      for (let i = 0; i != size; i++) {
+        if (menuType == req.session.typesString[i]) {
+          eval(req.session.typesVar[i]).push(newMenu)
+        }
       }
+      // if (menuType == "soups") {
+      //   req.session.panier.soups.push(newMenu)
+      // } else if (menuType == "dumplings") {
+      //   req.session.panier.dumplings.push(newMenu)
+      // } else if (menuType == "noodles") {
+      //   req.session.panier.noodles.push(newMenu)
+      // } else if (menuType == "sashimi") {
+      //   req.session.panier.sashimi.push(newMenu)
+      // } else if (menuType == "nigiri") {
+      //   req.session.panier.nigiri.push(newMenu)
+      // }
       res.json(newMenu)
     }
-    })
+  })
 
   /*
    * Cette route doit supprimer un menu dans le panier
@@ -349,39 +367,52 @@
    var index = null
    var menu = null
 
-   if (menuType == "soups") {
-     index = req.session.panier.soups.findIndex(a => a.id === menuId)
-     menu = req.session.panier.soups.find(a => a.id === menuId)
-   } else if (menuType == "dumplings") {
-     index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
-     menu = req.session.panier.dumplings.find(a => a.id === menuId)
-   } else if(menuType =="noodles") {
-     index = req.session.panier.noodles.findIndex(a => a.id === menuId)
-     menu = req.session.panier.noodles.find(a => a.id === menuId)
-   } else if(menuType =="sashimi") {
-     index = req.session.panier.sashimi.findIndex(a => a.id === menuId)
-     menu = req.session.panier.sashimi.find(a => a.id === menuId)
-   } else if(menuType =="nigiri") {
-     index = req.session.panier.nigiri.findIndex(a => a.id === menuId)
-     menu = req.session.panier.nigiri.find(a => a.id === menuId)
+   const size = parseInt(req.session.typesString.length)
+   for (let i = 0; i != size; i++) {
+     if (menuType == req.session.typesString[i]) {
+       index = eval(req.session.typesVar[i]).findIndex(a => a.id === menuId)
+       menu = eval(req.session.typesVar[i]).find(a => a.id === menuId)
+     }
    }
+   // if (menuType == "soups") {
+   //   index = req.session.panier.soups.findIndex(a => a.id === menuId)
+   //   menu = req.session.panier.soups.find(a => a.id === menuId)
+   // } else if (menuType == "dumplings") {
+   //   index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
+   //   menu = req.session.panier.dumplings.find(a => a.id === menuId)
+   // } else if(menuType =="noodles") {
+   //   index = req.session.panier.noodles.findIndex(a => a.id === menuId)
+   //   menu = req.session.panier.noodles.find(a => a.id === menuId)
+   // } else if(menuType =="sashimi") {
+   //   index = req.session.panier.sashimi.findIndex(a => a.id === menuId)
+   //   menu = req.session.panier.sashimi.find(a => a.id === menuId)
+   // } else if(menuType =="nigiri") {
+   //   index = req.session.panier.nigiri.findIndex(a => a.id === menuId)
+   //   menu = req.session.panier.nigiri.find(a => a.id === menuId)
+   // }
 
    if (isNaN(menuId)) {
      res.status(400).json({ message: 'Requête incorrecte' })
    } else if (index === -1) {
      res.status(501).json({ message: "L'menu n'est pas dans le panier" })
    } else {
-     if (menuType == "soups") {
-       req.session.panier.soups.splice(index, 1)
-     } else if (menuType == "dumplings") {
-       req.session.panier.dumplings.splice(index, 1)
-     } else if (menuType == "noodles") {
-       req.session.panier.noodles.splice(index, 1)
-     } else if (menuType == "sashimi") {
-       req.session.panier.sashimi.splice(index, 1)
-     } else if (menuType == "nigiri") {
-       req.session.panier.nigiri.splice(index, 1)
+     const size = parseInt(req.session.typesString.length)
+     for (let i = 0; i != size; i++) {
+       if (menuType == req.session.typesString[i]) {
+         eval(req.session.typesVar[i]).splice(index, 1)
+       }
      }
+     // if (menuType == "soups") {
+     //   req.session.panier.soups.splice(index, 1)
+     // } else if (menuType == "dumplings") {
+     //   req.session.panier.dumplings.splice(index, 1)
+     // } else if (menuType == "noodles") {
+     //   req.session.panier.noodles.splice(index, 1)
+     // } else if (menuType == "sashimi") {
+     //   req.session.panier.sashimi.splice(index, 1)
+     // } else if (menuType == "nigiri") {
+     //   req.session.panier.nigiri.splice(index, 1)
+     // }
 
      req.session.panier.nb_menus = req.session.panier.nb_menus - menu.quantity
      req.session.panier.prix = req.session.panier.prix - (menu.quantity * menu.prix)
@@ -401,34 +432,46 @@
 
     var index = null
 
-    if (menuType == "soups") {
-      index = req.session.panier.soups.findIndex(a => a.id === menuId)
-    } else if (menuType == "dumplings") {
-      index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
-    } else if (menuType = "noodles") {
-      index = req.session.panier.noodles.findIndex(a => a.id === menuId)
-    } else if (menuType == "sashimi") {
-      index = req.session.panier.sashimi.findIndex(a => a.id === menuId)
-    } else if (menuType = "nigiri") {
-      index = req.session.panier.nigiri.findIndex(a => a.id === menuId)
+    const size = parseInt(req.session.typesString.length)
+    for (let i = 0; i != size; i++) {
+      if (menuType == req.session.typesString[i]) {
+        index = eval(req.session.typesVar[i]).findIndex(a => a.id === menuId)
+      }
     }
+    // if (menuType == "soups") {
+    //   index = req.session.panier.soups.findIndex(a => a.id === menuId)
+    // } else if (menuType == "dumplings") {
+    //   index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
+    // } else if (menuType = "noodles") {
+    //   index = req.session.panier.noodles.findIndex(a => a.id === menuId)
+    // } else if (menuType == "sashimi") {
+    //   index = req.session.panier.sashimi.findIndex(a => a.id === menuId)
+    // } else if (menuType = "nigiri") {
+    //   index = req.session.panier.nigiri.findIndex(a => a.id === menuId)
+    // }
 
     if (isNaN(menuId)) {
       res.status(400).json({ message: 'Requête incorrecte' })
     } else if (index === -1) {
       res.status(501).json({ message: "L'menu n'est pas dans le panier" })
     } else {
-      if (menuType == "soups") {
-        req.session.panier.soups.quantity = menuQte
-      } else if (menuType == "dumplings") {
-        req.session.panier.dumplings.quantity = menuQte
-      } else if(menuType =="noodles") {
-        req.session.panier.noodles.quantity = menuQte
-      } else if (menuType == "sashimi") {
-        req.session.panier.sashimi.quantity = menuQte
-      } else if(menuType == "nigiri") {
-        req.session.panier.nigiri.quantity = menuQte
+      const size = parseInt(req.session.typesString.length)
+      for (let i = 0; i != size; i++) {
+        if (menuType == req.session.typesString[i]) {
+          eval(req.session.typesVar[i]).quantity = menuQte
+        }
       }
+      // if (menuType == "soups") {
+      //   req.session.panier.soups.quantity = menuQte
+      // } else if (menuType == "dumplings") {
+      //   req.session.panier.dumplings.quantity = menuQte
+      // } else if(menuType =="noodles") {
+      //   req.session.panier.noodles.quantity = menuQte
+      // } else if (menuType == "sashimi") {
+      //   req.session.panier.sashimi.quantity = menuQte
+      // } else if(menuType == "nigiri") {
+      //   req.session.panier.nigiri.quantity = menuQte
+      // }
       res.send()
     }
   })
@@ -503,27 +546,36 @@
     req.menuId = menuId
     req.menuType = menuType
 
-    if(req.menuType == "soups") {
-      const menu = menus[0].find(a => a.id === req.menuId)
-      req.menu = menu
-      req.type = menuType
-    } else if (req.menuType  == "dumplings") {
-      const menu = menus[1].find(a => a.id === req.menuId)
-      req.menu = menu
-      req.type = menuType
-    } else if (req.menuType  == "noodles") {
-      const menu = menus[2].find(a => a.id === req.menuId)
-      req.menu = menu
-      req.type = menuType
-    } else if (req.menuType  == "sashimi") {
-      const menu = menus[3].find(a => a.id === req.menuId)
-      req.menu = menu
-      req.type = menuType
-    } else if (req.menuType  == "nigiri") {
-      const menu = menus[4].find(a => a.id === req.menuId)
-      req.menu = menu
-      req.type = menuType
+    const size = parseInt(req.session.typesString.length)
+    for (let i = 0; i != size; i++) {
+      if (req.menuType == req.session.typesString[i]) {
+        const menu = menus[i].find(a => a.id === req.menuId)
+        req.menu = menu
+        req.type = menuType
+      }
     }
+
+    // if(req.menuType == "soups") {
+    //   const menu = menus[0].find(a => a.id === req.menuId)
+    //   req.menu = menu
+    //   req.type = menuType
+    // } else if (req.menuType  == "dumplings") {
+    //   const menu = menus[1].find(a => a.id === req.menuId)
+    //   req.menu = menu
+    //   req.type = menuType
+    // } else if (req.menuType  == "noodles") {
+    //   const menu = menus[2].find(a => a.id === req.menuId)
+    //   req.menu = menu
+    //   req.type = menuType
+    // } else if (req.menuType  == "sashimi") {
+    //   const menu = menus[3].find(a => a.id === req.menuId)
+    //   req.menu = menu
+    //   req.type = menuType
+    // } else if (req.menuType  == "nigiri") {
+    //   const menu = menus[4].find(a => a.id === req.menuId)
+    //   req.menu = menu
+    //   req.type = menuType
+    // }
 
     if (!req.menu) {
       res.status(404).json({ message: 'menu ' + menuId + ' does not exist' })
@@ -564,22 +616,29 @@
   })
 
   .delete(parseMenu, (req, res) => {
-    if(req.menuType == "soups") {
-      const index = menus[0].findIndex(a => a.id === req.menuId)
-      menus[0].splice(index, 1)
-    } else if (req.menuType  == "dumplings") {
-      const index = menus[1].findIndex(a => a.id === req.menuId)
-      menus[1].splice(index, 1)
-    } else if (req.menuType  == "noodles") {
-      const index = menus[2].findIndex(a => a.id === req.menuId)
-      menus[2].splice(index, 1)
-    } else if (req.menuType  == "sashimi") {
-      const index = menus[3].findIndex(a => a.id === req.menuId)
-      menus[3].splice(index, 1)
-    } else if (req.menuType  == "nigiri") {
-      const index = menus[4].findIndex(a => a.id === req.menuId)
-      menus[4].splice(index, 1)
+    const size = parseInt(req.session.typesString.length)
+    for (let i = 0; i != size; i++) {
+      if (req.menuType == req.session.typesString[i]) {
+        const index = menus[i].findIndex(a => a.id === req.menuId)
+        menus[i].splice(index, 1)
+      }
     }
+    // if(req.menuType == "soups") {
+    //   const index = menus[0].findIndex(a => a.id === req.menuId)
+    //   menus[0].splice(index, 1)
+    // } else if (req.menuType  == "dumplings") {
+    //   const index = menus[1].findIndex(a => a.id === req.menuId)
+    //   menus[1].splice(index, 1)
+    // } else if (req.menuType  == "noodles") {
+    //   const index = menus[2].findIndex(a => a.id === req.menuId)
+    //   menus[2].splice(index, 1)
+    // } else if (req.menuType  == "sashimi") {
+    //   const index = menus[3].findIndex(a => a.id === req.menuId)
+    //   menus[3].splice(index, 1)
+    // } else if (req.menuType  == "nigiri") {
+    //   const index = menus[4].findIndex(a => a.id === req.menuId)
+    //   menus[4].splice(index, 1)
+    // }
 
     res.send()
   })

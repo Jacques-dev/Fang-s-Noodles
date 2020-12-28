@@ -60,10 +60,12 @@ var app = new Vue({
     this.menus = res_menus.data
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
+    await axios.get('/api/setdatas')
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
     this.user.id = res3.data.user
     this.user.reservations = res3.data.reservations
+
   },
   methods: {
     async register (user) {
