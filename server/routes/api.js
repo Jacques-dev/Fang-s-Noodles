@@ -13,7 +13,7 @@
    database: 'Fang-s-Noodles'
   })
 
-client.connect()
+  client.connect()
 
   class Panier {
     constructor () {
@@ -191,7 +191,15 @@ client.connect()
 
       const date = req.body.date
       const heure = req.body.heure
-      const personnes = parseInt(req.body.personnes)
+      const personnes = req.body.personnes
+
+      const insert = "INSERT INTO reservation (date, heure, personnes, client) VALUES ($1, $2, $3, $4)"
+
+      const result = await client.query({
+        text: insert,
+        values: [date, heure, personnes, req.session.userId]
+      })
+      res.send()
 
       const reserv = {
         id: req.session.reservationId + 1,
@@ -200,7 +208,7 @@ client.connect()
         personnes: personnes
       }
 
-      res.json(reserv)
+      res.status(200).json(reserv)
     } else {
       res.status(401).json({ message: "not logged" })
     }
@@ -216,7 +224,7 @@ client.connect()
     });
 
     var mailOptions = {
-      from: 'noreply@domain.com',
+      from: '',
       to: req.session.userEmail,
       subject: "Votre réservation sur Fang's Noodles",
       text: 'M./Mme. + ' + req.session.userName,

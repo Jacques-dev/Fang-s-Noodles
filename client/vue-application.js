@@ -61,6 +61,7 @@ var app = new Vue({
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
     this.user.id = res3.data.user
+
   },
   methods: {
 
@@ -70,10 +71,11 @@ var app = new Vue({
     },
     async login (user) {
       const res1 = await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
-      user.nom = res1.data.nom
-      user.email = res1.data.email
-      user.prenom = res1.data.prenom
-      user.telephone = res1.data.telephone
+      this.user.nom = res1.data.nom
+      this.user.email = res1.data.email
+      this.user.prenom = res1.data.prenom
+      this.user.telephone = res1.data.telephone
+
       const res2 = await axios.get('/api/me')
       this.admin.id = res2.data.admin
       this.user.id = res2.data.user
@@ -102,7 +104,9 @@ var app = new Vue({
       try {
         const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
         this.reservations.push(res.data)
-        await axios.post('api/sendemail/')
+        // await axios.post('api/sendemail/')
+        alert("Votre réservation a été prise en compte M./Mme. " + user.nom)
+        router.push('/')
       } catch (e) {
         alert("Veuillez vous connecter pour passer une commande")
         router.push('/connexion')
