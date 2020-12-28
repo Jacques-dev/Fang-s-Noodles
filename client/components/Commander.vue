@@ -11,8 +11,9 @@
         <p>Total : {{ panier.prix }}€ </p>
       </article>
       <article class="col-sm-4">
-          <button @click="commander()">Commander</button>
+          <button  id="bouton_commander" class="col-sm-12"@click="commander()"><p >Commander</p></button>
       </article>
+
 
     </section>
     <section id = "colonne_principale" class="row">
@@ -41,7 +42,7 @@
               <div class="image-plat">
                 <img v-bind:src="'../images/soups/' + menu.image " class="image">
                 <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
+                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
                 </div>
               </div>
               <div class="description-plat">
@@ -63,7 +64,7 @@
               <div class="image-plat">
                 <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
                 <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'dumplings', menu.price)" v-if="user.id">Ajouter au panier</button>
+                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'dumplings', menu.price)" v-if="user.id">Ajouter au panier</button>
                 </div>
               </div>
 
@@ -86,7 +87,7 @@
               <div class="image-plat">
                 <img v-bind:src="'../images/noodles/' + menu.image " class="image">
                 <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'noodles', menu.price)" v-if="user.id">Ajouter au panier</button>
+                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'noodles', menu.price)" v-if="user.id">Ajouter au panier</button>
                 </div>
               </div>
 
@@ -109,7 +110,7 @@
               <div class="image-plat">
                 <img v-bind:src="'../images/sashimi/' + menu.image " class="image">
                 <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'sashimi', menu.price)" v-if="user.id">Ajouter au panier</button>
+                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'sashimi', menu.price)" v-if="user.id">Ajouter au panier</button>
                 </div>
               </div>
 
@@ -132,7 +133,7 @@
               <div class="image-plat">
                 <img v-bind:src="'../images/nigiri/' + menu.image " class="image">
                 <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouterMenu" @click="addToPanier(menu.id, 'nigiri', menu.price)" v-if="user.id">Ajouter au panier</button>
+                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'nigiri', menu.price)" v-if="user.id">Ajouter au panier</button>
                 </div>
               </div>
 
@@ -146,6 +147,7 @@
             </article>
           </div>
         </article>
+
       </section>
 
       <section id="colonne_droite" class="col-sm-4 colonne">
@@ -164,8 +166,11 @@
                             </div>
                           </div>
                           <div class="col-sm-5">
-                            <p>Prix : {{menu.prix}} </p>
-                            <p>Quantité : {{menu.quantity}}</p>
+                            <div class="container-fluid">
+                              <p class="row">Prix : {{menu.prix}} </p>
+                              <p class="row">Quantité : {{menu.quantity}}</p>
+                            </div>
+
                           </div>
                         </article>
 
@@ -173,7 +178,7 @@
 
                             <article class="col-sm-6">
                               <!-- <form @submit.prevent="edit(menu.id)"> -->
-                                <select @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity" class="mySelect">
+                                <select  @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity" class="mySelect">
                                   <option value="" disabled selected>quantité</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
@@ -190,7 +195,7 @@
                             </article>
 
                             <article class="col-sm-6">
-                                <button  @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
+                                <button class="col-sm-12"  @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
                             </article>
 
                         </article>
@@ -422,6 +427,7 @@
         this.$emit('update-menu-from-panier', content)
       },
       commander() {
+
         let content = {
           id: this.editMenu.id,
           quantity: this.editMenu.quantity
@@ -463,102 +469,110 @@
 
 <style scoped>
 
-  .type_plat{
-    /* display: flex; */
-    justify-content: center;
-    border-bottom: solid 1px black;
-    padding: 20px;
-    font-size: 2em;
-  }
-
-  #colonne_droite .plat{
-    margin-bottom: 20px;
-    padding: 10px 20px 15px 10px ;
-    border-bottom: 1px solid black;
-  }
-
-  #resume_commande{
-    padding: 20px;
-    background-color:rgba(252,243,215,0.97);
-    border-bottom: 1px double black;
-    /* box-shadow: 10px 10px 5px rgba(252,243,215,0.5);; */
-    width: 30%;
-  }
-
   #background{
     color:black;
-    /* color:rgb(137,27,23); */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    /* padding: 200px; */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-image: url("../images/backgrounds/commander.webp");
   }
-    .colonne{
-      /* background-color:rgba(30,61,89,0.79); */
-      background-color:rgba(252,243,215,0.97);
-    }
-    /* #colonne_gauche{
-      background-color:rgba(137,27,23,0.79);
-    } */
-    #colonne_droite{
-      /* border: 4px black solid; */
-      overflow-y: scroll;
-      max-height: 600px;
-      /* background-color:rgba(137,27,23,0.79); */
-      background-color:rgba(252,243,215,0.97);
-    }
-    #colonne_principale{
-      width: 58%;
-    }
-    #colonne_centrale{
-      overflow-y: scroll;
-      max-height: 600px;
-      /* background-color:rgba(137,27,23,0.79); */
-    }
 
+  #resume_commande{
+    padding: 20px;
+    background-color:rgba(252,243,215,0.97);
+    width: 30%;
+  }
 
-    .dropdown-menu button {
-      display: flex;
-      background-color: inherit;
-      color: black;
-      padding: 22px 16px;
-      width: 100%;
-      border: none;
-      outline: none;
-      text-align: left;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 17px;
-    }
+  #colonne_principale{
+    width: 58%;
+    background-color:rgba(252,243,215,0.97);
+    border-top: 1px solid black;
+  }
 
-    .dropdown-menu button:hover {
-      background-color: #ddd;
-    }
+      #colonne_droite{
+        /* border: 4px black solid; */
+        overflow-y: scroll;
+        max-height: 600px;
+      }
+          #colonne_droite .plat{
+            margin-bottom: 20px;
+            padding: 10px 20px 15px 10px ;
+            border-bottom: 1px solid black;
+          }
 
-    .dropdown-menu button.active {
-      background-color: #ccc;
-    }
+      #colonne_centrale{
+        overflow-y: scroll;
+        max-height: 600px;
 
-    /* ------------------------------- */
+        /* background-color:rgba(137,27,23,0.79); */
+      }
+          #colonne_centrale img{
+            max-width:245px;
+            max-height: 185px;
+          }
+          #colonne_centrale .plat:hover .image {
+            opacity: 0.35;
+          }
+          #colonne_centrale .plat:hover .affichage_bouton_ajout_panier {
+            opacity: 1;
+          }
+          .type_plat{
+            justify-content: center;
+            border-bottom: solid 1px black;
+            padding: 20px;
+            font-size: 2em;
+          }
+          .affichage_bouton_ajout_panier {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+          }
+          .ajouter_panier_bouton {
+            background-color: #4CAF50;
+            color: black;
+            font-size: 16px;
+            padding: 16px 32px;
+          }
 
-    .tabcontent .col-sm-6 {
-      margin: 15px auto;
-    }
+      #colonne_gauche{
 
-    .image-plat {
+      }
+          .dropdown-menu button {
+            display: flex;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 17px;
+          }
+          .dropdown-menu button:hover {
+            background-color: #ddd;
+          }
+          .dropdown-menu button.active {
+            background-color: #ccc;
+          }
+
+  .image-plat {
       position: relative;
-      display: flex;
-      width: 100%;
       /* border: 2px red solid; */
     }
 
-    .image {
+  .image {
       opacity: 1;
       display: block;
       width: 100%;
@@ -567,29 +581,5 @@
       backface-visibility: hidden;
     }
 
-    .affichage_bouton_ajout_panier {
-      transition: .5s ease;
-      opacity: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      text-align: center;
-    }
 
-    #colonne_centrale .plat:hover .image {
-      opacity: 0.35;
-    }
-
-    #colonne_centrale .plat:hover .affichage_bouton_ajout_panier {
-      opacity: 1;
-    }
-
-    .ajouterMenu {
-      background-color: #4CAF50;
-      color: black;
-      font-size: 16px;
-      padding: 16px 32px;
-    }
 </style>

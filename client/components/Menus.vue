@@ -13,15 +13,15 @@
             <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
             <button id="bouton_formulaire"v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
 
-              <div class="titre_plats row">
-                <p class="current" id="soups">Soups</p>
-                <a href="#dumplings">Dumplings</a>
-                <a href="#noodles">Noodles</a>
-                <a href="#sashimi">Sashimi</a>
-                <a href="#nigiri">Nigiri</a>
+              <div id="soups" class="type_plat row">
+                <router-link class="current" to='/menus/#soups'>soups</router-link>
+                <router-link to='/menus/#dumplings'>dumplings</router-link>
+                <router-link to='/menus/#noodles'>noodles</router-link>
+                <router-link to='/menus/#sashimi'>sashimi</router-link>
+                <router-link to='/menus/#nigiri'>nigiri</router-link>
               </div>
 
-              <article class ="famille_de_plats row" v-for="menu in menus[0]" :key="menu.id">
+              <article class ="ligne_plat row" v-for="menu in menus[0]" :key="menu.id">
 
                 <div class="row">
                   <div class="menu-img col-sm-3">
@@ -32,7 +32,7 @@
                   </div>
                 </div>
 
-                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
@@ -78,15 +78,15 @@
 
               </article>
 
-              <div class="titre_plats row">
-                <a href="#soups">Soups</a>
-                <p class="current" id="dumplings">Dumplings</p>
-                <a href="#noodles">Noodles</a>
-                <a href="#sashimi">Sashimi</a>
-                <a href="#nigiri">Nigiri</a>
+              <div id="dumplings" class="type_plat row">
+                <router-link to='/menus/#soups'>soups</router-link>
+                <router-link class="current" to='/menus/#dumplings'>dumplings</router-link>
+                <router-link to='/menus/#noodles'>noodles</router-link>
+                <router-link to='/menus/#sashimi'>sashimi</router-link>
+                <router-link to='/menus/#nigiri'>nigiri</router-link>
               </div>
 
-              <article class="famille_de_plats row" v-for="menu in menus[1]" :key="menu.id">
+              <article class="ligne_plat row" v-for="menu in menus[1]" :key="menu.id">
 
                 <div class="row">
                   <div class="menu-img col-sm-3">
@@ -97,7 +97,7 @@
                   </div>
                 </div>
 
-                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
@@ -140,15 +140,15 @@
 
               </article>
 
-              <div class="titre_plats row">
-                <a href="#soups">Soups</a>
-                <a href="#dumplings">Dumplings</a>
-                <p class ="current" id="noodles">Noodles</p>
-                <a href="#sashimi">Sashimi</a>
-                <a href="#nigiri">Nigiri</a>
+              <div id="noodles" class="type_plat row">
+                <router-link to='/menus/#soups'>soups</router-link>
+                <router-link to='/menus/#dumplings'>dumplings</router-link>
+                <router-link class="current" to='/menus/#noodles'>noodles</router-link>
+                <router-link to='/menus/#sashimi'>sashimi</router-link>
+                <router-link to='/menus/#nigiri'>nigiri</router-link>
               </div>
 
-              <article class ="famille_de_plats row" v-for="menu in menus[2]" :key="menu.id">
+              <article class ="ligne_plat row" v-for="menu in menus[2]" :key="menu.id">
 
                 <div class="row">
                   <div class="menu-img col-sm-3">
@@ -159,7 +159,7 @@
                   </div>
                 </div>
 
-                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
@@ -205,15 +205,15 @@
 
               </article>
 
-              <div class="titre_plats row">
-                <a href="#soups">Soups</a>
-                <a href="#dumplings">Dumplings</a>
-                <a href="#noodles">Noodles</a>
-                <p class ="current" id="sashimi">Sashimi</p>
-                <a href="#nigiri">Nigiri</a>
+              <div id="sashimi" class="type_plat row">
+                <router-link to='/menus/#soups'>soups</router-link>
+                <router-link to='/menus/#dumplings'>dumplings</router-link>
+                <router-link to='/menus/#noodles'>noodles</router-link>
+                <router-link class="current" to='/menus/#sashimi'>sashimi</router-link>
+                <router-link to='/menus/#nigiri'>nigiri</router-link>
               </div>
 
-              <article class ="famille_de_plats row" v-for="menu in menus[3]" :key="menu.id">
+              <article class ="ligne_plat row" v-for="menu in menus[3]" :key="menu.id">
                 <div class="row">
                   <div class="menu-img col-sm-3">
                     <img v-bind:src="'../images/sashimi/' + menu.image ">
@@ -223,7 +223,7 @@
                   </div>
                 </div>
 
-                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
@@ -269,15 +269,15 @@
 
               </article>
 
-              <div class="titre_plats row">
-                <a href="#soups">Soups</a>
-                <a href="#dumplings">Dumplings</a>
-                <a href="#noodles">Noodles</a>
-                <a href="#sashimi">Sashimi</a>
-                <p class ="current" id="nigiri">Nigiri</p>
+              <div id="nigiri" class="type_plat row">
+                <router-link to='/menus/#soups'>soups</router-link>
+                <router-link to='/menus/#dumplings'>dumplings</router-link>
+                <router-link to='/menus/#noodles'>noodles</router-link>
+                <router-link to='/menus/#sashimi'>sashimi</router-link>
+                <router-link class="current" to='/menus/#nigiri'>nigiri</router-link>
               </div>
 
-              <article class ="famille_de_plats row" v-for="menu in menus[4]" :key="menu.id">
+              <article class ="ligne_plat row" v-for="menu in menus[4]" :key="menu.id">
                 <div class="row">
                   <div class="menu-img col-sm-3">
                     <img v-bind:src="'../images/nigiri/' + menu.image ">
@@ -287,7 +287,7 @@
                   </div>
                 </div>
 
-                <div class="menu-content row" v-if="editingMenu.id !== menu.id">
+                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
                   <div class="menu-title row">
                     <p>{{ menu.name }} - {{ menu.price }}€</p>
                   </div>
@@ -410,36 +410,42 @@
 
 <style scoped>
 
-  #test{
+  #titre_page{
+    font-size: 2.6em;
     display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
   }
-  p{
-    margin-bottom: 0;
-  }
+
   #background{
-  color:#fff;
-  height: auto;
-  background-size: contain;
-  background-repeat: repeat;
-  background-image: url("../images/backgrounds/epices.jpg");
+    color:#fff;
+    height: auto;
+    background-size: contain;
+    background-repeat: repeat;
+    background-image: url("../images/backgrounds/epices.jpg");
   }
-  .titre_plats .current{
+
+  .type_plat .current{
     color:#FFA213;
     text-decoration: underline;
     letter-spacing: 2px;
+    padding-bottom: 15px;
   }
+
   .menu-img img {
     width: 100px;
     height: 100px;
   }
   .container{
-    /* position: relative; */
+
     /* background-color: #F0DDC4; */
       /* background-color:rgba(137,27,23,0.5); */
       background-color:rgba(30,61,89,0.7);
       /* background-color: rgba(7,123,138,0.7); */
       padding: 2%;
-      /* margin: 2%; */
+
     width: 100%;
   }
   .spicy{
@@ -451,7 +457,7 @@
     color: #fff;
     background-color: #A52421;
   }
-  .titre_plats{
+  .type_plat{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -465,23 +471,22 @@
     border-bottom: 2px solid #fff;
 
   }
-  .titre_plats a{
-    margin-left: 2%;
-    margin-right: 2%;
-    color:#fff;
-  }
-  a:hover{
-    letter-spacing: 2px;
-    padding-bottom: 14px;
-  }
+      .type_plat a{
+        margin-left: 2%;
+        margin-right: 2%;
+        color:#fff;
+      }
+      .type_plat a:hover{
+        letter-spacing: 2px;
+        padding-bottom: 14px;
+      }
+      .type_plat p{
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom: 1rem;
+      }
 
-  .titre_plats p{
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-bottom: 1rem;
-  }
-
-  .famille_de_plats{
+  .ligne_plat{
     /* border-top: 2px solid #fff; */
     border-bottom: 2px solid #fff;
     display: flex;
@@ -489,13 +494,19 @@
     flex-wrap: nowrap;
     margin: 5%;
   }
-  .menu-img, .menu-content{
+  .menu-img, .nom_prix_spicy_plat{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin-top: 1%;
     margin-bottom: 1%;
+
     /* border: 2px solid red; */
+  }
+  .menu-img{
+
+    /* height: 300px;
+    width: 300px; */
   }
   .bouton-menus button:hover{
     font-weight: bold;
@@ -514,7 +525,6 @@
     font-size: 1.5em;
   }
   button{
-
     padding:  1%;
     border-radius: 20px 20px;
   }
@@ -522,14 +532,8 @@
     background-color: #a52421;
     color: #fff;
   }
-  #titre_page{
-    font-size: 2.6em;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    padding: 3%;
-  }
+
+
   #bouton_formulaire{
     position: fixed;
     z-index: 4;

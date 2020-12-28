@@ -2,12 +2,12 @@
 
   <div id ="page_entiere">
 
-    <!-- <ul id="nav">
+    <ul id="slider">
       <li><a href="#first" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
       <li><a href="#second" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
       <li><a href="#third" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
       <li><a href="#four" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
-    </ul> -->
+    </ul>
 
     <section id="first" class="container-fluid parallax">
       <section class="row h-75 justify-content-center align-items-center">
@@ -70,7 +70,6 @@
       </section>
     </section> -->
 
-
     <div id="second" class="container-fluid parallax">
       <div class="row h-100 justify-content-center align-items-center">
         <div class="col-sm-7">
@@ -122,25 +121,75 @@
 
 <style scoped>
 
-  #first .titre_soups_noodles_dumpings {
-    padding-top: 10%;
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.4em;
-    letter-spacing: 3px;
-    /* align-items: center; */
-    /* z-index: 5; */
-    position: absolute;
+  #first {
+    background-image: url("../images/backgrounds/accueil_1.webp");
+    height: auto !important;
   }
-  #first .description_soups_noodles_dumpings {
-    padding-top: 20%;
-    text-align:center;
-    width: 40%;
-    position: absolute;
+      #first .titre_soups_noodles_dumpings {
+        padding-top: 10%;
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.4em;
+        letter-spacing: 3px;
+        /* align-items: center; */
+        /* z-index: 5; */
+        position: absolute;
+      }
+      #first .description_soups_noodles_dumpings {
+        padding-top: 20%;
+        text-align:center;
+        width: 40%;
+        position: absolute;
+      }
+      #first #title {
+        font-size: 50px;
+      }
+      #first #typeMenu {
+        background-color: rgba(240,221,196,0.91);
+      }
+          #first #typeMenu img {
+            width: 50%;
+            height: 100%;
+          }
+
+
+  #second {
+    background-image: url("../images/backgrounds/accueil_2.webp");
+  }
+      #second .col-sm-5 {
+        word-wrap:break-word;
+      }
+      #second h2 {
+        font-size: 20px
+      }
+      #second p {
+        font-size: 15px
+      }
+
+  #third {
+    background-image: url("../images/backgrounds/accueil_3.webp");
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
-  #nav {
+  #four {
+    /* padding: 0; */
+    background-color: #A42321;
+    padding-bottom: 20px;
+  }
+      #map {
+        width: 100%;
+        height: 300px;
+        border: solid 1px black;
+      }
+
+  #slider {
     list-style: none;
     position: fixed;
     top: 50%;
@@ -165,19 +214,6 @@
       background-attachment: scroll;
     }
   }
-
-  #first {
-    background-image: url("../images/backgrounds/accueil_1.webp");
-    height: auto !important;
-  }
-
-  #first #typeMenu {
-    background-color: rgba(240,221,196,0.91);
-  }
-
-  #first #title {
-    font-size: 50px;
-  }
   @media only screen and (max-device-width: 1366px) {
     #first #typeMenu {
       height: auto !important;
@@ -187,47 +223,8 @@
     }
   }
 
-  #first #typeMenu img {
-    width: 50%;
-    height: 100%;
-  }
-
-  #second {
-    background-image: url("../images/backgrounds/accueil_2.webp");
-  }
-  #second .col-sm-5 {
-    word-wrap:break-word;
-  }
-  #second h2 {
-    font-size: 20px
-  }
-  #second p {
-    font-size: 15px
-  }
-
-  #third {
-    background-image: url("../images/backgrounds/accueil_3.webp");
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
   #first, #second, #third .row{
     border-top: solid 1px black;
-  }
-
-  #four {
-    /* padding: 0; */
-    background-color: #A42321;
-  }
-  #map {
-    width: 100%;
-    height: 300px;
-    border: solid 1px black;
   }
 
 </style>

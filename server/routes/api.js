@@ -201,11 +201,13 @@
   })
 
   router.post('/reservation', async (req, res) => {
+
     if (req.session.userId) {
 
       const date = req.body.date
       const heure = req.body.heure
       const personnes = req.body.personnes
+      
 
       const insert = "INSERT INTO reservation (date, heure, personnes, client) VALUES ($1, $2, $3, $4)"
 
@@ -213,6 +215,7 @@
         text: insert,
         values: [date, heure, personnes, req.session.userId]
       })
+
       res.send()
 
       const reserv = {
@@ -223,6 +226,7 @@
       }
 
       res.status(200).json(reserv)
+
     } else {
       res.status(401).json({ message: "not logged" })
     }
@@ -437,10 +441,7 @@
 
     if (req.session.userId) {
       req.session.panier = new Panier()
-      const log = {
-        panier: req.session.panier
-      }
-      res.status(200).json(log)
+      res.status(200).json(req.session.panier)
     } else {
       res.status(401).json({ message: "not logged" })
     }
