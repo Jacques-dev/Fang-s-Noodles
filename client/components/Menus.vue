@@ -10,6 +10,8 @@
         <article class="row">
 
           <article class="col-sm-12">
+            <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
+            <button id="bouton_formulaire"v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
 
               <div class="titre_plats row">
                 <p class="current" id="soups">Soups</p>
@@ -331,8 +333,6 @@
 
               </article>
 
-              <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
-              <button v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
 
         </article>
 
@@ -529,6 +529,10 @@
     justify-content: center;
     align-items: center;
     padding: 3%;
+  }
+  #bouton_formulaire{
+    position: fixed;
+    z-index: 4;
   }
 
 </style>

@@ -32,13 +32,11 @@
         </ul>
       </section>
 
-      <section class="col-sm-7 colonne">
+      <section id ="colonne_centrale" class="col-sm-6 colonne">
 
         <article class="tabcontent container" v-if="checkMenu('soups')">
-
-          <h3>Soups</h3>
+          <p class="row type_plat">Soups</p>
           <div class="row">
-
             <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
               <div class="image-plat">
                 <img v-bind:src="'../images/soups/' + menu.image " class="image">
@@ -58,7 +56,7 @@
         </article>
 
         <article class="tabcontent container" v-if="checkMenu('dumplings')">
-          <h3>Dumplings</h3>
+          <p class="row type_plat">Dumplings</p>
           <div class="row">
 
             <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6 plat">
@@ -81,7 +79,7 @@
         </article>
 
         <article class="tabcontent container" v-if="checkMenu('noodles')">
-          <h3>Noodles</h3>
+          <p class="row type_plat">Noodles</p>
           <div class="row">
 
             <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6 plat">
@@ -104,7 +102,7 @@
         </article>
 
         <article class="tabcontent container" v-if="checkMenu('sashimi')">
-          <h3>Sashimi</h3>
+          <p class="row type_plat">Sashimi</p>
           <div class="row">
 
             <article v-for="menu in menus[3]" :key="menu.id" class="col-sm-6 plat">
@@ -127,7 +125,7 @@
         </article>
 
         <article class="tabcontent container" v-if="checkMenu('nigiri')">
-          <h3>Nigiri</h3>
+          <p class="row type_plat">Nigiri</p>
           <div class="row">
 
             <article v-for="menu in menus[4]" :key="menu.id" class="col-sm-6 plat">
@@ -150,17 +148,20 @@
         </article>
       </section>
 
-      <section id="colonne_droite" class="col-sm-3 colonne">
+      <section id="colonne_droite" class="col-sm-4 colonne">
+
           <article class="row">
 
-                <section class="container-fluid">
+                <section class="container">
 
                   <article v-for="menu in panier.soups" class="col-sm-12 plat">
                     <section class="container-fluid">
 
                         <article class="row">
                           <div class="image-plat col-sm-7">
-                            <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                            <div>
+                                <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                            </div>
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
@@ -185,8 +186,7 @@
                                   <option value="9">9</option>
                                   <option value="10">10</option>
                                 </select>
-                                <!-- <button type="submit">save</button> -->
-                              <!-- </form> -->
+
                             </article>
 
                             <article class="col-sm-6">
@@ -205,7 +205,10 @@
                       <!-- <section class="row"> -->
                         <article class="row">
                           <div class="image-plat col-sm-7">
-                            <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                            <div>
+                              <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                            </div>
+
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
@@ -249,7 +252,10 @@
 
                         <article class="row">
                           <div class="image-plat col-sm-7">
-                            <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                            <div>
+                              <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                            </div>
+
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
@@ -290,7 +296,10 @@
 
                         <article class="row">
                           <div class="image-plat col-sm-7">
-                            <img v-bind:src="'../images/sashimi/' + menus[3][menu.id-1].image " class="image">
+                            <div>
+                              <img v-bind:src="'../images/sashimi/' + menus[3][menu.id-1].image " class="image">
+                            </div>
+
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
@@ -331,7 +340,10 @@
 
                         <article class="row">
                           <div class="image-plat col-sm-7">
-                            <img v-bind:src="'../images/nigiri/' + menus[4][menu.id-1].image " class="image">
+                            <div>
+                              <img v-bind:src="'../images/nigiri/' + menus[4][menu.id-1].image " class="image">
+                            </div>
+
                           </div>
                           <div class="col-sm-5">
                             <p>Prix : {{menu.prix}} </p>
@@ -450,30 +462,46 @@
 </script>
 
 <style scoped>
+
+  .type_plat{
+    /* display: flex; */
+    justify-content: center;
+    border-bottom: solid 1px black;
+    padding: 20px;
+    font-size: 2em;
+  }
+
+  #colonne_droite .plat{
+    margin-bottom: 20px;
+    padding: 10px 20px 15px 10px ;
+    border-bottom: 1px solid black;
+  }
+
   #resume_commande{
     padding: 20px;
-    background-color:rgba(30,61,89,0.79);
-    border: 3px double black;
-    box-shadow: 10px 10px 5px rgba(30,61,89,0.79);
+    background-color:rgba(252,243,215,0.97);
+    border-bottom: 1px double black;
+    /* box-shadow: 10px 10px 5px rgba(252,243,215,0.5);; */
     width: 30%;
   }
 
   #background{
-    color:#fff;
+    color:black;
     /* color:rgb(137,27,23); */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    /* padding: 200px; */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-image: url("../images/backgrounds/plats_styles2.jpeg");
+    background-image: url("../images/backgrounds/commander.webp");
   }
     .colonne{
-        background-color:rgba(30,61,89,0.79);
-
+      /* background-color:rgba(30,61,89,0.79); */
+      background-color:rgba(252,243,215,0.97);
     }
     /* #colonne_gauche{
       background-color:rgba(137,27,23,0.79);
@@ -482,11 +510,16 @@
       /* border: 4px black solid; */
       overflow-y: scroll;
       max-height: 600px;
-      background-color:rgba(137,27,23,0.79);
+      /* background-color:rgba(137,27,23,0.79); */
+      background-color:rgba(252,243,215,0.97);
     }
     #colonne_principale{
-      width: 80%;
-      /* position: relative; */
+      width: 58%;
+    }
+    #colonne_centrale{
+      overflow-y: scroll;
+      max-height: 600px;
+      /* background-color:rgba(137,27,23,0.79); */
     }
 
 
@@ -521,7 +554,7 @@
     .image-plat {
       position: relative;
       display: flex;
-      width: 50%;
+      width: 100%;
       /* border: 2px red solid; */
     }
 
@@ -545,17 +578,17 @@
       text-align: center;
     }
 
-    .plat:hover .image {
-      opacity: 0.3;
+    #colonne_centrale .plat:hover .image {
+      opacity: 0.35;
     }
 
-    .plat:hover .affichage_bouton_ajout_panier {
+    #colonne_centrale .plat:hover .affichage_bouton_ajout_panier {
       opacity: 1;
     }
 
     .ajouterMenu {
       background-color: #4CAF50;
-      color: white;
+      color: black;
       font-size: 16px;
       padding: 16px 32px;
     }

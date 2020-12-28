@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container all">
 
     <form @submit.prevent="addMenu">
       <div class="row">
@@ -65,4 +65,8 @@
 </script>
 
 <style>
+  .all{
+    position: fixed;
+    z-index: 4;
+  }
 </style>

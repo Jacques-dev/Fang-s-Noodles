@@ -2,12 +2,12 @@
 
   <div id ="page_entiere">
 
-    <ul id="nav">
+    <!-- <ul id="nav">
       <li><a href="#first" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
       <li><a href="#second" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
       <li><a href="#third" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
       <li><a href="#four" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
-    </ul>
+    </ul> -->
 
     <section id="first" class="container-fluid parallax">
       <section class="row h-75 justify-content-center align-items-center">
@@ -36,6 +36,39 @@
         </article>
       </section>
     </section>
+
+    <!-- <section id="first" class="container-fluid parallax">
+      <section class="row h-75 justify-content-center align-items-center">
+        <article class="h-100" id="title">
+          <p>Saveur d'Asie</p>
+        </article>
+      </section>
+      <section class="container-fluid h-50 justify-content-center align-items-center" id="typeMenu">
+        <div class="row">
+          <article class="col-sm-4 d-flex justify-content-center">
+            <p class="titre_soups_noodles_dumpings">SOUPS</p>
+            <p class ="description_soups_noodles_dumpings">Decouvrez nos delicieuses soupes</p>
+            <img class="image_banniere" src="https://static.wixstatic.com/media/a84435_89b11410bc6b4875996a2f75ba5952af.png/v1/fill/w_302,h_375,al_c,q_85,usm_0.66_1.00_0.01/a84435_89b11410bc6b4875996a2f75ba5952af.webp">
+          </article>
+          <article class="col-sm-4 d-flex justify-content-center">
+            <p class="titre_soups_noodles_dumpings">NOODLES</p>
+            <p class ="description_soups_noodles_dumpings">Decouvrez nos noodles faites maison</p>
+            <img class="image_banniere" src="https://static.wixstatic.com/media/a84435_2094235a23f7450d868fb875a24df909.png/v1/fill/w_305,h_378,al_c,q_85,usm_0.66_1.00_0.01/a84435_2094235a23f7450d868fb875a24df909.webp">
+          </article>
+          <article class="col-sm-4 d-flex justify-content-center">
+            <p class="titre_soups_noodles_dumpings">DUMPLINGS</p>
+            <p class ="description_soups_noodles_dumpings">Savourez nos dumplings</p>
+            <img class="image_banniere" src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
+          </article>
+        </div>
+        <div class="row">
+          <article class="col-sm-12 d-flex justify-content-center">
+            <router-link id ="menus" to='/menus'>Menus</router-link>
+          </article>
+        </div>
+
+      </section>
+    </section> -->
 
 
     <div id="second" class="container-fluid parallax">
@@ -184,11 +217,12 @@
   }
 
   #first, #second, #third .row{
-    border: solid 1px black;
+    border-top: solid 1px black;
   }
 
   #four {
-    padding: 0;
+    /* padding: 0; */
+    background-color: #A42321;
   }
   #map {
     width: 100%;

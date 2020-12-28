@@ -80,7 +80,7 @@ const menus = [
       id: 2,
       name: 'Vermicelles de riz sautées au boeuf',
       description: 'description',
-      image: 'vermicelles_riz_boeuf.jpeg',
+      image: 'vermicelles_riz_boeuf.jpg',
       price: 9,
       spicy: true
     },
@@ -106,7 +106,7 @@ const menus = [
       id: 1,
       name: 'Shellfish Sashimi',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     },
@@ -122,7 +122,7 @@ const menus = [
       id: 3,
       name: 'Aji',
       description: 'description',
-      image: 'sashimi_aji',
+      image: 'sashimi_aji.jpg',
       price: 25,
       spicy: true
     },
@@ -130,7 +130,7 @@ const menus = [
       id: 4,
       name: 'Hirame',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     },
@@ -138,7 +138,7 @@ const menus = [
       id: 5,
       name: 'Albacore Tataki',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     }
@@ -148,7 +148,7 @@ const menus = [
       id: 1,
       name: 'Maguro',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     },
@@ -156,7 +156,7 @@ const menus = [
       id: 2,
       name: 'Hamachi',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     },
@@ -164,7 +164,7 @@ const menus = [
       id: 3,
       name: 'Saba',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 11,
       spicy: true
     },
@@ -172,7 +172,7 @@ const menus = [
       id: 4,
       name: 'Hirame',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 25,
       spicy: true
     },
@@ -180,7 +180,7 @@ const menus = [
       id: 5,
       name: 'Sunazuri',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     },
@@ -188,7 +188,7 @@ const menus = [
       id: 6,
       name: 'Sake',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 9,
       spicy: false
     },
@@ -196,7 +196,7 @@ const menus = [
       id: 7,
       name: 'Hotate',
       description: 'description',
-      image: '',
+      image: 'black.jpg',
       price: 11,
       spicy: true
     },
@@ -204,7 +204,7 @@ const menus = [
       id: 8,
       name: 'Ebi',
       description: 'description',
-      image: 'won_ton_noodle.jpg',
+      image: 'black.jpg',
       price: 25,
       spicy: true
     }
