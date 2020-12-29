@@ -170,7 +170,7 @@ var app = new Vue({
 
       for (let i = 0; i != this.panier.menus.length; i++) {
         prix += this.panier.menus[i].prix * this.panier.menus[i].quantity
-        nb += this.panier.menus[i].quantity
+        nb += parseInt(this.panier.menus[i].quantity)
       }
       this.panier.prix = prix
       this.panier.nb_menus = nb
