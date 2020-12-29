@@ -9,7 +9,7 @@
     <div id="ligne_deux" class="row">
       <div class="container-fluid">
 
-        <form class="col-sm-8" @submit.prevent="reserver">
+        <form class="col-sm-12" @submit.prevent="reserver">
 
           <div class="row d-flex flex-wrap justify-content-center align-items-center">
             <div class="col-sm-3" align="center">
@@ -85,25 +85,6 @@
 
         </form>
 
-        <div class="col-sm-4">
-          <div class="container-fluid">
-            <div v-for="reserv in reservations" :key="reserv.date">
-              VOS RÉSERVATIONS
-              <div class="row">
-                <div class="col-sm-12">
-                  {{ reserv.date }}
-                </div>
-                <div class="col-sm-12">
-                  {{ reserv.heure }}
-                </div>
-                <div class="col-sm-12">
-                  {{ reserv.personnes }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
   </div>
@@ -162,8 +143,7 @@
     height:auto;
     /* background-color: blue; */
     background-color:rgba(30,61,89,0.7);
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 2% 5% 2% 5%;
     padding: 5%;
     display:flex;
     justify-content:center;
@@ -213,7 +193,7 @@
     border: solid #A52420 2px;
     text-decoration: none;
     padding: 5px 15px 5px 15px;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
   }
 
 </style>

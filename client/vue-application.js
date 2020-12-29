@@ -327,37 +327,17 @@ var app = new Vue({
           menu.price = newMenu.price
         }
       }
-      // if(newMenu.type == "soups") {
-      //   const menu = this.menus[0].find(a => a.id === newMenu.id)
-      //   menu.name = newMenu.name
-      //   menu.description = newMenu.description
-      //   menu.image = newMenu.image
-      //   menu.price = newMenu.price
-      // } else if (newMenu.type  == "dumplings") {
-      //   const menu = this.menus[1].find(a => a.id === newMenu.id)
-      //   menu.name = newMenu.name
-      //   menu.description = newMenu.description
-      //   menu.image = newMenu.image
-      //   menu.price = newMenu.price
-      // } else if (newMenu.type  == "noodles") {
-      //   const menu = this.menus[3].find(a => a.id === newMenu.id)
-      //   menu.name = newMenu.name
-      //   menu.description = newMenu.description
-      //   menu.image = newMenu.image
-      //   menu.price = newMenu.price
-      // } else if (newMenu.type  == "sashimi") {
-      //   const menu = this.menus[4].find(a => a.id === newMenu.id)
-      //   menu.name = newMenu.name
-      //   menu.description = newMenu.description
-      //   menu.image = newMenu.image
-      //   menu.price = newMenu.price
-      // } else if (newMenu.type  == "nigiri") {
-      //   const menu = this.menus[5].find(a => a.id === newMenu.id)
-      //   menu.name = newMenu.name
-      //   menu.description = newMenu.description
-      //   menu.image = newMenu.image
-      //   menu.price = newMenu.price
-      // }
+    },
+    async updateProfile (newProfile){
+      alert(newProfile.nom)
+      alert(newProfile.prenom)
+      await axios.put('/api/profil/' + newProfile.type + '/' +  newProfile.id, newProfile)
+
+          this.user.prenom = newProfile.prenom
+          this.user.nom = newProfile.nom
+          this.user.telephone = newProfile.telephone
+          this.user.email = newProfile.email
+
     }
   }
 })

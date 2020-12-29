@@ -1,7 +1,15 @@
 <template>
   <section id="background">
+    <section id="balise_bouton_admin">
+      <!-- <div> -->
+        <button id="bouton_ajouter_menus"v-if="admin.id" @click="showForm = true">Afficher le formulaire</button>
+        <button id="bouton_fermer_menus"v-if="admin.id" @click="showForm = false">Fermer le formulaire</button>
+      <!-- </div> -->
+        <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
 
-    <section class="container">
+    </section>
+
+    <section id="colonne_principale" class="container">
 
         <article class="row d-flex justify-content-center">
           <p id="titre_page">Decouvrez nos variétés de plats<p>
@@ -10,8 +18,7 @@
         <article class="row">
 
           <article class="col-sm-12">
-            <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
-            <button id="bouton_formulaire"v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
+
 
               <article v-for="menuType in menus">
 
@@ -80,262 +87,6 @@
 
                 </article>
               </article>
-
-              <!-- <div id="dumplings" class="type_plat row">
-                <router-link to='/menus/#soups'>soups</router-link>
-                <router-link class="current" to='/menus/#dumplings'>dumplings</router-link>
-                <router-link to='/menus/#noodles'>noodles</router-link>
-                <router-link to='/menus/#sashimi'>sashimi</router-link>
-                <router-link to='/menus/#nigiri'>nigiri</router-link>
-              </div>
-
-              <article class="ligne_plat row" v-for="menu in menus[1]" :key="menu.id">
-
-                <div class="row">
-                  <div class="menu-img col-sm-3">
-                    <img v-bind:src="'../images/dumplings/' + menu.image ">
-                  </div>
-                  <div class="col-sm-9 menu-description">
-                    <p>{{ menu.description }}</p>
-                  </div>
-                </div>
-
-                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
-                  <div class="menu-title row">
-                    <p>{{ menu.name }} - {{ menu.price }}€</p>
-                  </div>
-                  <div class="row" v-if="isSpicy(menu.spicy)">
-                    <p class="spicy">Spicy</p>
-                  </div>
-                  <div class="bouton-menus row">
-                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'dumplings')">Supprimer</button>
-                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'dumplings')">Modifier</button>
-                  </div>
-                </div>
-                <div class="container" v-else>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <input type="text" v-model="editingMenu.name">
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <button @click="sendEditMenu()">Valider</button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button @click="abortEditMenu()">Annuler</button>
-                    </div>
-                  </div>
-                </div>
-
-              </article>
-
-              <div id="noodles" class="type_plat row">
-                <router-link to='/menus/#soups'>soups</router-link>
-                <router-link to='/menus/#dumplings'>dumplings</router-link>
-                <router-link class="current" to='/menus/#noodles'>noodles</router-link>
-                <router-link to='/menus/#sashimi'>sashimi</router-link>
-                <router-link to='/menus/#nigiri'>nigiri</router-link>
-              </div>
-
-              <article class ="ligne_plat row" v-for="menu in menus[2]" :key="menu.id">
-
-                <div class="row">
-                  <div class="menu-img col-sm-3">
-                    <img v-bind:src="'../images/noodles/' + menu.image ">
-                  </div>
-                  <div class=" col-sm-9 menu-description">
-                    <p>{{ menu.description }}</p>
-                  </div>
-                </div>
-
-                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
-                  <div class="menu-title row">
-                    <p>{{ menu.name }} - {{ menu.price }}€</p>
-                  </div>
-                  <div class =" row" v-if="isSpicy(menu.spicy)">
-                    <p class ="spicy">Spicy</p>
-                  </div>
-                  <div class ="bouton-menus row">
-                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'noodles')">Supprimer</button>
-                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'noodles')">Modifier</button>
-                  </div>
-                </div>
-
-                <div class= "container" v-else>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <input type="text" v-model="editingMenu.name">
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <button @click="sendEditMenu()">Valider</button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button @click="abortEditMenu()">Annuler</button>
-                    </div>
-                  </div>
-
-                </div>
-
-              </article>
-
-              <div id="sashimi" class="type_plat row">
-                <router-link to='/menus/#soups'>soups</router-link>
-                <router-link to='/menus/#dumplings'>dumplings</router-link>
-                <router-link to='/menus/#noodles'>noodles</router-link>
-                <router-link class="current" to='/menus/#sashimi'>sashimi</router-link>
-                <router-link to='/menus/#nigiri'>nigiri</router-link>
-              </div>
-
-              <article class ="ligne_plat row" v-for="menu in menus[3]" :key="menu.id">
-                <div class="row">
-                  <div class="menu-img col-sm-3">
-                    <img v-bind:src="'../images/sashimi/' + menu.image ">
-                  </div>
-                  <div class=" col-sm-9 menu-description">
-                    <p>{{ menu.description }}</p>
-                  </div>
-                </div>
-
-                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
-                  <div class="menu-title row">
-                    <p>{{ menu.name }} - {{ menu.price }}€</p>
-                  </div>
-                  <div class =" row" v-if="isSpicy(menu.spicy)">
-                    <p class ="spicy">Spicy</p>
-                  </div>
-                  <div class ="bouton-menus row">
-                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'sashimi')">Supprimer</button>
-                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'sashimi')">Modifier</button>
-                  </div>
-                </div>
-
-                <div class= "container" v-else>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <input type="text" v-model="editingMenu.name">
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <button @click="sendEditMenu()">Valider</button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button @click="abortEditMenu()">Annuler</button>
-                    </div>
-                  </div>
-
-                </div>
-
-              </article>
-
-              <div id="nigiri" class="type_plat row">
-                <router-link to='/menus/#soups'>soups</router-link>
-                <router-link to='/menus/#dumplings'>dumplings</router-link>
-                <router-link to='/menus/#noodles'>noodles</router-link>
-                <router-link to='/menus/#sashimi'>sashimi</router-link>
-                <router-link class="current" to='/menus/#nigiri'>nigiri</router-link>
-              </div>
-
-              <article class ="ligne_plat row" v-for="menu in menus[4]" :key="menu.id">
-                <div class="row">
-                  <div class="menu-img col-sm-3">
-                    <img v-bind:src="'../images/nigiri/' + menu.image ">
-                  </div>
-                  <div class=" col-sm-9 menu-description">
-                    <p>{{ menu.description }}</p>
-                  </div>
-                </div>
-
-                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
-                  <div class="menu-title row">
-                    <p>{{ menu.name }} - {{ menu.price }}€</p>
-                  </div>
-                  <div class =" row" v-if="isSpicy(menu.spicy)">
-                    <p class ="spicy">Spicy</p>
-                  </div>
-                  <div class ="bouton-menus row">
-                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'nigiri')">Supprimer</button>
-                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'nigiri')">Modifier</button>
-                  </div>
-                </div>
-
-                <div class= "container" v-else>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <input type="text" v-model="editingMenu.name">
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p class=" menu-description"><textarea v-model="editingMenu.description"></textarea></p>
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <button @click="sendEditMenu()">Valider</button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button @click="abortEditMenu()">Annuler</button>
-                    </div>
-                  </div>
-
-                </div>
-
-              </article> -->
-
 
         </article>
 
@@ -449,12 +200,9 @@
     width: 100px;
     height: 100px;
   }
-  .container{
+  #colonne_principale{
 
-    /* background-color: #F0DDC4; */
-      /* background-color:rgba(137,27,23,0.5); */
       background-color:rgba(30,61,89,0.7);
-      /* background-color: rgba(7,123,138,0.7); */
       padding: 2%;
 
     width: 100%;
@@ -514,11 +262,7 @@
 
     /* border: 2px solid red; */
   }
-  .menu-img{
 
-    /* height: 300px;
-    width: 300px; */
-  }
   .bouton-menus button:hover{
     font-weight: bold;
     letter-spacing: 2px;
@@ -535,19 +279,41 @@
   .menu-title{
     font-size: 1.5em;
   }
-  button{
+  #colonne_principale button{
     padding:  1%;
     border-radius: 20px 20px;
   }
-  button:hover{
+  #colonne_principale button:hover{
     background-color: #a52421;
     color: #fff;
   }
 
-
-  #bouton_formulaire{
+  #balise_bouton_admin{
     position: fixed;
-    z-index: 4;
+    z-index: 2;
+  }
+  @media only screen and (max-device-width: 1100px) {
+    #balise_bouton_admin {
+      width: 100% !important;
+      /* position: relative; */
+      /* margin: 0;
+      padding: 0; */
+    }
+    #bouton_ajouter_menus, #bouton_fermer_menus{
+      width: 100vw !important;
+      /* position: relative; */
+      /* margin: 0; */
+    }
+  }
+
+  #bouton_ajouter_menus, #bouton_fermer_menus {
+    background-color: #A52421;
+    padding: 10px;
+    border: none;
+  }
+  #bouton_fermer_menus:hover,#bouton_ajouter_menus:hover {
+    background-color: #f5f0e1;
+    border: none;
   }
 
 </style>

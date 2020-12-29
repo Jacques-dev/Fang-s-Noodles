@@ -1,40 +1,40 @@
 <template>
-  <div class="container all">
+  <div id="all" class="container">
 
     <form @submit.prevent="addMenu">
-      <div class="row">
-        <div class="col-sm-12">
-          <h2>Nouveau menu à ajouter</h2>
+      <div class="container-fluid">
+        <div class="row">
+            <h2 class="col-sm-12">Nouveau menu à ajouter</h2>
         </div>
-        <div class="col-sm-12">
-          <select v-model="newMenu.type">
-            <option value="soups">Soup</option>
-            <option value="dumplings">Dumpling</option>
-            <option value="noodles">Noodle</option>
-            <option value="sashimi">Sashimi</option>
-            <option value="nigiri">Nigiri</option>
-          </select>
+        <div class="row">
+            <select class="col-sm-12" v-model="newMenu.type">
+              <option value="soups">Soup</option>
+              <option value="dumplings">Dumpling</option>
+              <option value="noodles">Noodle</option>
+              <option value="sashimi">Sashimi</option>
+              <option value="nigiri">Nigiri</option>
+            </select>
         </div>
-        <div class="col-sm-12">
-          <input type="text" v-model="newMenu.name" placeholder="Nom du menu" required>
+        <div class="row">
+            <input class="col-sm-12" type="text" v-model="newMenu.name" placeholder="Nom du menu" required>
         </div>
-        <div class="col-sm-12">
-          <input type="number" v-model="newMenu.price" placeholder="Prix" required>
+        <div class="row">
+            <input class="col-sm-12" type="number" v-model="newMenu.price" placeholder="Prix" required>
         </div>
-        <div class="col-sm-12">
-          <textarea type="text" v-model="newMenu.description" required></textarea>
+        <div class="row">
+            <textarea class="col-sm-12" type="text" v-model="newMenu.description" required></textarea>
         </div>
-        <div class="col-sm-12">
-          <select v-model="newMenu.spicy">
-            <option value="false">not spicy</option>
-            <option value="true">spicy</option>
-          </select>
+        <div class="row">
+            <select class="col-sm-12" v-model="newMenu.spicy">
+              <option value="false">not spicy</option>
+              <option value="true">spicy</option>
+            </select>
         </div>
-        <div class="col-sm-12">
-          <input type="text" v-model="newMenu.image" placeholder="Lien vers l'image">
+        <div class="row">
+            <input class="col-sm-12" type="text" v-model="newMenu.image" placeholder="Lien vers l'image">
         </div>
-        <div class="col-sm-12">
-          <button type="submit">Ajouter</button>
+        <div class="row">
+            <button class="col-sm-12" type="submit">Ajouter</button>
         </div>
       </div>
     </form>
@@ -65,8 +65,21 @@
 </script>
 
 <style>
-  .all{
+@media only screen and (max-device-width: 1100px) {
+  #all {
+    width: 100% !important;
+    text-align: center;
+  }
+}
+
+  #all{
     position: fixed;
     z-index: 4;
+    background-color: #891B17;
+    width: 20%;
+    /* margin: px 0 0 0 ; */
+  }
+  #all .row{
+    margin: 20px 0 20px 0;
   }
 </style>

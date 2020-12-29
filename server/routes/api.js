@@ -438,17 +438,6 @@
         index = eval(req.session.typesVar[i]).findIndex(a => a.id === menuId)
       }
     }
-    // if (menuType == "soups") {
-    //   index = req.session.panier.soups.findIndex(a => a.id === menuId)
-    // } else if (menuType == "dumplings") {
-    //   index = req.session.panier.dumplings.findIndex(a => a.id === menuId)
-    // } else if (menuType = "noodles") {
-    //   index = req.session.panier.noodles.findIndex(a => a.id === menuId)
-    // } else if (menuType == "sashimi") {
-    //   index = req.session.panier.sashimi.findIndex(a => a.id === menuId)
-    // } else if (menuType = "nigiri") {
-    //   index = req.session.panier.nigiri.findIndex(a => a.id === menuId)
-    // }
 
     if (isNaN(menuId)) {
       res.status(400).json({ message: 'Requête incorrecte' })
@@ -461,17 +450,6 @@
           eval(req.session.typesVar[i]).quantity = menuQte
         }
       }
-      // if (menuType == "soups") {
-      //   req.session.panier.soups.quantity = menuQte
-      // } else if (menuType == "dumplings") {
-      //   req.session.panier.dumplings.quantity = menuQte
-      // } else if(menuType =="noodles") {
-      //   req.session.panier.noodles.quantity = menuQte
-      // } else if (menuType == "sashimi") {
-      //   req.session.panier.sashimi.quantity = menuQte
-      // } else if(menuType == "nigiri") {
-      //   req.session.panier.nigiri.quantity = menuQte
-      // }
       res.send()
     }
   })

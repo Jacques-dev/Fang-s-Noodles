@@ -56,11 +56,11 @@
               </article>
             </article>
           </section>
-        </section>
+        </section> -->
 
 
 
-        <!-- <article class="tabcontent container" v-if="checkMenu('soups')">
+        <article class="tabcontent container" v-if="checkMenu('soups')">
           <p class="row type_plat">Soups</p>
           <div class="row">
             <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
@@ -171,7 +171,7 @@
 
             </article>
           </div>
-        </article> -->
+        </article>
 
       </section>
 
