@@ -311,6 +311,4 @@
       transition: .5s ease;
       backface-visibility: hidden;
     }
-
-
 </style>
