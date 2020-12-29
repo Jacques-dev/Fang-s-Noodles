@@ -120,6 +120,14 @@ var app = new Vue({
       this.user.reservations = []
       router.push('/')
     },
+    async updateProfile (newUser) {
+      await axios.put('/api/user/', 'nom=' + newUser.nom + '&prenom=' + newUser.prenom + '&email=' + newUser.email + '&telephone=' + newUser.telephone)
+      const res = await axios.get('/api/me')
+      this.user.nom = res.data.nom
+      this.user.email = res.data.email
+      this.user.prenom = res.data.prenom
+      this.user.telephone = res.data.telephone
+    },
     async reserver (reservation) {
       if (this.user.id) {
         const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
@@ -338,17 +346,6 @@ var app = new Vue({
           menu.price = newMenu.price
         }
       }
-    },
-    async updateProfile (newProfile){
-      alert(newProfile.nom)
-      alert(newProfile.prenom)
-      await axios.put('/api/profil/' + newProfile.type + '/' +  newProfile.id, newProfile)
-
-          this.user.prenom = newProfile.prenom
-          this.user.nom = newProfile.nom
-          this.user.telephone = newProfile.telephone
-          this.user.email = newProfile.email
-
     }
   }
 })

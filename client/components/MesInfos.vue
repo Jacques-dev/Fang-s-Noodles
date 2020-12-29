@@ -9,7 +9,7 @@
     </div>
     <div class="row">
       <div id="mes_infos" class="d-flex col-sm-8">
-        <form @submit.prevent="editProfil">
+        <form @submit.prevent="sendEditProfil">
           <div class="row">
             <h2>Mes infos</h2>
           </div>
@@ -56,7 +56,7 @@
     },
     data () {
       return {
-        editingProfile:{
+        editingProfile: {
           id: -1,
           nom:'',
           prenom:'',

@@ -200,6 +200,37 @@
     }
   })
 
+  router.put('/user', async (req, res) => {
+    var nom = req.body.nom
+    var prenom = req.body.prenom
+    var email = req.body.email
+    var telephone = req.body.telephone
+    if (!nom) {
+      nom = req.session.userName
+    }
+    if (!prenom) {
+      prenom = req.session.userFirstName
+    }
+    if (!email) {
+      email = req.session.userEmail
+    }
+    if (!telephone) {
+      telephone = req.session.userTelephone
+    }
+    req.session.userName = nom
+    req.session.userFirstName = prenom
+    req.session.userEmail = email
+    req.session.userTelephone = telephone
+
+    const update = "UPDATE users SET nom = $1, prenom = $2, email = $3, telephone = $4 WHERE email=$3"
+    const result = await client.query({
+      text: update,
+      values: [nom, prenom, email, telephone]
+    })
+
+    res.send()
+  })
+
   router.post('/reservation', async (req, res) => {
 
     if (req.session.userId) {
@@ -354,7 +385,7 @@
   /*
    * Cette route doit supprimer un menu dans le panier
    */
- router.delete('/panier/:type/:id', (req, res) => {
+  router.delete('/panier/:type/:id', (req, res) => {
    const menuId = parseInt(req.params.id)
    const menuType = req.params.type
 
