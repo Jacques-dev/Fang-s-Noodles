@@ -131,8 +131,9 @@
 
 <style scoped>
   .chaque_reservation{
-    border-bottom: black 1px solid;
-    margin: 10px 0 10px 0;
+    box-shadow: 3px 3px 3px 3px rgba(137,27,23,0.95);
+    margin: 12px 0 12px 0;
+    padding: 10px 0 10px 0;
   }
 
   .data_reservation{
@@ -143,6 +144,7 @@
     font-size: 1.7em;
     display:flex;
     justify-content: center;
+    padding: 20px;
   }
 
   .container{
@@ -164,4 +166,10 @@
   #mes_infos, #mes_reservations{
     background-color: rgba(240,221,196,1);
   }
+
+  #mes_infos{
+        margin-bottom: 2%;
+        border-bottom: black 1px solid;
+  }
+
 </style>

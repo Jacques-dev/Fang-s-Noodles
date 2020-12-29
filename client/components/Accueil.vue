@@ -162,6 +162,8 @@
   }
 
   #slider {
+    z-index: 4;
+    /* background-color: black; */
     list-style: none;
     position: fixed;
     top: 50%;
@@ -182,19 +184,17 @@
     background-size: cover;
   }
 
-  @media only screen and (max-device-width: 1366px) {
-    .parallax {
-      background-attachment: scroll;
-    }
-  }
 
   @media only screen and (max-device-width: 1366px) {
     #first #typeMenu {
       height: auto !important;
     }
-    
+
     #first #typeMenu img{
       display: none;
+    }
+    .parallax {
+      background-attachment: scroll;
     }
   }
 

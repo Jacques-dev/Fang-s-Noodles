@@ -1,6 +1,8 @@
 <template>
 
-  <section class="container-fluid d-flex flex-column" id="background">
+<section id="background">
+
+  <section class="container d-flex flex-column" >
 
     <section id="resume_commande" class="row">
 
@@ -21,7 +23,7 @@
     <section id="colonne_principale" class="row">
 
       <section id="colonne_gauche" class="col-sm-2 colonne">
-        <ul id="menus-deroulant" class="nav nav-pills">
+        <!-- <ul id="menus-deroulant" class="nav nav-pills">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
             <div class="dropdown-menu">
@@ -32,7 +34,28 @@
               <button class="dropdown-item" @click="changeTypeMenu('nigiri')">Nigiri</a>
             </div>
           </li>
-        </ul>
+        </ul> -->
+<section class="container-fluid">
+  <div class="row">
+    <button @click="changeTypeMenu('soups')">Soups</a>
+  </div>
+  <div class="row">
+    <button @click="changeTypeMenu('dumplings')">Dumplings</a>
+  </div>
+  <div class="row">
+    <button @click="changeTypeMenu('noodles')">Noodles</a>
+  </div>
+  <div class="row">
+    <button @click="changeTypeMenu('sashimi')">Sashimi</a>
+  </div>
+  <div class="row">
+      <button @click="changeTypeMenu('nigiri')">Nigiri</a>
+  </div>
+
+
+
+</section>
+
       </section>
 
       <section id="colonne_centrale" class="col-sm-6 colonne">
@@ -53,7 +76,7 @@
                   {{ menu.name }} - {{ menu.price }}€
                 </div>
 
-                <div v-if="isSpicy(menu.spicy)" style="color: red">
+                <div class ="spicy" v-if="isSpicy(menu.spicy)">
                   Spicy
                 </div>
 
@@ -117,6 +140,7 @@
 
   </section>
 
+</section>
 </template>
 
 <script>
@@ -201,6 +225,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    /* overflow-y: scroll; */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -210,11 +235,11 @@
   #resume_commande{
     padding: 20px;
     background-color:rgba(252,243,215,0.97);
-    width: 30%;
+    /* width: 40%; */
   }
 
   #colonne_principale{
-    width: 58%;
+    /* width: 60%; */
     background-color:rgba(252,243,215,0.97);
     border-top: 1px solid black;
   }
@@ -233,8 +258,9 @@
 
   #colonne_centrale{
     overflow-y: scroll;
-    max-height: 600px;
+    height: 600px;
   }
+
 
   #colonne_centrale img{
     max-width:245px;
@@ -307,5 +333,15 @@
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
+  }
+
+  @media only screen and (max-device-width: 570px) {
+    #colonne_centrale {
+      border-bottom: 5px solid black;
+    }
+  }
+
+  .spicy{
+    color:red;
   }
 </style>

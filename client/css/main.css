@@ -51,7 +51,7 @@ footer {
     }
         .topnav-right h3 {
           margin-right: 25px;
-          float: left;
+          /* float: left; */
         }
 
     .lien:hover {
