@@ -6,7 +6,8 @@ const menus = [
       description: 'Poulet et nouilles en soup',
       image: '../images/soups/chicken_noodle.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'soups'
     },
     {
       id: 2,
@@ -14,7 +15,8 @@ const menus = [
       description: 'Beuf et nouilles en soup',
       image: '../images/soups/beef_noodle.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'soups'
     },
     {
       id: 3,
@@ -22,7 +24,8 @@ const menus = [
       description: 'Poulet, maïs et nouilles en soup',
       image: '../images/soups/chicken_and_corn_noodle.jpg',
       price: 11,
-      spicy: true
+      spicy: true,
+      type: 'soups'
     },
     {
       id: 4,
@@ -30,7 +33,8 @@ const menus = [
       description: 'Ravioli et nouilles en soup',
       image: '../images/soups/won_ton_noodle.jpg',
       price: 25,
-      spicy: true
+      spicy: true,
+      type: 'soups'
     }
   ],
   dumplings = [
@@ -40,7 +44,8 @@ const menus = [
       description: 'Boulette poêlée composée de ciboulette et de dés de crevettes',
       image: '../images/dumplings/gow_choy_gao.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'dumplings'
     },
     {
       id: 2,
@@ -48,7 +53,8 @@ const menus = [
       description: 'Boulettes de porc et crevettes',
       image: '../images/dumplings/siu_mai.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'dumplings'
     },
     {
       id: 3,
@@ -56,7 +62,8 @@ const menus = [
       description: 'Gelée soit avec de la peau de porc, soit avec des pattes de poulet et des aromates',
       image: '../images/dumplings/xiao_long_bao.jpg',
       price: 12,
-      spicy: false
+      spicy: false,
+      type: 'dumplings'
     },
     {
       id: 4,
@@ -64,7 +71,8 @@ const menus = [
       description: 'Petits pains taïwanais frits à la poêle, fourrés de poireaux et de crevettes séchées',
       image: '../images/dumplings/jiu_cai_bao.jpg',
       price: 20,
-      spicy: false
+      spicy: false,
+      type: 'dumplings'
     }
   ],
   noodles = [
@@ -74,7 +82,8 @@ const menus = [
       description: 'Ramen sauté au porc haché',
       image: '../images/noodles/ramen_porc_hache.jpg',
       price: 9,
-      spicy: true
+      spicy: true,
+      type: 'noodles'
     },
     {
       id: 2,
@@ -82,7 +91,8 @@ const menus = [
       description: 'Vermicelles de riz sautées au boeuf',
       image: '../images/noodles/vermicelles_riz_boeuf.jpg',
       price: 9,
-      spicy: true
+      spicy: true,
+      type: 'noodles'
     },
     {
       id: 3,
@@ -90,7 +100,8 @@ const menus = [
       description: 'Ramen sauté au poulet',
       image: '../images/noodles/ramen_poulet.jpg',
       price: 13,
-      spicy: false
+      spicy: false,
+      type: 'noodles'
     },
     {
       id: 4,
@@ -98,7 +109,8 @@ const menus = [
       description: 'Ramen sauté aux légumes',
       image: '../images/noodles/ramen_legumes.jpg',
       price: 18,
-      spicy: false
+      spicy: false,
+      type: 'noodles'
     }
   ],
   sashimi = [
@@ -108,7 +120,8 @@ const menus = [
       description: 'description',
       image: '../images/sashimi/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'sashimi'
     },
     {
       id: 2,
@@ -116,7 +129,8 @@ const menus = [
       description: "Thon rose légèrement grillée, puis découpée en tranches. Accompagnée de ciboule, de gingembre et d'ail",
       image: '../images/sashimi/katsuo_tataki.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'sashimi'
     },
     {
       id: 3,
@@ -124,7 +138,8 @@ const menus = [
       description: 'description',
       image: '../images/sashimi/sashimi_aji.jpg',
       price: 25,
-      spicy: true
+      spicy: true,
+      type: 'sashimi'
     },
     {
       id: 4,
@@ -132,7 +147,8 @@ const menus = [
       description: 'Texture légèrement croquante et moelleuse, ce qui fait ressortir la douceur du poisson à chaque bouchée.',
       image: '../images/sashimi/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'sashimi'
     },
     {
       id: 5,
@@ -140,7 +156,8 @@ const menus = [
       description: 'Un morceau assez épais, mariné et pané aux graines de sésame puis cuit à feu vif, très rapidement, sur les deux faces.',
       image: '../images/sashimi/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'sashimi'
     }
   ],
   nigiri =[
@@ -150,7 +167,8 @@ const menus = [
       description: 'Poisson frais ou fruit de mer tranché et délicatement placé sur du riz vinaigré. Une combinaison de texture et saveurs rafraichissantes servi en 2 morceaux.',
       image: '../images/nigiri/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'nigiri'
     },
     {
       id: 2,
@@ -158,7 +176,8 @@ const menus = [
       description: 'Le chef utilise un chalumeau pour carboniser légèrement le poisson et lui donner un merveilleux goût fumé et une texture délicate et feuilletée.',
       image: '../images/nigiri/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'nigiri'
     },
     {
       id: 3,
@@ -166,7 +185,8 @@ const menus = [
       description: 'Fait à base de Maquereau',
       image: '../images/nigiri/black.jpg',
       price: 11,
-      spicy: true
+      spicy: true,
+      type: 'nigiri'
     },
     {
       id: 4,
@@ -174,7 +194,8 @@ const menus = [
       description: "L'hirame d'été a tendance à être plus gras et plus mou, l'antithèse de la saveur légère et propre et de la texture ferme de l'hirame d'hiver.",
       image: '../images/nigiri/black.jpg',
       price: 25,
-      spicy: true
+      spicy: true,
+      type: 'nigiri'
     },
     {
       id: 5,
@@ -182,7 +203,8 @@ const menus = [
       description: 'description',
       image: '../images/nigiri/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'nigiri'
     },
     {
       id: 6,
@@ -190,7 +212,8 @@ const menus = [
       description: 'description',
       image: '../images/nigiri/black.jpg',
       price: 9,
-      spicy: false
+      spicy: false,
+      type: 'nigiri'
     },
     {
       id: 7,
@@ -198,7 +221,8 @@ const menus = [
       description: 'description',
       image: '../images/nigiri/black.jpg',
       price: 11,
-      spicy: true
+      spicy: true,
+      type: 'nigiri'
     },
     {
       id: 8,
@@ -206,7 +230,8 @@ const menus = [
       description: 'description',
       image: '../images/nigiri/black.jpg',
       price: 25,
-      spicy: true
+      spicy: true,
+      type: 'nigiri'
     }
   ]
 ]

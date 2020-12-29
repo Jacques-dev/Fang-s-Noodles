@@ -30,7 +30,7 @@
                   <router-link to='/menus/#nigiri'>nigiri</router-link>
                 </div>
 
-                <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id" :id="nav(menu.image)">
+                <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id" :id="nav(menu.type)">
 
                   <div class="row">
                     <div class="menu-img col-sm-3">
@@ -49,8 +49,8 @@
                       <p class="spicy">Spicy</p>
                     </div>
                     <div class="bouton-menus row">
-                      <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, menu.image)">Supprimer</button>
-                      <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, menu.image)">Modifier</button>
+                      <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, menu.type)">Supprimer</button>
+                      <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, menu.type)">Modifier</button>
                     </div>
                   </div>
 
@@ -123,8 +123,7 @@
     },
     methods: {
       nav(menuType) {
-        var str = menuType.split('/')
-        return str[2]
+        return menuType
       },
       isSpicy(boolean) {
         return boolean
@@ -133,11 +132,10 @@
         this.$emit('add-menu', menu)
       },
       deleteMenu (menuId, menuType) {
-        var str = menuType.split('/')
 
         let content = {
           id: menuId,
-          type: str[2]
+          type: menuType
         }
         this.$emit('delete-menu', content)
       },
@@ -148,8 +146,7 @@
         this.editingMenu.image = menu.image
         this.editingMenu.price = menu.price
         this.editingMenu.spicy = menu.spicy
-        var str = menuType.split('/')
-        this.editingMenu.type = str[2]
+        this.editingMenu.type = menuType
       },
       sendEditMenu () {
         this.$emit('update-menu', this.editingMenu)

@@ -509,13 +509,26 @@
   router.post('/menu', (req, res) => {
     const name = req.body.name
     const description = req.body.description
-    const image = req.body.image
+    var image
     const price = parseInt(req.body.price)
     const spicy = (req.body.spicy == 'true')
     const type = req.body.type
 
+    if (!req.body.image) {
+      image = '../images/black.jpg'
+    } else {
+      image = req.body.image
+    }
+
+    var size
+    for (let i = 0; i != parseInt(req.session.typesString.length); i++) {
+      if (type == req.session.typesString[i]) {
+        size = menus[i].length
+      }
+    }
+
     const menu = {
-      id: menus.length + 1,
+      id: size + 1,
       name: name,
       description: description,
       image: image,
@@ -523,7 +536,12 @@
       spicy: spicy,
       type: type
     }
-    menus.push(menu)
+    for (let i = 0; i != parseInt(req.session.typesString.length); i++) {
+      if (type == req.session.typesString[i]) {
+        menus[i].push(menu)
+      }
+    }
+    
     // on envoie l'menu ajouté à l'utilisateur
     res.json(menu)
   })
@@ -555,6 +573,7 @@
         const menu = menus[i].find(a => a.id === req.menuId)
         req.menu = menu
         req.type = menuType
+
       }
     }
 
