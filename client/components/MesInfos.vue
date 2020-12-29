@@ -148,7 +148,7 @@
   }
 
   .container{
-    height: 76.4%;
+    height: 100%;
   }
 
   #background_infos{
@@ -170,6 +170,9 @@
   #mes_infos{
         margin-bottom: 2%;
         border-bottom: black 1px solid;
+  }
+  #mes_reservations{
+      padding-bottom: 15px;
   }
 
 </style>

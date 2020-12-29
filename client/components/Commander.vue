@@ -2,7 +2,7 @@
 
 <section id="background">
 
-  <section class="container d-flex flex-column" >
+  <section id="ici" class="container d-flex flex-column" >
 
     <section id="resume_commande" class="row">
 
@@ -13,8 +13,8 @@
         <p>Total : {{ panier.prix }}€ </p>
       </article>
       <article class="col-sm-4">
-        <button id="bouton_commander" class="col-sm-12" @click="commander()">
-          <p>Commander</p>
+        <button class="slide_commander" id="bouton_commander" class="col-sm-12" @click="commander()">
+          Commander
         </button>
       </article>
 
@@ -23,38 +23,24 @@
     <section id="colonne_principale" class="row">
 
       <section id="colonne_gauche" class="col-sm-2 colonne">
-        <!-- <ul id="menus-deroulant" class="nav nav-pills">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
-            <div class="dropdown-menu">
-              <button class="dropdown-item" @click="changeTypeMenu('soups')">Soups</a>
-              <button class="dropdown-item" @click="changeTypeMenu('dumplings')">Dumplings</a>
-              <button class="dropdown-item" @click="changeTypeMenu('noodles')">Noodles</a>
-              <button class="dropdown-item" @click="changeTypeMenu('sashimi')">Sashimi</a>
-              <button class="dropdown-item" @click="changeTypeMenu('nigiri')">Nigiri</a>
-            </div>
-          </li>
-        </ul> -->
-<section class="container-fluid">
-  <div class="row">
-    <button @click="changeTypeMenu('soups')">Soups</a>
-  </div>
-  <div class="row">
-    <button @click="changeTypeMenu('dumplings')">Dumplings</a>
-  </div>
-  <div class="row">
-    <button @click="changeTypeMenu('noodles')">Noodles</a>
-  </div>
-  <div class="row">
-    <button @click="changeTypeMenu('sashimi')">Sashimi</a>
-  </div>
-  <div class="row">
-      <button @click="changeTypeMenu('nigiri')">Nigiri</a>
-  </div>
+        <section class="container-fluid d-flex flex-column">
+          <div class="row type_menu">
+            <button class="slide" @click="changeTypeMenu('soups')">Soups</a>
+          </div>
+          <div class="row type_menu">
+            <button class="slide" @click="changeTypeMenu('dumplings')">Dumplings</a>
+          </div>
+          <div class="row type_menu">
+            <button class="slide" @click="changeTypeMenu('noodles')">Noodles</a>
+          </div>
+          <div class="row type_menu">
+            <button class="slide" @click="changeTypeMenu('sashimi')">Sashimi</a>
+          </div>
+          <div class="row type_menu">
+              <button class="slide" @click="changeTypeMenu('nigiri')">Nigiri</a>
+          </div>
 
-
-
-</section>
+        </section>
 
       </section>
 
@@ -109,7 +95,7 @@
 
                 <article class="row">
                   <article class="col-sm-6">
-                    <select @change="edit(menu.id, menu.type, menu.prix)" v-model="editMenu.quantity" class="mySelect">
+                    <select class="col-sm-12" @change="edit(menu.id, menu.type, menu.prix)" v-model="editMenu.quantity" class="mySelect">
                       <option value="" disabled selected>quantité</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -125,7 +111,7 @@
                   </article>
 
                   <article class="col-sm-6">
-                    <button class="col-sm-12" @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
+                    <button class="slide" @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
                   </article>
                 </article>
 
@@ -218,6 +204,63 @@
 
 <style scoped>
 
+  /* #menu{
+    width: 100%;
+  } */
+
+
+
+/* button {
+background: none;
+border: 2px solid;
+font: inherit;
+line-height: 1;
+margin: 0.5em;
+padding: 1em 2em;
+} */
+
+@media only screen and (min-device-width: 1000px) {
+  .slide:hover,
+  .slide:focus {
+    box-shadow: inset 8em 0 0 0 var(--hover);
+  }
+  .slide_commander:hover,
+  .slide_commander:focus {
+    box-shadow: inset 21em 0 0 0 var(--hover);
+  }
+
+  .slide, .slide_commander {
+  --color: #8fc866;
+  --hover: #66c887;
+  }
+  button {
+  color: black;
+  transition: 0.70s;
+  }
+  button:hover, button:focus {
+  border-color: var(--hover);
+  color: #fff;
+  }
+}
+
+@media only screen and (max-device-width: 575px) {
+  #ici{
+    max-height: 100%;
+    overflow-y: scroll;
+  }
+  #resume_commande{
+    margin-bottom: 25px;
+  }
+  #colonne_gauche{
+    margin-bottom: 25px;
+  }
+  #colonne_centrale{
+    margin-bottom: 25px;
+  }
+  #colonne_droite{
+    border-top: 8px double black
+  }
+}
   #background{
     color:black;
     display: flex;
@@ -236,6 +279,11 @@
     padding: 20px;
     background-color:rgba(252,243,215,0.97);
     /* width: 40%; */
+  }
+
+  #resume_commande button{
+    padding: 5px;
+    width: 100%;
   }
 
   #colonne_principale{
@@ -261,7 +309,6 @@
     height: 600px;
   }
 
-
   #colonne_centrale img{
     max-width:245px;
     max-height: 185px;
@@ -273,6 +320,17 @@
 
   #colonne_centrale .plat:hover .affichage_bouton_ajout_panier {
     opacity: 1;
+  }
+
+  .type_menu{
+    margin: 10px 0 10px 0;
+    /* border: 2px black solid; */
+  }
+
+  .type_menu button{
+    /* text-decoration: none; */
+    /* border: none; */
+    width: 100%;
   }
 
   .type_plat{
@@ -300,28 +358,6 @@
     padding: 16px 32px;
   }
 
-  .dropdown-menu button {
-    display: flex;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 17px;
-  }
-
-  .dropdown-menu button:hover {
-    background-color: #ddd;
-  }
-
-  .dropdown-menu button.active {
-    background-color: #ccc;
-  }
-
   .image-plat {
     position: relative;
   }
@@ -333,12 +369,6 @@
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
-  }
-
-  @media only screen and (max-device-width: 570px) {
-    #colonne_centrale {
-      border-bottom: 5px solid black;
-    }
   }
 
   .spicy{

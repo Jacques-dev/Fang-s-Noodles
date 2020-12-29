@@ -1,10 +1,19 @@
 <template>
   <section id="background">
 
-    <section id="balise_bouton_admin">
-      <button id="bouton_ajouter_menus"v-if="admin.id" @click="showForm = true">Afficher le formulaire</button>
-      <button id="bouton_fermer_menus"v-if="admin.id && showForm" @click="showForm = false">Fermer le formulaire</button>
-      <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
+    <section v-if="admin.id" class="container-fluid" id="balise_admin">
+      <div class="row">
+          <button id="bouton_ajouter_menus"  @click="showForm = true">Ajouter un plat</button>
+      </div>
+      <div class="row">
+        <button id="bouton_fermer_menus" v-if=" showForm" @click="showForm = false">Fermer</button>
+      </div>
+      <div class="row">
+        <div  id ="colonne_admin" class="col-sm-12">
+          <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
+        </div>
+      </div>
+
     </section>
 
     <section id="colonne_principale" class="container">
@@ -50,32 +59,36 @@
                 </div>
               </div>
 
-              <div class="container" v-else>
+              <div id="modification_plats" class="container" v-else>
 
                 <div class="row">
                   <div class="col-sm-6">
+                    <p> nom du plat : </p>
                     <input type="text" v-model="editingMenu.name">
                   </div>
                   <div class="col-sm-6">
-                    <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                    <p> prix du plat : </p>
+                     <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                  </div>
+                </div>
+
+                <div  class="row">
+                  <div class="col-sm-6">
+                    <p> description du plat : </p>
+                    <textarea class="col-sm-12" v-model="editingMenu.description"></textarea>
+                  </div>
+                  <div class="col-sm-6">
+                    <p> image du plat : </p>
+                    <input class="col-sm-12" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-sm-6">
-                    <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                    <button id="valider" class="col-sm-12" @click="sendEditMenu()">Valider</button>
                   </div>
                   <div class="col-sm-6">
-                    <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <button @click="sendEditMenu()">Valider</button>
-                  </div>
-                  <div class="col-sm-6">
-                    <button @click="abortEditMenu()">Annuler</button>
+                    <button class="col-sm-12" @click="abortEditMenu()">Annuler</button>
                   </div>
                 </div>
 
@@ -166,6 +179,34 @@
 
 <style scoped>
 
+
+  #colonne_admin{
+    padding: 0;
+    margin: 0;
+  }
+
+  #ligne_1, #ligne_2{
+
+  }
+
+  #modification_plats{
+    margin: 15px 0 0 0;
+    background-color: #f5f0e1;
+    padding: 15px;
+  }
+
+  #modification_plats .row{
+
+    color:black;
+    padding: 0 0 15px 0;
+    /* border: 2px red solid; */
+  }
+
+  #modification_plats p{
+    font-weight:bold;
+  }
+
+
   #titre_page{
     font-size: 2.6em;
     display: flex;
@@ -185,8 +226,7 @@
 
   .type_plat .current{
     color:#FFA213;
-    text-decoration: underline;
-    letter-spacing: 2px;
+    border: 2px 0 2px 0 black solid;
     padding-bottom: 15px;
   }
 
@@ -226,20 +266,11 @@
   }
 
   .type_plat a{
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
     color:#fff;
   }
 
-  .type_plat a:hover{
-    letter-spacing: 2px;
-  }
-
-  .type_plat p{
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-bottom: 1rem;
-  }
 
   .ligne_plat{
     border-bottom: 2px solid #fff;
@@ -247,6 +278,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     margin: 5%;
+    padding: 0 0 2% 0;
   }
 
   .menu-img, .nom_prix_spicy_plat{
@@ -257,10 +289,6 @@
     margin-bottom: 1%;
   }
 
-  .bouton-menus button:hover{
-    font-weight: bold;
-    letter-spacing: 2px;
-  }
 
   .menu-title, .spicy, .menu-description, .bouton-menus {
     padding:10px;
@@ -270,6 +298,8 @@
     background-color: #f5f0e1;
     color: rgb(137,27,23);
     margin-top: 10px;
+    color: black;
+    font-size: 1.2em;
   }
 
   .menu-title{
@@ -277,8 +307,11 @@
   }
 
   #colonne_principale button{
-    padding:  1%;
+    padding:  5px;
     border-radius: 20px 20px;
+    font-size: 1.4em;
+    margin: 10px 0 0 0 ;
+    /* width: 100%; */
   }
 
   #colonne_principale button:hover{
@@ -286,16 +319,17 @@
     color: #fff;
   }
 
-  #balise_bouton_admin{
+  #balise_admin{
     position: fixed;
+    /* width: 50%; */
+    /* left:50%; */
+    /* display: flex; */
+    /* justify-content: center; */
     z-index: 2;
   }
 
-  @media only screen and (max-device-width: 1100px) {
-    #balise_bouton_admin {
-      width: 100% !important;
-    }
-    
+  @media only screen and (max-device-width: 1000px) {
+
     #bouton_ajouter_menus, #bouton_fermer_menus{
       width: 100vw !important;
     }
@@ -305,6 +339,8 @@
     background-color: #A52421;
     padding: 10px;
     border: none;
+    width: 15%;
+    min-width: 120px;
   }
 
   #bouton_fermer_menus:hover,#bouton_ajouter_menus:hover {

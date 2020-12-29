@@ -42,7 +42,7 @@
         <div class="col-sm-7">
 
         </div>
-        <div class="col-sm-4">
+        <div id="text_fille_soupe" class="col-sm-4">
           <h2>Our Story Begins In The East<h2>
           <p>I'm a paragraph. Click here to add your own text and edit me.
             It’s easy.
@@ -87,6 +87,9 @@
 </script>
 
 <style scoped>
+  #text_fille_soupe{
+    padding: 0 25px 0 25px;
+  }
 
   #first {
     background-image: url("../images/backgrounds/accueil_1.webp");

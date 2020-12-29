@@ -1,13 +1,15 @@
 <template>
-  <div id="all" class="container">
+  <div id="all">
 
-    <form @submit.prevent="addMenu">
+
       <div class="container-fluid">
-        <div class="row">
-          <h2 class="col-sm-12">Nouveau menu à ajouter</h2>
+        <form @submit.prevent="addMenu">
+        <div id ="titre_admin" class="row">
+          <div  class="col-sm-12">Nouveau menu à ajouter</div>
         </div>
         <div class="row">
           <select class="col-sm-12" v-model="newMenu.type">
+            <option value="" disabled selected> Type de plat </option>
             <option value="soups">Soup</option>
             <option value="dumplings">Dumpling</option>
             <option value="noodles">Noodle</option>
@@ -22,10 +24,11 @@
           <input class="col-sm-12" type="number" v-model="newMenu.price" placeholder="Prix" required>
         </div>
         <div class="row">
-          <textarea class="col-sm-12" type="text" v-model="newMenu.description" required></textarea>
+          <textarea placeholder="description du plat" class="col-sm-12" type="text" v-model="newMenu.description" required></textarea>
         </div>
         <div class="row">
           <select class="col-sm-12" v-model="newMenu.spicy">
+            <option value="" disabled selected> Spicy or not </option>
             <option value="false">not spicy</option>
             <option value="true">spicy</option>
           </select>
@@ -36,8 +39,9 @@
         <div class="row">
           <button class="col-sm-12" type="submit">Ajouter</button>
         </div>
+        </form>
       </div>
-    </form>
+
 
   </div>
 </template>
@@ -66,10 +70,17 @@
 
 <style>
 
-  @media only screen and (max-device-width: 1100px) {
-    #all {
-      width: 100% !important;
-      text-align: center;
+  #titre_admin{
+    font-size: 1.3em;
+    text-align:center;
+
+  }
+
+  @media only screen and (max-device-width: 1000px) {
+    #all{
+      width: 70vw !important;
+      margin: 0 15vw 0 15vw;
+      /* text-align: center; */
     }
   }
 
@@ -83,5 +94,5 @@
   #all .row{
     margin: 20px 0 20px 0;
   }
-  
+
 </style>
