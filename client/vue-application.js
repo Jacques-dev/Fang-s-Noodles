@@ -162,7 +162,6 @@ var app = new Vue({
         if (menu.type == this.typesString[i]) {
           const indexMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
           this.panier.menus.splice(indexMenu.data, 1)
-
         }
       }
 

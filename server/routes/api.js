@@ -451,11 +451,9 @@
     } else if (index === -1) {
       res.status(501).json({ message: "L'menu n'est pas dans le panier" })
     } else {
-      const size = parseInt(req.session.typesString.length)
+      const size = req.session.panier.menus.length
       for (let i = 0; i != size; i++) {
-        if (menuType == req.session.typesString[i]) {
-          req.session.panier.menus[i].quantity = menuQte
-        }
+        req.session.panier.menus[i].quantity = menuQte
       }
       res.send()
     }
