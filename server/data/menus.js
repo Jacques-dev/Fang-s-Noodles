@@ -3,7 +3,7 @@ const menus = [
     {
       id: 1,
       name: 'Chicken Noodle Soup',
-      description: 'description',
+      description: 'Poulet et nouilles en soup',
       image: '../images/soups/chicken_noodle.jpg',
       price: 9,
       spicy: false
@@ -11,7 +11,7 @@ const menus = [
     {
       id: 2,
       name: 'Beef Noodle Soup',
-      description: 'description',
+      description: 'Beuf et nouilles en soup',
       image: '../images/soups/beef_noodle.jpg',
       price: 9,
       spicy: false
@@ -19,7 +19,7 @@ const menus = [
     {
       id: 3,
       name: 'Chicken & Corn Noodle Soup',
-      description: 'description',
+      description: 'Poulet, maïs et nouilles en soup',
       image: '../images/soups/chicken_and_corn_noodle.jpg',
       price: 11,
       spicy: true
@@ -27,7 +27,7 @@ const menus = [
     {
       id: 4,
       name: 'Won Ton Noodle Soup',
-      description: 'description',
+      description: 'Ravioli et nouilles en soup',
       image: '../images/soups/won_ton_noodle.jpg',
       price: 25,
       spicy: true
@@ -37,7 +37,7 @@ const menus = [
     {
       id: 1,
       name: 'Gow Choy Gao',
-      description: 'description',
+      description: 'Boulette poêlée composée de ciboulette et de dés de crevettes',
       image: '../images/dumplings/gow_choy_gao.jpg',
       price: 9,
       spicy: false
@@ -45,7 +45,7 @@ const menus = [
     {
       id: 2,
       name: 'Siu Mai',
-      description: 'description',
+      description: 'Boulettes de porc et crevettes',
       image: '../images/dumplings/siu_mai.jpg',
       price: 9,
       spicy: false
@@ -53,7 +53,7 @@ const menus = [
     {
       id: 3,
       name: 'Xiao Long Bao',
-      description: 'description',
+      description: 'Gelée soit avec de la peau de porc, soit avec des pattes de poulet et des aromates',
       image: '../images/dumplings/xiao_long_bao.jpg',
       price: 12,
       spicy: false
@@ -61,7 +61,7 @@ const menus = [
     {
       id: 4,
       name: 'Jiu Cai Bao',
-      description: 'description',
+      description: 'Petits pains taïwanais frits à la poêle, fourrés de poireaux et de crevettes séchées',
       image: '../images/dumplings/jiu_cai_bao.jpg',
       price: 20,
       spicy: false
@@ -71,7 +71,7 @@ const menus = [
     {
       id: 1,
       name: 'Ramen sauté au porc haché',
-      description: 'description',
+      description: 'Ramen sauté au porc haché',
       image: '../images/noodles/ramen_porc_hache.jpg',
       price: 9,
       spicy: true
@@ -79,7 +79,7 @@ const menus = [
     {
       id: 2,
       name: 'Vermicelles de riz sautées au boeuf',
-      description: 'description',
+      description: 'Vermicelles de riz sautées au boeuf',
       image: '../images/noodles/vermicelles_riz_boeuf.jpg',
       price: 9,
       spicy: true
@@ -87,7 +87,7 @@ const menus = [
     {
       id: 3,
       name: 'Ramen sauté au poulet',
-      description: 'description',
+      description: 'Ramen sauté au poulet',
       image: '../images/noodles/ramen_poulet.jpg',
       price: 13,
       spicy: false
@@ -95,7 +95,7 @@ const menus = [
     {
       id: 4,
       name: 'Ramen sauté aux légumes',
-      description: 'description',
+      description: 'Ramen sauté aux légumes',
       image: '../images/noodles/ramen_legumes.jpg',
       price: 18,
       spicy: false
@@ -113,7 +113,7 @@ const menus = [
     {
       id: 2,
       name: 'Katsuo Tataki',
-      description: 'description',
+      description: "Thon rose légèrement grillée, puis découpée en tranches. Accompagnée de ciboule, de gingembre et d'ail",
       image: '../images/sashimi/katsuo_tataki.jpg',
       price: 9,
       spicy: false
@@ -129,7 +129,7 @@ const menus = [
     {
       id: 4,
       name: 'Hirame',
-      description: 'description',
+      description: 'Texture légèrement croquante et moelleuse, ce qui fait ressortir la douceur du poisson à chaque bouchée.',
       image: '../images/sashimi/black.jpg',
       price: 9,
       spicy: false
@@ -137,7 +137,7 @@ const menus = [
     {
       id: 5,
       name: 'Albacore Tataki',
-      description: 'description',
+      description: 'Un morceau assez épais, mariné et pané aux graines de sésame puis cuit à feu vif, très rapidement, sur les deux faces.',
       image: '../images/sashimi/black.jpg',
       price: 9,
       spicy: false
@@ -147,7 +147,7 @@ const menus = [
     {
       id: 1,
       name: 'Maguro',
-      description: 'description',
+      description: 'Poisson frais ou fruit de mer tranché et délicatement placé sur du riz vinaigré. Une combinaison de texture et saveurs rafraichissantes servi en 2 morceaux.',
       image: '../images/nigiri/black.jpg',
       price: 9,
       spicy: false
@@ -155,7 +155,7 @@ const menus = [
     {
       id: 2,
       name: 'Hamachi',
-      description: 'description',
+      description: 'Le chef utilise un chalumeau pour carboniser légèrement le poisson et lui donner un merveilleux goût fumé et une texture délicate et feuilletée.',
       image: '../images/nigiri/black.jpg',
       price: 9,
       spicy: false
@@ -163,7 +163,7 @@ const menus = [
     {
       id: 3,
       name: 'Saba',
-      description: 'description',
+      description: 'Fait à base de Maquereau',
       image: '../images/nigiri/black.jpg',
       price: 11,
       spicy: true
@@ -171,7 +171,7 @@ const menus = [
     {
       id: 4,
       name: 'Hirame',
-      description: 'description',
+      description: "L'hirame d'été a tendance à être plus gras et plus mou, l'antithèse de la saveur légère et propre et de la texture ferme de l'hirame d'hiver.",
       image: '../images/nigiri/black.jpg',
       price: 25,
       spicy: true
