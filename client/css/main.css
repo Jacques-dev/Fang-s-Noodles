@@ -56,7 +56,7 @@ footer {
 
     .lien:hover {
       background-color: #FCF3D7;
-      font-weight: bold;
-      font-style: italic;
+      /* font-weight: bold; */
+      /* font-style: italic; */
       color: #7D1917;
     }

@@ -3,7 +3,7 @@
     <section id="balise_bouton_admin">
       <!-- <div> -->
         <button id="bouton_ajouter_menus"v-if="admin.id" @click="showForm = true">Afficher le formulaire</button>
-        <button id="bouton_fermer_menus"v-if="admin.id" @click="showForm = false">Fermer le formulaire</button>
+        <button id="bouton_fermer_menus"v-if="admin.id && showForm" @click="showForm = false">Fermer le formulaire</button>
       <!-- </div> -->
         <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
 
@@ -16,9 +16,7 @@
         </article>
 
         <article class="row">
-
           <article class="col-sm-12">
-
 
               <article v-for="menuType in menus">
 
@@ -88,6 +86,7 @@
                 </article>
               </article>
 
+          </article>
         </article>
 
     </section>
@@ -234,7 +233,7 @@
       }
       .type_plat a:hover{
         letter-spacing: 2px;
-        padding-bottom: 14px;
+        /* padding-bottom: 14px; */
       }
       .type_plat p{
         margin-left: 2%;
