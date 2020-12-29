@@ -79,7 +79,7 @@
                   <div class="col-sm-5">
                     <div class="container-fluid">
                       <p class="row">Prix : {{menu.prix}} </p>
-                      <p class="row">Quantité : {{menu.quantity}}</p>
+                      <p class="row">Quantité : {{menu.quantity}} </p>
                     </div>
                   </div>
                 </article>

@@ -118,8 +118,12 @@
         var personnes = this.editingReservation.personnes
         if (date && heure && personnes) {
           this.$emit('reserver', this.editingReservation)
-          // alert("reservation prise en compte")
         } else {
+          asAlertMsg({
+            type: "warning",
+            title: "Attention",
+            message: "Veuillez remplir les champs de votre réservation"
+          })
           alert("Veuillez remplir les champs de votre réservation")
         }
       }

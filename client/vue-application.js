@@ -128,10 +128,18 @@ var app = new Vue({
         const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
         this.user.reservations.push(res.data)
         // await axios.post('api/sendemail/')
-        alert("Votre réservation a été prise en compte M./Mme. " + this.user.nom)
+        asAlertMsg({
+          type: "success",
+          title: "Validé",
+          message: "Votre réservation a été prise en compte M./Mme. " + this.user.nom
+        })
         router.push('/')
       } else {
-        alert("Veuillez vous connecter pour passer une commande")
+        asAlertMsg({
+          type: "warning",
+          title: "Attention",
+          message: "Veuillez vous connecter pour passer une commande"
+        })
         router.push('/connexion')
       }
     },
@@ -140,13 +148,25 @@ var app = new Vue({
         if (this.panier.menus.length != 0) {
           const res = await axios.post('/api/panier/commander')
           this.panier = res.data
-          alert("Votre commande a été prise en compte M./Mme. " + this.user.nom)
+          asAlertMsg({
+            type: "success",
+            title: "Validé",
+            message: "Votre commande a été prise en compte M./Mme. " + this.user.nom
+          })
           router.push('/')
         } else {
-          alert("Votre panier est vide !")
+          asAlertMsg({
+            type: "warning",
+            title: "Attention",
+            message: "Votre panier est vide !"
+          })
         }
       } else {
-        alert("Veuillez vous connecter pour passer une commande")
+        asAlertMsg({
+          type: "warning",
+          title: "Attention",
+          message: "Veuillez vous connecter pour passer une commande"
+        })
         router.push('/connexion')
       }
     },
