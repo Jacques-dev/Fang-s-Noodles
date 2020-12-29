@@ -58,7 +58,7 @@ var app = new Vue({
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
 
-    await axios.get('/api/setdatas')
+    await axios.post('/api/setdatas', 'typesString=' + this.typesString)
 
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
@@ -137,10 +137,14 @@ var app = new Vue({
     },
     async commander () {
       if (this.user.id) {
-        const res = await axios.post('/api/panier/commander')
-        this.panier = res.data
-        alert("Votre commande a été prise en compte M./Mme. " + this.user.nom)
-        router.push('/')
+        if (this.panier.menus.length != 0) {
+          const res = await axios.post('/api/panier/commander')
+          this.panier = res.data
+          alert("Votre commande a été prise en compte M./Mme. " + this.user.nom)
+          router.push('/')
+        } else {
+          alert("Votre panier est vide !")
+        }
       } else {
         alert("Veuillez vous connecter pour passer une commande")
         router.push('/connexion')

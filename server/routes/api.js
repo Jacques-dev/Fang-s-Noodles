@@ -26,8 +26,8 @@
   }
 
 
-  router.get('/setdatas', async (req, res) => {
-    req.session.typesString = ["soups", "dumplings", "noodles", "sashimi", "nigiri"]
+  router.post('/setdatas', (req, res) => {
+    req.session.typesString = req.body.typesString.split(',')
     res.send()
   })
 
@@ -38,16 +38,13 @@
     const nom = req.body.nom
     const telephone = req.body.telephone
 
-    // console.log("email : " + email)
-    // console.log("password : " + password)
-
     const sql = "SELECT * FROM users WHERE email=$1"
-
 
     const result = await client.query({
       text: sql,
       values: [email]
     })
+
     if (result.rowCount == 1) {
       res.status(400).json({ message: "this user already exist" })
     } else {
