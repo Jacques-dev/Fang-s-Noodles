@@ -39,7 +39,9 @@ var app = new Vue({
       prix: 0,
       soups: [],
       dumplings: [],
-      noodles: []
+      noodles: [],
+      sashimi: [],
+      nigiri: []
     },
     user: {
       nom: null,
@@ -60,7 +62,9 @@ var app = new Vue({
     this.menus = res_menus.data
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
+
     await axios.get('/api/setdatas')
+
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
     this.user.id = res3.data.user
@@ -117,8 +121,7 @@ var app = new Vue({
         router.push('/connexion')
       }
     },
-
-   async commander () {
+    async commander () {
       if (this.user.id) {
         const res = await axios.post('/api/panier/commander')
         this.panier = res.data
@@ -135,6 +138,7 @@ var app = new Vue({
           if (eval(this.typesVar[i]).find(a => a.id === menu.id) === undefined) {
             const res = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix)
             eval(this.typesVar[i]).push(res.data)
+
             this.panier.nb_menus = this.panier.nb_menus + 1
             this.panier.prix = this.panier.prix + res.data.prix
           }

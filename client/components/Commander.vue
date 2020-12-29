@@ -33,8 +33,8 @@
         </ul>
       </section>
 
-      <section id ="colonne_centrale" class="col-sm-6 colonne" v-for="menuType in menus">
-        <section class="container-fluid">
+      <section id ="colonne_centrale" class="col-sm-6 colonne">
+        <section class="container-fluid" v-for="menuType in menus">
           <p class="row type_plat" v-if="test(menuType[0].image)">{{ type }}</p>
           <section class="row">
             <article v-for="menu in menuType" :key="menu.id" class="col-sm-6 plat">
@@ -187,7 +187,7 @@
                         <article class="row">
                           <div class="image-plat col-sm-7">
                             <div>
-                                <img v-bind:src="'../images/soups/' + menus[0][menu.id-1].image " class="image">
+                                <img v-bind:src="menus[0][menu.id-1].image" class="image">
                             </div>
                           </div>
                           <div class="col-sm-5">
@@ -202,7 +202,7 @@
                         <article class="row">
 
                             <article class="col-sm-6">
-                              <!-- <form @submit.prevent="edit(menu.id)"> -->
+
                                 <select  @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity" class="mySelect">
                                   <option value="" disabled selected>quantité</option>
                                   <option value="1">1</option>
@@ -232,11 +232,11 @@
                   <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
                     <section class="container-fluid">
 
-                      <!-- <section class="row"> -->
+
                         <article class="row">
                           <div class="image-plat col-sm-7">
                             <div>
-                              <img v-bind:src="'../images/dumplings/' + menus[1][menu.id-1].image " class="image">
+                              <img v-bind:src="menus[1][menu.id-1].image" class="image">
                             </div>
 
                           </div>
@@ -272,7 +272,7 @@
 
                           </article>
 
-                      <!-- </section> -->
+
                     </section>
 
                   </article>
@@ -283,7 +283,7 @@
                         <article class="row">
                           <div class="image-plat col-sm-7">
                             <div>
-                              <img v-bind:src="'../images/noodles/' + menus[2][menu.id-1].image " class="image">
+                              <img v-bind:src="menus[2][menu.id-1].image" class="image">
                             </div>
 
                           </div>
@@ -327,7 +327,7 @@
                         <article class="row">
                           <div class="image-plat col-sm-7">
                             <div>
-                              <img v-bind:src="'../images/sashimi/' + menus[3][menu.id-1].image " class="image">
+                              <img v-bind:src="menus[3][menu.id-1].image" class="image">
                             </div>
 
                           </div>
@@ -371,7 +371,7 @@
                         <article class="row">
                           <div class="image-plat col-sm-7">
                             <div>
-                              <img v-bind:src="'../images/nigiri/' + menus[4][menu.id-1].image " class="image">
+                              <img v-bind:src="menus[4][menu.id-1].image" class="image">
                             </div>
 
                           </div>
@@ -425,6 +425,7 @@
     props: {
       menus: { type: Array, default: [] },
       panier: { type: Object },
+      typePanier: { type: Array, default: [] },
       user: { type: Object }
     },
     data () {
@@ -490,8 +491,7 @@
         this.typeMenu = newType
       },
       addToPanier (menuId, menuType, menuPrix) {
-        var str = type.split('/')
-        alert(str[2])
+        var str = menuType.split('/')
         let content = {
           id: menuId,
           type: str[2],
@@ -500,10 +500,9 @@
         this.$emit('add-to-panier', content)
       },
       removeFromPanier(menuId, menuType, menuPrix) {
-        var str = type.split('/')
         let content = {
           id: menuId,
-          type: str[2],
+          type: menuType,
           prix: menuPrix
         }
         this.$emit('remove-from-panier', content)
