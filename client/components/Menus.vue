@@ -13,72 +13,75 @@
             <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
             <button id="bouton_formulaire"v-if="admin.id" @click="showForm = !showForm">Afficher le formulaire</button>
 
-              <div id="soups" class="type_plat row">
-                <router-link class="current" to='/menus/#soups'>soups</router-link>
-                <router-link to='/menus/#dumplings'>dumplings</router-link>
-                <router-link to='/menus/#noodles'>noodles</router-link>
-                <router-link to='/menus/#sashimi'>sashimi</router-link>
-                <router-link to='/menus/#nigiri'>nigiri</router-link>
-              </div>
+              <article v-for="menuType in menus">
 
-              <article class ="ligne_plat row" v-for="menu in menus[0]" :key="menu.id">
-
-                <div class="row">
-                  <div class="menu-img col-sm-3">
-                    <img v-bind:src="'../images/soups/' + menu.image ">
-                  </div>
-                  <div class=" col-sm-9 menu-description">
-                    <p>{{ menu.description }}</p>
-                  </div>
+                <div id="soups" class="type_plat row">
+                  <router-link to='/menus/#soups'>soups</router-link>
+                  <router-link to='/menus/#dumplings'>dumplings</router-link>
+                  <router-link to='/menus/#noodles'>noodles</router-link>
+                  <router-link to='/menus/#sashimi'>sashimi</router-link>
+                  <router-link to='/menus/#nigiri'>nigiri</router-link>
                 </div>
 
-                <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
-                  <div class="menu-title row">
-                    <p>{{ menu.name }} - {{ menu.price }}€</p>
-                  </div>
-                  <div class="row" v-if="isSpicy(menu.spicy)">
-                    <p class="spicy">Spicy</p>
-                  </div>
-                  <div class="bouton-menus row">
-                    <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, 'soups')">Supprimer</button>
-                    <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, 'soups')">Modifier</button>
-                  </div>
-                </div>
-
-                <div class="container" v-else>
+                <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id" :id="nav(menu.image)">
 
                   <div class="row">
-                    <div class="col-sm-6">
-                      <input type="text" v-model="editingMenu.name">
+                    <div class="menu-img col-sm-3">
+                      <img v-bind:src="menu.image">
                     </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-4" type="number" v-model="editingMenu.price">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                    <div class=" col-sm-9 menu-description">
+                      <p>{{ menu.description }}</p>
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <button @click="sendEditMenu()">Valider</button>
+                  <div class="nom_prix_spicy_plat row" v-if="editingMenu.id !== menu.id">
+                    <div class="menu-title row">
+                      <p>{{ menu.name }} - {{ menu.price }}€</p>
                     </div>
-                    <div class="col-sm-6">
-                      <button @click="abortEditMenu()">Annuler</button>
+                    <div class="row" v-if="isSpicy(menu.spicy)">
+                      <p class="spicy">Spicy</p>
+                    </div>
+                    <div class="bouton-menus row">
+                      <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, menu.image)">Supprimer</button>
+                      <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, menu.image)">Modifier</button>
                     </div>
                   </div>
 
-                </div>
+                  <div class="container" v-else>
 
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <input type="text" v-model="editingMenu.name">
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="col-sm-4" type="number" v-model="editingMenu.price">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p class="menu-description"><textarea v-model="editingMenu.description"></textarea></p>
+                      </div>
+                      <div class="col-sm-6">
+                        <input class="col-sm-6" type="text" v-model="editingMenu.image" placeholder="Lien vers l'image">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <button @click="sendEditMenu()">Valider</button>
+                      </div>
+                      <div class="col-sm-6">
+                        <button @click="abortEditMenu()">Annuler</button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </article>
               </article>
 
-              <div id="dumplings" class="type_plat row">
+              <!-- <div id="dumplings" class="type_plat row">
                 <router-link to='/menus/#soups'>soups</router-link>
                 <router-link class="current" to='/menus/#dumplings'>dumplings</router-link>
                 <router-link to='/menus/#noodles'>noodles</router-link>
@@ -331,7 +334,7 @@
 
                 </div>
 
-              </article>
+              </article> -->
 
 
         </article>
@@ -363,10 +366,15 @@
           spicy: false,
           type: ''
         },
+        type: 'soups',
         showForm: false
       }
     },
     methods: {
+      nav(menuType) {
+        var str = menuType.split('/')
+        return str[2]
+      },
       isSpicy(boolean) {
         return boolean
       },
@@ -374,9 +382,11 @@
         this.$emit('add-menu', menu)
       },
       deleteMenu (menuId, menuType) {
+        var str = menuType.split('/')
+
         let content = {
           id: menuId,
-          type: menuType
+          type: str[2]
         }
         this.$emit('delete-menu', content)
       },
@@ -387,7 +397,8 @@
         this.editingMenu.image = menu.image
         this.editingMenu.price = menu.price
         this.editingMenu.spicy = menu.spicy
-        this.editingMenu.type = menuType
+        var str = menuType.split('/')
+        this.editingMenu.type = str[2]
       },
       sendEditMenu () {
         this.$emit('update-menu', this.editingMenu)

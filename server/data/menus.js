@@ -4,7 +4,7 @@ const menus = [
       id: 1,
       name: 'Chicken Noodle Soup',
       description: 'description',
-      image: 'chicken_noodle.jpg',
+      image: '../images/soups/chicken_noodle.jpg',
       price: 9,
       spicy: false
     },
@@ -12,7 +12,7 @@ const menus = [
       id: 2,
       name: 'Beef Noodle Soup',
       description: 'description',
-      image: 'beef_noodle.jpg',
+      image: '../images/soups/beef_noodle.jpg',
       price: 9,
       spicy: false
     },
@@ -20,7 +20,7 @@ const menus = [
       id: 3,
       name: 'Chicken & Corn Noodle Soup',
       description: 'description',
-      image: 'chicken_and_corn_noodle.jpg',
+      image: '../images/soups/chicken_and_corn_noodle.jpg',
       price: 11,
       spicy: true
     },
@@ -28,7 +28,7 @@ const menus = [
       id: 4,
       name: 'Won Ton Noodle Soup',
       description: 'description',
-      image: 'won_ton_noodle.jpg',
+      image: '../images/soups/won_ton_noodle.jpg',
       price: 25,
       spicy: true
     }
@@ -38,7 +38,7 @@ const menus = [
       id: 1,
       name: 'Gow Choy Gao',
       description: 'description',
-      image: 'gow_choy_gao.jpg',
+      image: '../images/dumplings/gow_choy_gao.jpg',
       price: 9,
       spicy: false
     },
@@ -46,7 +46,7 @@ const menus = [
       id: 2,
       name: 'Siu Mai',
       description: 'description',
-      image: 'siu_mai.jpg',
+      image: '../images/dumplings/siu_mai.jpg',
       price: 9,
       spicy: false
     },
@@ -54,7 +54,7 @@ const menus = [
       id: 3,
       name: 'Xiao Long Bao',
       description: 'description',
-      image: 'xiao_long_bao.jpg',
+      image: '../images/dumplings/xiao_long_bao.jpg',
       price: 12,
       spicy: false
     },
@@ -62,7 +62,7 @@ const menus = [
       id: 4,
       name: 'Jiu Cai Bao',
       description: 'description',
-      image: 'jiu_cai_bao.jpg',
+      image: '../images/dumplings/jiu_cai_bao.jpg',
       price: 20,
       spicy: false
     }
@@ -72,7 +72,7 @@ const menus = [
       id: 1,
       name: 'Ramen sauté au porc haché',
       description: 'description',
-      image: 'ramen_porc_hache.jpg',
+      image: '../images/noodles/ramen_porc_hache.jpg',
       price: 9,
       spicy: true
     },
@@ -80,7 +80,7 @@ const menus = [
       id: 2,
       name: 'Vermicelles de riz sautées au boeuf',
       description: 'description',
-      image: 'vermicelles_riz_boeuf.jpg',
+      image: '../images/noodles/vermicelles_riz_boeuf.jpg',
       price: 9,
       spicy: true
     },
@@ -88,7 +88,7 @@ const menus = [
       id: 3,
       name: 'Ramen sauté au poulet',
       description: 'description',
-      image: 'ramen_poulet.jpg',
+      image: '../images/noodles/ramen_poulet.jpg',
       price: 13,
       spicy: false
     },
@@ -96,7 +96,7 @@ const menus = [
       id: 4,
       name: 'Ramen sauté aux légumes',
       description: 'description',
-      image: 'ramen_legumes.jpg',
+      image: '../images/noodles/ramen_legumes.jpg',
       price: 18,
       spicy: false
     }
@@ -106,7 +106,7 @@ const menus = [
       id: 1,
       name: 'Shellfish Sashimi',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/sashimi/black.jpg',
       price: 9,
       spicy: false
     },
@@ -114,7 +114,7 @@ const menus = [
       id: 2,
       name: 'Katsuo Tataki',
       description: 'description',
-      image: 'katsuo_tataki.jpg',
+      image: '../images/sashimi/katsuo_tataki.jpg',
       price: 9,
       spicy: false
     },
@@ -122,7 +122,7 @@ const menus = [
       id: 3,
       name: 'Aji',
       description: 'description',
-      image: 'sashimi_aji.jpg',
+      image: '../images/sashimi/sashimi_aji.jpg',
       price: 25,
       spicy: true
     },
@@ -130,7 +130,7 @@ const menus = [
       id: 4,
       name: 'Hirame',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/sashimi/black.jpg',
       price: 9,
       spicy: false
     },
@@ -138,7 +138,7 @@ const menus = [
       id: 5,
       name: 'Albacore Tataki',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/sashimi/black.jpg',
       price: 9,
       spicy: false
     }
@@ -148,7 +148,7 @@ const menus = [
       id: 1,
       name: 'Maguro',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 9,
       spicy: false
     },
@@ -156,7 +156,7 @@ const menus = [
       id: 2,
       name: 'Hamachi',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 9,
       spicy: false
     },
@@ -164,7 +164,7 @@ const menus = [
       id: 3,
       name: 'Saba',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 11,
       spicy: true
     },
@@ -172,7 +172,7 @@ const menus = [
       id: 4,
       name: 'Hirame',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 25,
       spicy: true
     },
@@ -180,7 +180,7 @@ const menus = [
       id: 5,
       name: 'Sunazuri',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 9,
       spicy: false
     },
@@ -188,7 +188,7 @@ const menus = [
       id: 6,
       name: 'Sake',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 9,
       spicy: false
     },
@@ -196,7 +196,7 @@ const menus = [
       id: 7,
       name: 'Hotate',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 11,
       spicy: true
     },
@@ -204,7 +204,7 @@ const menus = [
       id: 8,
       name: 'Ebi',
       description: 'description',
-      image: 'black.jpg',
+      image: '../images/nigiri/black.jpg',
       price: 25,
       spicy: true
     }

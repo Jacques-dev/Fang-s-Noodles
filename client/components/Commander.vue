@@ -33,14 +33,39 @@
         </ul>
       </section>
 
-      <section id ="colonne_centrale" class="col-sm-6 colonne">
+      <section id ="colonne_centrale" class="col-sm-6 colonne" v-for="menuType in menus">
+        <section class="container-fluid">
+          <p class="row type_plat" v-if="test(menuType[0].image)">{{ type }}</p>
+          <section class="row">
+            <article v-for="menu in menuType" :key="menu.id" class="col-sm-6 plat">
+              <article class="tabcontent container" v-if="checkMenu(menu.image)">
 
-        <article class="tabcontent container" v-if="checkMenu('soups')">
+                <div class="image-plat">
+                  <img v-bind:src="menu.image" class="image">
+                  <div class="affichage_bouton_ajout_panier">
+                    <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, menu.image, menu.price)" v-if="user.id">Ajouter au panier</button>
+                  </div>
+                </div>
+                <div class="description-plat">
+                  {{ menu.name }} - {{ menu.price }}€
+                </div>
+
+                <div v-if="isSpicy(menu.spicy)" style="color: red">
+                  Spicy
+                </div>
+              </article>
+            </article>
+          </section>
+        </section>
+
+
+
+        <!-- <article class="tabcontent container" v-if="checkMenu('soups')">
           <p class="row type_plat">Soups</p>
           <div class="row">
             <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
               <div class="image-plat">
-                <img v-bind:src="'../images/soups/' + menu.image " class="image">
+                <img v-bind:src="menu.image" class="image">
                 <div class="affichage_bouton_ajout_panier">
                   <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
                 </div>
@@ -146,7 +171,7 @@
 
             </article>
           </div>
-        </article>
+        </article> -->
 
       </section>
 
@@ -410,10 +435,25 @@
           prix: '',
           type: ''
         },
+        type: "soups",
         typeMenu: "soups"
       }
     },
     methods: {
+      test(menuType) {
+        var str = menuType.split('/')
+        this.type = str[2]
+
+        let bool = false
+        if(this.typeMenu == str[2]) {
+          bool = true
+        }
+        return bool
+      },
+      nav(menuType) {
+        var str = menuType.split('/')
+        return str[2]
+      },
       edit(id, type, prix) {
         this.editMenu.id = id
         this.editMenu.type = type
@@ -438,8 +478,10 @@
         return boolean
       },
       checkMenu(type) {
+        var str = type.split('/')
+
         let bool = false
-        if(this.typeMenu == type) {
+        if(this.typeMenu == str[2]) {
           bool = true
         }
         return bool
@@ -448,17 +490,20 @@
         this.typeMenu = newType
       },
       addToPanier (menuId, menuType, menuPrix) {
+        var str = type.split('/')
+        alert(str[2])
         let content = {
           id: menuId,
-          type: menuType,
+          type: str[2],
           prix: menuPrix
         }
         this.$emit('add-to-panier', content)
       },
       removeFromPanier(menuId, menuType, menuPrix) {
+        var str = type.split('/')
         let content = {
           id: menuId,
-          type: menuType,
+          type: str[2],
           prix: menuPrix
         }
         this.$emit('remove-from-panier', content)
