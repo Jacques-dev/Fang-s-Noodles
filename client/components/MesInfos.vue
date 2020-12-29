@@ -9,43 +9,31 @@
     </div>
     <div class="row">
       <div id="mes_infos" class="d-flex col-sm-8">
-        <div class="col-sm-6">
-
+        <form @submit.prevent="editProfil">
           <div class="row">
-            <p><h2>Mes infos</h2></p>
+            <h2>Mes infos</h2>
           </div>
 
           <div class="row">
-            <p>Nom : {{ user.nom }}</p>
+            <label for="nom">{{ user.nom }}</label>
+            <input name="nom" type="text" v-model="editingProfile.nom">
           </div>
 
           <div class="row">
-            <!-- <p>Prénom : {{ user.prenoqm }}</p> -->
+            <label for="prenom">{{ user.prenom }}</label>
+            <input name="prenom" type="text" v-model="editingProfile.prenom">
           </div>
 
           <div class="row">
-            <p>Email : {{ user.email }}</p>
-
+            <label for="email">{{ user.email }}</label>
+            <input name="email" type="text" v-model="editingProfile.email">
           </div>
           <div class="row">
-            <p>Téléphone : {{ user.telephone }}</p>
+            <label for="telephone">{{ user.telephone }}</label>
+            <input name="telephone" type="text" v-model="editingProfile.telephone">
           </div>
-
-        </div>
-        <div class="col-sm-6">
-          <div class="row">
-            <p>test</p>
-            <form class="" action="index.html" method="post">
-              <input placeholder="nom" type="text" v-model="editingProfile.nom"><br><br>
-              <input placeholder="prenom" type="text" v-model="editingProfile.prenom"><br><br>
-              <input placeholder="email" type="text" v-model="editingProfile.email"><br><br>
-              <input placeholder="tel" type="number" v-model="editingProfile.telephone"><br><br>
-            </form>
-            <button @click="sendEditProfil()">Valider</button>
-
-          </div>
-
-        </div>
+          <button type="submit">Modifier</button>
+        </form>
 
       </div>
       <div id="mes_reservations" class="col-sm-4">
@@ -69,11 +57,11 @@
     data () {
       return {
         editingProfile:{
-          id= -1,
+          id: -1,
           nom:'',
           prenom:'',
           email:'',
-          telephone''
+          telephone:''
         }
       }
     },
@@ -90,11 +78,11 @@
       },
       abortEditeProfil(){
         this.editingProfile={
-          id= -1,
+          id: -1,
           nom:'',
           prenom:'',
           email:'',
-          telephone''
+          telephone:''
         }
       }
     }

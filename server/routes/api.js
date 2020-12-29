@@ -68,9 +68,6 @@
   })
 
   router.post('/login', async (req, res) => {
-    req.session.userId = null
-    req.session.adminId = null
-
     const email = req.body.email
     const password = req.body.password
     const hash = await bcrypt.hash(password, 10)
@@ -80,8 +77,6 @@
       text: sql,
       values: [email]
     })
-
-    // console.log(result)
 
     if (result.rowCount == 1) {
       const hashedPassword = result.rows[0].password
@@ -94,21 +89,15 @@
           values: [email]
         })
 
+        req.session.adminId = null
+        req.session.userId = result2.rows[0].id
         req.session.userName = result2.rows[0].nom
         req.session.userEmail = result2.rows[0].email
         req.session.userFirstName = result2.rows[0].prenom
         req.session.userTelephone = result2.rows[0].telephone
-
-
-        req.session.userId = result2.rows[0].id
         req.session.reservationId = 0
-        const log = {
-          nom: req.session.userName,
-          email: req.session.userEmail,
-          prenom: req.session.userFirstName,
-          telephone: req.session.userTelephone
-        }
-        res.json(log)
+
+        res.status(200).json({ message: "well logged as user" })
 
       } else {
         res.status(400).json({ message: "wrong password" })
@@ -119,9 +108,6 @@
   })
 
   router.post('/adminlogin', async (req, res) => {
-
-    req.session.userId = null
-    req.session.adminId = null
 
     const id = req.body.id
     const password = req.body.password
@@ -144,7 +130,13 @@
         })
 
         req.session.adminId = result2.rows[0].id
-        res.send()
+        req.session.userId = null
+        req.session.userName = null
+        req.session.userEmail = null
+        req.session.userFirstName = null
+        req.session.userTelephone = null
+
+        res.status(200).json({ message: "well logged as admin" })
 
       } else {
         res.status(400).json({ message: "wrong password" })
@@ -175,32 +167,34 @@
   })
 
   router.get('/me', async (req, res) => {
-    if (req.session.userId) {
 
-      const select = "SELECT * FROM reservation WHERE client=$1"
-      const result = await client.query({
-        text: select,
-        values: [req.session.userId]
-      })
+    if (req.session.userId || req.session.adminId) {
 
-      for (let i = 0; i < result.rows.length; i++) {
-        result.rows[i].date = new Date(result.rows[i].date).toString().slice(0,15)
+      var reserv = []
+
+      if (req.session.userId) {
+        const select = "SELECT * FROM reservation WHERE client=$1"
+        const result = await client.query({
+          text: select,
+          values: [req.session.userId]
+        })
+
+        for (let i = 0; i < result.rows.length; i++) {
+          result.rows[i].date = new Date(result.rows[i].date).toString().slice(0,15)
+        }
+        reserv = result.rows
       }
 
       const log = {
         admin: req.session.adminId,
         user: req.session.userId,
-        reservations: result.rows
+        nom: req.session.userName,
+        email: req.session.userEmail,
+        prenom: req.session.userFirstName,
+        telephone: req.session.userTelephone,
+        reservations: reserv
       }
-
-      res.status(200).json(log)
-    } else if (req.session.adminId) {
-      const log = {
-        admin: req.session.adminId,
-        user: req.session.userId,
-        reservations: []
-      }
-      res.status(201).json(log)
+      res.json(log)
     } else {
       res.status(401).json({ message: "not logged" })
     }

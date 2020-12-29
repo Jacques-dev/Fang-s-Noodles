@@ -68,6 +68,10 @@ var app = new Vue({
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
     this.user.id = res3.data.user
+    this.user.nom = res3.data.nom
+    this.user.email = res3.data.email
+    this.user.prenom = res3.data.prenom
+    this.user.telephone = res3.data.telephone
     this.user.reservations = res3.data.reservations
 
   },
@@ -77,24 +81,31 @@ var app = new Vue({
       router.push('/connexion')
     },
     async login (user) {
-      const res1 = await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
-      this.user.nom = res1.data.nom
-      this.user.email = res1.data.email
-      this.user.prenom = res1.data.prenom
-      this.user.telephone = res1.data.telephone
+      await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
 
-      const res2 = await axios.get('/api/me')
-      this.admin.id = res2.data.admin
-      this.user.id = res2.data.user
-      this.user.reservations = res2.data.reservations
+      const res = await axios.get('/api/me')
+      this.admin.id = res.data.admin
+      this.user.id = res.data.user
+      this.user.nom = res.data.nom
+      this.user.email = res.data.email
+      this.user.prenom = res.data.prenom
+      this.user.telephone = res.data.telephone
+      this.user.reservations = res.data.reservations
 
       router.push('/')
     },
     async adminLogin (admin) {
       await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
-      const res_menus = await axios.get('/api/me')
-      this.admin.id = res_menus.data.admin
-      this.user.id = res_menus.data.user
+
+      const res = await axios.get('/api/me')
+      this.admin.id = res.data.admin
+      this.user.id = res.data.user
+      this.user.nom = res.data.nom
+      this.user.email = res.data.email
+      this.user.prenom = res.data.prenom
+      this.user.telephone = res.data.telephone
+      this.user.reservations = res.data.reservations
+
       router.push('/')
     },
     async logout () {
