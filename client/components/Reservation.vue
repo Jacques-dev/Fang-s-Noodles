@@ -124,7 +124,6 @@
             title: "Attention",
             message: "Veuillez remplir les champs de votre réservation"
           })
-          alert("Veuillez remplir les champs de votre réservation")
         }
       }
     }
