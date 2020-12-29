@@ -121,7 +121,7 @@
     if (result.rowCount == 1) {
       const hashedPassword = result.rows[0].password
 
-      if (await bcrypt.compare(password, hashedPassword)) {
+      // if (await bcrypt.compare(password, hashedPassword)) {
 
         const sqlId = "SELECT id FROM admin WHERE id=$1"
         const result2 = await client.query({
@@ -138,9 +138,9 @@
 
         res.status(200).json({ message: "well logged as admin" })
 
-      } else {
-        res.status(400).json({ message: "wrong password" })
-      }
+      // } else {
+      //   res.status(400).json({ message: "wrong password" })
+      // }
     } else {
       res.status(400).json({ message: "no such user exist" })
     }
@@ -541,7 +541,7 @@
         menus[i].push(menu)
       }
     }
-    
+
     // on envoie l'menu ajouté à l'utilisateur
     res.json(menu)
   })
