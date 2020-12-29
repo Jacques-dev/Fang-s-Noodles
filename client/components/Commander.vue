@@ -43,7 +43,7 @@
                 <div class="image-plat">
                   <img v-bind:src="menu.image" class="image">
                   <div class="affichage_bouton_ajout_panier">
-                    <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, menu.type, menu.price)" v-if="user.id">Ajouter au panier</button>
+                    <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, menu.type, menu.price, menu.image)" v-if="user.id">Ajouter au panier</button>
                   </div>
                 </div>
 
@@ -59,146 +59,6 @@
             </article>
           </section>
         </section>
-
-        <!-- <section class="container-fluid" v-for="menuType in menus">
-          <p class="row type_plat" v-if="test(menuType[0].image)">{{ type }}</p>
-          <section class="row">
-            <article v-for="menu in menuType" :key="menu.id" class="col-sm-6 plat">
-              <article class="tabcontent container" v-if="checkMenu(menu.image)">
-
-                <div class="image-plat">
-                  <img v-bind:src="menu.image" class="image">
-                  <div class="affichage_bouton_ajout_panier">
-                    <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, menu.image, menu.price)" v-if="user.id">Ajouter au panier</button>
-                  </div>
-                </div>
-                <div class="description-plat">
-                  {{ menu.name }} - {{ menu.price }}€
-                </div>
-
-                <div v-if="isSpicy(menu.spicy)" style="color: red">
-                  Spicy
-                </div>
-              </article>
-            </article>
-          </section>
-        </section>
-
-
-
-        <article class="tabcontent container" v-if="checkMenu('soups')">
-          <p class="row type_plat">Soups</p>
-          <div class="row">
-            <article v-for="menu in menus[0]" :key="menu.id" class="col-sm-6 plat">
-              <div class="image-plat">
-                <img v-bind:src="menu.image" class="image">
-                <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'soups', menu.price)" v-if="user.id">Ajouter au panier</button>
-                </div>
-              </div>
-              <div class="description-plat">
-                {{ menu.name }} - {{ menu.price }}€
-              </div>
-
-              <div v-if="isSpicy(menu.spicy)" style="color: red">
-                Spicy
-              </div>
-            </article>
-          </div>
-        </article>
-
-        <article class="tabcontent container" v-if="checkMenu('dumplings')">
-          <p class="row type_plat">Dumplings</p>
-          <div class="row">
-
-            <article v-for="menu in menus[1]" :key="menu.id" class="col-sm-6 plat">
-              <div class="image-plat">
-                <img v-bind:src="'../images/dumplings/' + menu.image " class="image">
-                <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'dumplings', menu.price)" v-if="user.id">Ajouter au panier</button>
-                </div>
-              </div>
-
-              <div class="description-plat">
-                {{ menu.name }} - {{ menu.price }}€
-              </div>
-              <div v-if="isSpicy(menu.spicy)" style="color: red">
-                Spicy
-              </div>
-
-            </article>
-          </div>
-        </article>
-
-        <article class="tabcontent container" v-if="checkMenu('noodles')">
-          <p class="row type_plat">Noodles</p>
-          <div class="row">
-
-            <article v-for="menu in menus[2]" :key="menu.id" class="col-sm-6 plat">
-              <div class="image-plat">
-                <img v-bind:src="'../images/noodles/' + menu.image " class="image">
-                <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'noodles', menu.price)" v-if="user.id">Ajouter au panier</button>
-                </div>
-              </div>
-
-              <div class="description-plat">
-                {{ menu.name }} - {{ menu.price }}€
-              </div>
-              <div v-if="isSpicy(menu.spicy)">
-                Spicy
-              </div>
-
-            </article>
-          </div>
-        </article>
-
-        <article class="tabcontent container" v-if="checkMenu('sashimi')">
-          <p class="row type_plat">Sashimi</p>
-          <div class="row">
-
-            <article v-for="menu in menus[3]" :key="menu.id" class="col-sm-6 plat">
-              <div class="image-plat">
-                <img v-bind:src="'../images/sashimi/' + menu.image " class="image">
-                <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'sashimi', menu.price)" v-if="user.id">Ajouter au panier</button>
-                </div>
-              </div>
-
-              <div class="description-plat">
-                {{ menu.name }} - {{ menu.price }}€
-              </div>
-              <div v-if="isSpicy(menu.spicy)" style="color: red">
-                Spicy
-              </div>
-
-            </article>
-          </div>
-        </article>
-
-        <article class="tabcontent container" v-if="checkMenu('nigiri')">
-          <p class="row type_plat">Nigiri</p>
-          <div class="row">
-
-            <article v-for="menu in menus[4]" :key="menu.id" class="col-sm-6 plat">
-              <div class="image-plat">
-                <img v-bind:src="'../images/nigiri/' + menu.image " class="image">
-                <div class="affichage_bouton_ajout_panier">
-                  <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, 'nigiri', menu.price)" v-if="user.id">Ajouter au panier</button>
-                </div>
-              </div>
-
-              <div class="description-plat">
-                {{ menu.name }} - {{ menu.price }}€
-              </div>
-              <div v-if="isSpicy(menu.spicy)" style="color: red">
-                Spicy
-              </div>
-
-            </article>
-          </div>
-        </article> -->
-
       </section>
 
       <section id="colonne_droite" class="col-sm-4 colonne">
@@ -206,14 +66,13 @@
           <article class="row">
 
                 <section class="container">
-
-                  <article v-for="menu in panier.soups" class="col-sm-12 plat">
+                  <article v-for="menu in panier.menus" class="col-sm-12 plat">
                     <section class="container-fluid">
 
                         <article class="row">
                           <div class="image-plat col-sm-7">
                             <div>
-                                <img v-bind:src="menus[0][menu.id-1].image" class="image">
+                              <img v-bind:src="menu.image" class="image">
                             </div>
                           </div>
                           <div class="col-sm-5">
@@ -229,7 +88,7 @@
 
                             <article class="col-sm-6">
 
-                                <select  @change="edit(menu.id, 'soups', menu.price)" v-model="editMenu.quantity" class="mySelect">
+                                <select @change="edit(menu.id, menu.type, menu.prix)" v-model="editMenu.quantity" class="mySelect">
                                   <option value="" disabled selected>quantité</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
@@ -246,192 +105,12 @@
                             </article>
 
                             <article class="col-sm-6">
-                                <button class="col-sm-12"  @click="removeFromPanier(menu.id, 'soups', menu.price)">Supprimer</button>
+                              <button class="col-sm-12"  @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
                             </article>
 
                         </article>
 
                       </section>
-
-                  </article>
-
-                  <article v-for="menu in panier.dumplings" :key="menu.id" class="col-sm-12 plat">
-                    <section class="container-fluid">
-
-
-                        <article class="row">
-                          <div class="image-plat col-sm-7">
-                            <div>
-                              <img v-bind:src="menus[1][menu.id-1].image" class="image">
-                            </div>
-
-                          </div>
-                          <div class="col-sm-5">
-                            <p>Prix : {{menu.prix}} </p>
-                            <p>Quantité : {{menu.quantity}}</p>
-                          </div>
-                        </article>
-
-                          <article class="row">
-
-                            <article class="col-sm-6">
-
-                              <select @change="edit(menu.id, 'dumplings', menu.price)" v-model="editMenu.quantity">
-                                <option value="" disabled selected>quantité</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                              </select>
-
-                            </article>
-
-                            <article class="col-sm-6">
-                              <button @click="removeFromPanier(menu.id, 'dumplings', menu.price)">Supprimer</button>
-                            </article>
-
-                          </article>
-
-
-                    </section>
-
-                  </article>
-
-                  <article v-for="menu in panier.noodles" :key="menu.id" class="col-sm-12 plat">
-                    <section class="container-fluid">
-
-                        <article class="row">
-                          <div class="image-plat col-sm-7">
-                            <div>
-                              <img v-bind:src="menus[2][menu.id-1].image" class="image">
-                            </div>
-
-                          </div>
-                          <div class="col-sm-5">
-                            <p>Prix : {{menu.prix}} </p>
-                            <p>Quantité : {{menu.quantity}}</p>
-                          </div>
-                        </article>
-
-                        <article class="row">
-
-                          <article class="col-sm-6">
-                            <select @change="edit(menu.id, 'noodles', menu.price)" v-model="editMenu.quantity">
-                              <option value="" disabled selected>quantité</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
-                              <option value="10">10</option>
-                            </select>
-                          </article>
-
-                          <article class="col-sm-6">
-                            <button @click="removeFromPanier(menu.id, 'noodles', menu.price)">Supprimer</button>
-                          </article>
-
-                        </article>
-
-                    </section>
-
-                  </article>
-
-                  <article v-for="menu in panier.sashimi" :key="menu.id" class="col-sm-12 plat">
-                    <section class="container-fluid">
-
-                        <article class="row">
-                          <div class="image-plat col-sm-7">
-                            <div>
-                              <img v-bind:src="menus[3][menu.id-1].image" class="image">
-                            </div>
-
-                          </div>
-                          <div class="col-sm-5">
-                            <p>Prix : {{menu.prix}} </p>
-                            <p>Quantité : {{menu.quantity}}</p>
-                          </div>
-                        </article>
-
-                        <article class="row">
-
-                          <article class="col-sm-6">
-                            <select @change="edit(menu.id, 'sashimi', menu.price)" v-model="editMenu.quantity">
-                              <option value="" disabled selected>quantité</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
-                              <option value="10">10</option>
-                            </select>
-                          </article>
-
-                          <article class="col-sm-6">
-                            <button @click="removeFromPanier(menu.id, 'sashimi', menu.price)">Supprimer</button>
-                          </article>
-
-                        </article>
-
-                    </section>
-
-                  </article>
-
-                  <article v-for="menu in panier.nigiri" :key="menu.id" class="col-sm-12 plat">
-                    <section class="container-fluid">
-
-                        <article class="row">
-                          <div class="image-plat col-sm-7">
-                            <div>
-                              <img v-bind:src="menus[4][menu.id-1].image" class="image">
-                            </div>
-
-                          </div>
-                          <div class="col-sm-5">
-                            <p>Prix : {{menu.prix}} </p>
-                            <p>Quantité : {{menu.quantity}}</p>
-                          </div>
-                        </article>
-
-                        <article class="row">
-
-                          <article class="col-sm-6">
-                            <select @change="edit(menu.id, 'nigiri', menu.price)" v-model="editMenu.quantity">
-                              <option value="" disabled selected>quantité</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
-                              <option value="10">10</option>
-                            </select>
-                          </article>
-
-                          <article class="col-sm-6">
-                            <button @click="removeFromPanier(menu.id, 'nigiri', menu.price)">Supprimer</button>
-                          </article>
-
-                        </article>
-
-                    </section>
 
                   </article>
 
@@ -451,7 +130,6 @@
     props: {
       menus: { type: Array, default: [] },
       panier: { type: Object },
-      typePanier: { type: Array, default: [] },
       user: { type: Object }
     },
     data () {
@@ -460,6 +138,7 @@
           id: '',
           quantity: '',
           prix: '',
+          image: '',
           type: ''
         },
         menuType: "soups"
@@ -498,11 +177,12 @@
       isSpicy(boolean) {
         return boolean
       },
-      addToPanier (menuId, menuType, menuPrix) {
+      addToPanier (menuId, menuType, menuPrix, menuImage) {
         let content = {
           id: menuId,
           type: menuType,
-          prix: menuPrix
+          prix: menuPrix,
+          image: menuImage
         }
         this.$emit('add-to-panier', content)
       },
