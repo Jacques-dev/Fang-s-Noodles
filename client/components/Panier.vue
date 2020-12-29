@@ -103,52 +103,45 @@
 </script>
 
 <style scoped>
-.image-plat {
-  position: relative;
-  display: flex;
-  width: 50%;
-  /* border: 2px red solid; */
-}
 
-.plat{
-  /* border: 2px grey solid; */
-}
-.description-plat{
-  /* border: 2px black solid; */
-}
+  .image-plat {
+    position: relative;
+    display: flex;
+    width: 50%;
+  }
 
-.image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
+  .image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
 
-.affichage_bouton_ajout_panier {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
+  .affichage_bouton_ajout_panier {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
 
-.plat:hover .image {
-  opacity: 0.3;
-}
+  .plat:hover .image {
+    opacity: 0.3;
+  }
 
-.plat:hover .affichage_bouton_ajout_panier {
-  opacity: 1;
-}
+  .plat:hover .affichage_bouton_ajout_panier {
+    opacity: 1;
+  }
 
-.ajouterMenu {
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
-}
+  .ajouterMenu {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+  }
 </style>

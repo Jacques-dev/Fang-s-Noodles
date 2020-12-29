@@ -146,6 +146,7 @@
     req.session.userFirstName = null
     req.session.userTelephone = null
     req.session.panier = new Panier()
+
     const log = {
       admin: req.session.adminId,
       user: req.session.userId,
@@ -197,6 +198,7 @@
     var prenom = req.body.prenom
     var email = req.body.email
     var telephone = req.body.telephone
+
     if (!nom) {
       nom = req.session.userName
     }
@@ -209,6 +211,7 @@
     if (!telephone) {
       telephone = req.session.userTelephone
     }
+
     req.session.userName = nom
     req.session.userFirstName = prenom
     req.session.userEmail = email
@@ -230,7 +233,6 @@
       const date = req.body.date
       const heure = req.body.heure
       const personnes = req.body.personnes
-
 
       const insert = "INSERT INTO reservation (date, heure, personnes, client) VALUES ($1, $2, $3, $4)"
 
@@ -401,28 +403,28 @@
 
    const size = parseInt(req.session.typesString.length)
    for (let i = 0; i != size; i++) {
-     if (menuType == req.session.typesString[i]) {
-       index = indexMenuInPanier (menuId, menuType, req.session.panier.menus)
-       menu = menuInPanier (menuId, menuType, req.session.panier.menus)
-     }
+      if (menuType == req.session.typesString[i]) {
+        index = indexMenuInPanier (menuId, menuType, req.session.panier.menus)
+        menu = menuInPanier (menuId, menuType, req.session.panier.menus)
+      }
    }
 
    if (isNaN(menuId)) {
-     res.status(400).json({ message: 'Requête incorrecte' })
+      res.status(400).json({ message: 'Requête incorrecte' })
    } else if (index === -1) {
-     res.status(501).json({ message: "L'menu n'est pas dans le panier" })
+      res.status(501).json({ message: "L'menu n'est pas dans le panier" })
    } else {
-     const size = parseInt(req.session.typesString.length)
-     for (let i = 0; i != size; i++) {
-       if (menuType == req.session.typesString[i]) {
-         req.session.panier.menus.splice(index, 1)
-       }
-     }
+      const size = parseInt(req.session.typesString.length)
+      for (let i = 0; i != size; i++) {
+        if (menuType == req.session.typesString[i]) {
+          req.session.panier.menus.splice(index, 1)
+        }
+      }
 
-     req.session.panier.nb_menus = req.session.panier.nb_menus - menu.quantity
-     req.session.panier.prix = req.session.panier.prix - (menu.quantity * menu.prix)
-     res.json(index)
-   }
+      req.session.panier.nb_menus = req.session.panier.nb_menus - menu.quantity
+      req.session.panier.prix = req.session.panier.prix - (menu.quantity * menu.prix)
+      res.json(index)
+    }
   })
 
   /*
@@ -459,9 +461,8 @@
   /*
    * Cette route doit permettre de confirmer un panier, en recevant le nom et prénom de l'utilisateur
    * Le panier est ensuite supprimé grâce à req.session.destroy()
-   */
+  */
   router.post('/panier/commander', (req, res) => {
-
     if (req.session.userId) {
       req.session.panier = new Panier()
       res.status(200).json(req.session.panier)

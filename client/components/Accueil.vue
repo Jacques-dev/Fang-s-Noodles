@@ -37,39 +37,6 @@
       </section>
     </section>
 
-    <!-- <section id="first" class="container-fluid parallax">
-      <section class="row h-75 justify-content-center align-items-center">
-        <article class="h-100" id="title">
-          <p>Saveur d'Asie</p>
-        </article>
-      </section>
-      <section class="container-fluid h-50 justify-content-center align-items-center" id="typeMenu">
-        <div class="row">
-          <article class="col-sm-4 d-flex justify-content-center">
-            <p class="titre_soups_noodles_dumpings">SOUPS</p>
-            <p class ="description_soups_noodles_dumpings">Decouvrez nos delicieuses soupes</p>
-            <img class="image_banniere" src="https://static.wixstatic.com/media/a84435_89b11410bc6b4875996a2f75ba5952af.png/v1/fill/w_302,h_375,al_c,q_85,usm_0.66_1.00_0.01/a84435_89b11410bc6b4875996a2f75ba5952af.webp">
-          </article>
-          <article class="col-sm-4 d-flex justify-content-center">
-            <p class="titre_soups_noodles_dumpings">NOODLES</p>
-            <p class ="description_soups_noodles_dumpings">Decouvrez nos noodles faites maison</p>
-            <img class="image_banniere" src="https://static.wixstatic.com/media/a84435_2094235a23f7450d868fb875a24df909.png/v1/fill/w_305,h_378,al_c,q_85,usm_0.66_1.00_0.01/a84435_2094235a23f7450d868fb875a24df909.webp">
-          </article>
-          <article class="col-sm-4 d-flex justify-content-center">
-            <p class="titre_soups_noodles_dumpings">DUMPLINGS</p>
-            <p class ="description_soups_noodles_dumpings">Savourez nos dumplings</p>
-            <img class="image_banniere" src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
-          </article>
-        </div>
-        <div class="row">
-          <article class="col-sm-12 d-flex justify-content-center">
-            <router-link id ="menus" to='/menus'>Menus</router-link>
-          </article>
-        </div>
-
-      </section>
-    </section> -->
-
     <div id="second" class="container-fluid parallax">
       <div class="row h-100 justify-content-center align-items-center">
         <div class="col-sm-7">
@@ -125,47 +92,52 @@
     background-image: url("../images/backgrounds/accueil_1.webp");
     height: auto !important;
   }
-      #first .titre_soups_noodles_dumpings {
-        padding-top: 10%;
-        display: flex;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 1.4em;
-        letter-spacing: 3px;
-        /* align-items: center; */
-        /* z-index: 5; */
-        position: absolute;
-      }
-      #first .description_soups_noodles_dumpings {
-        padding-top: 20%;
-        text-align:center;
-        width: 40%;
-        position: absolute;
-      }
-      #first #title {
-        font-size: 50px;
-      }
-      #first #typeMenu {
-        background-color: rgba(240,221,196,0.91);
-      }
-          #first #typeMenu img {
-            width: 50%;
-            height: 100%;
-          }
 
+  #first .titre_soups_noodles_dumpings {
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    letter-spacing: 3px;
+    position: absolute;
+  }
+
+  #first .description_soups_noodles_dumpings {
+    padding-top: 20%;
+    text-align:center;
+    width: 40%;
+    position: absolute;
+  }
+
+  #first #title {
+    font-size: 50px;
+  }
+
+  #first #typeMenu {
+    background-color: rgba(240,221,196,0.91);
+  }
+
+  #first #typeMenu img {
+    width: 50%;
+    height: 100%;
+  }
 
   #second {
     background-image: url("../images/backgrounds/accueil_2.webp");
   }
-      #second .col-sm-5 {
-        word-wrap:break-word;
-      }
-      #second h2 {
-        font-size: 20px
-      }
-      #second p {
-        font-size: 15px
-      }
+
+  #second .col-sm-5 {
+    word-wrap:break-word;
+  }
+
+  #second h2 {
+    font-size: 20px
+  }
+
+  #second p {
+    font-size: 15px
+  }
 
   #third {
     background-image: url("../images/backgrounds/accueil_3.webp");
@@ -179,15 +151,15 @@
   }
 
   #four {
-    /* padding: 0; */
     background-color: #A42321;
     padding-bottom: 20px;
   }
-      #map {
-        width: 100%;
-        height: 300px;
-        border: solid 1px black;
-      }
+
+  #map {
+    width: 100%;
+    height: 300px;
+    border: solid 1px black;
+  }
 
   #slider {
     list-style: none;
@@ -209,15 +181,18 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
   @media only screen and (max-device-width: 1366px) {
     .parallax {
       background-attachment: scroll;
     }
   }
+
   @media only screen and (max-device-width: 1366px) {
     #first #typeMenu {
       height: auto !important;
     }
+    
     #first #typeMenu img{
       display: none;
     }

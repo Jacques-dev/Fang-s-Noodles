@@ -87,8 +87,8 @@
 
       </div>
 
+    </div>
   </div>
-</div>
 
 </template>
 
@@ -141,7 +141,6 @@
 
   #ligne_deux{
     height:auto;
-    /* background-color: blue; */
     background-color:rgba(30,61,89,0.7);
     margin: 2% 5% 2% 5%;
     padding: 5%;
@@ -152,7 +151,6 @@
 
   #background{
     width: 100%;
-    /* height: 100%; */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -161,10 +159,8 @@
   }
 
   .container-fluid {
-    /* background-color: #F0DDC4; */
     height: 100%;
   }
-
 
   #heure_select, #personnes_select{
     padding: 6px;
@@ -173,15 +169,19 @@
     text-decoration: none;
     background-color: #FCF3D7;
   }
+
   [type="date"] {
     background:#fff url('https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png')  97% 50% no-repeat ;
   }
+
   [type="date"]::-webkit-inner-spin-button {
     display: none;
   }
+
   [type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
   }
+
   #select_date{
     padding: 5px;
     color: #A52420;
@@ -189,11 +189,11 @@
     text-decoration: none;
     background-color: #FCF3D7;
   }
+
   #reserver{
     border: solid #A52420 2px;
     text-decoration: none;
     padding: 5px 15px 5px 15px;
-    /* overflow-x: scroll; */
   }
 
 </style>

@@ -1,19 +1,20 @@
 <template>
-<div id="background_infos">
+  <div id="background_infos">
 
-  <div class="container">
-    <div class="row">
-      <div id="titre_page_info" class="col-sm-12">
-        <h1>Mon profil</h1>
+    <div class="container">
+      <div class="row">
+        <div id="titre_page_info" class="col-sm-12">
+          <h1>Mon profil</h1>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div  id="mes_infos" class="container-fluid">
-        <div class=" col-sm-12">
+      <div class="row">
+        <div  id="mes_infos" class="container-fluid">
+          <div class=" col-sm-12">
 
             <div class="row titre_section">
               <p>Mes infos</p>
             </div>
+
             <div class="row">
               <div class="col-sm-12">
                 <form @submit.prevent="sendEditProfil">
@@ -25,6 +26,7 @@
                         <input name="nom" placeholder="nom" type="text" v-model="editingProfile.nom">
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-sm-7">
                       <label for="prenom">Prenom : {{ user.prenom }}</label>
@@ -33,6 +35,7 @@
                       <input name="prenom" placeholder="prenom" type="text" v-model="editingProfile.prenom">
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-sm-7">
                         <label for="email">Email : {{ user.email }}</label>
@@ -42,6 +45,7 @@
                       <input name="email" placeholder="email" type="text" v-model="editingProfile.email">
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-sm-7">
                       <label for="telephone">Telephone : {{ user.telephone }}</label>
@@ -49,43 +53,40 @@
                     <div class="col-sm-5">
                       <input name="telephone" placeholder="telephone" type="text" v-model="editingProfile.telephone">
                     </div>
-
                   </div>
+
                   <div class="row">
                     <div class="col-sm-12">
                       <button type="submit">Modifier</button>
                     </div>
-
                   </div>
+
+                </form>
               </div>
-
-              </form>
             </div>
-
+          </div>
         </div>
-      </div>
-      <div  id="mes_reservations" class="container-fluid">
 
-            <section class="row titre_section">
-               Mes réservations
+        <div id="mes_reservations" class="container-fluid">
+          <section class="row titre_section">
+             Mes réservations
+          </section>
+          <section class="row chaque_reservation" v-for="reserv in user.reservations">
+            <section class="col-sm-12 data_reservation">
+              Date : {{ reserv.date }}
             </section>
-            <section class="row chaque_reservation" v-for="reserv in user.reservations">
-              <section class="col-sm-12 data_reservation">
-                Date : {{ reserv.date }}
-              </section>
-              <section class="col-sm-12 data_reservation">
-                Heure : {{ reserv.heure }}
-              </section>
-              <section class="col-sm-12 data_reservation">
-                Nombre de personnes : {{ reserv.personnes }}
-              </section>
+            <section class="col-sm-12 data_reservation">
+              Heure : {{ reserv.heure }}
             </section>
+            <section class="col-sm-12 data_reservation">
+              Nombre de personnes : {{ reserv.personnes }}
+            </section>
+          </section>
+        </div>
 
       </div>
-
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -133,24 +134,27 @@
     border-bottom: black 1px solid;
     margin: 10px 0 10px 0;
   }
+
   .data_reservation{
     margin: 0 0 10px 0;
   }
+
   .titre_section{
     font-size: 1.7em;
     display:flex;
     justify-content: center;
   }
+
   .container{
     height: 76.4%;
-    /* height: 100%; */
-
   }
+
   #background_infos{
     background-color: rgba(137,27,23,0.95);
     overflow-y: scroll;
     height: auto;
   }
+
   #titre_page_info{
     background-color: rgba(240,221,196,1);
     text-align: center;
@@ -159,7 +163,5 @@
 
   #mes_infos, #mes_reservations{
     background-color: rgba(240,221,196,1);
-    /* border: black 2px solid; */
-    /* margin-right: 50px; */
   }
 </style>

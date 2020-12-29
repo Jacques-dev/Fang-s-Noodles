@@ -1,12 +1,11 @@
 <template>
+
   <div v-if="checkIfLogged(admin.id, user.id)"></div>
+
 </template>
 
 <script>
   module.exports = {
-    components: {
-
-    },
     props: {
       admin:{type: Object },
       user: {type: Object }
@@ -26,5 +25,4 @@
   }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
