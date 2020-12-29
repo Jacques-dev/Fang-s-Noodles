@@ -217,17 +217,11 @@
   }
 
   #background{
-    color:#fff;
+    color:var(--text);
     height: auto;
     background-size: contain;
     background-repeat: repeat;
     background-image: url("../images/backgrounds/epices.jpg");
-  }
-
-  .type_plat .current{
-    color:#FFA213;
-    border: 2px 0 2px 0 black solid;
-    padding-bottom: 15px;
   }
 
   .menu-img img {
@@ -236,7 +230,7 @@
   }
 
   #colonne_principale{
-    background-color:rgba(30,61,89,0.7);
+    background-color:var(--bleu_o);
     padding: 2%;
     width: 100%;
   }
@@ -247,8 +241,8 @@
     align-items: center;
     width: 15%;
     min-width: 100px;
-    color: #fff;
-    background-color: #A52421;
+    color: var(--text);
+    background-color: var(--rouge_o);
   }
 
   .type_plat{
@@ -261,19 +255,19 @@
     padding-bottom: 2%;
     margin-top: 2%;
     margin-bottom: 5%;
-    border-top: 2px solid #fff;
-    border-bottom: 2px solid #fff;
+    border-top: 2px solid var(--text2);
+    border-bottom: 2px solid var(--text2);
   }
 
   .type_plat a{
     margin-left: 3%;
     margin-right: 3%;
-    color:#fff;
+    color: var(--text2);
   }
 
 
   .ligne_plat{
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--text);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -295,7 +289,7 @@
   }
 
   .menu-description{
-    background-color: #f5f0e1;
+    background-color: var(--beige);
     color: rgb(137,27,23);
     margin-top: 10px;
     color: black;
@@ -315,8 +309,8 @@
   }
 
   #colonne_principale button:hover{
-    background-color: #a52421;
-    color: #fff;
+    background-color: var(--rouge);
+    color: var(--text);
   }
 
   #balise_admin{
@@ -329,14 +323,13 @@
   }
 
   @media only screen and (max-device-width: 1000px) {
-
     #bouton_ajouter_menus, #bouton_fermer_menus{
       width: 100vw !important;
     }
   }
 
   #bouton_ajouter_menus, #bouton_fermer_menus {
-    background-color: #A52421;
+    background-color: var(--rouge);
     padding: 10px;
     border: none;
     width: 15%;
@@ -344,7 +337,7 @@
   }
 
   #bouton_fermer_menus:hover,#bouton_ajouter_menus:hover {
-    background-color: #f5f0e1;
+    background-color: var(--beige);
     border: none;
   }
 

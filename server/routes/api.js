@@ -4,8 +4,6 @@
   const bcrypt = require('bcrypt')
   const { Client } = require('pg')
 
-  const nodemailer = require('nodemailer');
-
   const client = new Client({
    user: 'postgres',
    host: 'localhost',
@@ -236,12 +234,10 @@
 
       const insert = "INSERT INTO reservation (date, heure, personnes, client) VALUES ($1, $2, $3, $4)"
 
-      const result = await client.query({
+      await client.query({
         text: insert,
         values: [date, heure, personnes, req.session.userId]
       })
-
-      res.send()
 
       const reserv = {
         id: req.session.reservationId + 1,
@@ -251,36 +247,9 @@
       }
 
       res.status(200).json(reserv)
-
     } else {
       res.status(401).json({ message: "not logged" })
     }
-  })
-
-  router.post('/sendemail', async (req, res) => {
-    var transporter = nodemailer.createTransport({
-      port: 3000,
-      host: 'localhost',
-      tls: {
-        rejectUnauthorized: false
-      },
-    });
-
-    var mailOptions = {
-      from: '',
-      to: req.session.userEmail,
-      subject: "Votre réservation sur Fang's Noodles",
-      text: 'M./Mme. + ' + req.session.userName,
-      html: "<p>Merci d'avoir réservé une table chez Fang's Noodles.</p>"
-    };
-
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
 
   })
 

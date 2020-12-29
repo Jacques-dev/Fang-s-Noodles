@@ -131,7 +131,7 @@
 
 <style scoped>
   .chaque_reservation{
-    box-shadow: 3px 3px 3px 3px rgba(137,27,23,0.95);
+    box-shadow: 3px 3px 3px 3px var(--rouge);
     margin: 12px 0 12px 0;
     padding: 10px 0 10px 0;
   }
@@ -152,27 +152,24 @@
   }
 
   #background_infos{
-    background-color: rgba(137,27,23,0.95);
+    background-color: var(--rouge);
     overflow-y: scroll;
     height: auto;
   }
 
   #titre_page_info{
-    background-color: rgba(240,221,196,1);
+    background-color: var(--beige_o);
     text-align: center;
     padding: 20px;
   }
 
   #mes_infos, #mes_reservations{
-    background-color: rgba(240,221,196,1);
+    background-color: var(--beige_o);
   }
 
   #mes_infos{
-        margin-bottom: 2%;
-        border-bottom: black 1px solid;
-  }
-  #mes_reservations{
-      padding-bottom: 15px;
+    margin-bottom: 2%;
+    border-bottom: black 1px solid;
   }
 
 </style>

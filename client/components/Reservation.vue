@@ -144,7 +144,7 @@
 
   #ligne_deux{
     height:auto;
-    background-color:rgba(30,61,89,0.7);
+    background-color:var(--bleu_o);
     margin: 2% 5% 2% 5%;
     padding: 5%;
     display:flex;
@@ -167,10 +167,10 @@
 
   #heure_select, #personnes_select{
     padding: 6px;
-    color: #A52420;
-    border: solid #A52420 2px;
+    color: var(--text);
+    border: solid var(--text2) 2px;
     text-decoration: none;
-    background-color: #FCF3D7;
+    background-color: var(--beige);
   }
 
   [type="date"] {
@@ -187,14 +187,14 @@
 
   #select_date{
     padding: 5px;
-    color: #A52420;
-    border: solid #A52420 2px;
+    color: var(--text1);
+    border: solid var(--text2) 2px;
     text-decoration: none;
-    background-color: #FCF3D7;
+    background-color: var(--beige);
   }
 
   #reserver{
-    border: solid #A52420 2px;
+    border: solid var(--text2) 2px;
     text-decoration: none;
     padding: 5px 15px 5px 15px;
   }

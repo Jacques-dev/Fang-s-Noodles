@@ -4,7 +4,7 @@ const Commander = window.httpVueLoader('./components/Commander.vue')
 const Connexion = window.httpVueLoader('./components/Connexion.vue')
 const Deconnexion = window.httpVueLoader('./components/Deconnexion.vue')
 const Reserver = window.httpVueLoader('./components/Reservation.vue')
-const MesInfos = window.httpVueLoader('./components/MesInfos.vue')
+const Profil = window.httpVueLoader('./components/Profil.vue')
 
 const routes = [
   { path: '/', component: Accueil },
@@ -12,7 +12,7 @@ const routes = [
   { path: '/commander', component: Commander },
   { path: '/connexion', component: Connexion},
   { path: '/deconnexion', component: Deconnexion},
-  { path: '/mesinfos', component: MesInfos},
+  { path: '/profil', component: Profil},
   { path: '/reserver', component: Reserver}
 ]
 
@@ -125,9 +125,8 @@ var app = new Vue({
     },
     async reserver (reservation) {
       if (this.user.id) {
-        const res = await axios.post('/api/reservation/','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
+        const res = await axios.post('/api/reservation','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
         this.user.reservations.push(res.data)
-        // await axios.post('api/sendemail/')
         asAlertMsg({
           type: "success",
           title: "Validé",

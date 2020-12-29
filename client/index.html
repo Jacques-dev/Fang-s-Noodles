@@ -53,7 +53,7 @@
           <!-- <h3 class="nav-link" v-if="user.id" style="color: green">Connecté</h3> -->
           <h3 class="nav-link" v-if="admin.id" style="color: blue; cursor: default">Admin</h3>
           <!-- <h3 class="nav-link" v-else style="color: red">Non connecté</h3> -->
-          <router-link class="nav-link lien" v-if="user.id" to='/mesinfos'>Profil</router-link>
+          <router-link class="nav-link lien" v-if="user.id" to='/profil'>Profil</router-link>
           <router-link class="nav-link lien" v-if="(user.id) || (admin.id)" to='/deconnexion'>Déconnexion</router-link>
           <router-link class="nav-link lien" v-else to='/connexion'>Connexion</router-link>
         </div>

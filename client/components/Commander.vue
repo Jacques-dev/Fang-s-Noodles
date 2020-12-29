@@ -48,7 +48,7 @@
 
         <section class="container-fluid" v-for="menuType in menus">
           <section class="row">
-            <article class="col-sm-6 plat" v-for="menu in menuType" :key="menu.id" v-if="checkMenuType(menu.type)">
+            <article class="col-sm-6 plat" v-for="menu in menuType" v-if="checkMenuType(menu.type)">
               <article class="tabcontent container">
 
                 <div class="image-plat">
@@ -76,13 +76,13 @@
         <article class="row">
           <section class="container">
 
-            <article v-for="menu in panier.menus" class="col-sm-12 plat">
+            <article v-for="menu in panier.menus" :key="menu.id" class="col-sm-12 plat">
               <section class="container-fluid">
 
                 <article class="row">
                   <div class="image-plat col-sm-7">
                     <div>
-                      <img v-bind:src="menu.image" class="image">
+                      <img :src="menu.image" class="image">
                     </div>
                   </div>
                   <div class="col-sm-5">
@@ -204,21 +204,6 @@
 
 <style scoped>
 
-  /* #menu{
-    width: 100%;
-  } */
-
-
-
-/* button {
-background: none;
-border: 2px solid;
-font: inherit;
-line-height: 1;
-margin: 0.5em;
-padding: 1em 2em;
-} */
-
 @media only screen and (min-device-width: 1000px) {
   .slide:hover,
   .slide:focus {
@@ -277,7 +262,7 @@ padding: 1em 2em;
 
   #resume_commande{
     padding: 20px;
-    background-color:rgba(252,243,215,0.97);
+    background-color: var(--bleu_o);
     /* width: 40%; */
   }
 
@@ -288,7 +273,7 @@ padding: 1em 2em;
 
   #colonne_principale{
     /* width: 60%; */
-    background-color:rgba(252,243,215,0.97);
+    background-color: var(--bleu_o);
     border-top: 1px solid black;
   }
 
@@ -352,7 +337,7 @@ padding: 1em 2em;
   }
 
   .ajouter_panier_bouton {
-    background-color: #4CAF50;
+    background-color: var(--bleu);
     color: black;
     font-size: 16px;
     padding: 16px 32px;

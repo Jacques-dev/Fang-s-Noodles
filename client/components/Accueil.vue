@@ -32,7 +32,7 @@
           <img src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
         </article>
         <article class="col-sm-12 d-flex justify-content-center">
-          <router-link id ="menus" to='/menus'>Menus</router-link>
+          <router-link id="menus" class="btn" to='/menus'>Voir les menus</router-link>
         </article>
       </section>
     </section>
@@ -118,12 +118,29 @@
   }
 
   #first #typeMenu {
-    background-color: rgba(240,221,196,0.91);
+    background-color: var(--beige_o);
   }
 
   #first #typeMenu img {
     width: 50%;
     height: 100%;
+  }
+
+  #menus {
+    width: 130px;
+    color: var(--text2);
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-weight: 500;
+    background: #A1211F;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      7px 7px 20px 0px rgba(0,0,0,.1),
+      4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
   }
 
   #second {
@@ -166,12 +183,22 @@
 
   #slider {
     z-index: 4;
-    /* background-color: black; */
     list-style: none;
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
     right: 20px;
+  }
+
+  #slider img {
+    border: 1px var(--text) solid;
+    background-color: var(--text);
+    border-radius: 50%;
+  }
+  #slider img:hover {
+    border: 1px var(--bleu) solid;
+    background-color: var(--bleu);
+    border-radius: 50%;
   }
 
   .parallax {

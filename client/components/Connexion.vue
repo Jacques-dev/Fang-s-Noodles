@@ -13,8 +13,8 @@
             <p class="titre_formulaire">Mot de passe</p>
           </label>
           <input type="password" v-model="editLogin.password" placeholder="Votre mot de passe" name="psw" required>
-          <button type="submit" class="btn">Connexion</button>
-          <button type="button" class="btn other" @click="openForm_register()">Pas encore de compte ?</button>
+          <button type="submit" class="btn_connexion">Connexion</button>
+          <button type="button" class="btn_connexion other" @click="openForm_register()">Pas encore de compte ?</button>
         </form>
       </div>
     </div>
@@ -48,7 +48,7 @@
           </label>
           <input type="text" v-model="editRegister.telephone" placeholder="Entrez votre numéro de Telephone" name="telephone" required>
 
-          <button class="btn" @click="openForm_login()">Je m'inscris</button>
+          <button class="btn_connexion" @click="openForm_login()">Je m'inscris</button>
 
         </form>
       </div>
@@ -153,7 +153,7 @@
     background: #eee;
   }
 
-  .form-container .btn {
+  .form-container .btn_connexion {
     background-color: #8ebf42;
     color: #fff;
     padding: 12px 20px;
@@ -164,7 +164,7 @@
     opacity: 0.8;
   }
 
-  .form-container .btn:hover, .open-button:hover {
+  .form-container .btn_connexion:hover, .open-button:hover {
     opacity: 1;
     color:#fff;
   }

@@ -1,4 +1,17 @@
 
+:root {
+  --rouge: #891B17;
+  --bordeau: #6c1d1a;
+  --beige: #f5f0e1;
+  --bleu: #a7beae;
+
+  --rouge_o: rgba(137,27,23,0.7);
+  --beige_o: rgba(245,240,225,0.85);
+  --bleu_o: rgba(167,190,174,0.85);
+
+  --text: #000;
+  --text2: #fff;
+}
 
 body {
   margin: 0;
@@ -9,54 +22,94 @@ body {
 footer {
   position: relative;
   z-index: -5;
-  background-color: #7D1917;
-  color:#fff;
+  background-color: var(--bordeau);
+  color: var(--text2);
   padding: 20px 0 10px 0;
 }
 
-    footer svg {
-      width: 50%;
-      color: #fff;
-    }
+footer svg {
+  width: 50%;
+  color: var(--text);
+}
 
-    footer .row {
-      text-align: center;
-    }
+footer .row {
+  text-align: center;
+}
 
-    .titre_article_footer{
-      font-weight: bold;
-      font-style: italic;
-      text-decoration: underline;
-      letter-spacing: 1px;
-    }
+.titre_article_footer{
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  letter-spacing: 1px;
+}
 
 .topnav {
   overflow: hidden;
-  background-color: #891B17;
-  color:#fff;
+  background-color: var(--bordeau);
+  color: var(--text2);
   /* height: 65px; */
 }
 
-    .topnav .nav-link {
-      float: left;
-      color: #fff;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-    }
+.topnav .nav-link {
+  float: left;
+  color: var(--text2);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
 
-    .topnav-right {
-      float: right;
-    }
-        .topnav-right h3 {
-          margin-right: 25px;
-          /* float: left; */
-        }
+.topnav-right {
+  float: right;
+}
 
-    .lien:hover {
-      background-color: #FCF3D7;
-      /* font-weight: bold; */
-      /* font-style: italic; */
-      color: #7D1917;
-    }
+.topnav-right h3 {
+  margin-right: 25px;
+  /* float: left; */
+}
+
+.lien:hover {
+  background-color: var(--beige);
+  /* font-weight: bold; */
+  /* font-style: italic; */
+  color: #7D1917;
+}
+
+.btn {
+  background-color: var(--bleu);
+  background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 100%);
+  border: none;
+  z-index: 1;
+}
+
+.btn:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+  background-color: #4dccc6;
+  background-image: linear-gradient(315deg, var(--text2) 0%, var(--text2) 100%);
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  color: var(--text) !important;
+}
+
+.btn:hover:after {
+  top: 0;
+  height: 100%;
+}
+
+.btn:active {
+  top: 2px;
+}
