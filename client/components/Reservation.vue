@@ -165,7 +165,7 @@
     height: 100%;
   }
 
-  #heure_select, #personnes_select{
+  #heure_select, #personnes_select {
     padding: 6px;
     color: var(--text);
     border: solid var(--text2) 2px;

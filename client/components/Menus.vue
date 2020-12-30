@@ -298,7 +298,6 @@
     border-radius: 20px 20px;
     font-size: 1.4em;
     margin: 10px 0 0 0 ;
-    /* width: 100%; */
   }
 
   #colonne_principale button:hover{
