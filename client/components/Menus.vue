@@ -138,23 +138,27 @@
       }
     },
     methods: {
+      // Permet de donner un id a une balise dans une boucle
       nav(menuType) {
         return menuType
       },
+      // Affiche "Spicy" sur le site si le champ spicy du menu est "true"
       isSpicy(boolean) {
         return boolean
       },
+      // Ajoute un menu à la liste des menus du site
       addMenu (menu) {
         this.$emit('add-menu', menu)
       },
+      // Supprime un menu depuis la liste des menus du site
       deleteMenu (menuId, menuType) {
-
         let content = {
           id: menuId,
           type: menuType
         }
         this.$emit('delete-menu', content)
       },
+      // Enregistre la valeur des champ du formulaire de modification d'un menu
       editMenu (menu, menuType) {
         this.editingMenu.id = menu.id
         this.editingMenu.name = menu.name
@@ -164,10 +168,12 @@
         this.editingMenu.spicy = menu.spicy
         this.editingMenu.type = menuType
       },
+      // Envoie un menu modifié
       sendEditMenu () {
         this.$emit('update-menu', this.editingMenu)
         this.abortEditMenu()
       },
+      // Annule la modification d'un menu
       abortEditMenu () {
         this.editingMenu = {
           id: -1,

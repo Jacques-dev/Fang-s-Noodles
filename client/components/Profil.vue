@@ -106,16 +106,19 @@
       }
     },
     methods: {
+      // Enregistre la veleur des champs du formulaire de modification du profil
       editProfil (profile){
         this.editingProfile.nom = profile.nom
         this.editingProfile.prenom = profile.prenom
         this.editingProfile.email = profile.email
         this.editingProfile.telephone = profile.telephone
       },
+      // Envoie un nouveau profil (modifié)
       sendEditProfil(){
         this.$emit('update-profile', this.editingProfile)
         this.abortEditProfil()
       },
+      // Annule la modification d'un profil
       abortEditeProfil(){
         this.editingProfile={
           id: -1,

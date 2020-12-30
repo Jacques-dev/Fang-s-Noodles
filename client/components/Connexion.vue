@@ -78,6 +78,7 @@
       }
     },
     methods: {
+      // Permet d'afficher soit le formulaire de connexion soit d'enregistrement
       switchForm() {
         if (this.login == true) {
           this.login = false
@@ -85,6 +86,7 @@
           this.login = true
         }
       },
+      // Envoie les valeurs des champs du du formualaire d'enregistrement
       register () {
         var email = document.getElementById("email_register").value;
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
@@ -96,6 +98,7 @@
           this.$emit('register', this.editRegister);
         }
       },
+      // Envoie les valeurs des champs du du formualaire de connexion
       login () {
         var email = document.getElementById("email").value;
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {

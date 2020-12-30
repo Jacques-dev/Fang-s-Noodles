@@ -112,6 +112,8 @@
       }
     },
     methods: {
+      // Envoi la valeur des champs du formulaire pour enregistrer une réservation
+      // (si les champ sont modifié)
       reserver () {
         var date = this.editingReservation.date
         var heure = this.editingReservation.heure

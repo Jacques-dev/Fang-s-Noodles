@@ -60,6 +60,7 @@
       }
     },
     methods: {
+      // Envoie la valeur des champs du formulaire
       addMenu () {
         this.$emit('add-menu', this.newMenu)
       }

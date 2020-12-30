@@ -149,6 +149,7 @@
       }
     },
     methods: {
+      // Affiche les menus du type donné en argument
       checkMenuType(type) {
         let bool = false
         if(this.menuType == type) {
@@ -156,9 +157,11 @@
         }
         return bool
       },
+      // Modifie le type de menu à afficher
       changeTypeMenu(newType) {
         this.menuType = newType
       },
+      // Envoie la valeur des champs du formulaire de modification d'un menu dans le panier
       edit(id, type, prix) {
         this.editMenu.id = id
         this.editMenu.type = type
@@ -171,16 +174,15 @@
         }
         this.$emit('update-menu-from-panier', content)
       },
+      // Simule le passage d'une commande
       commander() {
-        let content = {
-          id: this.editMenu.id,
-          quantity: this.editMenu.quantity
-        }
-        this.$emit('commander', content)
+        this.$emit('commander')
       },
+      // Affiche "Spicy" sur le site si le champ spicy du menu est "true"
       isSpicy(boolean) {
         return boolean
       },
+      // Ajoute un menu au panier
       addToPanier (menuId, menuType, menuPrix, menuImage) {
         let content = {
           id: menuId,
@@ -190,6 +192,7 @@
         }
         this.$emit('add-to-panier', content)
       },
+      // Supprime un menu du panier
       removeFromPanier(menuId, menuType, menuPrix) {
         let content = {
           id: menuId,
