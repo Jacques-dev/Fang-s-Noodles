@@ -205,58 +205,58 @@
 <style scoped>
 
 
-.ligne_boutons_panier{
-  margin-top: 15px;
-}
-
-.slide_page_commander{
-  word-break: break-word;
-  min-width: 70px;
-}
-
-@media only screen and (min-device-width: 1000px) {
-  .slide_page_commander:hover,
-  .slide_page_commander:focus {
-    box-shadow: inset 8em 0 0 0 var(--hover);
-  }
-  .slide_commander:hover,
-  .slide_commander:focus {
-    box-shadow: inset 21em 0 0 0 var(--hover);
+  .ligne_boutons_panier{
+    margin-top: 15px;
   }
 
-  .slide_page_commander, .slide_commander {
-  --color: var(--beige) ;
-  --hover: var(--rouge) ;
-  background-color: var(--beige);
+  .slide_page_commander{
+    word-break: break-word;
+    min-width: 70px;
   }
-  button {
-  color: black;
-  transition: 0.70s;
-  }
-  button:hover, button:focus {
-  border-color: var(--hover);
-  color: var(--color);
-  }
-}
 
-@media only screen and (max-device-width: 575px) {
-  #all{
-    max-height: 100%;
-    overflow-y: scroll;
+  @media only screen and (min-device-width: 1000px) {
+    .slide_page_commander:hover,
+    .slide_page_commander:focus {
+      box-shadow: inset 8em 0 0 0 var(--hover);
+    }
+    .slide_commander:hover,
+    .slide_commander:focus {
+      box-shadow: inset 21em 0 0 0 var(--hover);
+    }
+
+    .slide_page_commander, .slide_commander {
+    --color: var(--beige) ;
+    --hover: var(--rouge) ;
+    background-color: var(--beige);
+    }
+    button {
+    color: black;
+    transition: 0.70s;
+    }
+    button:hover, button:focus {
+    border-color: var(--hover);
+    color: var(--color);
+    }
   }
-  #resume_commande{
-    margin-bottom: 25px;
+
+  @media only screen and (max-device-width: 575px) {
+    #all{
+      max-height: 100%;
+      overflow-y: scroll;
+    }
+    #resume_commande{
+      margin-bottom: 25px;
+    }
+    #colonne_gauche{
+      margin-bottom: 25px;
+    }
+    #colonne_centrale{
+      margin-bottom: 25px;
+    }
+    #colonne_droite{
+      border-top: 8px double black
+    }
   }
-  #colonne_gauche{
-    margin-bottom: 25px;
-  }
-  #colonne_centrale{
-    margin-bottom: 25px;
-  }
-  #colonne_droite{
-    border-top: 8px double black
-  }
-}
   #background{
     color:black;
     display: flex;
@@ -377,12 +377,13 @@
   }
 
   .image {
-    opacity: 1;
-    display: block;
+    border: black 1px solid;
+    /* opacity: 1; */
+    /* display: block; */
     width: 100%;
     height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
+    transition: 1s ease;
+    /* backface-visibility: hidden; */
   }
 
   .description-plat{

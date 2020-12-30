@@ -32,7 +32,7 @@
           <img src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
         </article>
         <article class="col-sm-12 d-flex justify-content-center">
-          <router-link id="bouton_menus" class="btn" to='/menus/#titre_page'>Voir les menus</router-link>
+          <router-link id="bouton_menus" class="btn" to='/menus/#titre_page'>Voir l'ensemble du menus</router-link>
         </article>
       </section>
     </section>
@@ -127,7 +127,7 @@
   #bouton_menus {
     margin: 20px 10;
     font-size: 1.3em;
-    width: 270px;
+    width: 400px;
     /* word-wrap: break-word; */
     color: var(--text2);
     border-radius: 5px;

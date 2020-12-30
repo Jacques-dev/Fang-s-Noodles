@@ -27,15 +27,21 @@
 
           <article v-for="menuType in menus">
 
-            <div id="soups" class="type_plat row">
-              <router-link to='/menus/#soups'>soups</router-link>
-              <router-link to='/menus/#dumplings'>dumplings</router-link>
-              <router-link to='/menus/#noodles'>noodles</router-link>
-              <router-link to='/menus/#sashimi'>sashimi</router-link>
-              <router-link to='/menus/#nigiri'>nigiri</router-link>
+            <div class="type_plat row">
+              <router-link :id="nav(menuType[2].type)" to='/menus/#soups'>Soups</router-link>
+              <router-link :id="nav(menuType[2].type)" to='/menus/#dumplings'>Dumplings</router-link>
+              <router-link :id="nav(menuType[2].type)" to='/menus/#noodles'>Noodles</router-link>
+              <router-link :id="nav(menuType[2].type)" to='/menus/#sashimi'>Sashimi</router-link>
+              <router-link :id="nav(menuType[2].type)" to='/menus/#nigiri'>Nigiri</router-link>
+            </div>
+            <div class="row balise_current_type_menu">
+              <div class="current_type_menu">
+                {{menuType[2].type}}
+              </div>
+
             </div>
 
-            <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id" :id="nav(menu.type)">
+            <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id">
 
               <div class="row">
                 <div class="menu-img col-sm-3">
@@ -54,8 +60,8 @@
                   <p class="spicy">Spicy</p>
                 </div>
                 <div class="bouton-menus row">
-                  <button class="col-sm-6" v-if="admin.id" @click="deleteMenu(menu.id, menu.type)">Supprimer</button>
-                  <button class="col-sm-6" v-if="admin.id" @click="editMenu(menu, menu.type)">Modifier</button>
+                  <button class="col-sm-6 bouton_supprimer" v-if="admin.id" @click="deleteMenu(menu.id, menu.type)">Supprimer</button>
+                  <button class="col-sm-6 bouton_modifier" v-if="admin.id" @click="editMenu(menu, menu.type)">Modifier</button>
                 </div>
               </div>
 
@@ -85,10 +91,10 @@
 
                 <div class="row">
                   <div class="col-sm-6">
-                    <button id="bouton_valider" class="col-sm-12" @click="sendEditMenu()">Valider</button>
+                    <button class="col-sm-12 bouton_valider" @click="sendEditMenu()">Valider</button>
                   </div>
                   <div class="col-sm-6">
-                    <button id="bouton_annuler" class="col-sm-12" @click="abortEditMenu()">Annuler</button>
+                    <button class="col-sm-12 bouton_annuler" @click="abortEditMenu()">Annuler</button>
                   </div>
                 </div>
 
@@ -179,6 +185,39 @@
 
 <style scoped>
 
+  .bouton_valider:hover{
+
+    background-color: var(--bleu) !important;
+    color: var(--text) !important;
+    font-weight: bold;
+  }
+
+  .bouton_annuler:hover,.bouton_supprimer:hover{
+    background-color: var(--rouge) !important;
+    color: var(--text2) !important;
+    font-weight: bold;
+  }
+
+  .bouton_modifier:hover{
+    background-color: var(--bleu) !important;
+    color: var(--text) !important;
+    font-weight: bold;
+  }
+
+  .balise_current_type_menu{
+    display: flex;
+    justify-content: center;
+  }
+
+  .current_type_menu{
+    font-size: 2em;
+    background-color: var(--rouge);
+    color: var(--beige);
+    width: auto;
+    padding: 0 25px 5px 25px;
+    /* width: 100%; */
+    text-align: center;
+  }
 
   #colonne_admin{
     padding: 0;
@@ -259,7 +298,6 @@
     color: var(--rouge);
   }
 
-
   .ligne_plat{
     border-bottom: 2px solid var(--rouge_o);
     display: flex;
@@ -283,7 +321,7 @@
   }
 
   .menu-description{
-    background-color: var(--beige);
+    background-color: var(--beige_o);
     color: var(--rouge);
     margin-top: 10px;
     font-size: 1.2em;
@@ -291,6 +329,7 @@
 
   .menu-title{
     font-size: 1.5em;
+    margin-left: 10px;
   }
 
   #colonne_principale button{
@@ -298,12 +337,9 @@
     border-radius: 20px 20px;
     font-size: 1.4em;
     margin: 10px 0 0 0 ;
+
   }
 
-  #colonne_principale button:hover{
-    background-color: var(--rouge);
-    color: var(--text);
-  }
 
   #balise_admin{
     position: fixed;
