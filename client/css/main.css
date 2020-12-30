@@ -13,6 +13,45 @@
   --text2: #fff;
 }
 
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 10em 0 0 0 var(--hover);
+}
+
+.slide {
+  padding: 3px 8px 3px 8px;
+--color: var(--rouge);
+--hover: var(--beige);
+}
+
+#linkedin a {
+text-decoration: var(--beige) wavy underline;
+
+color: black;
+transition: 0.9s;
+}
+
+#linkedin a:hover, a:focus {
+border-color: var(--hover);
+color: var(--color);
+font-weight: bold;
+}
+
+#linkedin{
+  padding-right: 15px;
+  word-wrap: break-word;
+}
+#linkedin a{
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  color:#fff;
+}
+#linkedin a:hover{
+  /* padding: 4px; */
+  /* color: var(--rouge); */
+  /* background-color: var(--beige); */
+}
+
 body {
   margin: 0;
   height: 100%;
@@ -37,16 +76,23 @@ footer .row {
 }
 
 .titre_article_footer{
+  font-size: 1.2em;
   font-weight: bold;
   font-style: italic;
   text-decoration: underline;
   letter-spacing: 1px;
+  word-wrap: break-word;
 }
+.texte_article_footer{
+  word-wrap:break-word;
+}
+
 
 .topnav {
   overflow: hidden;
   background-color: var(--bordeau);
   color: var(--text2);
+  letter-spacing: 1px;
   /* height: 65px; */
 }
 

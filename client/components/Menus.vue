@@ -85,10 +85,10 @@
 
                 <div class="row">
                   <div class="col-sm-6">
-                    <button id="valider" class="col-sm-12" @click="sendEditMenu()">Valider</button>
+                    <button id="bouton_valider" class="col-sm-12" @click="sendEditMenu()">Valider</button>
                   </div>
                   <div class="col-sm-6">
-                    <button class="col-sm-12" @click="abortEditMenu()">Annuler</button>
+                    <button id="bouton_annuler" class="col-sm-12" @click="abortEditMenu()">Annuler</button>
                   </div>
                 </div>
 
@@ -185,27 +185,21 @@
     margin: 0;
   }
 
-  #ligne_1, #ligne_2{
-
-  }
 
   #modification_plats{
     margin: 15px 0 0 0;
-    background-color: #f5f0e1;
+    background-color: var(--beige);
     padding: 15px;
   }
 
   #modification_plats .row{
-
     color:black;
     padding: 0 0 15px 0;
-    /* border: 2px red solid; */
   }
 
   #modification_plats p{
     font-weight:bold;
   }
-
 
   #titre_page{
     font-size: 2.6em;
@@ -217,7 +211,7 @@
   }
 
   #background{
-    color:var(--text);
+    color:var(--rouge);
     height: auto;
     background-size: contain;
     background-repeat: repeat;
@@ -241,8 +235,8 @@
     align-items: center;
     width: 15%;
     min-width: 100px;
-    color: var(--text);
-    background-color: var(--rouge_o);
+    color: var(--text2);
+    background-color: var(--rouge);
   }
 
   .type_plat{
@@ -255,19 +249,19 @@
     padding-bottom: 2%;
     margin-top: 2%;
     margin-bottom: 5%;
-    border-top: 2px solid var(--text2);
-    border-bottom: 2px solid var(--text2);
+    border-top: 2px solid var(--rouge_o);
+    border-bottom: 2px solid var(--rouge_o);
   }
 
   .type_plat a{
     margin-left: 3%;
     margin-right: 3%;
-    color: var(--text2);
+    color: var(--rouge);
   }
 
 
   .ligne_plat{
-    border-bottom: 2px solid var(--text);
+    border-bottom: 2px solid var(--rouge_o);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -290,9 +284,8 @@
 
   .menu-description{
     background-color: var(--beige);
-    color: rgb(137,27,23);
+    color: var(--rouge);
     margin-top: 10px;
-    color: black;
     font-size: 1.2em;
   }
 
@@ -315,10 +308,6 @@
 
   #balise_admin{
     position: fixed;
-    /* width: 50%; */
-    /* left:50%; */
-    /* display: flex; */
-    /* justify-content: center; */
     z-index: 2;
   }
 
@@ -330,14 +319,18 @@
 
   #bouton_ajouter_menus, #bouton_fermer_menus {
     background-color: var(--rouge);
+    color: var(--beige);
     padding: 10px;
     border: none;
-    width: 15%;
+    width: 17%;
     min-width: 120px;
   }
 
   #bouton_fermer_menus:hover,#bouton_ajouter_menus:hover {
     background-color: var(--beige);
+    color:var(--rouge);
+    /* font-size: 1.2em; */
+    font-weight: bold;
     border: none;
   }
 

@@ -3,10 +3,10 @@
   <div id ="page_entiere">
 
     <ul id="slider">
-      <li><a href="#first" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
-      <li><a href="#second" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
-      <li><a href="#third" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
-      <li><a href="#four" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></a></li>
+      <li><router-link to="/#first" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></router-link></li>
+      <li><router-link to="/#second" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></router-link></li>
+      <li><router-link to="/#third" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></router-link></li>
+      <li><router-link to="/#four" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></router-link></li>
     </ul>
 
     <section id="first" class="container-fluid parallax">
@@ -15,24 +15,24 @@
           <p>Saveur d'Asie</p>
         </article>
       </section>
-      <section class="row h-50 align-items-center" id="typeMenu">
-        <article class="col-sm-4 d-flex justify-content-center">
+      <section class="row h-60 align-items-center" id="typeMenu">
+        <article class=" test col-sm-4 d-flex justify-content-center">
           <p class="titre_soups_noodles_dumpings">SOUPS</p>
           <p class ="description_soups_noodles_dumpings">Decouvrez nos delicieuses soupes</p>
           <img src="https://static.wixstatic.com/media/a84435_89b11410bc6b4875996a2f75ba5952af.png/v1/fill/w_302,h_375,al_c,q_85,usm_0.66_1.00_0.01/a84435_89b11410bc6b4875996a2f75ba5952af.webp">
         </article>
-        <article class="col-sm-4 d-flex justify-content-center">
+        <article class="test col-sm-4 d-flex justify-content-center">
           <p class="titre_soups_noodles_dumpings">NOODLES</p>
           <p class ="description_soups_noodles_dumpings">Decouvrez nos noodles faites maison</p>
           <img src="https://static.wixstatic.com/media/a84435_2094235a23f7450d868fb875a24df909.png/v1/fill/w_305,h_378,al_c,q_85,usm_0.66_1.00_0.01/a84435_2094235a23f7450d868fb875a24df909.webp">
         </article>
-        <article class="col-sm-4 d-flex justify-content-center">
+        <article class="test col-sm-4 d-flex justify-content-center">
           <p class="titre_soups_noodles_dumpings">DUMPLINGS</p>
           <p class ="description_soups_noodles_dumpings">Savourez nos dumplings</p>
           <img src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
         </article>
         <article class="col-sm-12 d-flex justify-content-center">
-          <router-link id="menus" class="btn" to='/menus'>Voir les menus</router-link>
+          <router-link id="bouton_menus" class="btn" to='/menus/#titre_page'>Voir les menus</router-link>
         </article>
       </section>
     </section>
@@ -43,14 +43,8 @@
 
         </div>
         <div id="text_fille_soupe" class="col-sm-4">
-          <h2>Our Story Begins In The East<h2>
-          <p>I'm a paragraph. Click here to add your own text and edit me.
-            It’s easy.
-            Just click “Edit Text” or double click me to add your own content and make changes to the font.
-            Feel free to drag and drop me anywhere you like on your page.
-            I’m a great place for you to tell a story and let your users know a little more about you.
-            This is a great space to write long text about your company and your services.
-             You can use this space to go into a little more detail about your company.
+          <h2>Notre histoire commence en Asie<h2>
+          <p>Sur les côtes de la mer de Chine naît en 1951 Fang's Noodles
            </p>
         </div>
       </div>
@@ -119,6 +113,10 @@
 
   #first #typeMenu {
     background-color: var(--beige_o);
+
+  }
+  #first #typeMenu img{
+    padding: 20px 0 0 0;
   }
 
   #first #typeMenu img {
@@ -126,17 +124,19 @@
     height: 100%;
   }
 
-  #menus {
-    width: 130px;
+  #bouton_menus {
+    margin: 20px 10;
+    font-size: 1.3em;
+    width: 270px;
+    /* word-wrap: break-word; */
     color: var(--text2);
     border-radius: 5px;
-    padding: 10px 25px;
+    padding: 7px 20px;
     font-weight: 500;
     background: #A1211F;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    display: inline-block;
     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
       7px 7px 20px 0px rgba(0,0,0,.1),
       4px 4px 5px 0px rgba(0,0,0,.1);
@@ -220,8 +220,11 @@
       height: auto !important;
     }
 
-    #first #typeMenu img{
-      display: none;
+    .titre_soups_noodles_dumpings, .description_soups_noodles_dumpings, #first #typeMenu img{
+      display: none !important;
+    }
+    #bouton_menus{
+      width:100vw;
     }
     .parallax {
       background-attachment: scroll;

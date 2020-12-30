@@ -1,7 +1,6 @@
 <template>
   <div id="all">
 
-
       <div class="container-fluid">
         <form @submit.prevent="addMenu">
         <div id ="titre_admin" class="row">

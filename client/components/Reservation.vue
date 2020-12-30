@@ -139,14 +139,14 @@
   #ligne_un{
     font-size: 2.8em;
     color:#891B17;
-    padding: 5%;
+    padding: 100px 0 30px 0;
   }
 
   #ligne_deux{
     height:auto;
     background-color:var(--bleu_o);
     margin: 2% 5% 2% 5%;
-    padding: 5%;
+    padding: 3%;
     display:flex;
     justify-content:center;
     align-items:center;
