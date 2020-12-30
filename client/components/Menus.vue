@@ -191,62 +191,59 @@
 
 <style scoped>
 
-  .bouton_valider:hover{
-
+  .bouton_valider:hover {
     background-color: var(--bleu) !important;
     color: var(--text) !important;
     font-weight: bold;
   }
 
-  .bouton_annuler:hover,.bouton_supprimer:hover{
+  .bouton_annuler:hover,.bouton_supprimer:hover {
     background-color: var(--rouge) !important;
     color: var(--text2) !important;
     font-weight: bold;
   }
 
-  .bouton_modifier:hover{
+  .bouton_modifier:hover {
     background-color: var(--bleu) !important;
     color: var(--text) !important;
     font-weight: bold;
   }
 
-  .balise_current_type_menu{
+  .balise_current_type_menu {
     display: flex;
     justify-content: center;
   }
 
-  .current_type_menu{
+  .current_type_menu {
     font-size: 2em;
     background-color: var(--rouge);
     color: var(--beige);
     width: auto;
     padding: 0 25px 5px 25px;
-    /* width: 100%; */
     text-align: center;
   }
 
-  #colonne_admin{
+  #colonne_admin {
     padding: 0;
     margin: 0;
   }
 
-
-  #modification_plats{
+  #modification_plats {
     margin: 15px 0 0 0;
     background-color: var(--beige);
     padding: 15px;
   }
 
-  #modification_plats .row{
+  #modification_plats .row {
     color:black;
     padding: 0 0 15px 0;
   }
 
-  #modification_plats p{
+  #modification_plats p {
     font-weight:bold;
   }
 
-  #titre_page{
+  #titre_page {
     font-size: 2.6em;
     display: flex;
     text-align: center;
@@ -255,7 +252,7 @@
     padding: 3%;
   }
 
-  #background{
+  #background {
     color:var(--rouge);
     height: auto;
     background-size: contain;
@@ -268,13 +265,13 @@
     height: 100px;
   }
 
-  #colonne_principale{
+  #colonne_principale {
     background-color:var(--bleu_o);
     padding: 2%;
     width: 100%;
   }
 
-  .spicy{
+  .spicy {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -284,7 +281,7 @@
     background-color: var(--rouge);
   }
 
-  .type_plat{
+  .type_plat {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -298,13 +295,13 @@
     border-bottom: 2px solid var(--rouge_o);
   }
 
-  .type_plat a{
+  .type_plat a {
     margin-left: 3%;
     margin-right: 3%;
     color: var(--rouge);
   }
 
-  .ligne_plat{
+  .ligne_plat {
     border-bottom: 2px solid var(--rouge_o);
     display: flex;
     flex-direction: column;
@@ -313,7 +310,7 @@
     padding: 0 0 2% 0;
   }
 
-  .menu-img, .nom_prix_spicy_plat{
+  .menu-img, .nom_prix_spicy_plat {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -321,33 +318,30 @@
     margin-bottom: 1%;
   }
 
-
   .menu-title, .spicy, .menu-description, .bouton-menus {
     padding:10px;
   }
 
-  .menu-description{
+  .menu-description {
     background-color: var(--beige_o);
     color: var(--rouge);
     margin-top: 10px;
     font-size: 1.2em;
   }
 
-  .menu-title{
+  .menu-title {
     font-size: 1.5em;
     margin-left: 10px;
   }
 
-  #colonne_principale button{
+  #colonne_principale button {
     padding:  5px;
     border-radius: 20px 20px;
     font-size: 1.4em;
     margin: 10px 0 0 0 ;
-
   }
 
-
-  #balise_admin{
+  #balise_admin {
     position: fixed;
     z-index: 2;
   }
@@ -370,7 +364,6 @@
   #bouton_fermer_menus:hover,#bouton_ajouter_menus:hover {
     background-color: var(--beige);
     color:var(--rouge);
-    /* font-size: 1.2em; */
     font-weight: bold;
     border: none;
   }

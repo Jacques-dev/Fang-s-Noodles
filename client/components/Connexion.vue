@@ -115,7 +115,7 @@
 
 <style>
 
-  #bouton_connexion_register{
+  #bouton_connexion_register {
     background-color: #F0DDC4;
     height: 100%;
   }
@@ -127,7 +127,7 @@
     cursor: pointer;
   }
 
-  .login-popup, .register-popup{
+  .login-popup, .register-popup {
     position: relative;
     text-align: center;
     width: 100%;

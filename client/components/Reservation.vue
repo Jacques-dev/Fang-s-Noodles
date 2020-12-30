@@ -134,17 +134,17 @@
 
 <style scoped>
 
-  #titre_page{
+  #titre_page {
     text-align: center;
   }
 
-  #ligne_un{
+  #ligne_un {
     font-size: 2.8em;
     color:#891B17;
     padding: 100px 0 30px 0;
   }
 
-  #ligne_deux{
+  #ligne_deux {
     height:auto;
     background-color:var(--bleu_o);
     margin: 2% 5% 2% 5%;
@@ -154,13 +154,12 @@
     align-items:center;
   }
 
-  #background{
+  #background {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-image: url("../images/backgrounds/tables.jpeg");
-
   }
 
   .container-fluid {
@@ -187,7 +186,7 @@
     opacity: 0;
   }
 
-  #select_date{
+  #select_date {
     padding: 5px;
     color: var(--text1);
     border: solid var(--text2) 2px;
@@ -195,7 +194,7 @@
     background-color: var(--beige);
   }
 
-  #reserver{
+  #reserver {
     border: solid var(--text2) 2px;
     text-decoration: none;
     padding: 5px 15px 5px 15px;

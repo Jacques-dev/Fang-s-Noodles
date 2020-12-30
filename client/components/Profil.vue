@@ -133,44 +133,45 @@
 </script>
 
 <style scoped>
-  .chaque_reservation{
+
+  .chaque_reservation {
     box-shadow: 3px 3px 3px 3px var(--rouge);
     margin: 12px 0 12px 0;
     padding: 10px 0 10px 0;
   }
 
-  .data_reservation{
+  .data_reservation {
     margin: 0 0 10px 0;
   }
 
-  .titre_section{
+  .titre_section {
     font-size: 1.7em;
     display:flex;
     justify-content: center;
     padding: 20px;
   }
 
-  .container{
+  .container {
     height: 100%;
   }
 
-  #background_infos{
+  #background_infos {
     background-color: var(--rouge);
     overflow-y: scroll;
     height: auto;
   }
 
-  #titre_page_info{
+  #titre_page_info {
     background-color: var(--beige_o);
     text-align: center;
     padding: 20px;
   }
 
-  #mes_infos, #mes_reservations{
+  #mes_infos, #mes_reservations {
     background-color: var(--beige_o);
   }
 
-  #mes_infos{
+  #mes_infos {
     margin-bottom: 2%;
     border-bottom: black 1px solid;
   }

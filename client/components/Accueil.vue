@@ -81,7 +81,7 @@
 </script>
 
 <style scoped>
-  #text_fille_soupe{
+  #text_fille_soupe {
     padding: 0 25px 0 25px;
   }
 
@@ -115,7 +115,7 @@
     background-color: var(--beige_o);
 
   }
-  #first #typeMenu img{
+  #first #typeMenu img {
     padding: 20px 0 0 0;
   }
 
@@ -128,7 +128,6 @@
     margin: 20px 10;
     font-size: 1.3em;
     width: 400px;
-    /* word-wrap: break-word; */
     color: var(--text2);
     border-radius: 5px;
     padding: 7px 20px;
@@ -220,18 +219,20 @@
       height: auto !important;
     }
 
-    .titre_soups_noodles_dumpings, .description_soups_noodles_dumpings, #first #typeMenu img{
+    .titre_soups_noodles_dumpings, .description_soups_noodles_dumpings, #first #typeMenu img {
       display: none !important;
     }
-    #bouton_menus{
+
+    #bouton_menus {
       width:100vw;
     }
+
     .parallax {
       background-attachment: scroll;
     }
   }
 
-  #first, #second, #third .row{
+  #first, #second, #third .row {
     border-top: solid 1px black;
   }
 

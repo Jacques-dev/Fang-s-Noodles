@@ -70,28 +70,26 @@
 
 <style>
 
-  #titre_admin{
+  #titre_admin {
     font-size: 1.3em;
     text-align:center;
-
   }
 
   @media only screen and (max-device-width: 1000px) {
-    #all{
+    #all {
       width: 70vw !important;
       margin: 0 15vw 0 15vw;
-      /* text-align: center; */
     }
   }
 
-  #all{
+  #all {
     position: fixed;
     z-index: 4;
     background-color: #891B17;
     width: 20%;
   }
 
-  #all .row{
+  #all .row {
     margin: 20px 0 20px 0;
   }
 

@@ -207,12 +207,11 @@
 
 <style scoped>
 
-
-  .ligne_boutons_panier{
+  .ligne_boutons_panier {
     margin-top: 15px;
   }
 
-  .slide_page_commander{
+  .slide_page_commander {
     word-break: break-word;
     min-width: 70px;
   }
@@ -222,6 +221,7 @@
     .slide_page_commander:focus {
       box-shadow: inset 8em 0 0 0 var(--hover);
     }
+
     .slide_commander:hover,
     .slide_commander:focus {
       box-shadow: inset 21em 0 0 0 var(--hover);
@@ -232,10 +232,12 @@
     --hover: var(--rouge) ;
     background-color: var(--beige);
     }
+
     button {
     color: black;
     transition: 0.70s;
     }
+
     button:hover, button:focus {
     border-color: var(--hover);
     color: var(--color);
@@ -243,76 +245,77 @@
   }
 
   @media only screen and (max-device-width: 575px) {
-    #all{
+    #all {
       max-height: 100%;
       overflow-y: scroll;
     }
-    #resume_commande{
+
+    #resume_commande {
       margin-bottom: 25px;
     }
-    #colonne_gauche{
+
+    #colonne_gauche {
       margin-bottom: 25px;
     }
-    #colonne_centrale{
+
+    #colonne_centrale {
       margin-bottom: 25px;
     }
-    #colonne_droite{
+
+    #colonne_droite {
       border-top: 8px double black
     }
   }
-  #background{
+
+  #background {
     color:black;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    /* overflow-y: scroll; */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-image: url("../images/backgrounds/commander.webp");
   }
 
-  .chaque_plat_panier{
+  .chaque_plat_panier {
     margin: 10px 0 10px 0;
     padding: 10px 0 10px 0;
   }
 
-  #resume_commande{
+  #resume_commande {
     padding: 20px;
     background-color: var(--bleu_o);
-    /* width: 40%; */
   }
 
-  #resume_commande button{
+  #resume_commande button {
     padding: 5px;
     width: 100%;
   }
 
-  #colonne_gauche{
+  #colonne_gauche {
     padding-top: 20px;
   }
 
-  #colonne_principale{
-    /* width: 60%; */
+  #colonne_principale {
     background-color: var(--bleu_o);
     border-top: 1px solid black;
   }
 
-  #colonne_droite{
-    /* border: 4px black solid; */
+  #colonne_droite {
     overflow-y: scroll;
     max-height: 600px;
   }
 
-  #colonne_droite .chaque_plat_panier{
+  #colonne_droite .chaque_plat_panier {
     margin-bottom: 20px;
     padding: 10px 20px 15px 10px ;
     border-bottom: 1px solid black;
   }
 
-  #colonne_centrale{
+  #colonne_centrale {
     overflow-y: scroll;
     height: 600px;
   }
@@ -321,7 +324,7 @@
       display: none;
   }
 
-  #colonne_centrale img{
+  #colonne_centrale img {
     max-width:245px;
     max-height: 185px;
     margin: 15px 0 0 0;
@@ -335,24 +338,21 @@
     opacity: 1;
   }
 
-  #colonne_centrale .chaque_plat{
+  #colonne_centrale .chaque_plat {
     padding-bottom: 2vh;
     margin-top: 2vh;
     border-bottom: 1px solid black;
   }
 
-  .type_menu{
+  .type_menu {
     margin: 10px 0 10px 0;
-    /* border: 2px black solid; */
   }
 
-  .type_menu button{
-    /* text-decoration: none; */
-    /* border: none; */
+  .type_menu button {
     width: 100%;
   }
 
-  .type_plat{
+  .type_plat {
     justify-content: center;
     border-bottom: solid 1px black;
     padding: 20px;
@@ -381,19 +381,16 @@
 
   .image {
     border: black 1px solid;
-    /* opacity: 1; */
-    /* display: block; */
     width: 100%;
     height: auto;
     transition: 1s ease;
-    /* backface-visibility: hidden; */
   }
 
-  .description-plat{
+  .description-plat {
     padding: 15px 0 0 0;
   }
 
-  .spicy{
+  .spicy {
     color:red;
   }
 
