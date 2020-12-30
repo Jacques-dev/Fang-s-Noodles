@@ -1,4 +1,47 @@
 
+.btn-13 {
+  z-index: 1;
+}
+.btn-13:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: var(--rouge);
+  background-color: var(--beige);
+  transition: all 0.3s ease;
+}
+.btn-13:hover {
+  color: var(--rouge);
+
+}
+.btn-13:hover:after {
+  top: auto;
+  bottom: 0;
+  height: 100%;
+    color: var(--rouge);
+}
+
+.custom-btn {
+  padding: 10px 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+
+
+
+
+
 :root {
   --rouge: #891B17;
   --bordeau: #6c1d1a;
@@ -20,7 +63,7 @@
 
 .slide {
   padding: 3px 8px 3px 8px;
---color: var(--rouge);
+--color: var(--rouge) !important;
 --hover: var(--beige);
 }
 
@@ -32,8 +75,8 @@ transition: 0.9s;
 }
 
 #linkedin a:hover, a:focus {
-border-color: var(--hover);
-color: var(--color);
+border-color: var(--hover) !important;
+color: var(--rouge) !important;
 font-weight: bold;
 }
 
@@ -91,14 +134,13 @@ footer .row {
 .topnav {
   overflow: hidden;
   background-color: var(--bordeau);
-  color: var(--text2);
   letter-spacing: 1px;
   /* height: 65px; */
 }
 
 .topnav .nav-link {
   float: left;
-  color: var(--text2);
+  color: var(--beige);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -112,13 +154,6 @@ footer .row {
 .topnav-right h3 {
   margin-right: 25px;
   /* float: left; */
-}
-
-.lien:hover {
-  background-color: var(--beige);
-  /* font-weight: bold; */
-  /* font-style: italic; */
-  color: #7D1917;
 }
 
 .btn {
