@@ -23,12 +23,14 @@
     }
   }
 
-
+  // Cette route est appelé une seul fois au lancement du serveur pour faire
+  // passer la liste des types de menus déclaré dans "vue-application.js"
   router.post('/setdatas', (req, res) => {
     req.session.typesString = req.body.typesString.split(',')
     res.send()
   })
 
+  // Cette route enregistre dans la base de données un nouvel utilisateur
   router.post('/register', async (req, res) => {
     const email = req.body.email
     const password = req.body.password
@@ -57,6 +59,8 @@
     }
   })
 
+  // Cette route retourne les informations récupérées depuis la base de données
+  // pour un utilisateur de type client
   router.post('/login', async (req, res) => {
     const email = req.body.email
     const password = req.body.password
@@ -97,6 +101,8 @@
     }
   })
 
+  // Cette route retourne les informations récupérées depuis la base de données
+  // pour un utilisateur de type admin
   router.post('/adminlogin', async (req, res) => {
 
     const id = req.body.id
@@ -136,6 +142,8 @@
     }
   })
 
+  // Cette route supprime toutes les variable de session au préalable initialisé
+  // et les retourne pour actualiser les data de "vue-application.js"
   router.post('/logout', async (req, res) => {
     req.session.userId = null
     req.session.adminId = null
@@ -157,6 +165,7 @@
     res.json(log)
   })
 
+  // Cette route retourne toutes les informations de l'utilisateurs connecté
   router.get('/me', async (req, res) => {
 
     if (req.session.userId || req.session.adminId) {
@@ -191,6 +200,8 @@
     }
   })
 
+  // Cette route modifie dans la base de données et dans "vue-application.js"
+  // les informations de l'utilisateurs connecté
   router.put('/user', async (req, res) => {
     var nom = req.body.nom
     var prenom = req.body.prenom
@@ -224,6 +235,8 @@
     res.send()
   })
 
+  // Cette route enregistre dans la base de données et dans "vue-application.js"
+  // les informations de la réservation passé par le client connecté
   router.post('/reservation', async (req, res) => {
 
     if (req.session.userId) {
@@ -252,15 +265,6 @@
     }
 
   })
-
-  /**
-   * Dans ce fichier, vous trouverez des exemples de requêtes GET, POST, PUT et DELETE
-   * Ces requêtes concernent l'ajout ou la suppression d'menus sur le site
-   * Votre objectif est, en apprenant des exemples de ce fichier, de créer l'API pour le panier de l'utilisateur
-   *
-   * Notre site ne contient pas d'authentification, ce qui n'est pas DU TOUT recommandé.
-   * De même, les informations sont réinitialisées à chaque redémarrage du serveur, car nous n'avons pas de système de base de données pour faire persister les données
-   */
 
   /**
    * Notre mécanisme de sauvegarde des paniers des utilisateurs sera de simplement leur attribuer un panier grâce à req.session, sans authentification particulière
@@ -328,6 +332,7 @@
     }
   })
 
+  // Cette fonction
   function checkIfNotMenuExistInPanier (id, type, menus) {
     var bool = true
     for (let i = 0; i != menus.length; i++) {
@@ -339,6 +344,7 @@
     }
     return bool
   }
+  // Cette fonction
   function menuInPanier (id, type, menus) {
     for (let i = 0; i != menus.length; i++) {
       if (menus[i].type == type) {
@@ -348,6 +354,7 @@
       }
     }
   }
+  // Cette fonction
   function indexMenuInPanier (id, type, menus) {
     var index = 0
     for (let i = 0; i != menus.length; i++) {
@@ -543,10 +550,7 @@
 
   /**
    * Cette route modifie un menu.
-   * WARNING: dans un vrai site, elle devrait être authentifiée et valider que l'utilisateur est bien autorisé
-   * NOTE: lorsqu'on redémarre le serveur, la modification de l'menu disparait
-   *   Si on voulait persister l'information, on utiliserait une BDD (mysql, etc.)
-   */
+  */
   .put(parseMenu, (req, res) => {
     const name = req.body.name
     const description = req.body.description
@@ -562,6 +566,9 @@
     res.send()
   })
 
+  /**
+   * Cette route supprime un menu.
+  */
   .delete(parseMenu, (req, res) => {
     const size = parseInt(req.session.typesString.length)
     for (let i = 0; i != size; i++) {

@@ -71,6 +71,7 @@ var app = new Vue({
 
   },
   methods: {
+    // Permet de s'enregistrer
     async register (user) {
       try {
         await axios.post('/api/register/','nom=' + user.nom + '&email=' + user.email + '&password=' + user.password +  '&prenom=' + user.prenom + '&telephone=' + user.telephone)
@@ -83,6 +84,7 @@ var app = new Vue({
         })
       }
     },
+    // Permet de se connecter en tant que client
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
 
@@ -97,6 +99,7 @@ var app = new Vue({
 
       router.push('/')
     },
+    // Permet de se connecter en tant qu'admin
     async adminLogin (admin) {
       await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
 
@@ -111,6 +114,7 @@ var app = new Vue({
 
       router.push('/')
     },
+    // Permet de se déconnecter
     async logout () {
       const res_menus = await axios.post('/api/logout/')
       this.admin.id = res_menus.data.admin
@@ -123,6 +127,7 @@ var app = new Vue({
       this.user.reservations = []
       router.push('/')
     },
+    // Permet de modifier un profil
     async updateProfile (newUser) {
       await axios.put('/api/user/', 'nom=' + newUser.nom + '&prenom=' + newUser.prenom + '&email=' + newUser.email + '&telephone=' + newUser.telephone)
       const res = await axios.get('/api/me')
@@ -131,6 +136,7 @@ var app = new Vue({
       this.user.prenom = res.data.prenom
       this.user.telephone = res.data.telephone
     },
+    // Permet d'enregistrer une réservation
     async reserver (reservation) {
       if (this.user.id) {
         const res = await axios.post('/api/reservation','date=' + reservation.date + '&heure=' + reservation.heure + '&personnes=' + reservation.personnes)
@@ -150,6 +156,7 @@ var app = new Vue({
         router.push('/connexion')
       }
     },
+    // Permet de simuler le passage d'une commande
     async commander () {
       if (this.user.id) {
         if (this.panier.menus.length != 0) {
@@ -177,6 +184,7 @@ var app = new Vue({
         router.push('/connexion')
       }
     },
+    // Permet d'ajouter un menu au panier
     async addToPanier (menu) {
       for (let i = 0; i != this.typesString.length; i++) {
         if (menu.type == this.typesString[i]) {
@@ -188,6 +196,7 @@ var app = new Vue({
         }
       }
     },
+    // Permet de supprimer un menu du panier
     async removeFromPanier (menu) {
       for (let i = 0; i != this.typesString.length; i++) {
         if (menu.type == this.typesString[i]) {
@@ -207,6 +216,7 @@ var app = new Vue({
       this.panier.nb_menus = nb
 
     },
+    // Permet de modifier la quantité d'un menu dans le panier
     async updateMenuFromPanier (newMenu) {
       for (let i = 0; i != this.typesString.length; i++) {
         if (newMenu.type == this.typesString[i]) {
@@ -234,6 +244,7 @@ var app = new Vue({
       this.panier.prix = prix
       this.panier.nb_menus = nb
     },
+    // Permet d'ajouter un menu à la liste des menus du sites
     async addMenu (menu) {
       const res = await axios.post('/api/menu', menu)
 
@@ -242,8 +253,8 @@ var app = new Vue({
           this.menus[i].push(res.data)
         }
       }
-
     },
+    // Permet de supprimer un menu depius la liste des menus du site
     async deleteMenu (content) {
       await axios.delete('/api/menu/' + content.type + '/' + content.id)
       for (let i = 0; i != this.typesString.length; i++) {
@@ -253,6 +264,7 @@ var app = new Vue({
         }
       }
     },
+    // Permet de modifier un des menus du site
     async updateMenu (newMenu) {
       await axios.put('/api/menu/' + newMenu.type + '/' +  newMenu.id, newMenu)
       for (let i = 0; i != this.typesString.length; i++) {
