@@ -88,6 +88,11 @@
       register () {
         var email = document.getElementById("email_register").value;
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+          if (this.login == true) {
+            this.login = false
+          } else {
+            this.login = true
+          }
           this.$emit('register', this.editRegister);
         }
       },
