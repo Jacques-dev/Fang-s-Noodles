@@ -10,19 +10,16 @@
   top: 0;
   left: 0;
   z-index: -1;
-  color: var(--rouge);
-  background-color: var(--beige);
+  background: var(--beige);
   transition: all 0.3s ease;
 }
 .btn-13:hover {
-  color: var(--rouge);
-
+  color: var(--rouge)!important;
 }
 .btn-13:hover:after {
   top: auto;
   bottom: 0;
   height: 100%;
-    color: var(--rouge);
 }
 
 .custom-btn {
@@ -63,7 +60,7 @@
 
 .slide {
   padding: 3px 8px 3px 8px;
---color: var(--rouge) !important;
+--color: var(--rouge);
 --hover: var(--beige);
 }
 
@@ -75,8 +72,8 @@ transition: 0.9s;
 }
 
 #linkedin a:hover, a:focus {
-border-color: var(--hover) !important;
-color: var(--rouge) !important;
+border-color: var(--hover);
+color: var(--color);
 font-weight: bold;
 }
 
@@ -134,13 +131,14 @@ footer .row {
 .topnav {
   overflow: hidden;
   background-color: var(--bordeau);
+  color: var(--text2);
   letter-spacing: 1px;
   /* height: 65px; */
 }
 
 .topnav .nav-link {
   float: left;
-  color: var(--beige);
+  color: var(--text2);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
