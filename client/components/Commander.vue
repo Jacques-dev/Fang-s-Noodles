@@ -2,7 +2,7 @@
 
 <section id="background">
 
-  <section id="ici" class="container d-flex flex-column" >
+  <section id="all" class="container d-flex flex-column" >
 
     <section id="resume_commande" class="row">
 
@@ -25,19 +25,19 @@
       <section id="colonne_gauche" class="col-sm-2 colonne">
         <section class="container-fluid d-flex flex-column">
           <div class="row type_menu">
-            <button class="slide" @click="changeTypeMenu('soups')">Soups</button>
+            <button class="slide_page_commander" @click="changeTypeMenu('soups')">Soups</button>
           </div>
           <div class="row type_menu">
-            <button class="slide" @click="changeTypeMenu('dumplings')">Dumplings</button>
+            <button class="slide_page_commander" @click="changeTypeMenu('dumplings')">Dumplings</button>
           </div>
           <div class="row type_menu">
-            <button class="slide" @click="changeTypeMenu('noodles')">Noodles</button>
+            <button class="slide_page_commander" @click="changeTypeMenu('noodles')">Noodles</button>
           </div>
           <div class="row type_menu">
-            <button class="slide" @click="changeTypeMenu('sashimi')">Sashimi</button>
+            <button class="slide_page_commander" @click="changeTypeMenu('sashimi')">Sashimi</button>
           </div>
           <div class="row type_menu">
-              <button class="slide" @click="changeTypeMenu('nigiri')">Nigiri</button>
+            <button class="slide_page_commander" @click="changeTypeMenu('nigiri')">Nigiri</button>
           </div>
 
         </section>
@@ -111,7 +111,7 @@
                   </article>
 
                   <article class="col-sm-6 bouton_supprimer_panier">
-                    <button class="slide col-sm-12" @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
+                    <button class="slide_page_commander col-sm-12" @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
                   </article>
                 </article>
 
@@ -204,26 +204,19 @@
 
 <style scoped>
 
-/* @media only screen and (min-device-width: 1000px) { */
-
-.bouton_supprimer_panier{
-    /* display: flex; */
-    /* justify-content: center; */
-    /* text-align: cente  r; */
-}
 
 .ligne_boutons_panier{
   margin-top: 15px;
 }
 
-.slide{
+.slide_page_commander{
   word-break: break-word;
   min-width: 70px;
 }
 
 @media only screen and (min-device-width: 1000px) {
-  .slide:hover,
-  .slide:focus {
+  .slide_page_commander:hover,
+  .slide_page_commander:focus {
     box-shadow: inset 8em 0 0 0 var(--hover);
   }
   .slide_commander:hover,
@@ -231,9 +224,10 @@
     box-shadow: inset 21em 0 0 0 var(--hover);
   }
 
-  .slide, .slide_commander {
+  .slide_page_commander, .slide_commander {
   --color: var(--beige) ;
   --hover: var(--rouge) ;
+  background-color: var(--beige);
   }
   button {
   color: black;
@@ -246,7 +240,7 @@
 }
 
 @media only screen and (max-device-width: 575px) {
-  #ici{
+  #all{
     max-height: 100%;
     overflow-y: scroll;
   }
@@ -320,6 +314,10 @@
     height: 600px;
   }
 
+  #colonne_centrale::-webkit-scrollbar {
+      display: none;
+  }
+
   #colonne_centrale img{
     max-width:245px;
     max-height: 185px;
@@ -366,7 +364,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    /* text-align: center; */
   }
 
   .ajouter_panier_bouton {
@@ -388,7 +385,12 @@
     backface-visibility: hidden;
   }
 
+  .description-plat{
+    padding: 15px 0 0 0;
+  }
+
   .spicy{
     color:red;
   }
+
 </style>

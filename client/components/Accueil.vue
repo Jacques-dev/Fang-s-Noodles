@@ -101,7 +101,7 @@
   }
 
   #first .description_soups_noodles_dumpings {
-    padding-top: 20%;
+    padding-top: 19%;
     text-align:center;
     width: 40%;
     position: absolute;
