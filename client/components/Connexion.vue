@@ -1,7 +1,7 @@
 <template>
   <div id="bouton_connexion_register">
 
-    <div class="login-popup">
+    <div class="login-popup" v-if="login">
       <div class="form-popup" id="popupForm_login">
         <form class="form-container" @submit.prevent="login">
           <h2>Veuillez vous connecter</h2>
@@ -13,13 +13,14 @@
             <p class="titre_formulaire">Mot de passe</p>
           </label>
           <input type="password" v-model="editLogin.password" placeholder="Votre mot de passe" name="psw" required>
+
           <button type="submit" class="btn_connexion">Connexion</button>
-          <button type="button" class="btn_connexion other" @click="openForm_register()">Pas encore de compte ?</button>
+          <button type="button" class="btn_connexion other" @click="switchForm()">Pas encore de compte ?</button>
         </form>
       </div>
     </div>
 
-    <div class="register-popup">
+    <div class="register-popup" v-else>
       <div class="form-popup" id="popupForm_register">
         <form class="form-container" @submit.prevent="register">
           <h2>Inscription</h2>
@@ -48,7 +49,8 @@
           </label>
           <input type="text" v-model="editRegister.telephone" placeholder="Entrez votre numéro de Telephone" name="telephone" required>
 
-          <button class="btn_connexion" @click="openForm_login()">Je m'inscris</button>
+          <button type="submit" class="btn_connexion">Je m'inscris</button>
+          <button type="button" class="btn_connexion other" @click="switchForm()">J'ai déjà un compte</button>
 
         </form>
       </div>
@@ -71,19 +73,18 @@
         editLogin:{
           email:'',
           password:''
-        }
+        },
+        login: true
       }
     },
     methods: {
-      openForm_login () {
-        document.getElementById("popupForm_login").style.display="flex";
-        document.getElementById("popupForm_register").style.display="none";
+      switchForm() {
+        if (this.login == true) {
+          this.login = false
+        } else {
+          this.login = true
+        }
       },
-      openForm_register () {
-        document.getElementById("popupForm_register").style.display="flex";
-        document.getElementById("popupForm_login").style.display="none";
-      },
-
       register () {
         var email = document.getElementById("email_register").value;
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
@@ -106,10 +107,6 @@
 
 <style>
 
-  #popupForm_register{
-    display: none;
-  }
-
   #bouton_connexion_register{
     background-color: #F0DDC4;
     height: 100%;
@@ -128,7 +125,7 @@
     width: 100%;
   }
 
-  .login-popup .other {
+  #bouton_connexion_register .other {
     background-color: blue !important;
   }
 

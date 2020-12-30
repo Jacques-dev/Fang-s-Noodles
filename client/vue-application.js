@@ -9,7 +9,7 @@ const Profil = window.httpVueLoader('./components/Profil.vue')
 const routes = [
   { path: '/', component: Accueil },
   { path: '/menus', component: Menus },
-  { path: '/commander', component: Commander },
+  { path: '/commander', component: Commander},
   { path: '/connexion', component: Connexion},
   { path: '/deconnexion', component: Deconnexion},
   { path: '/profil', component: Profil},
@@ -72,8 +72,16 @@ var app = new Vue({
   },
   methods: {
     async register (user) {
-      await axios.post('/api/register/','nom=' + user.nom + '&email=' + user.email + '&password=' + user.password +  '&prenom=' + user.prenom + '&telephone=' + user.telephone)
-      router.push('/connexion')
+      try {
+        await axios.post('/api/register/','nom=' + user.nom + '&email=' + user.email + '&password=' + user.password +  '&prenom=' + user.prenom + '&telephone=' + user.telephone)
+        router.push('/connexion')
+      } catch (e) {
+        asAlertMsg({
+          type: "warning",
+          title: "Attention",
+          message: "Cette adresse mail existe déjà"
+        })
+      }
     },
     async login (user) {
       await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
