@@ -1,7 +1,7 @@
 <template>
   <div id="bouton_connexion_register">
 
-    <div class="login-popup" v-if="login">
+    <div class="login-popup" v-if="login_form">
       <div class="form-popup" id="popupForm_login">
         <form class="form-container" @submit.prevent="login">
           <h2>Veuillez vous connecter</h2>
@@ -15,7 +15,7 @@
           <input type="password" v-model="editLogin.password" placeholder="Votre mot de passe" name="psw" required>
 
           <button type="submit" class="btn_connexion">Connexion</button>
-          <button type="button" class="btn_connexion other" @click="switchForm()">Pas encore de compte ?</button>
+          <button class="btn_connexion other" @click="switchForm()">Pas encore de compte ?</button>
         </form>
       </div>
     </div>
@@ -50,7 +50,7 @@
           <input type="text" v-model="editRegister.telephone" placeholder="Entrez votre numéro de Telephone" name="telephone" required>
 
           <button type="submit" class="btn_connexion">Je m'inscris</button>
-          <button type="button" class="btn_connexion other" @click="switchForm()">J'ai déjà un compte</button>
+          <button class="btn_connexion other" @click="switchForm()">J'ai déjà un compte</button>
 
         </form>
       </div>
@@ -74,37 +74,37 @@
           email:'',
           password:''
         },
-        login: true
+        login_form: true
       }
     },
     methods: {
       // Permet d'afficher soit le formulaire de connexion soit d'enregistrement
       switchForm() {
         if (this.login == true) {
-          this.login = false
+          this.login_form = false
         } else {
-          this.login = true
+          this.login_form = true
         }
       },
-      // Envoie les valeurs des champs du du formualaire d'enregistrement
+      // Envoie les valeurs des champs du du formulaire d'enregistrement
       register () {
-        var email = document.getElementById("email_register").value;
+        var email = document.getElementById("email_register").value
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
-          if (this.login == true) {
-            this.login = false
+          if (this.login_form == true) {
+            this.login_form = false
           } else {
-            this.login = true
+            this.login_form = true
           }
-          this.$emit('register', this.editRegister);
+          this.$emit('register', this.editRegister)
         }
       },
-      // Envoie les valeurs des champs du du formualaire de connexion
+      // Envoie les valeurs des champs du du formulaire de connexion
       login () {
-        var email = document.getElementById("email").value;
+        var email = document.getElementById("email").value
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
           this.$emit('login', this.editLogin);
         } else if (email.match(/(admin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {// admin-jacques-tellier-efrei_2023
-          this.$emit('admin-login', this.editLogin);
+          this.$emit('admin-login', this.editLogin)
         }
       }
 
