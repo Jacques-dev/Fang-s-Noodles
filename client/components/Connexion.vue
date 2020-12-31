@@ -102,7 +102,7 @@
       login () {
         var email = document.getElementById("email").value
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) ) {
-          this.$emit('login', this.editLogin);
+          this.$emit('login', this.editLogin)
         } else if (email.match(/(admin-)+[a-z]+(-)+[a-z]+(-efrei_2023)/gm)) {// admin-jacques-tellier-efrei_2023
           this.$emit('admin-login', this.editLogin)
         }
@@ -115,13 +115,18 @@
 
 <style>
 
-  #bouton_connexion_register {
-    background-color: #F0DDC4;
+  #bouton_connexion_register{
+    background-color: var(--beige);
     height: 100%;
   }
 
+  .register-popup{
+    position: relative;
+    /* top:-3%; */
+  }
+
   .open-button {
-    background-color: #891B17;
+    background-color: var(--bleu);
     color: white;
     border: none;
     cursor: pointer;
@@ -140,7 +145,7 @@
   .form-popup {
     display: flex;
     justify-content: center;
-    padding-top:3%;
+    padding-top:2%;
   }
 
   .form-container {
@@ -159,7 +164,7 @@
   }
 
   .form-container .btn_connexion {
-    background-color: #8ebf42;
+    background-color: var(--rouge);
     color: #fff;
     padding: 12px 20px;
     border: none;
@@ -171,7 +176,7 @@
 
   .form-container .btn_connexion:hover, .open-button:hover {
     opacity: 1;
-    color:#fff;
+    color:var(--text2);
   }
 
 </style>

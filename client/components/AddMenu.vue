@@ -1,10 +1,10 @@
 <template>
-  <div id="all">
+  <div id="formulaire_ajouter_plat">
 
       <div class="container-fluid">
         <form @submit.prevent="addMenu">
         <div id ="titre_admin" class="row">
-          <div  class="col-sm-12">Nouveau menu à ajouter</div>
+          <div class="col-sm-12">Nouveau menu à ajouter</div>
         </div>
         <div class="row">
           <select class="col-sm-12" v-model="newMenu.type">
@@ -73,24 +73,25 @@
   #titre_admin {
     font-size: 1.3em;
     text-align:center;
+    color: var(--beige);
   }
 
   @media only screen and (max-device-width: 1000px) {
-    #all {
+    #formulaire_ajouter_plat {
       width: 70vw !important;
       margin: 0 15vw 0 15vw;
     }
   }
 
-  #all {
+  #formulaire_ajouter_plat {
     position: fixed;
     z-index: 4;
     background-color: #891B17;
     width: 20%;
   }
 
-  #all .row {
-    margin: 20px 0 20px 0;
+  #formulaire_ajouter_plat .row {
+    margin: 20px 5px 20px 5px;
   }
 
 </style>

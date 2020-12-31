@@ -138,8 +138,8 @@
     text-align: center;
   }
 
-  #ligne_un {
-    font-size: 2.8em;
+  #ligne_un{
+    font-size: 3em;
     color:#891B17;
     padding: 100px 0 30px 0;
   }
@@ -152,6 +152,7 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    border: black solid 1px;
   }
 
   #background {
@@ -162,8 +163,8 @@
     background-image: url("../images/backgrounds/tables.jpeg");
   }
 
-  .container-fluid {
-    height: 100%;
+  #background{
+    height: 95%;
   }
 
   #heure_select, #personnes_select {

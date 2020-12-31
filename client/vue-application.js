@@ -24,7 +24,7 @@ const router = new VueRouter({
         selector: to.hash
       }
     }
-  },
+  }
 })
 
 var app = new Vue({

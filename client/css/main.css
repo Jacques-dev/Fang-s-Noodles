@@ -1,4 +1,8 @@
 
+.topnav-right h4{
+  height:25px;
+}
+
 .btn-13 {
   z-index: 1;
 }
@@ -44,7 +48,7 @@
 
   --rouge_o: rgba(137,27,23,0.7);
   --beige_o: rgba(245,240,225,0.85);
-  --bleu_o: rgba(167,190,174,0.85);
+  --bleu_o: rgba(167,190,174,0.86);
 
   --text: #000;
   --text2: #fff;
@@ -130,7 +134,6 @@ footer .row {
   background-color: var(--bordeau);
   color: var(--text2);
   letter-spacing: 1px;
-  /* height: 65px; */
 }
 
 .topnav .nav-link {
@@ -139,7 +142,7 @@ footer .row {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .topnav-right {

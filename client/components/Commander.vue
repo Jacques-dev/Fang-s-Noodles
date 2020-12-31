@@ -1,132 +1,134 @@
 <template>
 
-<section id="background">
+  <section id="background">
+    <section id="colonne_principale" class="container d-flex flex-column" >
 
-  <section id="all" class="container d-flex flex-column" >
+      <section id="ligne_resume_commande" class="row">
 
-    <section id="resume_commande" class="row">
-
-      <article class="col-sm-5">
-        <p>Nombre de menus : {{ panier.nb_menus }} </p>
-      </article>
-      <article class="col-sm-3">
-        <p>Total : {{ panier.prix }}€ </p>
-      </article>
-      <article class="col-sm-4">
-        <button class="slide_commander" id="bouton_commander" class="col-sm-12" @click="commander()">
-          Commander
-        </button>
-      </article>
-
-    </section>
-
-    <section id="colonne_principale" class="row">
-
-      <section id="colonne_gauche" class="col-sm-2 colonne">
-        <section class="container-fluid d-flex flex-column">
-          <div class="row type_menu">
-            <button class="slide_page_commander" @click="changeTypeMenu('soups')">Soups</button>
-          </div>
-          <div class="row type_menu">
-            <button class="slide_page_commander" @click="changeTypeMenu('dumplings')">Dumplings</button>
-          </div>
-          <div class="row type_menu">
-            <button class="slide_page_commander" @click="changeTypeMenu('noodles')">Noodles</button>
-          </div>
-          <div class="row type_menu">
-            <button class="slide_page_commander" @click="changeTypeMenu('sashimi')">Sashimi</button>
-          </div>
-          <div class="row type_menu">
-            <button class="slide_page_commander" @click="changeTypeMenu('nigiri')">Nigiri</button>
-          </div>
-
-        </section>
-
-      </section>
-
-      <section id="colonne_centrale" class="col-sm-6 colonne">
-
-        <section class="container-fluid" v-for="menuType in menus">
-          <section class="row">
-            <article class="col-sm-6 chaque_plat" v-for="menu in menuType" v-if="checkMenuType(menu.type)">
-              <article class="container-fluid">
-
-                <div class=" row image-plat">
-                  <img v-bind:src="menu.image" class="image">
-                  <div class="affichage_bouton_ajout_panier">
-                    <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, menu.type, menu.price, menu.image)" v-if="user.id">Ajouter au panier</button>
-                  </div>
-                </div>
-
-                <div class=" row description-plat">
-                  <p>{{ menu.name }} - {{ menu.price }}€ </p>
-                </div>
-
-                <div class=" row spicy" v-if="isSpicy(menu.spicy)">
-                  <p>Spicy</p>
-                </div>
-
-              </article>
-            </article>
-          </section>
-        </section>
-      </section>
-
-      <section id="colonne_droite" class="col-sm-4 colonne">
-        <article class="row">
-          <section class="container">
-
-            <article class="chaque_plat_panier" v-for="menu in panier.menus" :key="menu.id" class="col-sm-12 plat">
-              <section class="container-fluid">
-
-                <article class="row">
-                  <div class="image-plat col-sm-8">
-                    <div>
-                      <img :src="menu.image" class="image">
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="container">
-                      <p class="row">Prix : {{menu.prix}} </p>
-                      <p class="row">Quantité : {{menu.quantity}} </p>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="row ligne_boutons_panier">
-                  <article class="col-sm-6">
-                    <select class="col-sm-12" @change="edit(menu.id, menu.type, menu.prix)" v-model="editMenu.quantity" class="mySelect">
-                      <option value="" disabled selected>quantité</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </article>
-
-                  <article class="col-sm-6 bouton_supprimer_panier">
-                    <button class="slide_page_commander col-sm-12" @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
-                  </article>
-                </article>
-
-              </section>
-            </article>
-
-          </section>
+        <article class="col-sm-5">
+          <p>Nombre de menus : {{ panier.nb_menus }} </p>
         </article>
+        <article class="col-sm-3">
+          <p>Total : {{ panier.prix }}€ </p>
+        </article>
+        <article class="col-sm-4">
+          <button class="effet_bouton_commander" id="bouton_commander" class="col-sm-12" @click="commander()">
+            Commander
+          </button>
+        </article>
+
+      </section>
+      <section id="ligne_commande" class="row">
+
+        <section id="colonne_gauche" class="col-sm-2 colonne">
+
+          <section class="container-fluid d-flex flex-column">
+            <div class="row type_menu">
+              <button class="effet_bouton" @click="changeTypeMenu('soups')">Soups</button>
+            </div>
+            <div class="row type_menu">
+              <button class="effet_bouton" @click="changeTypeMenu('dumplings')">Dumplings</button>
+            </div>
+            <div class="row type_menu">
+              <button class="effet_bouton" @click="changeTypeMenu('noodles')">Noodles</button>
+            </div>
+            <div class="row type_menu">
+              <button class="effet_bouton" @click="changeTypeMenu('sashimi')">Sashimi</button>
+            </div>
+            <div class="row type_menu">
+              <button class="effet_bouton" @click="changeTypeMenu('nigiri')">Nigiri</button>
+            </div>
+          </section>
+
+        </section>
+        <section id="colonne_centrale" class="col-sm-6 colonne">
+
+          <section class="container-fluid" v-for="menuType in menus">
+            <section class="row">
+              <article class="col-sm-6 chaque_plat" v-for="menu in menuType" v-if="checkMenuType(menu.type)">
+                <article class="container-fluid">
+
+                  <div class="row image_plat">
+                    <img v-bind:src="menu.image" class="image">
+                    <div class="affichage_bouton_ajout_panier">
+                      <button type="button" name="button" class="ajouter_panier_bouton" @click="addToPanier(menu.id, menu.type, menu.price, menu.image)" v-if="user.id">Ajouter au panier</button>
+                    </div>
+                  </div>
+
+                  <div class="row description-plat">
+                    <p>{{ menu.name }} - {{ menu.price }}€ </p>
+                  </div>
+
+                  <div class="row spicy" v-if="isSpicy(menu.spicy)">
+                    <p>Spicy</p>
+                  </div>
+
+                </article>
+              </article>
+            </section>
+          </section>
+        </section>
+        <section id="colonne_droite" class="col-sm-4 colonne">
+
+          <article class="row">
+            <section class="container-fluid">
+              <article class="row">
+                <div id="titre_colonne_droite" class="col-sm-12" align="center">
+                  <h3>Panier</h3>
+                </div>
+              </article>
+              <article class="chaque_plat_panier" v-for="menu in panier.menus" :key="menu.id" class="col-sm-12 plat">
+                <section class="container-fluid">
+
+                  <article class="row">
+                    <div class="image_plat col-sm-8">
+                      <div>
+                        <img :src="menu.image" class="image">
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="prix_quantite_plat_panier container-fluid">
+                        <p class="row">Prix : {{menu.prix}} </p>
+                        <p class="row">Quantité : {{menu.quantity}} </p>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="row ligne_boutons_panier">
+                    <article class="col-sm-6">
+                      <select class="col-sm-12" @change="edit(menu.id, menu.type, menu.prix)" v-model="editMenu.quantity" class="mySelect">
+                        <option value="" disabled selected>quantité</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </article>
+
+                    <article class="col-sm-6 bouton_supprimer_panier">
+                      <button class="effet_bouton col-sm-12" @click="removeFromPanier(menu.id, menu.type, menu.prix)">Supprimer</button>
+                    </article>
+                  </article>
+
+                </section>
+              </article>
+
+            </section>
+          </article>
+
+        </section>
+
       </section>
 
     </section>
-
   </section>
 
-</section>
 </template>
 
 <script>
@@ -207,66 +209,6 @@
 
 <style scoped>
 
-  .ligne_boutons_panier {
-    margin-top: 15px;
-  }
-
-  .slide_page_commander {
-    word-break: break-word;
-    min-width: 70px;
-  }
-
-  @media only screen and (min-device-width: 1000px) {
-    .slide_page_commander:hover,
-    .slide_page_commander:focus {
-      box-shadow: inset 8em 0 0 0 var(--hover);
-    }
-
-    .slide_commander:hover,
-    .slide_commander:focus {
-      box-shadow: inset 21em 0 0 0 var(--hover);
-    }
-
-    .slide_page_commander, .slide_commander {
-    --color: var(--beige) ;
-    --hover: var(--rouge) ;
-    background-color: var(--beige);
-    }
-
-    button {
-    color: black;
-    transition: 0.70s;
-    }
-
-    button:hover, button:focus {
-    border-color: var(--hover);
-    color: var(--color);
-    }
-  }
-
-  @media only screen and (max-device-width: 575px) {
-    #all {
-      max-height: 100%;
-      overflow-y: scroll;
-    }
-
-    #resume_commande {
-      margin-bottom: 25px;
-    }
-
-    #colonne_gauche {
-      margin-bottom: 25px;
-    }
-
-    #colonne_centrale {
-      margin-bottom: 25px;
-    }
-
-    #colonne_droite {
-      border-top: 8px double black
-    }
-  }
-
   #background {
     color:black;
     display: flex;
@@ -280,39 +222,79 @@
     background-image: url("../images/backgrounds/commander.webp");
   }
 
-  .chaque_plat_panier {
-    margin: 10px 0 10px 0;
-    padding: 10px 0 10px 0;
-  }
-
-  #resume_commande {
+  #ligne_resume_commande {
     padding: 20px;
     background-color: var(--bleu_o);
+    font-size: 1.1em;
   }
 
-  #resume_commande button {
+  #ligne_resume_commande button {
     padding: 5px;
     width: 100%;
   }
 
-  #colonne_gauche {
-    padding-top: 20px;
-  }
-
-  #colonne_principale {
+  #ligne_commande {
     background-color: var(--bleu_o);
     border-top: 1px solid black;
   }
 
-  #colonne_droite {
-    overflow-y: scroll;
-    max-height: 600px;
+  @media only screen and (min-device-width: 1000px) {
+    .effet_bouton:hover,
+    .effet_bouton:focus {
+      box-shadow: inset 9em 0 0 0 var(--hover);
+    }
+
+    .effet_bouton_commander:hover,
+    .effet_bouton_commander:focus {
+      box-shadow: inset 21em 0 0 0 var(--hover);
+    }
+
+    .effet_bouton, .effet_bouton_commander {
+    --color: var(--beige) ;
+    --hover: var(--rouge) ;
+    background-color: var(--beige);
+    }
+
+    #colonne_principale{
+      border: 1px solid black;
+    }
+
+    #colonne_principale .effet_bouton, .effet_bouton_commander {
+    color: black;
+    transition: 0.70s;
+    }
+
+    #colonne_principale button:hover, button:focus {
+    border-color: var(--hover);
+    color: var(--color);
+    }
+
+
   }
 
-  #colonne_droite .chaque_plat_panier {
-    margin-bottom: 20px;
-    padding: 10px 20px 15px 10px ;
-    border-bottom: 1px solid black;
+  @media only screen and (min-device-width: 575px){
+    #colonne_droite{
+      border-left: 1px solid black;
+    }
+  }
+
+  @media only screen and (max-device-width: 575px) {
+    #colonne_principale {
+      max-height: 100%;
+      overflow-y: scroll;
+    }
+
+    #ligne_resume_commande, #colonne_gauche, #colonne_centrale {
+      margin-bottom: 21px;
+    }
+
+    #colonne_droite {
+      border-top: 4px double black;
+    }
+  }
+
+  #colonne_gauche {
+    padding-top: 20px;
   }
 
   #colonne_centrale {
@@ -330,18 +312,73 @@
     margin: 15px 0 0 0;
   }
 
-  #colonne_centrale .chaque_plat:hover .image {
+  #colonne_centrale .image_plat:hover .image {
     opacity: 0.50;
   }
 
-  #colonne_centrale .chaque_plat:hover .affichage_bouton_ajout_panier {
+  #colonne_centrale .image_plat:hover .affichage_bouton_ajout_panier {
     opacity: 1;
   }
 
   #colonne_centrale .chaque_plat {
-    padding-bottom: 2vh;
+    padding-bottom: 1vh;
     margin-top: 2vh;
     border-bottom: 1px solid black;
+  }
+
+  #colonne_droite {
+    overflow-y: scroll;
+    max-height: 600px;
+    word-break: break-all;
+
+  }
+
+  #colonne_droite .chaque_plat_panier {
+    margin-bottom: 20px;
+    padding: 10px 20px 15px 10px ;
+    border-bottom: 1px solid black;
+  }
+
+  #colonne_droite h3{
+    margin: 18px 0 18px 0;
+  }
+
+  #colonne_droite::-webkit-scrollbar {
+      display: none;
+  }
+
+  #titre_colonne_droite{
+    border-bottom: 1px solid black;
+  }
+
+  .ligne_boutons_panier select{
+    margin-bottom: 10px;
+  }
+
+  .chaque_plat_panier {
+    margin: 10px 0 10px 0;
+    padding: 10px 0 10px 0;
+  }
+
+  .prix_quantite_plat_panier{
+    padding-top: 15px;
+  }
+
+  .prix_quantite_plat_panier p{
+    margin-bottom: 10px;
+  }
+
+  .bouton_supprimer_panier{
+    padding-right: 0 !important;
+  }
+
+  .ligne_boutons_panier {
+    margin-top: 15px;
+  }
+
+  .effet_bouton {
+    word-break: break-word;
+    min-width: 70px;
   }
 
   .type_menu {
@@ -352,13 +389,6 @@
     width: 100%;
   }
 
-  .type_plat {
-    justify-content: center;
-    border-bottom: solid 1px black;
-    padding: 20px;
-    font-size: 2em;
-  }
-
   .affichage_bouton_ajout_panier {
     transition: .5s ease;
     opacity: 0;
@@ -367,16 +397,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+    /* height: 85px; */
   }
 
   .ajouter_panier_bouton {
     background-color: var(--bleu);
-    color: black;
+    color: var(--text);
     padding: 2% 5%;
   }
 
-  .image-plat {
+  .image_plat {
     position: relative;
+    display: flex;
+    justify-content: center;
   }
 
   .image {

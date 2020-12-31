@@ -1,6 +1,6 @@
 <template>
 
-  <div id ="page_entiere">
+  <div>
 
     <ul id="slider">
       <li><router-link to="/#first" title="Next Section"><img src="https://ianlunn.co.uk/plugins/jquery-parallax/images/dot.png" alt="Link" /></router-link></li>
@@ -11,41 +11,40 @@
 
     <section id="first" class="container-fluid parallax">
       <section class="row h-75 justify-content-center align-items-center">
-        <article class="h-100" id="title">
+        <article class="h-100" id="titre_page">
           <p>Saveur d'Asie</p>
         </article>
       </section>
-      <section class="row h-60 align-items-center" id="typeMenu">
+      <section class="row h-60 align-items-center" id="first_bordereau">
         <article class=" test col-sm-4 d-flex justify-content-center">
-          <p class="titre_soups_noodles_dumpings">SOUPS</p>
-          <p class ="description_soups_noodles_dumpings">Decouvrez nos delicieuses soupes</p>
+          <p class="titre_soupes_nouilles_dumplings">SOUPES</p>
+          <p class ="description_soupes_nouilles_dumplings">Decouvrez nos delicieuses soupes</p>
           <img src="https://static.wixstatic.com/media/a84435_89b11410bc6b4875996a2f75ba5952af.png/v1/fill/w_302,h_375,al_c,q_85,usm_0.66_1.00_0.01/a84435_89b11410bc6b4875996a2f75ba5952af.webp">
         </article>
         <article class="test col-sm-4 d-flex justify-content-center">
-          <p class="titre_soups_noodles_dumpings">NOODLES</p>
-          <p class ="description_soups_noodles_dumpings">Decouvrez nos noodles faites maison</p>
+          <p class="titre_soupes_nouilles_dumplings">NOUILLES</p>
+          <p class ="description_soupes_nouilles_dumplings">Decouvrez nos noodles faites maison</p>
           <img src="https://static.wixstatic.com/media/a84435_2094235a23f7450d868fb875a24df909.png/v1/fill/w_305,h_378,al_c,q_85,usm_0.66_1.00_0.01/a84435_2094235a23f7450d868fb875a24df909.webp">
         </article>
         <article class="test col-sm-4 d-flex justify-content-center">
-          <p class="titre_soups_noodles_dumpings">DUMPLINGS</p>
-          <p class ="description_soups_noodles_dumpings">Savourez nos dumplings</p>
+          <p class="titre_soupes_nouilles_dumplings">DUMPLINGS</p>
+          <p class ="description_soupes_nouilles_dumplings">Savourez nos dumplings</p>
           <img src="https://static.wixstatic.com/media/a84435_4a1b27357f47440490e1d36e28015ee1.png/v1/fill/w_303,h_376,al_c,q_85,usm_0.66_1.00_0.01/a84435_4a1b27357f47440490e1d36e28015ee1.webp%22%3E">
         </article>
         <article class="col-sm-12 d-flex justify-content-center">
-          <router-link id="bouton_menus" class="btn" to='/menus/#titre_page'>Voir l'ensemble du menus</router-link>
+          <router-link id="bouton_vers_menu" class="btn" to='/menus/#titre_page'>Voir l'ensemble du menu</router-link>
         </article>
       </section>
     </section>
 
     <div id="second" class="container-fluid parallax">
       <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-sm-7">
+        <div class="col-sm-8">
 
         </div>
-        <div id="text_fille_soupe" class="col-sm-4">
-          <h2>Notre histoire commence en Asie<h2>
-          <p>Sur les côtes de la mer de Chine naît en 1951 Fang's Noodles
-           </p>
+        <div id="text_second" class="col-sm-4">
+          <h2>Notre histoire commence au pays des dragons</h2><br>
+          <p>Sur les côtes de la mer de Chine naît en 1951 Fang's Noodles. <br>Attaché aux valeurs de la cuisine traditionnelle chinoise Fang's Noodles s'est rapidement imposé comme le leader de la restauration authentique asiatique.</p>
         </div>
       </div>
     </div>
@@ -55,8 +54,9 @@
         <div class="col-sm-1">
 
         </div>
-        <div class="col-sm-3">
-          <h2>"When you drink the water, <strong>remember the spring</strong>"<h2>
+        <div id="proverbe_third" class="col-sm-3">
+          <p>"Lorsque tu bois l'eau, <strong>souviens-toi de la source</strong>"<p>
+          <p>~Proverbe Chinois~</p>
         </div>
         <div class="col-sm-8">
 
@@ -81,16 +81,14 @@
 </script>
 
 <style scoped>
-  #text_fille_soupe {
-    padding: 0 25px 0 25px;
-  }
 
   #first {
     background-image: url("../images/backgrounds/accueil_1.webp");
     height: auto !important;
+    color: var(--text2);
   }
 
-  #first .titre_soups_noodles_dumpings {
+  #first .titre_soupes_nouilles_dumplings {
     padding-top: 10%;
     display: flex;
     justify-content: center;
@@ -100,31 +98,32 @@
     position: absolute;
   }
 
-  #first .description_soups_noodles_dumpings {
+  #first .description_soupes_nouilles_dumplings {
     padding-top: 19%;
     text-align:center;
     width: 40%;
     position: absolute;
   }
 
-  #first #title {
-    font-size: 50px;
+  #first #titre_page{
+    font-size: 3em;
   }
 
-  #first #typeMenu {
+  #first #first_bordereau {
     background-color: var(--beige_o);
+    border-top: 1px solid var(--rouge);
 
   }
-  #first #typeMenu img {
+  #first #first_bordereau img{
     padding: 20px 0 0 0;
   }
 
-  #first #typeMenu img {
+  #first #first_bordereau img {
     width: 50%;
     height: 100%;
   }
 
-  #bouton_menus {
+  #bouton_vers_menu {
     margin: 20px 10;
     font-size: 1.3em;
     width: 400px;
@@ -150,12 +149,16 @@
     word-wrap:break-word;
   }
 
-  #second h2 {
-    font-size: 20px
-  }
 
-  #second p {
-    font-size: 15px
+  #text_second{
+    padding: 0 75px 0 30px;
+
+  }
+  #text_second p{
+    font-size: 1.4em;
+  }
+  #text_second h2{
+    font-size: 1.9em;
   }
 
   #third {
@@ -167,6 +170,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  #proverbe_third{
+
+    font-size: 1.8em;
   }
 
   #four {
@@ -205,7 +212,6 @@
     height: 100vh;
     margin: 0;
     padding: 0;
-    color: white;
     overflow: hidden;
     background-attachment: fixed;
     background-position: center;
@@ -215,15 +221,14 @@
 
 
   @media only screen and (max-device-width: 1366px) {
-    #first #typeMenu {
+    #first #first_bordereau {
       height: auto !important;
     }
 
-    .titre_soups_noodles_dumpings, .description_soups_noodles_dumpings, #first #typeMenu img {
+    .titre_soupes_nouilles_dumplings, .description_soupes_nouilles_dumplings, #first #first_bordereau img{
       display: none !important;
     }
-
-    #bouton_menus {
+    #bouton_vers_menu{
       width:100vw;
     }
 
@@ -232,8 +237,9 @@
     }
   }
 
-  #first, #second, #third .row {
-    border-top: solid 1px black;
+   #second, #third .row{
+    border-top: solid 1px var(--rouge);
+    color: var(--text2);
   }
 
 </style>
