@@ -15,49 +15,49 @@
               <p>Mes infos</p>
             </div>
 
-            <div class="row">
+            <div class="row" align="center">
               <div class="col-sm-12">
                 <form @submit.prevent="sendEditProfil">
+
                   <div class="row">
-                    <div class="col-sm-7">
-                      <label for="nom">Nom : {{ user.nom }}</label>
+                    <div class="col-sm-2 ml-sm-auto">
+                      Nom :
                     </div>
-                    <div class="col-sm-5">
-                        <input name="nom" placeholder="nom" type="text" v-model="editingProfile.nom">
+                    <div class="col-sm-3 mr-sm-auto">
+                      <input name="nom" :placeholder="user.nom" type="text" v-model="editingProfile.nom">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-7">
-                      <label for="prenom">Prenom : {{ user.prenom }}</label>
+                    <div class="col-sm-2 ml-sm-auto">
+                      Prenom :
                     </div>
-                    <div class="col-sm-5">
-                      <input name="prenom" placeholder="prenom" type="text" v-model="editingProfile.prenom">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-7">
-                        <label for="email">Email : {{ user.email }}</label>
-
-                    </div>
-                    <div class="col-sm-5">
-                      <input name="email" placeholder="email" type="text" v-model="editingProfile.email">
+                    <div class="col-sm-3 mr-sm-auto">
+                      <input name="prenom" :placeholder="user.prenom" type="text" v-model="editingProfile.prenom">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-sm-7">
-                      <label for="telephone">Telephone : {{ user.telephone }}</label>
+                    <div class="col-sm-2 ml-sm-auto">
+                      Email :
                     </div>
-                    <div class="col-sm-5">
-                      <input name="telephone" placeholder="telephone" type="text" v-model="editingProfile.telephone">
+                    <div class="col-sm-3 mr-sm-auto">
+                      <input name="email" :placeholder="user.email" type="text" v-model="editingProfile.email">
                     </div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-sm-2 ml-sm-auto">
+                      Telephone :
+                    </div>
+                    <div class="col-sm-3 mr-sm-auto">
+                      <input name="telephone" :placeholder="user.telephone" type="text" v-model="editingProfile.telephone">
+                    </div>
+                  </div>
+                  <br>
                   <div class="row">
                     <div class="col-sm-12">
-                      <button type="submit">Modifier</button>
+                      <button type="submit" class="slide_page_commander">Modifier</button>
                     </div>
                   </div>
 
@@ -174,6 +174,31 @@
   #mes_infos {
     margin-bottom: 2%;
     border-bottom: black 1px solid;
+  }
+
+  #mes_infos input {
+    width: 200px;
+    display: block;
+    border: none;
+    /* padding: 10px 0; */
+    border-bottom: solid 1px var(--rouge);
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #891B17 4%);
+    background-position: -200px 0;
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    color: var(--rouge);
+  }
+  #mes_infos input:focus, #mes_infos input:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+  }
+  #mes_infos input:focus::-webkit-input-placeholder, #mes_infos input:valid::-webkit-input-placeholder {
+    color: var(--rouge);
+    font-size: 11px;
+    transform: translateY(-20px);
+    visibility: visible !important;
   }
 
 </style>
