@@ -3,7 +3,7 @@
 
       <div class="container-fluid">
         <form @submit.prevent="addMenu">
-        <div id ="titre_admin" class="row">
+        <div id="nouveau_menu" class="row">
           <div class="col-sm-12">Nouveau menu à ajouter</div>
         </div>
         <div class="row">
@@ -70,7 +70,7 @@
 
 <style>
 
-  #titre_admin {
+  #nouveau_menu {
     font-size: 1.3em;
     text-align:center;
     color: var(--beige);

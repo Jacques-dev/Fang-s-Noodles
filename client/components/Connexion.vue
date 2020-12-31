@@ -80,7 +80,7 @@
     methods: {
       // Permet d'afficher soit le formulaire de connexion soit d'enregistrement
       switchForm() {
-        if (this.login == true) {
+        if (this.login_form == true) {
           this.login_form = false
         } else {
           this.login_form = true

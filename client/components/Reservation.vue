@@ -1,12 +1,12 @@
 <template>
 
-  <div class="container-fluid" id ="background">
+  <div class="container-fluid" id="background_reservation">
 
-    <div id="ligne_un" class="row d-flex justify-content-center align-items-center">
+    <div id="header" class="row d-flex justify-content-center align-items-center">
       <p id="titre_page">Faites une réservation<p>
     </div>
 
-    <div id="ligne_deux" class="row">
+    <div id="content" class="row">
       <div class="container-fluid">
 
         <form class="col-sm-12" @submit.prevent="reserver">
@@ -138,13 +138,13 @@
     text-align: center;
   }
 
-  #ligne_un{
+  #background_reservation #header{
     font-size: 3em;
     color:#891B17;
     padding: 100px 0 30px 0;
   }
 
-  #ligne_deux {
+  #background_reservation #content {
     height:auto;
     background-color:var(--bleu_o);
     margin: 2% 5% 2% 5%;
@@ -155,7 +155,7 @@
     border: black solid 1px;
   }
 
-  #background {
+  #background_reservation {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -163,7 +163,7 @@
     background-image: url("../images/backgrounds/tables.jpeg");
   }
 
-  #background{
+  #background_reservation{
     height: 95%;
   }
 
