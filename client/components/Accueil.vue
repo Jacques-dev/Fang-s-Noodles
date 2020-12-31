@@ -105,7 +105,7 @@
     position: absolute;
   }
 
-  #first #titre_page{
+  #first #titre_page {
     font-size: 3em;
   }
 
@@ -114,7 +114,7 @@
     border-top: 1px solid var(--rouge);
 
   }
-  #first #first_bordereau img{
+  #first #first_bordereau img {
     padding: 20px 0 0 0;
   }
 
@@ -150,14 +150,14 @@
   }
 
 
-  #text_second{
+  #text_second {
     padding: 0 75px 0 30px;
 
   }
-  #text_second p{
+  #text_second p {
     font-size: 1.4em;
   }
-  #text_second h2{
+  #text_second h2 {
     font-size: 1.9em;
   }
 
@@ -171,7 +171,7 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-  #proverbe_third{
+  #proverbe_third {
 
     font-size: 1.8em;
   }
@@ -225,10 +225,10 @@
       height: auto !important;
     }
 
-    .titre_soupes_nouilles_dumplings, .description_soupes_nouilles_dumplings, #first #first_bordereau img{
+    .titre_soupes_nouilles_dumplings, .description_soupes_nouilles_dumplings, #first #first_bordereau img {
       display: none !important;
     }
-    #bouton_vers_menu{
+    #bouton_vers_menu {
       width:100vw;
     }
 
@@ -237,7 +237,7 @@
     }
   }
 
-   #second, #third .row{
+   #second, #third .row {
     border-top: solid 1px var(--rouge);
     color: var(--text2);
   }
