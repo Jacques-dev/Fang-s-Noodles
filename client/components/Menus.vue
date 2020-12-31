@@ -3,13 +3,13 @@
 
     <section v-if="admin.id" class="container-fluid" id="balise_admin">
       <div class="row">
-          <button id="bouton_ajouter_menus"  @click="showForm = true">Ajouter un plat</button>
+        <button id="bouton_ajouter_menus" @click="showForm = true">Ajouter un plat</button>
       </div>
       <div class="row">
-        <button id="bouton_fermer_menus" v-if=" showForm" @click="showForm = false">Fermer</button>
+        <button id="bouton_fermer_menus" v-if="showForm" @click="showForm = false">Fermer</button>
       </div>
       <div class="row">
-        <div  id ="colonne_admin" class="col-sm-12">
+        <div id ="colonne_admin" class="col-sm-12">
           <add-menu v-if="showForm" @add-menu="addMenu"></add-menu>
         </div>
       </div>
@@ -28,17 +28,17 @@
           <article v-for="menuType in menus">
 
             <div class="type_plat row">
-              <router-link :id="nav(menuType[2].type)" to='/menus/#soups'>Soups</router-link>
-              <router-link :id="nav(menuType[2].type)" to='/menus/#dumplings'>Dumplings</router-link>
-              <router-link :id="nav(menuType[2].type)" to='/menus/#noodles'>Noodles</router-link>
-              <router-link :id="nav(menuType[2].type)" to='/menus/#sashimi'>Sashimi</router-link>
-              <router-link :id="nav(menuType[2].type)" to='/menus/#nigiri'>Nigiri</router-link>
+              <router-link :id="nav(menusTypes[0])" to='/menus/#soups'>Soups</router-link>
+              <router-link :id="nav(menusTypes[1])" to='/menus/#dumplings'>Dumplings</router-link>
+              <router-link :id="nav(menusTypes[2])" to='/menus/#noodles'>Noodles</router-link>
+              <router-link :id="nav(menusTypes[3])" to='/menus/#sashimi'>Sashimi</router-link>
+              <router-link :id="nav(menusTypes[4])" to='/menus/#nigiri'>Nigiri</router-link>
             </div>
+
             <div class="row balise_current_type_menu">
               <div class="current_type_menu">
-                {{menuType[2].type}}
+                
               </div>
-
             </div>
 
             <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id">
@@ -119,6 +119,7 @@
     },
     props: {
       menus: { type: Array, default: [] },
+      menusTypes: { type: Array, default: [] },
       admin:{type: Object },
       user: {type: Object }
     },

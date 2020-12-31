@@ -50,7 +50,7 @@ var app = new Vue({
     admin: {
       id: null
     },
-    typesString: ["soups", "dumplings", "noodles", "sashimi", "nigiri"]
+    menusTypes: ["soups", "dumplings", "noodles", "sashimi", "nigiri"]
   },
   async mounted () {
     const res_menus = await axios.get('/api/menus')
@@ -58,7 +58,7 @@ var app = new Vue({
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
 
-    await axios.post('/api/setdatas', 'typesString=' + this.typesString)
+    await axios.post('/api/setdatas', 'menusTypes=' + this.menusTypes)
 
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
@@ -186,8 +186,8 @@ var app = new Vue({
     },
     // Permet d'ajouter un menu au panier
     async addToPanier (menu) {
-      for (let i = 0; i != this.typesString.length; i++) {
-        if (menu.type == this.typesString[i]) {
+      for (let i = 0; i != this.menusTypes.length; i++) {
+        if (menu.type == this.menusTypes[i]) {
           const res = await axios.post('/api/panier','id=' + menu.id + '&type=' + menu.type + '&quantity=1' + '&prix=' + menu.prix + '&image=' + menu.image)
           this.panier.menus.push(res.data)
 
@@ -198,8 +198,8 @@ var app = new Vue({
     },
     // Permet de supprimer un menu du panier
     async removeFromPanier (menu) {
-      for (let i = 0; i != this.typesString.length; i++) {
-        if (menu.type == this.typesString[i]) {
+      for (let i = 0; i != this.menusTypes.length; i++) {
+        if (menu.type == this.menusTypes[i]) {
           const indexMenu = await axios.delete('/api/panier/' + menu.type + '/' + menu.id)
           this.panier.menus.splice(indexMenu.data, 1)
         }
@@ -218,8 +218,8 @@ var app = new Vue({
     },
     // Permet de modifier la quantité d'un menu dans le panier
     async updateMenuFromPanier (newMenu) {
-      for (let i = 0; i != this.typesString.length; i++) {
-        if (newMenu.type == this.typesString[i]) {
+      for (let i = 0; i != this.menusTypes.length; i++) {
+        if (newMenu.type == this.menusTypes[i]) {
 
           await axios.put('/api/panier/' + newMenu.type + '/' + newMenu.id + '/' + newMenu.quantity)
 
@@ -248,8 +248,8 @@ var app = new Vue({
     async addMenu (menu) {
       const res = await axios.post('/api/menu', menu)
 
-      for (let i = 0; i != this.typesString.length; i++) {
-        if (res.data.type == this.typesString[i]) {
+      for (let i = 0; i != this.menusTypes.length; i++) {
+        if (res.data.type == this.menusTypes[i]) {
           this.menus[i].push(res.data)
         }
       }
@@ -257,8 +257,8 @@ var app = new Vue({
     // Permet de supprimer un menu depius la liste des menus du site
     async deleteMenu (content) {
       await axios.delete('/api/menu/' + content.type + '/' + content.id)
-      for (let i = 0; i != this.typesString.length; i++) {
-        if (content.type == this.typesString[i]) {
+      for (let i = 0; i != this.menusTypes.length; i++) {
+        if (content.type == this.menusTypes[i]) {
           const index = this.menus[i].findIndex(a => a.id === content.id)
           this.menus[i].splice(index, 1)
         }
@@ -267,8 +267,8 @@ var app = new Vue({
     // Permet de modifier un des menus du site
     async updateMenu (newMenu) {
       await axios.put('/api/menu/' + newMenu.type + '/' +  newMenu.id, newMenu)
-      for (let i = 0; i != this.typesString.length; i++) {
-        if (newMenu.type == this.typesString[i]) {
+      for (let i = 0; i != this.menusTypes.length; i++) {
+        if (newMenu.type == this.menusTypes[i]) {
           const menu = this.menus[i].find(a => a.id === newMenu.id)
           menu.name = newMenu.name
           menu.description = newMenu.description

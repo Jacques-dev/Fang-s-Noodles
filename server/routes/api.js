@@ -26,7 +26,7 @@
   // Cette route est appelé une seul fois au lancement du serveur pour faire
   // passer la liste des types de menus déclaré dans "vue-application.js"
   router.post('/setdatas', (req, res) => {
-    req.session.typesString = req.body.typesString.split(',')
+    req.session.menusTypes = req.body.menusTypes.split(',')
     res.send()
   })
 
@@ -299,9 +299,9 @@
       res.status(400).json({ message: "bad request" })
     }
 
-    const size = parseInt(req.session.typesString.length)
+    const size = parseInt(req.session.menusTypes.length)
     for (let i = 0; i != size; i++) {
-      if (menuType == req.session.typesString[i]) {
+      if (menuType == req.session.menusTypes[i]) {
         var menu = menus[i].find(a => a.id === menuId)
       }
     }
@@ -320,9 +320,9 @@
       req.session.panier.nb_menus = req.session.panier.nb_menus + newMenu.quantity
       req.session.panier.prix = req.session.panier.prix + newMenu.prix
 
-      const size = parseInt(req.session.typesString.length)
+      const size = parseInt(req.session.menusTypes.length)
       for (let i = 0; i != size; i++) {
-        if (menuType == req.session.typesString[i]) {
+        if (menuType == req.session.menusTypes[i]) {
           if (checkIfNotMenuExistInPanier(newMenu.id, newMenu.type, req.session.panier.menus)) {
             req.session.panier.menus.push(newMenu)
             res.json(newMenu)
@@ -377,9 +377,9 @@
    var index = null
    var menu = null
 
-   const size = parseInt(req.session.typesString.length)
+   const size = parseInt(req.session.menusTypes.length)
    for (let i = 0; i != size; i++) {
-      if (menuType == req.session.typesString[i]) {
+      if (menuType == req.session.menusTypes[i]) {
         index = indexMenuInPanier (menuId, menuType, req.session.panier.menus)
         menu = menuInPanier (menuId, menuType, req.session.panier.menus)
       }
@@ -390,9 +390,9 @@
    } else if (index === -1) {
       res.status(501).json({ message: "L'menu n'est pas dans le panier" })
    } else {
-      const size = parseInt(req.session.typesString.length)
+      const size = parseInt(req.session.menusTypes.length)
       for (let i = 0; i != size; i++) {
-        if (menuType == req.session.typesString[i]) {
+        if (menuType == req.session.menusTypes[i]) {
           req.session.panier.menus.splice(index, 1)
         }
       }
@@ -414,9 +414,9 @@
 
     var index = null
 
-    const size = parseInt(req.session.typesString.length)
+    const size = parseInt(req.session.menusTypes.length)
     for (let i = 0; i != size; i++) {
-      if (menuType == req.session.typesString[i]) {
+      if (menuType == req.session.menusTypes[i]) {
         index = indexMenuInPanier (menuId, menuType, req.session.panier.menus)
       }
     }
@@ -475,8 +475,8 @@
     }
 
     var size
-    for (let i = 0; i != parseInt(req.session.typesString.length); i++) {
-      if (type == req.session.typesString[i]) {
+    for (let i = 0; i != parseInt(req.session.menusTypes.length); i++) {
+      if (type == req.session.menusTypes[i]) {
         size = menus[i].length
       }
     }
@@ -490,8 +490,8 @@
       spicy: spicy,
       type: type
     }
-    for (let i = 0; i != parseInt(req.session.typesString.length); i++) {
-      if (type == req.session.typesString[i]) {
+    for (let i = 0; i != parseInt(req.session.menusTypes.length); i++) {
+      if (type == req.session.menusTypes[i]) {
         menus[i].push(menu)
       }
     }
@@ -521,9 +521,9 @@
     req.menuId = menuId
     req.menuType = menuType
 
-    const size = parseInt(req.session.typesString.length)
+    const size = parseInt(req.session.menusTypes.length)
     for (let i = 0; i != size; i++) {
-      if (req.menuType == req.session.typesString[i]) {
+      if (req.menuType == req.session.menusTypes[i]) {
         const menu = menus[i].find(a => a.id === req.menuId)
         req.menu = menu
         req.type = menuType
@@ -570,9 +570,9 @@
    * Cette route supprime un menu.
   */
   .delete(parseMenu, (req, res) => {
-    const size = parseInt(req.session.typesString.length)
+    const size = parseInt(req.session.menusTypes.length)
     for (let i = 0; i != size; i++) {
-      if (req.menuType == req.session.typesString[i]) {
+      if (req.menuType == req.session.menusTypes[i]) {
         const index = menus[i].findIndex(a => a.id === req.menuId)
         menus[i].splice(index, 1)
       }
