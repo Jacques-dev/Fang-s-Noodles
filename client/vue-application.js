@@ -50,7 +50,7 @@ var app = new Vue({
     admin: {
       id: null
     },
-    menusTypes: ["soups", "dumplings", "noodles", "sashimi", "nigiri"]
+    menusTypes: ['soups', 'dumplings', 'noodles', 'sashimi', 'nigiri']
   },
   async mounted () {
     const res_menus = await axios.get('/api/menus')

@@ -25,23 +25,23 @@
       <article class="row">
         <article class="col-sm-12">
 
-          <article v-for="menuType in menus">
+          <article v-for="(type, index) in menusTypes">
 
             <div class="type_plat row">
-              <router-link :id="nav(menusTypes[0])" to='/menus/#soups'>Soups</router-link>
-              <router-link :id="nav(menusTypes[1])" to='/menus/#dumplings'>Dumplings</router-link>
-              <router-link :id="nav(menusTypes[2])" to='/menus/#noodles'>Noodles</router-link>
-              <router-link :id="nav(menusTypes[3])" to='/menus/#sashimi'>Sashimi</router-link>
-              <router-link :id="nav(menusTypes[4])" to='/menus/#nigiri'>Nigiri</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[0])">soups</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[1])">Dumplings</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[2])">Noodles</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[3])">Sashimi</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[4])">Nigiri</router-link>
             </div>
 
             <div class="row balise_current_type_menu">
               <div class="current_type_menu">
-                
+                {{ type }}
               </div>
             </div>
 
-            <article class ="ligne_plat row" v-for="menu in menuType" :key="menu.id">
+            <article class ="ligne_plat row" v-for="menu in menus[index]" :key="menu.id">
 
               <div class="row">
                 <div class="menu-img col-sm-3">
@@ -119,7 +119,6 @@
     },
     props: {
       menus: { type: Array, default: [] },
-      menusTypes: { type: Array, default: [] },
       admin:{type: Object },
       user: {type: Object }
     },
@@ -134,14 +133,14 @@
           spicy: false,
           type: ''
         },
-        type: 'soups',
+        menusTypes: ['soups', 'dumplings', 'noodles', 'sashimi', 'nigiri'],
         showForm: false
       }
     },
     methods: {
       // Permet de donner un id a une balise dans une boucle
-      nav(menuType) {
-        return menuType
+      nav(type) {
+        return type
       },
       // Affiche "Spicy" sur le site si le champ spicy du menu est "true"
       isSpicy(boolean) {
