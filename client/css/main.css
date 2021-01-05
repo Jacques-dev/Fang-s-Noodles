@@ -13,6 +13,18 @@
   --text2: #fff;
 }
 
+.taille_1{
+  font-size: 1.2em;
+}
+.taille_2{
+  font-size: 1.5em;
+}
+.taille_3{
+  font-size: 2em;
+}
+.taille_4{
+  font-size: 2.5em;
+}
 
 body {
   margin: 0;
@@ -54,8 +66,6 @@ body {
 --color: var(--rouge);
 --hover: var(--beige);
 }
-
-
 
 footer {
   position: relative;
@@ -123,18 +133,21 @@ footer .row {
   left: 0;
   z-index: -1;
   border-radius: 5px;
-  background-color: #4dccc6;
-  background-image: linear-gradient(315deg, var(--text2) 0%, var(--text2) 100%);
+
+
+  background-image: linear-gradient(315deg, #157B78 0%, var(--text2) 100%);
   box-shadow:
    -7px -7px 20px 0px #fff9,
    -4px -4px 5px 0px #fff9,
    7px 7px 20px 0px #0002,
    4px 4px 5px 0px #0001;
+   border:none;
   transition: all 0.3s ease;
 }
 
 .btn:hover {
-  color: var(--text) !important;
+    color:var(--rouge)!important;
+    font-weight: bold !important;
 }
 
 .btn:hover:after {
@@ -146,11 +159,11 @@ footer .row {
   top: 2px;
 }
 
-.btn-13 {
+.btn_effect {
   z-index: 1;
 }
 
-.btn-13:after {
+.btn_effect:after {
   position: absolute;
   content: "";
   width: 100%;
@@ -159,26 +172,26 @@ footer .row {
   left: 0;
   z-index: -1;
   background: var(--beige);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
-.btn-13:hover {
+.btn_effect:hover {
   color: var(--rouge)!important;
 }
 
-.btn-13:hover:after {
+.btn_effect:hover:after {
   top: auto;
   bottom: 0;
   height: 100%;
 }
 
-.custom-btn {
+.btn_nav {
   padding: 10px 25px;
   font-weight: 500;
   background: transparent;
   outline: none !important;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   position: relative;
   display: inline-block;
 }

@@ -168,6 +168,9 @@
     overflow-y: scroll;
     height: auto;
   }
+  #background_infos::-webkit-scrollbar {
+    display: none;
+}
 
   #titre_page_info {
     background-color: var(--beige_o);
@@ -191,9 +194,11 @@
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #891B17 4%);
     color: var(--text);
   }
+
   #mes_infos input:focus, #mes_infos input:valid {
     outline: none;
   }
+
   #mes_infos input:focus::-webkit-input-placeholder, #mes_infos input:valid::-webkit-input-placeholder {
     color: var(--rouge);
     font-size: 15px;

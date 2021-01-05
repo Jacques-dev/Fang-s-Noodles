@@ -28,9 +28,9 @@
           <article v-for="(type, index) in menusTypes">
 
             <div class="type_plat row">
-              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[0])">soups</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[0])">soupes</router-link>
               <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[1])">Dumplings</router-link>
-              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[2])">Noodles</router-link>
+              <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[2])">Nouilles</router-link>
               <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[3])">Sashimi</router-link>
               <router-link :id="nav(type)" :to="nav('/menus/#' + menusTypes[4])">Nigiri</router-link>
             </div>
@@ -57,7 +57,7 @@
                   <p>{{ menu.name }} - {{ menu.price }}€</p>
                 </div>
                 <div class="row" v-if="isSpicy(menu.spicy)">
-                  <p class="spicy">Spicy</p>
+                  <p class="spicy">Epicé</p>
                 </div>
                 <div class="bouton-menus row">
                   <button class="col-sm-6 bouton_supprimer" v-if="admin.id" @click="deleteMenu(menu.id, menu.type)">Supprimer</button>
@@ -276,6 +276,7 @@
     justify-content: center;
     align-items: center;
     width: 15%;
+    font-size: 1.2em;
     min-width: 100px;
     color: var(--text2);
     background-color: var(--rouge);

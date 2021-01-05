@@ -44,7 +44,7 @@
         </div>
         <div id="text_second" class="col-sm-4">
           <h2>Notre histoire commence au pays des dragons</h2><br>
-          <p>Sur les côtes de la mer de Chine naît en 1951 Fang's Noodles. <br>Attaché aux valeurs de la cuisine traditionnelle chinoise Fang's Noodles s'est rapidement imposé comme le leader de la restauration authentique asiatique.</p>
+          <p>Sur les côtes de la mer de Chine naît en 1951 Fang's Noodles. Attaché aux valeurs de la cuisine traditionnelle chinoise Fang's Noodles s'est rapidement imposé comme le leader de la restauration authentique asiatique.</p>
         </div>
       </div>
     </div>
@@ -131,7 +131,7 @@
     border-radius: 5px;
     padding: 7px 20px;
     font-weight: 500;
-    background: #A1211F;
+    background: var(--rouge);
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;

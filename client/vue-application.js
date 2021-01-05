@@ -7,8 +7,8 @@ const Reserver = window.httpVueLoader('./components/Reservation.vue')
 const Profil = window.httpVueLoader('./components/Profil.vue')
 
 const routes = [
-  { path: '/', component: Accueil },
-  { path: '/menus', component: Menus },
+  { path: '/', component: Accueil},
+  { path: '/menus', component: Menus},
   { path: '/commander', component: Commander},
   { path: '/connexion', component: Connexion},
   { path: '/deconnexion', component: Deconnexion},

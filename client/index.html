@@ -42,21 +42,20 @@
     <div id="app">
 
       <div class="topnav">
-        <router-link type="button" class="btn-13 custom-btn nav-link active" to='/'>Accueil</router-link>
-        <router-link type="button" class="btn-13 custom-btn nav-link" to='/menus'>Menus</router-link>
-        <router-link type="button" class="btn-13 custom-btn nav-link" to='/commander'>Commander</router-link>
-        <router-link type="button" class="btn-13 custom-btn nav-link" to='/reserver'>Réserver</router-link>
-        <router-link type="button" class="btn-13 custom-btn nav-link " to='/#second'>A propos</router-link>
-        <router-link type="button" class="btn-13 custom-btn nav-link " to='/#footer'>Contact</router-link>
+        <router-link type="button" class="btn_effect btn_nav nav-link active" to='/'>Accueil</router-link>
+        <router-link type="button" class="btn_effect btn_nav nav-link" to='/menus'>Menus</router-link>
+        <router-link type="button" class="btn_effect btn_nav nav-link" to='/commander'>Commander</router-link>
+        <router-link type="button" class="btn_effect btn_nav nav-link" to='/reserver'>Réserver</router-link>
+        <router-link type="button" class="btn_effect btn_nav nav-link " to='/#second'>A propos</router-link>
+        <router-link type="button" class="btn_effect btn_nav nav-link " to='/#footer'>Contact</router-link>
 
         <div class="topnav-right">
           <h4 class="nav-link" v-if="admin.id" style="color: var(--beige); cursor: default">Administrateur</h4>
-          <router-link class="nav-link btn-13 custom-btn " v-if="user.id" to='/profil'>Profil</router-link>
-          <router-link class="nav-link btn-13 custom-btn " v-if="(user.id) || (admin.id)" to='/deconnexion'>Déconnexion</router-link>
-          <router-link class="nav-link btn-13 custom-btn " v-else to='/connexion'>Connexion</router-link>
+          <router-link class="nav-link btn_effect btn_nav " v-if="user.id" to='/profil'>Profil</router-link>
+          <router-link class="nav-link btn_effect btn_nav " v-if="(user.id) || (admin.id)" to='/deconnexion'>Déconnexion</router-link>
+          <router-link class="nav-link btn_effect btn_nav " v-else to='/connexion'>Connexion</router-link>
         </div>
       </div>
-
 
       <main>
         <router-view

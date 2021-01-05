@@ -1,9 +1,9 @@
 <template>
   <div id="bouton_connexion_register">
 
-    <div class="login-popup" v-if="login_form">
-      <div class="form-popup" id="popupForm_login">
-        <form class="form-container" @submit.prevent="login">
+    <div class="interface_connexion" v-if="afficher_login">
+      <div class="affichage_formulaire" id="popupForm_login">
+        <form class="formulaire-container" @submit.prevent="login">
           <h2>Veuillez vous connecter</h2>
           <label for="email">
             <p class="titre_formulaire">E-mail</p>
@@ -20,9 +20,9 @@
       </div>
     </div>
 
-    <div class="register-popup" v-else>
-      <div class="form-popup" id="popupForm_register">
-        <form class="form-container" @submit.prevent="register">
+    <div class="interface_inscription" v-else>
+      <div class="affichage_formulaire" id="affichage_register">
+        <form class="formulaire-container" @submit.prevent="register">
           <h2>Inscription</h2>
           <label for="email">
             <p class="titre_formulaire">E-mail</p>
@@ -74,26 +74,26 @@
           email:'',
           password:''
         },
-        login_form: true
+        afficher_login: true
       }
     },
     methods: {
       // Permet d'afficher soit le formulaire de connexion soit d'enregistrement
       switchForm() {
-        if (this.login_form == true) {
-          this.login_form = false
+        if (this.afficher_login == true) {
+          this.afficher_login = false
         } else {
-          this.login_form = true
+          this.afficher_login = true
         }
       },
       // Envoie les valeurs des champs du du formulaire d'enregistrement
       register () {
         var email = document.getElementById("email_register").value
         if (email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
-          if (this.login_form == true) {
-            this.login_form = false
+          if (this.afficher_login == true) {
+            this.afficher_login = false
           } else {
-            this.login_form = true
+            this.afficher_login = true
           }
           this.$emit('register', this.editRegister)
         }
@@ -120,9 +120,8 @@
     height: 100%;
   }
 
-  .register-popup{
+  .interface_inscription{
     position: relative;
-    /* top:-3%; */
   }
 
   .open-button {
@@ -132,7 +131,7 @@
     cursor: pointer;
   }
 
-  .login-popup, .register-popup {
+  .interface_connexion, .interface_inscription {
     position: relative;
     text-align: center;
     width: 100%;
@@ -142,20 +141,20 @@
     background-color: blue !important;
   }
 
-  .form-popup {
+  .affichage_formulaire {
     display: flex;
     justify-content: center;
     padding-top:2%;
   }
 
-  .form-container {
+  .formulaire-container {
     border: solid black 2px;
     max-width: 500px;
     padding: 20px;
     background-color: #fff;
   }
 
-  .form-container input[type=text], .form-container input[type=password] {
+  .formulaire-container input[type=text], .formulaire-container input[type=password] {
     width: 100%;
     padding: 10px;
     margin: 5px 0 22px 0;
@@ -163,7 +162,7 @@
     background: #eee;
   }
 
-  .form-container .btn_connexion {
+  .formulaire-container .btn_connexion {
     background-color: var(--rouge);
     color: #fff;
     padding: 12px 20px;
@@ -174,7 +173,7 @@
     opacity: 0.8;
   }
 
-  .form-container .btn_connexion:hover, .open-button:hover {
+  .formulaire-container .btn_connexion:hover, .open-button:hover {
     opacity: 1;
     color:var(--text2);
   }

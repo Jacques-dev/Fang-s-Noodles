@@ -5,14 +5,14 @@
 
       <section id="ligne_resume_commande" class="row">
 
-        <article class="col-sm-5">
+        <article class="col-sm-5 taille_2">
           <p>Nombre de menus : {{ panier.nb_menus }} </p>
         </article>
-        <article class="col-sm-3">
+        <article class="col-sm-3 taille_2">
           <p>Total : {{ panier.prix }}€ </p>
         </article>
         <article class="col-sm-4">
-          <button class="effet_bouton_commander" id="bouton_commander" class="col-sm-12" @click="commander()">
+          <button class="effet_bouton_commander taille_1" id="bouton_commander" class="col-sm-12" @click="commander()">
             Commander
           </button>
         </article>
@@ -24,13 +24,13 @@
 
           <section class="container-fluid d-flex flex-column">
             <div class="row type_menu">
-              <button class="effet_bouton" @click="changeTypeMenu('soups')">Soups</button>
+              <button class="effet_bouton" @click="changeTypeMenu('soups')">Soupes</button>
             </div>
             <div class="row type_menu">
               <button class="effet_bouton" @click="changeTypeMenu('dumplings')">Dumplings</button>
             </div>
             <div class="row type_menu">
-              <button class="effet_bouton" @click="changeTypeMenu('noodles')">Noodles</button>
+              <button class="effet_bouton" @click="changeTypeMenu('noodles')">Nouilles</button>
             </div>
             <div class="row type_menu">
               <button class="effet_bouton" @click="changeTypeMenu('sashimi')">Sashimi</button>
@@ -55,12 +55,12 @@
                     </div>
                   </div>
 
-                  <div class="row description-plat">
+                  <div class="row description-plat taille_1">
                     <p>{{ menu.name }} - {{ menu.price }}€ </p>
                   </div>
 
-                  <div class="row spicy" v-if="isSpicy(menu.spicy)">
-                    <p>Spicy</p>
+                  <div class="row spicy taille_1" v-if="isSpicy(menu.spicy)">
+                    <p>Epicé</p>
                   </div>
 
                 </article>
@@ -86,7 +86,7 @@
                         <img :src="menu.image" class="image">
                       </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 colonne_prix_quantite">
                       <div class="prix_quantite_plat_panier container-fluid">
                         <p class="row">Prix : {{menu.prix}} </p>
                         <p class="row">Quantité : {{menu.quantity}} </p>
@@ -210,7 +210,6 @@
 <style scoped>
 
   #background {
-    color:black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -225,7 +224,6 @@
   #ligne_resume_commande {
     padding: 20px;
     background-color: var(--bleu_o);
-    font-size: 1.1em;
   }
 
   #ligne_resume_commande button {
@@ -260,8 +258,7 @@
     }
 
     #colonne_principale .effet_bouton, .effet_bouton_commander {
-    color: black;
-    transition: 0.70s;
+    transition: 0.90s;
     }
 
     #colonne_principale button:hover, button:focus {
@@ -307,7 +304,7 @@
   }
 
   #colonne_centrale img {
-    max-width:245px;
+    max-width: 245px;
     max-height: 185px;
     margin: 15px 0 0 0;
   }
@@ -363,9 +360,8 @@
   .prix_quantite_plat_panier{
     padding-top: 15px;
   }
-
-  .prix_quantite_plat_panier p{
-    margin-bottom: 10px;
+  .colonne_prix_quantite{
+    padding: 0 0 0 5px !important;
   }
 
   .bouton_supprimer_panier{
@@ -390,19 +386,17 @@
   }
 
   .affichage_bouton_ajout_panier {
-    transition: .5s ease;
+    transition: .6s ease;
     opacity: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    /* height: 85px; */
   }
 
   .ajouter_panier_bouton {
     background-color: var(--bleu);
-    color: var(--text);
     padding: 2% 5%;
   }
 
