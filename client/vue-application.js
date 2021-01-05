@@ -61,7 +61,7 @@ var app = new Vue({
     await axios.post('/api/setdatas', 'menusTypes=' + this.menusTypes)
 
     const res3 = await axios.get('/api/me')
-    this.admin.id = res3.data.admin
+    this.admin.id = res3.data.adminId
     this.user = res3.data.user
   },
   methods: {
@@ -85,7 +85,6 @@ var app = new Vue({
         await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
 
         const res = await axios.get('/api/me')
-        this.admin.id = res.data.admin
         this.user = res.data.user
         asAlertMsg({
           type: "success",
@@ -108,12 +107,11 @@ var app = new Vue({
       await axios.post('/api/adminlogin/','id=' + admin.email + '&password=' + admin.password)
 
       const res = await axios.get('/api/me')
-      this.admin.id = res.data.admin
-      this.user = res.data.user
+      this.admin.id = res.data.adminId
       asAlertMsg({
         type: "success",
         title: "Validé",
-        message: "Votre êtes connecté en admin" + this.user.nom,
+        message: "Votre êtes connecté en admin",
         timer: 2000,
       })
       router.push('/')
@@ -142,7 +140,7 @@ var app = new Vue({
       asAlertMsg({
         type: "success",
         title: "Validé",
-        message: "Votre êtes connecté en admin" + this.user.nom,
+        message: "Votre profil à été modifié",
         timer: 2000,
       })
     },
