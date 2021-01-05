@@ -124,7 +124,8 @@
           asAlertMsg({
             type: "warning",
             title: "Attention",
-            message: "Veuillez remplir les champs de votre réservation"
+            message: "Veuillez remplir les champs de votre réservation",
+            timer: 2000,
           })
         }
       }

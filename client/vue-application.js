@@ -74,23 +74,34 @@ var app = new Vue({
         asAlertMsg({
           type: "warning",
           title: "Attention",
-          message: "Cette adresse mail existe déjà"
+          message: "Cette adresse mail existe déjà",
+          timer: 2000,
         })
       }
     },
     // Permet de se connecter en tant que client
     async login (user) {
-      await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
+      try {
+        await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
 
-      const res = await axios.get('/api/me')
-      this.admin.id = res.data.admin
-      this.user = res.data.user
-      asAlertMsg({
-        type: "success",
-        title: "Validé",
-        message: "Votre êtes connecté" + this.user.nom
-      })
-      router.push('/')
+        const res = await axios.get('/api/me')
+        this.admin.id = res.data.admin
+        this.user = res.data.user
+        asAlertMsg({
+          type: "success",
+          title: "Validé",
+          message: "Votre êtes connecté",
+          timer: 2000,
+        })
+        router.push('/')
+      } catch (e) {
+        asAlertMsg({
+          type: "warning",
+          title: "Attention",
+          message: "Votre êtes connecté",
+          timer: 2000,
+        })
+      }
     },
     // Permet de se connecter en tant qu'admin
     async adminLogin (admin) {
@@ -102,7 +113,8 @@ var app = new Vue({
       asAlertMsg({
         type: "success",
         title: "Validé",
-        message: "Votre êtes connecté en admin" + this.user.nom
+        message: "Votre êtes connecté en admin" + this.user.nom,
+        timer: 2000,
       })
       router.push('/')
     },
@@ -136,14 +148,16 @@ var app = new Vue({
         asAlertMsg({
           type: "success",
           title: "Validé",
-          message: "Votre réservation a été prise en compte M./Mme. " + this.user.nom
+          message: "Votre réservation a été prise en compte M./Mme. " + this.user.nom,
+          timer: 2000,
         })
         router.push('/')
       } else {
         asAlertMsg({
           type: "warning",
           title: "Attention",
-          message: "Veuillez vous connecter pour passer une commande"
+          message: "Veuillez vous connecter pour passer une commande",
+          timer: 2000,
         })
         router.push('/connexion')
       }
@@ -157,21 +171,24 @@ var app = new Vue({
           asAlertMsg({
             type: "success",
             title: "Validé",
-            message: "Votre commande a été prise en compte M./Mme. " + this.user.nom
+            message: "Votre commande a été prise en compte M./Mme. " + this.user.nom,
+            timer: 2000,
           })
           router.push('/')
         } else {
           asAlertMsg({
             type: "warning",
             title: "Attention",
-            message: "Votre panier est vide !"
+            message: "Votre panier est vide !",
+            timer: 2000,
           })
         }
       } else {
         asAlertMsg({
           type: "warning",
           title: "Attention",
-          message: "Veuillez vous connecter pour passer une commande"
+          message: "Veuillez vous connecter pour passer une commande",
+          timer: 2000,
         })
         router.push('/connexion')
       }
