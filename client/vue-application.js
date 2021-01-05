@@ -135,10 +135,10 @@ var app = new Vue({
     async updateProfile (newUser) {
       await axios.put('/api/user/', 'nom=' + newUser.nom + '&prenom=' + newUser.prenom + '&email=' + newUser.email + '&telephone=' + newUser.telephone)
       const res = await axios.get('/api/me')
-      this.user.nom = res.data.nom
-      this.user.email = res.data.email
-      this.user.prenom = res.data.prenom
-      this.user.telephone = res.data.telephone
+      this.user.nom = res.data.user.nom
+      this.user.email = res.data.user.email
+      this.user.prenom = res.data.user.prenom
+      this.user.telephone = res.data.user.telephone
     },
     // Permet d'enregistrer une réservation
     async reserver (reservation) {
@@ -223,7 +223,6 @@ var app = new Vue({
       }
       this.panier.prix = prix
       this.panier.nb_menus = nb
-
     },
     // Permet de modifier la quantité d'un menu dans le panier
     async updateMenuFromPanier (newMenu) {
