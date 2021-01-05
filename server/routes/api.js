@@ -185,14 +185,17 @@
         reserv = result.rows
       }
 
-      const log = {
-        admin: req.session.adminId,
-        user: req.session.userId,
+      const user = {
+        id: req.session.userId,
         nom: req.session.userName,
         email: req.session.userEmail,
         prenom: req.session.userFirstName,
         telephone: req.session.userTelephone,
         reservations: reserv
+      }
+      const log = {
+        adminId: req.session.adminId,
+        user: user
       }
       res.json(log)
     } else {

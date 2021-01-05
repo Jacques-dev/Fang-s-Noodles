@@ -40,11 +40,11 @@ var app = new Vue({
       menus: []
     },
     user: {
+      id: null,
       nom: null,
       prenom: null,
       email: null,
       telephone: null,
-      id: null,
       reservations: []
     },
     admin: {
@@ -53,8 +53,8 @@ var app = new Vue({
     menusTypes: ['soups', 'dumplings', 'noodles', 'sashimi', 'nigiri']
   },
   async mounted () {
-    const res_menus = await axios.get('/api/menus')
-    this.menus = res_menus.data
+    const res = await axios.get('/api/menus')
+    this.menus = res.data
     const res2 = await axios.get('/api/panier')
     this.panier = res2.data
 
@@ -62,13 +62,7 @@ var app = new Vue({
 
     const res3 = await axios.get('/api/me')
     this.admin.id = res3.data.admin
-    this.user.id = res3.data.user
-    this.user.nom = res3.data.nom
-    this.user.email = res3.data.email
-    this.user.prenom = res3.data.prenom
-    this.user.telephone = res3.data.telephone
-    this.user.reservations = res3.data.reservations
-
+    this.user = res3.data.user
   },
   methods: {
     // Permet de s'enregistrer
@@ -90,13 +84,12 @@ var app = new Vue({
 
       const res = await axios.get('/api/me')
       this.admin.id = res.data.admin
-      this.user.id = res.data.user
-      this.user.nom = res.data.nom
-      this.user.email = res.data.email
-      this.user.prenom = res.data.prenom
-      this.user.telephone = res.data.telephone
-      this.user.reservations = res.data.reservations
-
+      this.user = res.data.user
+      asAlertMsg({
+        type: "success",
+        title: "Validé",
+        message: "Votre êtes connecté" + this.user.nom
+      })
       router.push('/')
     },
     // Permet de se connecter en tant qu'admin
@@ -105,25 +98,24 @@ var app = new Vue({
 
       const res = await axios.get('/api/me')
       this.admin.id = res.data.admin
-      this.user.id = res.data.user
-      this.user.nom = res.data.nom
-      this.user.email = res.data.email
-      this.user.prenom = res.data.prenom
-      this.user.telephone = res.data.telephone
-      this.user.reservations = res.data.reservations
-
+      this.user = res.data.user
+      asAlertMsg({
+        type: "success",
+        title: "Validé",
+        message: "Votre êtes connecté en admin" + this.user.nom
+      })
       router.push('/')
     },
     // Permet de se déconnecter
     async logout () {
-      const res_menus = await axios.post('/api/logout/')
-      this.admin.id = res_menus.data.admin
-      this.user.nom = res_menus.data.nom
-      this.user.email = res_menus.data.email
-      this.user.prenom = res_menus.data.prenom
-      this.user.telephone = res_menus.data.telephone
-      this.user.id = res_menus.data.user
-      this.panier = res_menus.data.panier
+      const res = await axios.post('/api/logout/')
+      this.admin.id = res.data.admin
+      this.user.nom = res.data.nom
+      this.user.email = res.data.email
+      this.user.prenom = res.data.prenom
+      this.user.telephone = res.data.telephone
+      this.user.id = res.data.user
+      this.panier = res.data.panier
       this.user.reservations = []
       router.push('/')
     },
