@@ -139,6 +139,12 @@ var app = new Vue({
       this.user.email = res.data.user.email
       this.user.prenom = res.data.user.prenom
       this.user.telephone = res.data.user.telephone
+      asAlertMsg({
+        type: "success",
+        title: "Validé",
+        message: "Votre êtes connecté en admin" + this.user.nom,
+        timer: 2000,
+      })
     },
     // Permet d'enregistrer une réservation
     async reserver (reservation) {
