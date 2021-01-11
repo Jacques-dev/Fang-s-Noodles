@@ -85,6 +85,7 @@ var app = new Vue({
         await axios.post('/api/login/','email=' + user.email + '&password=' + user.password)
 
         const res = await axios.get('/api/me')
+        this.admin.id = res.data.adminId
         this.user = res.data.user
         asAlertMsg({
           type: "success",
@@ -160,7 +161,7 @@ var app = new Vue({
         asAlertMsg({
           type: "warning",
           title: "Attention",
-          message: "Veuillez vous connecter pour passer une commande",
+          message: "Veuillez vous connecter en client pour passer une commande",
           timer: 2000,
         })
         router.push('/connexion')
