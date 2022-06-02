@@ -105,24 +105,25 @@
   // pour un utilisateur de type admin
   router.post('/adminlogin', async (req, res) => {
 
-    const id = req.body.id
+    const email = req.body.id
     const password = req.body.password
 
-    const sql = "SELECT password FROM admin WHERE id=$1"
+    const sql = "SELECT password FROM admin WHERE email=$1"
     const result = await client.query({
       text: sql,
-      values: [id]
+      values: [email]
     })
 
     if (result.rowCount == 1) {
       const hashedPassword = result.rows[0].password
 
-      // if (await bcrypt.compare(password, hashedPassword)) {
+      if (await bcrypt.compare(password, hashedPassword)) {
+        console.log("oui");
 
-        const sqlId = "SELECT id FROM admin WHERE id=$1"
+        const sqlId = "SELECT id FROM admin WHERE email=$1"
         const result2 = await client.query({
           text: sqlId,
-          values: [id]
+          values: [email]
         })
 
         req.session.adminId = result2.rows[0].id
@@ -134,9 +135,9 @@
 
         res.status(200).json({ message: "well logged as admin" })
 
-      // } else {
-      //   res.status(400).json({ message: "wrong password" })
-      // }
+      } else {
+        res.status(400).json({ message: "wrong password" })
+      }
     } else {
       res.status(400).json({ message: "no such user exist" })
     }
